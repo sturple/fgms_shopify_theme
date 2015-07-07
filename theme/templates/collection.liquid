@@ -1,0 +1,120 @@
+{%comment%}{% include 'collection-page' %}{%endcomment%}
+
+{% paginate collection.products by 10  %}
+{%capture collection_type%}{% if collection.title == 'Products'  %}{% if  current_tags.first.size > 0 %}tags{% else %}all{%endif%}{% else%}{% assign page_title_handle = page_title | handle %}{%assign other_type = 'created' %}{% for vendor in collection.all_vendors %}{% assign vendor_handle = vendor | handle %}{% if vendor_handle == page_title_handle%}{%assign other_type = 'vendor'%}{%endif%}{% endfor %}{% if collection.current_type | handle == page_title_handle %}{%assign other_type = 'types'%}{%endif%}{{other_type}}{%endif%}{%endcapture%}
+{%capture snippet_collection_header%}collection-header-{{collection_type}}{%endcapture%}
+
+
+		<header id="pageHeader" class="collectionHeader textile {% unless collection.description.size > 0 %}titleNoDescription{% endunless %}">
+			<h1 id="pageTitle"><span>{{collection.title}}</span></h1>
+			<div class="intro-text">{{collection.description}}</div>
+		</header>
+		<section>
+			<div>			
+				<ul style="list-style: none; padding-left:0;margin-left: 0;" class="index-list ">
+				{% for product in collection.products %}
+					{% if product.collections.first.handle contains 'product-options' or product.tags.first contains 'HIDDEN' %}				
+					{%else%}
+					<li>
+						<div class="row ">
+							<div class="col-sm-4 col-lg-3 collection-image-wrapper">
+								<a class="" href="{{ product.url | within: collection }}">
+								{% assign index_thumb = product.featured_image.src | product_img_url: 'medium' %}								
+								{% if index_thumb contains 'no-image'%}
+									{% assign index_thumb =  'card.gift-card.jpg' | asset_url %}
+								{%endif%}	
+									<img class="" style="max-width: 240px; width: 100%;" src="{{ index_thumb }}" alt="{{ product.featured_image.alt | escape }}" />
+								</a>	
+							</div>
+							<div class="col-sm-8 col-lg-9">
+								<h3 class=""><a href="{{ product.url | within: collection }}" title="{{ product.title | strip_html | escape }}">{{ product.title }}</a></h3>
+								{% if product.metafields.FGMS.subtitle.size > 0 %}<div class="subtitle">{{product.metafields.FGMS.subtitle}}</div>{% endif %}
+								<div >{% if product.metafields.FGMS.intro_text.size > 0 %}{{product.metafields.FGMS.intro_text}}{%else%}{{product.description | strip_html | truncatewords: 50 }}{% endif %}
+							</div>
+								<div class="price">
+								{% if product.compare_at_price > product.price %}						
+									<span class="">{% if product.price_varies %}{{settings.fromText}} {% endif %}<span class="sale-price">{{ product.price | money }}</span> <em class="oldPrice"> {{ product.compare_at_price | money }}</em> <span class="money-unit"></span></span>
+									{% if product.metafields.FGMS.sale_descriptor %}<div class="product-sale-descriptor carousel">{{product.metafields.FGMS.sale_descriptor}}</div>{%endif%}
+								{% else %}
+									<span class="">{% if product.price_varies %}{{settings.fromText}} {% endif %}{{ product.price | money }} <span class="money-unit"></span></span>
+								{% endif %}								
+								</div>								
+								<div class="action">
+									<a href="{{product.url}}" class="btn btn-primary ">Learn More</a>
+								</div>					
+							</div>						
+						</div>
+					</li>					
+					{%endif%}
+				{% endfor %}	
+				</ul>
+			</div><!-- collectionProducts -->
+		  
+		  
+		{% comment %}  {% endcomment %}
+			<div id="collectionControlsBottom" >
+				<div class="row">
+					<div class="col-sm-6">
+						{% if paginate.parts.size > 0 %}<span style="margin-right: 8px;" class="showingNumbers">Page: </span>{% endif %}
+						<nav class="pagination">							
+							{% if paginate.previous %}
+							<a id="paginationPrev"  href="{{ paginate.previous.url }}"><i class="fa fa-chevron-circle-left "></i></a>
+							{% endif %}
+							{% for part in paginate.parts %}
+							{% if part.is_link %}
+							<span class="paginationLink badge">{{ part.title | link_to: part.url }}</span>
+							{% else %}							
+							<span class="badge {% if part.title contains 'hellip' %}no-hover {% else%}active {% endif %}">{{ part.title }}</span>
+							{% endif %}        
+							{% endfor %}
+							{% if paginate.next %}
+							<a id="paginationNext"  href="{{ paginate.next.url }}"><i class="fa fa-chevron-circle-right "></i></a>
+							{% endif %}
+						</nav><!-- collectionPagination -->						
+					</div>
+					<div class="col-sm-6 align-right-sm">
+						<div  class="pagination showingNumbers">{{ settings.showingItems }} {{ paginate.current_offset | plus: 1 }}-{% if paginate.next %}{{ paginate.current_offset | plus: paginate.page_size }}{% else %}{{ paginate.items }}{% endif %} of {{ paginate.items }}</div>
+					</div>
+				</div>
+			</div><!-- collectionControlsBottom -->		  
+			<div class="tag-cloud">
+				<h3 >Tag Cloud</h3>
+				<div  style="margin-bottom: 24px;">You can view all products available at Mission Inn Resort by selecting from the keywords below:</div>
+				{% for tag in collections['all'].tags %}				
+				{% if current_tags contains tag %}
+					<a href="/collections/all/{{ tag | handle}}" class="btn btn-default active">{{ tag }}</a>
+				{% else %}
+					{% if tag contains 'HIDDEN'%}
+					{% else %}
+					<a href="/collections/all/{{ tag | handle}}" class="btn btn-default">{{ tag }}</a>
+					{%endif%}
+				{% endif %}
+				{% endfor %}		
+			</div>	
+		</section><!-- content -->
+
+{% endpaginate %}
+
+<script>
+// Product Tag Filters - Good for any number of filters on any type of collection pages - Modified version of Caroline Schnapp's - http://11heavens.com */
+  var filterByTag = $('#filterByTag');
+  filterByTag.change(function(){
+    var newTags = [];
+    filterByTag.each(function(){ 
+		if ($(this).val()) {  newTags.push($(this).val());   }
+    });
+    if (newTags.length) {
+		var query = newTags.join('+');
+		window.location.href = $('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('tag', query);
+    } 
+    else {
+      {% if collection.handle %}
+        window.location.href = '/collections/{{ collection.handle }}';
+       {% elsif collection.products.first.type == collection.title %}
+         window.location.href = '{{ collection.title | url_for_type }}';
+        {% elsif collection.products.first.vendor == collection.title %}
+          window.location.href = '{{ collection.title | url_for_vendor }}';
+         {% endif %}
+         }
+        });
+</script>

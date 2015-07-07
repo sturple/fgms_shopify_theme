@@ -1,0 +1,83 @@
+{% assign form-type = 'horizontal' %}
+<section id="register" class="section-wrap">
+	<h1>Customer Account</h1>
+	<div class="row">
+		<div class="col-md-5">
+			{% if customer.email == nil %}
+			<h2>Create Your  Account</h2>
+			<h3>Login Details</h3>			
+			{% form 'create_customer' %}      
+			{{ form.errors | default_errors }}				
+				<div class="form-group" >
+					<label class="control-label sr-only"  for="">Email Address</label>
+					<div class="">		
+						<input type="text"
+							   class="form-control {% if form.errors contains 'email' %} has-error {% endif %}"						   
+							   name="customer[email]"
+							   value="{{form.email}}"
+							   placeholder="Email Address" />
+						
+					</div>
+					<div class="error-message {% if form.errors contains 'email' %} show-error-message {% endif %}">Email is required</div>
+				</div>
+				
+				<div class="form-group" >
+					<label class="control-label sr-only"  for="login">Password</label>
+					<div class="">		
+						<input type="password"
+							   class="form-control password {% if form.errors contains 'password' %} has-error {% endif %}"						   
+							   name="customer[password]"
+							   value=""
+							   placeholder="Password" />
+						
+					</div>
+					<div class="error-message {% if form.errors contains 'password' %} show-error-message {% endif %}">Password is required</div>
+				</div>
+				
+				<h3 style="padding-top: 18px;">Your Name</h3>
+				<div class="form-group">
+					<label class="control-label sr-only"  for="first_name">First Name</label>
+					<div class="">		
+						<input type="text" id="first_name" class="form-control" placeholder="First Name" name="customer[first_name]" value="{{form.first_name}}"   />		
+					</div>
+				</div>		
+				<div class="form-group">
+					<label class="control-label sr-only"  for="last_name">Last Name</label>
+					<div class="">		
+						<input type="text" id="last_name" class="form-control" placeholder="Last Name" name="customer[last_name]" value="{{form.last_name}}"   />		
+					</div>
+				</div>	
+				{%comment%}
+				<h3 style="padding-top: 18px;">Join the VIP Club?</h3>			
+				<div class="">
+					<div class="checkbox">
+						<input id="checkbox-join-vip" type="checkbox" name="customer[tags]" CHECKED class="option-checkbox  form-control"  />
+						<label for="checkbox-join-vip"><div style="line-height: 1.4em;"><strong>Yes!</strong> I want to join and receive the free WELCOME PACKAGE, as well as club discounts, coupons and other member benefits.</div></label>
+					</div>							
+				</div>			
+				{%endcomment%}
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" value="Create" />
+				</div>             
+			{% endform %}	  
+			{% endif %}					
+			
+		</div>
+		<div class="col-md-6 col-md-offset-1">
+			
+			<div class="info-box">
+				<h3> VIP Club</h3>
+				<p>There are a number of reasons to join the  VIP club, such as:</p>
+					<ul class="fa-ul">  
+					  
+					  <li><i class="fa-li fa fa-check"></i>Coupons for other special offers</li>              
+					</ul>
+				
+			  
+			</div>
+		
+		</div>
+	</div>	
+
+
+</section>

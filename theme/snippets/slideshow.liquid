@@ -1,0 +1,38 @@
+
+{% for i in (i..10) %}
+{% assign c = i | plus: 1 %}
+{% assign slide = 'slide-' | append: c %}
+{% assign slide_image = slide | append: '-image' %}
+{% assign slide_caption = slide | append: '-caption' %}
+{% assign slide_tag_wedding = slide | append: '-wedding' %}
+{% assign slide_tag_dining = slide | append: '-dining' %}
+{% assign slide_tag_golf = slide | append: '-golf' %}
+{% assign slide_tag_spa = slide | append: '-spa' %}
+{% assign slide_tag_tennis = slide | append: '-tennis' %}
+
+<img 	data-src="{{ slide_image | append: '.jpg' | asset_url }}"				
+		alt="{{settings[slide_caption]}}"
+		style="display: none;"
+		data-wedding="{{settings[slide_tag_wedding]}}"
+		data-dining="{{settings[slide_tag_dining]}}"
+		data-golf="{{settings[slide_tag_golf]}}"
+		data-spa="{{settings[slide_tag_spa]}}"
+		data-tennis="{{settings[slide_tag_tennis]}}"
+		class="img-responsive"
+		/>
+	
+{% endfor %}
+
+<script type="text/javascript">
+	$(function(){
+		var product_tags = '{% for tag in product.tags %}{{tag}} {%endfor%}'
+		console.log('ptags',product_tags);
+		var slideshow_image_count = $('#slideshow').find('img').length;
+		
+		var slideshow_random = Math.floor( (Math.random() * 10) + 1);
+		console.log('random',slideshow_random);
+		var slideshow_image = $('#slideshow').find('img:eq('+ slideshow_random +')');
+		slideshow_image.on('load',function(){$(this).delay(300).fadeIn(800 );});
+		slideshow_image.attr('src', slideshow_image.data('src'));		
+	})
+</script>
