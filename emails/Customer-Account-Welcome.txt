@@ -2,13 +2,21 @@ SUBJECT
 Your Account is Now Active | {{shop.name}}
 
 EMAIL
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
 {% if customer.name %}Dear {{ customer.name }},{% endif %}
 
-Your PEETZ Outdoors account is now active.
+Your {{shop.name}} account is now active.
 
 Save time at checkout by logging into your account the next time you shop with us. This simple step will prefill your address information on all the order documentation and ensure smooth processing.
 
 Thanks for shopping at {{shop.name}}
 
 All the best,
+
+{{salutation}}
+{{shop.name}}
+{{shop.url}}
 

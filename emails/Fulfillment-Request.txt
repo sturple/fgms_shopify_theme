@@ -2,9 +2,13 @@ SUBJECT
 Fulfillment Request - Order {{ name }} | {{shop.name}}
 
 EMAIL
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
 Hello {{ service_name }},
 
-Below are the details of order {{ name }} from PEETZ Outdoors.  If you have any questions regarding fulfillment, please contact us toll free at <strong>800.883.0221</strong> (Monday through Friday, 9am to 5pm Pacific Time).
+Below are the details of order {{ name }} from {{shop.name}}.  If you have any questions regarding fulfillment, please contact us {% if toll-free.size > 3 %}toll free at {{toll-free}}{% else %}at {{phone}}{% endif %}{%if operating-hours.size > 5 %} {{operating-hours}}{% endif %}.
 
 Total number of items: {{ fulfillment.item_count }}
 Unique items: {{ fulfillment.fulfillment_line_items.size }}
@@ -40,4 +44,6 @@ Customer Email:
   {{ email }}
 
 Thank you,
-
+{{salutation}}
+{{shop.name}}
+{{shop.url}}

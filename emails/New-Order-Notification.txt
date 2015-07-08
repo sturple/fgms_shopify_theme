@@ -2,6 +2,10 @@ SUBJECT
 New Order {{ name }}  | {{shop.name}}
 
 EMAIL
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
 
 {{ shop_name }},
 
@@ -33,3 +37,9 @@ for {{ line.price | money }} each
 (sku: {{ line.sku }})
 {% endif %}
 {% endfor %}
+
+All the best,
+
+{{salutation}}
+{{shop.name}}
+{{shop.url}}

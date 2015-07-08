@@ -2,14 +2,22 @@ SUBJECT
 Account Activation | {{shop.name}}
 
 EMAIL
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
 {% if customer.name %}Dear {{ customer.name }},{% endif %}
 
-An account has been created for you at PEETZ Outdoors. Please click on the link below to activate this new account and set your personal password:
+An account has been created for you at {{shop.name}}. Please click on the link below to activate this new account and set your personal password:
 
 {{ customer.account_activation_url }}
 
 Thanks for shopping at {{shop.name}}
 
 All the best,
+
+{{salutation}}
+{{shop.name}}
+{{shop.url}}
 
 

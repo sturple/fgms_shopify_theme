@@ -2,100 +2,58 @@ SUBJECT
 Your Gift Card | {{shop.name}}
 
 EMAIL
+
+{% assign link-color = '#f38946' %}
+{% assign link-color-hover = '#f38946' %}
+{% assign body-background = '#f8f7f6' %}
+{% assign container-background = '#ffffff' %}
+{% assign footer-background = '' %}
+{% assign logo = 'logo-email-mission-inn-resort.png' %}
+{% assign logo-alt = '[Image] Mission Inn Resort' %}
+{% assign title-style = "padding-top: 28px; padding-left: 24px; padding-right: 24px; padding-bottom: 12px; font-family: georgia,times,serif; font-size: 22px; color: #827366; border-collapse:collapse;" %}
+{% assign subtitle-style = "padding-left: 24px; padding-right: 24px; padding-bottom: 24px; font-family: georgia,times,serif; font-style: italic; font-size: 18px; color: #827366; border-collapse:collapse;" %}
+{% assign body-style = "padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;" %}
+{% assign body-small-style = "padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 13px; line-height: 20px; color: #666666; border-collapse:collapse;" %}
+{% assign footer-style = "border-collapse:collapse; text-align: center;  font-family: 'Open Sans',arial,helvetica,sans-serif;  line-height: 16px; color: #666666;" %}
+
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>PEETZ Outdoors Limited</title>
+	<title>{{shop.name}}</title>
 	<style type="text/css">
-
-	a { color: #d45f16 !important;
-	}
-
-	a:hover {
-		text-decoration: underline !important;
-	}
-
+	a { color: {{link-color}} !important;}
+	a:hover {text-decoration: underline !important; color: {{link-color-hover}} !important;}
 	@media only screen and (max-device-width: 640px) {
-
-		td[class="content-wrapper"] {
-	        padding: 0 !important;
-	     }
-		
-	     table[class="table"], td[class="cell"] {
-	        width: 100% !important;
-			-webkit-box-shadow: none !important;
-			-moz-box-shadow: none !important;
-			box-shadow: none !important;
-	     }
-		 
-		td[class="main-cell"] {
-			padding: 0 !important;
-	     }
-		 
-		td[class="title-cell"] {
-	        width: 100% !important;
-			padding-top: 18px !important;
-			padding-left: 8px !important;
-			padding-right: 8px !important;
-			padding-bottom: 8px !important;
-			font-size: 20px !important;
-			line-height: 24px !important;
-	     }
-		 
-		td[class="subtitle-cell"] {
-	        width: 100% !important;			
-			padding-left: 8px !important;
-			padding-right: 8px !important;
-			padding-bottom: 18px !important;
-			font-size: 16px !important;
-			line-height: 20px !important;
-	     }
-		 
-		td[class="body-cell"] {
-	        width: 100% !important;
-			padding-left: 8px !important;
-			padding-right: 8px !important;
-			padding-bottom: 12px !important;
-	     }
-		 
-	     table[class="message-table"], td[class="message-cell"] {
-	        width: 100% !important;
-			font-size: 12px !important;
-			line-height: 16px !important;
-	     }
-		 
-		 td[class="message-cell"] {
-			padding-bottom: 10px !important;			 
-	     }	
-
-	     table[class="footer-table"], td[class="footer-cell"] {
-	        width: 100% !important;
-	     }
-
-		 td[class="footer-title-cell"] {
-			width: 100% !important;
-	     }			 
-
-		 td[class="footer-address1-cell"] {
-			width: 100% !important;
-			padding-bottom: 8px;		 
-	     }		 
-
-		 td[class="footer-address2-cell"] {
-			width: 100% !important;
-	     }	
+		td[class="content-wrapper"] { padding: 0 !important;}		
+		table[class="table"], td[class="cell"] { width: 100% !important;-webkit-box-shadow: none !important;-moz-box-shadow: none !important;box-shadow: none !important; }
+		td[class="main-cell"] {	padding: 0 !important;}		 
+		td[class="title-cell"] {width: 100% !important;padding-top: 18px !important;padding-left: 8px !important;padding-right: 8px !important;padding-bottom: 8px !important;font-size: 20px !important;line-height: 24px !important; }
+		td[class="subtitle-cell"] {width: 100% !important;	padding-left: 8px !important;padding-right: 8px !important;padding-bottom: 18px !important;font-size: 16px !important;	line-height: 20px !important; }
+		td[class="body-cell"] { width: 100% !important;	padding-left: 8px !important;padding-right: 8px !important;	padding-bottom: 12px !important;  }
+		table[class="message-table"], td[class="message-cell"] { width: 100% !important;font-size: 12px !important;line-height: 16px !important; }
+		td[class="message-cell"] {padding-bottom: 10px !important;}	
+	    table[class="footer-table"], td[class="footer-cell"] {width: 100% !important; }
+		td[class="footer-title-cell"] {width: 100% !important;	     }
+		td[class="footer-address1-cell"] {width: 100% !important;	padding-bottom: 8px; }		 
+		td[class="footer-address2-cell"] {width: 100% !important; }	
 
 	}
 	</style>
 </head>
 
-	<body bgcolor="#f8f7f6" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="background: #f8f7f6; -webkit-font-smoothing: antialiased; width:100% !important; -webkit-text-size-adjust: none;">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f8f7f6" style="border-collapse:collapse;">
+	<body bgcolor="{{body-background}}" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="background: {{body-background}}; -webkit-font-smoothing: antialiased; width:100% !important; -webkit-text-size-adjust: none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="{{body-background}}" style="border-collapse:collapse;">
             <tbody>
                 <tr>
                 	<td class="content-wrapper" width="100%" style="border-collapse:collapse; padding-top: 24px; padding-bottom: 24px;">
-                        <table class="table" width="620" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#ffffff" style="background: #ffffff; border-collapse:collapse; -webkit-box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36); -moz-box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36); box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36);">
+                        <table class="table" width="620" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="{{container-background}}" style="background: {{container-background}}; border-collapse:collapse; -webkit-box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36); -moz-box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36); box-shadow: 2px 4px 6px 0px rgba(50, 50, 50, 0.36);">
 							<tbody>
                                 <tr>
                                     <td class="main-cell" width="608" style="padding: 6px;">
@@ -106,11 +64,11 @@ EMAIL
                                             <tbody>
                                                 <tr>
                                                     <td class="cell" width="592" align="center" style="border-collapse:collapse; text-align: center; padding: 8px;">
-                                                        <img src="{{ 'logo-peetz-shopify-secure.png' | asset_url}}" width="180" alt="[Image] PEETZ Outdoors Limited Logo" />
+                                                        <img src="{{ logo | asset_url}}" width="180" alt="{{logo-alt}}" />
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>  
+                                        </table>
     
                                         <!-- MESSAGE -->									
                                     
@@ -120,7 +78,7 @@ EMAIL
                                                 <!-- TITLE -->
                                                                                       
                                                 <tr>	
-                                                    <td class="title-cell" width="560" align="left" style="padding-top: 28px; padding-left: 24px; padding-right: 24px; padding-bottom: 12px; font-family: georgia,times,serif; font-size: 22px; color: #827366; border-collapse:collapse;">
+                                                    <td class="title-cell" width="560" align="left" style="{{title-style}}">
                                                         Gift Card Update
                                                     </td>
                                                 </tr>
@@ -128,8 +86,8 @@ EMAIL
                                                 <!-- SUBTITLE -->
                                                                                       
                                                 <tr>	
-                                                    <td class="subtitle-cell" width="560" align="left" style="padding-left: 24px; padding-right: 24px; padding-bottom: 24px; font-family: georgia,times,serif; font-style: italic; font-size: 18px; color: #827366; border-collapse:collapse;">
-                                                        Here's the current status of your PEETZ gift card.
+                                                    <td class="subtitle-cell" width="560" align="left" style="{{subtitle-style}}">
+                                                        Here's the current status of your {{shop.name}} gift card.
                                                     </td>
                                                 </tr>
     
@@ -148,46 +106,46 @@ EMAIL
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
-                                                                        Thank you for your gift card purchase for {{ gift_card.initial_value | money_without_trailing_zeros }} at PEETZ Outdoors.																	
+                                                                    <td class="message-cell" width="560" style="{{body-style}}">
+                                                                        Thank you for your gift card purchase for {{ gift_card.initial_value | money_without_trailing_zeros }} at {{shop.name}}.																	
                                                                     </td>
                                                                 </tr>
                                                                 
                                                                 {% if gift_card.initial_value != gift_card.balance %}
                                                                 
                                                                 <tr>
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
-                                                                        We thought you might like to know that the current balance remaining on your PEETZ Outdoors gift card is {{ gift_card.balance | money_without_trailing_zeros }}.  
+                                                                    <td class="message-cell" width="560" style="{{body-style}}">
+                                                                        We thought you might like to know that the current balance remaining on your {{shop.name}} gift card is {{ gift_card.balance | money_without_trailing_zeros }}.  
                                                                     </td>
                                                                 </tr>
                                                                 
                                                                 {% endif %}
                                                                 															
                                                                 <tr>	
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
+                                                                    <td class="message-cell" width="560" style="{{body-style}}">
                                                                       <a href="{{ gift_card.url }}" style="color: #d45f16 !important;">To view or print your gift card, click here</a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>	
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
-                                                                      If you purchased this PEETZ gift card for a friend (we applaud you for your great taste!) all you have to do is forward this email to them.
+                                                                    <td class="message-cell" width="560" style="{{body-style}}">
+                                                                      If you purchased this {{shop.name}} gift card for a friend (we applaud you for your great taste!) all you have to do is forward this email to them.
                                                                     </td>
                                                                 </tr>															
                                                                 <tr>	
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 12px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
-                                                                       If have any questions or comments, you can reach us toll free at <strong>800.883.0221</strong> (Monday through Friday, 9am to 5pm Pacific Time).
+                                                                    <td class="message-cell" width="560" style="{{body-style}}">
+                                                                       If you have any questions or comments, you can reach us {% if toll-free.size > 3 %}toll free at <strong>{{toll-free}}</strong>{% else %}at <strong>{{phone}}</strong>{% endif %}{%if operating-hours.size > 5 %} {{operating-hours}}{% endif %}.
                                                                     </td>
                                                                 </tr>
-                                                                <tr>	
-                                                                    <td class="message-cell" width="560" style="padding-bottom: 18px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; color: #666666; border-collapse:collapse;">
-                                                                       All the best,
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>	
-                                                                    <td class="message-cell" width="560" style="font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 15px; line-height: 20px; font-style: italic; color: #666666; border-collapse:collapse;">
-                                                                       The PEETZ Team
-                                                                    </td>
-                                                                </tr>
+																<tr>	
+																	<td class="message-cell" width="560" style="{{body-style}} ;padding-bottom: 18px;">
+																	   All the best,
+																	</td>
+																</tr>
+																<tr>	
+																	<td class="message-cell" width="560" style="{{body-style}} ;font-style: italic;">
+																	   {{salutation}}
+																	</td>
+																</tr>
 
                                                                 <!-- END BODY MESSAGE -->
                                                                 
@@ -203,23 +161,23 @@ EMAIL
                                                         <table class="footer-table" width="560" border="0" cellspacing="0" cellpadding="0" align="center" style="border-collapse:collapse; border-top: 0px solid #f4f3f2;">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td class="footer-title-cell" width="560" align="center" style="border-collapse:collapse; text-align: center; padding-top: 24px; padding-bottom: 8px; font-family: georgia,times,serif; font-size: 16px; color: #827366; line-height: 16px; color: #666666;">
-                                                                        PEETZ Outdoors Limited
+                                                                    <td class="footer-title-cell" width="560" align="center" style="padding-top: 24px; padding-bottom: 8px; font-size: 16px; {{footer-style}}">
+                                                                        {{shop.name}}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="footer-address1-cell" width="560" align="center" style="border-collapse:collapse; text-align: center; padding-bottom: 2px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 11px; line-height: 16px; color: #666666;">
-                                                                        2740 Rock Bay Avenue
+                                                                    <td class="footer-address1-cell" width="560" align="center" style="padding-bottom: 2px; font-size: 11px; {{footer-style}}">
+                                                                        {{shop.address.street}}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="footer-address1-cell" width="560" align="center" style="border-collapse:collapse; text-align: center; padding-bottom: 2px; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 11px; line-height: 16px; color: #666666;">
-                                                                        Victoria, British Columbia, Canada, V8T 4R9
+                                                                    <td class="footer-address1-cell" width="560" align="center" style="padding-bottom: 2px;font-size: 11px;  {{footer-style}}">
+                                                                        {{shop.address.city}}, {{shop.address.province}}, {{shop.address.country}}, {{shop.address.zip}}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="footer-address2-cell" width="560" align="center" style="border-collapse:collapse; text-align: center; font-family: 'Open Sans',arial,helvetica,sans-serif; font-size: 11px; line-height: 18px; color: #666666;">
-                                                                        250.383.5342 | Toll Free: 800.883.0221 | <a href="http://www.peetzoutdoors.com" style="color: #d45f16 !important;">Website</a>
+                                                                    <td class="footer-address2-cell" width="560" align="center" style="font-size: 11px; line-height: 18px; {{footer-style}}">
+                                                                        {% if phone.size > 3 %}{{phone}} | {% endif %} {% if toll-free.size > 3 %}Toll Free: {{toll-free}} | {% endif %}<a href="{{shop.url}}" style="{{link-color}} !important;">Website</a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

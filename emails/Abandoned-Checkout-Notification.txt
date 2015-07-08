@@ -3,6 +3,10 @@ Your Shopping Cart at {{shop.name}}
 
 
 EMAIL
+{% capture  salutation %}The Mission Inn Team{% endcapture %}
+{% capture toll-free %}800.874.9053{% endcapture %}
+{% capture phone %}352.324.3101{% endcapture %}
+{% capture operating-hours%}{%endcapture%}
 Hello{% if billing_address.name %} {{ billing_address.name }}{% endif %},
 
 Your shopping cart at {{ shop_name }} is still active and waiting for your return!
@@ -19,4 +23,8 @@ But it's not too late! To complete your purchase, you can still click this link:
 Thanks for shopping at {{shop.name}}.
 
 All the best,
+
+{{salutation}}
+{{shop.name}}
+{{shop.url}}
 
