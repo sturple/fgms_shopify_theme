@@ -1,0 +1,15 @@
+SUBJECT
+Account Activation | {{shop.name}}
+
+EMAIL
+{% if customer.name %}Dear {{ customer.name }},{% endif %}
+
+An account has been created for you at PEETZ Outdoors. Please click on the link below to activate this new account and set your personal password:
+
+{{ customer.account_activation_url }}
+
+Thanks for shopping at {{shop.name}}
+
+All the best,
+
+

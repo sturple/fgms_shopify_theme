@@ -1,0 +1,19 @@
+SUBJECT
+Your Gift Card | {{shop.name}}
+
+EMAIL
+Hello{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},
+
+Thank you for your gift card purchase for {{ gift_card.initial_value | money_without_trailing_zeros }} at PEETZ Outdoors.
+
+We thought you might like to know that the current balance remaining on your PEETZ Outdoors gift card is {{ gift_card.balance | money_without_trailing_zeros }}.
+
+To view or print your gift card, visit the link below:
+
+<{{ gift_card.url }}>
+
+If you purchased this PEETZ gift card for a friend (we applaud you for your great taste!) all you have to do is forward this email to them.
+
+If have any questions or comments, you can reach us toll free at <strong>800.883.0221</strong> (Monday through Friday, 9am to 5pm Pacific Time).
+
+All the best,

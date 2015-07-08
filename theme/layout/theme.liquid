@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% include 'meta' %}
-  
-	<link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
-	
+	{% include 'meta' %}  
+	<link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />	
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
 	{{'styles.scss.css' | asset_url | stylesheet_tag }}
 	
@@ -39,7 +37,6 @@
   {% include 'theme-variables' %}
 {%endcomment%}
 </head>
-
 <!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
 <!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 {%include 'modal-privacy'%}

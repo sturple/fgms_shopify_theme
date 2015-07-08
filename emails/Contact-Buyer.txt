@@ -1,0 +1,5 @@
+SUBJECT
+Order {{ name }} | {{site.name}}
+
+EMAIL
+{% if billing_address.name %}Dear {{ billing_address.name }},{% endif %}

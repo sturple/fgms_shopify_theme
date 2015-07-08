@@ -1,0 +1,19 @@
+SUBJECT
+Order {{ name }} Cancelled | {{shop.name}}
+
+EMAIL
+{% if billing_address.name %}Dear {{ billing_address.name }},{% endif %}
+
+Your order {{ name }} was cancelled {% case cancel_reason %}{% when 'customer' %}at your request.{% when 'inventory' %}because unfortunately we did not have enough stock to fulfill your order.{% when 'fraud' %}because we suspect it was fraudulent.{% when 'other' %}due to unforseen circumstances.{% endcase %}
+
+{% if financial_status == 'voided' %}Your payment was also voided.{% elsif financial_status == 'refunded' %}Your payment was also refunded.{% endif %}
+
+If you would like to proceed with your order at a future date, or if you feel the cancellation was an error, please contact us toll free at <strong>800.883.0221</strong> (Monday through Friday, 9am to 5pm Pacific Time).
+
+We look forward to serving you soon,
+
+The PEETZ Team
+PEETZ Outdoors Limited
+www.peetzoutdoors.com
+
+
