@@ -1,5 +1,8 @@
 
-<ul class="orion-menu blue dl-menu  ">
+<ul class="orion-menu dl-menu  ">
+		{% if menu_type == 'footer'%}
+				<li ><a href="http://www.missioninnresrot.com">Main Website</a></li>
+		{% endif %}
         {% for link in linklists['main-menu'].links %}							
         {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
         <li{% if link.active %} class="activePageMain"{% endif %}>

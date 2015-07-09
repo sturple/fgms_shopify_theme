@@ -14,6 +14,7 @@
 					<div class="navbar row " id="navigation-orion" >
 						<div class="col-sm-12">
 							<div class="navigation-buttons" style="">
+								{% comment %}
 								<a      class="btn btn-sm btn-primary popover-form" 
 										style="margin-right: 8px;" 
 										href="https://www.secure-res.com/res/vn4/checka.aspx?hotelid=3841&wtpid=1&scid=1&scdomainid=0&trr=AFFFFFD7F32433&culture=1&culturename=en-US"
@@ -45,6 +46,8 @@
 										<a class="btn btn-secondary btn-sm " href="http://www.missioninnresort.com/golf/mission-inn-public-tee-times/mission-inn-member-tee-times.html" style="width: 100%;">Member</a>
 									</div>
 								</div>
+							{% endcomment %}
+							{% include 'nav_account_cart'%}
 							</div>
 							{% include 'navbar'  %}
 							<div class="clearfix"></div>
@@ -52,7 +55,7 @@
 						
 					</div>
 				</div>
-				
+				{%comment%}
 				<div id="utility-account-bar">
 					 <div class="siteContainer-off container">
 						 <div class="row header-cart-bar">
@@ -60,46 +63,12 @@
 								 <span class="hidden-xs hidden-sm"></span>					
 							 </div>
 							 <nav id="utilityNavWrapper" class="col-md-6">
-								 <ul id="utilityNav" class="" style="margin-bottom: 0">
-									
-									 {% if shop.customer_accounts_enabled %}
-									 <li{% if customer %} class="active"{% endif %}>
-									   
-									   {{ '<div class="pull-left icon-your-account shopify-sprite display-none-480"></div>' | customer_login_link }}
-										 <div class="pull-right" >							
-										   <div id="cart-bar-your-account" class="heading">Your Account</div>
-										   <div id="cart-bar-login" class="">
-										   {% if customer %}
-											   <strong>{{ "Logout" | customer_logout_link }}</strong> or
-											   <span ><a href="/account" title="Account">Account</a></span>
-									   
-										   {% else %}
-											 <strong>{{ "Login" | customer_login_link }}</strong> or 
-											 <strong>{{"Join" | customer_register_link}}</strong>
-										   {% endif %}
-										   </div>
-										 </div>
-										 <div class="clearfix" style="clear: both;"></div>
-									 </li>
-								 
-									 {% endif %}
-									 <li id="cartLinkWrapper">
-										 <a href="/cart" id="cartLink">
-											 {% if shop.customer_accounts_enabled %}<div class="pull-left " id="cartLinkBorder"></div>{% endif %}
-											 <div id="" class="icon-your-cart shopify-sprite pull-left display-none-480"></div>
-											 <div class="pull-right" >
-												 <div class="your-cart-text heading" >Your Cart</div>
-												 <div id="yourCart" class="">{{ cart.item_count }} {% if cart.item_count == 1 %}Item{% else %}Items{% endif %}  </div>
-											 </div>
-											 <div class="clearfix" style="clear: both;" ></div>
-										   </a>
-									 </li>
-									 <li class="clearfix" style="clear:both"></li>
-								 </ul><!-- utilityMenu -->
+								{% include 'nav_account_cart'%}
 							 </nav><!-- utilityMenuWrapper -->
 						 </div>
 					 </div>
-				 </div>				
+				 </div>
+				{%endcomment%}
             </div>            
         </div>
 		<div id="slideshow">{% include 'slideshow' %}</div>

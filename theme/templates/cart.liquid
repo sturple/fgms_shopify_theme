@@ -95,7 +95,14 @@
 									<td class="cart-price">{{ item.price | money }}</td>
 									<td class="cart-qty">										
 										<input type="text" size="4" class="form-control" name="updates[]"  value="{{ item.quantity }}" />										
-										
+										<a  href="javascript:void(0);"
+											data-toggle="tooltip"
+											title=""
+											data-placement="top"											
+											data-original-title="Update Cart"
+											class="btn btn-primary cart-update-clone update-cart-item">
+											<i class="fa fa-refresh"></i>											
+										</a>										
 									</td>
 									<td class="cart-total">{{ item.line_price | money }}</td>
 									<td class="cart-delete"><a href="javascript:void(0);" class="remove-cart-item"><i class="fa fa-times"></i></a></td>

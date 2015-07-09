@@ -128,6 +128,7 @@ ul {list-style: none;padding:0;margin:0;}
 	padding: 24px;
 }
 
+.align-right-lg, .align-right-md, .align-right-sm, .align-right-xs,.align-right {text-align: right;} 
 .error-message, .input-error-message {font-size: 13px; font-size: 1.3rem; color: #990000; display: none; padding-left: 2px;}
 .error-message.show-error-message {display: block;}
 
@@ -210,6 +211,8 @@ ul {list-style: none;padding:0;margin:0;}
 /*for currency, account and cart icons*/
 #utilityNav {
 	float:right;
+	line-height: 1em;
+	color: $utility-nav-color;
 	li {
 		float:left;
 		margin-left:20px;
@@ -541,7 +544,7 @@ ul {list-style: none;padding:0;margin:0;}
 .main-outer-wrapper {-webkit-transition-property: top; background-color: #fff;   -moz-transition-property: top;      -o-transition-property: top;       transition-property: top;}
 .main-outer-wrapper {background: url({{'background-pagecontent-secondary.gif' | asset_url}}) repeat-y center 0px #fff; }
 .secondary-full #main {min-height: 0;}
-.main-col-wrapper:not(.full-width) {padding: 12px  0 0 36px; }
+.main-col-wrapper:not(.full-width) {padding: 12px  0 0 0px; }
 .main-col-wrapper.home-page {padding-right: 24px;}
 .social-feed-widget{padding: 0 0 24px 0;}
 .sidebar-homepage {padding: 60px 0 0 42px;}
@@ -916,14 +919,15 @@ html[xmlns] .slides{display:block;}
 
 
 
-
-.orion-menu{	width: auto;	padding: 0 0 0 5px;	position: relative;	float: right; list-style: none;}
+.orion-menu{   width: auto;	padding: 0 0 0 5px;   position: relative;	float: right; list-style: none;}
 
 .orion-menu li {display: inline-block;	margin: 0;	padding: 0;	float: left; position: relative;}
 .orion-menu li a {text-decoration: none; display: inline-block; -o-transition: color .3s linear, background .3s linear;	-webkit-transition: color .3s linear, background .3s linear; -moz-transition: color .3s linear, background .3s linear;	transition: color .3s linear, background .3s linear;	}
 .orion-menu li:hover > a{color: #fff;}
 .orion-menu li.active > a{background: #555555;}
 .orion-menu > li > a {	text-transform: uppercase;}
+
+.orion-menu > li:last-child > a {padding-right: 0;}
 
 /* DROPDOWN */
 .orion-menu ul, .orion-menu ul li ul {
@@ -988,10 +992,11 @@ html[xmlns] .slides{display:block;}
 .footer-nav {
 	.orion-menu {
 		float: left;
+		
 		li {
 			&:nth-child(2) {margin-left: 0;}
 			&:hover > a {background-color: transparent;}
-			a {padding-left: 0;}
+			a {padding-left: 0;text-transform: none;}
 		}
 		.showhide {visibility: hidden; display: none !important;}
 		
@@ -1167,7 +1172,7 @@ html[xmlns] .slides{display:block;}
  }
 .orion-menu > li.showhide span.title {  float: left;  margin: 16px 0 0 6px;}
 .orion-menu > li.showhide span.icon {  margin: 14px 0px;}
-#navigation-orion { position: relative; z-index: 1000; }
+#navigation-orion { position: relative; z-index: 1000; padding: 0 24px 0 0;}
 #navigation-orion  >  ul { padding: 0; background-image: url({{'background-navbar.png' | asset_url}}); background-color: transparent; }
 .orion-menu > li:nth-child(2) {margin-left: 16px;}
 #navigation-orion ul li ul {background-color: #fff;}

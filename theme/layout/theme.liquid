@@ -11,7 +11,7 @@
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
 	{{ 'orion-menu.js' | asset_url | script_tag }}
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: ['Raleway','Lora']}})});</script>
+	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: ['Raleway:300,400,800','Lora']}})});</script>
 
 <!--[if lt IE 9]>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -90,7 +90,7 @@
 <div id="map-parallax">
     <div class="row">
         <div class="col-sm-12">
-            <div id="footer-map-wrapper" style="height: 530px;"><div class="map-loading-icon"><i class=" fa fa-spinner fa-spin fa-5x"></i></div></div>
+            <div id="footer-map-wrapper" style="height: 500px;"><div class="map-loading-icon"><i class=" fa fa-spinner fa-spin fa-5x"></i></div></div>
         </div>
     </div>  
     <div class="row">
@@ -113,13 +113,6 @@
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }} 
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 {%endcomment%}
-  {% if settings.enable-image-zoom %}{{ 'jquery.zoom.min.js' | asset_url | script_tag }}{% endif %}
-  {% if settings.enable-image-lightbox %}{{ 'jquery.colorbox-min.js' | asset_url | script_tag }}{% endif %}
-  {% if settings.enable-age-verification %}{% include 'age-check' %}{% endif %}
-
-  {% if settings.custom-footer-code != '' %}
-    {{ settings.custom-footer-code }}
-  {% endif %}
   
 <script type="text/javascript">
 	var menuState = 'init';
@@ -190,35 +183,8 @@
 
 	}); 
 		
-	var tmp = $.fn.popover.Constructor.prototype.show;
-	$.fn.popover.Constructor.prototype.show = function () {
-	  tmp.call(this);
-	  if (this.options.callback) {
-		this.options.callback();
-	  }
-	};    						
 
-	$('.popover-form2').popover({ 
-			html : true,
-			title: function() {
-			  return $(this).siblings(".popover-head2").html();
-			},
-			content: function() {
-			  return $(this).siblings(".popover-content2").html();
-			},
-			callback: function() { 
 
-			}
-			  
-	}).click(function(e) {e.preventDefault();});
-	
-	$('.popover-form2').click(function(){
-		$('.popover-form').not(this).popover('hide'); //all but this
-	});				
-	
-	$('.popover-form').click(function(){
-		$('.popover-form2').not(this).popover('hide'); //all but this
-	});	
 	//menu
 	$().orion({	animation: 'fading',indicators: true});
 	
@@ -289,7 +255,7 @@
 		}, 10);
 	}
 	if ($('html').hasClass('no-touch')){
-		$('#outer-container').css('margin-bottom', $('#map-parallax').innerHeight() + 'px');
+		$('#outer-container').css('margin-bottom', ($('#map-parallax').innerHeight() -30) + 'px');
 	}		
 	$('#footer-map-wrapper').click(function(){
 		var $mapIcon = $(this).parent().find('.map-loading-icon')
@@ -500,7 +466,7 @@
     
     $(document).ready(function(){
 		
-		console.log('test')
+	
       $('.search-bar').typeahead({
         name: 'Products',
         local: [{{ typeahead }}]
