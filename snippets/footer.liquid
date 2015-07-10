@@ -1,0 +1,135 @@
+{% include 'contact_variables' %}
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-wrapper  main-wrapper ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="footer-secondary">
+                            [[$special_scroll_bar]]
+                        </div> <!-- close footer awards -->
+                    </div> <!-- close col-sm-12-->
+                </div> <!-- close row -->
+
+            </div> <!-- close footer wrapper -->
+ 
+            
+            
+        </div> <!-- close container -->
+    </footer>
+    <div id="footer-wrapper" class=" ">
+        <div class="" id="footer-inner">
+            <div class="container">
+                <div class="main-wrapper ">
+                    <div class="row">
+                        <div class="col-md-8 " >
+                                <div class="footer-logo"><a href="[[~1]]"><img src="{{'logo-mission-inn-resort-footer.png' | asset_url}}" class="img-responsive" style="max-width: 297px" alt="[[++site_name]] Footer Logo" /></a></div>    
+                                <div class="footer-text-wrapper">
+                                    <div class="footer-tollfree">Toll-free: <span>{{g_phonereservationstollfree}}</span></div>
+                                    <div class="footer-address">{{+g_address}}, {{g_city}}, {{+g_province}}, {{+g_country}}&nbsp;&nbsp;{{+g_postal}} &nbsp; | &nbsp; 
+                                        <a href="#" data-toggle="modal" data-target="#privacy-policy-modal" >Privacy Policy</a>
+                                    </div>
+                                    <div> </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 24px;">
+                                    <div class="socialBar"  >
+                                        <ul >                                                
+                                            <li class="pull-left">
+                                                <a href="[[+facebook_url]]" target="_blank"  >
+                                                    <div class="fgms-social-facebook-feed"></div>
+                                                    <div class="social-icon-text">&nbsp;"Like" us on FaceBook</div>
+                                                </a>                                                
+                                            </li>
+                                            <li class=" pull-left"><a href="[[+twitter_url]]" target="_blank" ><div class="fgms-social-twitter"></div><div class="social-icon-text">&nbsp;Follow us on Twitter</div></a></li>
+                                            <li class=" pull-left"><a href="[[+googleplus_url]]" rel="publisher" target="_blank"  ><div class="fgms-social-googlePlus"></div><div class="social-icon-text">&nbsp;Join us on Google+</div></a></li>
+                                            <li class=" pull-left"><a href="[[+youtube_url]]" target="_blank" ><div class="fgms-social-youtube"></div><div class="social-icon-text">&nbsp;View us on YouTube</div></a></li>
+                                            <li class=" pull-left"><a href="[[+pinterest_url]]" target="_blank"  ><div class="fgms-social-pinterest"></div><div class="social-icon-text">&nbsp;View our Blog</div></a></li>
+                                            <li class=" pull-left"><a href="[[+flickr_url]]" target="_blank"  ><div class="fgms-social-flickr"></div><div class="social-icon-text">&nbsp;View our Blog</div></a></li>
+                                            <li class=" pull-left"><a href="[[+instagram_url]]" target="_blank"  ><div class="fgms-social-instagram"></div><div class="social-icon-text">&nbsp;View our Blog</div></a></li>
+                                            <li class=" pull-left"><a href="[[+blog_url]]" target="_blank"  ><div class="fgms-social-rss-feed"></div><div class="social-icon-text">&nbsp;View our Blog</div></a></li>
+                                         </ul>
+                                        <div style="clear: both;" class="clearfix"></div>
+                                    </div>
+                                                        
+                                </div>
+                                <div class="footer-nav">[[!Wayfinder? &startId=`0` &level=`1`]]</div>
+                                
+                                <div class="footer-nav">
+                                    <ul>
+                                        <li><a title="Careers" href="[[~146]]">Careers</a></li>
+                                        <li><a title="Media Kit" href="[[~148]]">Media Kit</a></li>
+                                        <li><a title="Shop" href="http://shop.missioninnresort.com/">Shop</a></li>
+                                       
+                                    </ul>
+                                    
+                                    
+                                </div>
+                                
+                                <div class="row copyright" id="">
+                                    <div class="col-md-12 hidden-xs hidden-sm" >
+                                        [[!copyright_auto? &yearStart=`2014`]] <span class=""> | </span> Site developed by  [[+g_email_webmaster]]
+                                    </div>
+                                </div>                            
+
+                        </div>
+                        <div class="col-md-4" >                                
+                                <div class="footer-form-wrapper gutter-sidebar">
+                                    <div class="footer-form-content">
+                                    <h3>Quick Message</h3>
+                                    
+                                    </div>
+                                </div>                
+                                
+                        </div>
+                    </div>    
+                    <div class="row copyright visible-xs visible-sm" id="" style="line-height:1.3em;padding-top: 12px;">
+                        <div class="col-md-12" >
+                            [[!copyright_auto? &yearStart=`2014`]] <span> Site developed by  [[+g_email_webmaster]] </span></div>
+                            
+                        </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>    
+    </div>       
+    
+
+
+{%comment%}
+<footer id="footer-content" class="footer">
+  <div class="container">
+    {% if has_footer %}      
+      {% assign cols = '' %}
+      {% for i in (i..3) %}
+        {% assign c = i | plus: 1 %}
+        {% assign col = 'column-' | append: c %}
+        {% assign col_blog = col | append: '-blog' %}
+        {% assign col_menu = col | append: '-menu' %}
+        {% assign col_text = col | append: '-text' %}
+        
+        {% if settings[col_blog] != blank or settings[col_menu] != blank or settings[col_text] != blank or settings.newsletter-signup-placement contains col or settings.social-links-placement contains col %}
+          {% assign cols = cols | append: col | append: '|' %}
+        {% endif %}
+      {% endfor %}
+      {% assign footer_columns = cols | split: '|' %}
+      
+    <div class="row">
+      {% for footer_column in footer_columns %}
+        {% include 'footer-column-loop' %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    
+    <p class="text-center footer-credits">
+      <small>
+        &copy;{{ 'now' | date: '%Y' }}&nbsp;<a href="/" title="{{ shop.name }} {% include '__localize' with 'homepage' %}">{{ shop.name | replace: ' ', '&nbsp;' }}</a>. <br class="visible-sm">
+        Design&nbsp;by&nbsp;<a href="http://luciddesign.co.nz" title="Lucid Design, Nelson, New Zealand" target="_blank">Lucid</a>. <br class="visible-sm">
+        Powered&nbsp;by&nbsp;<a href="http://www.shopify.com?ref=lucid-design" target="_blank">Shopify</a>.
+      </small>
+    </p>
+  </div>
+
+{% if has_footer_navbar %}{% include 'navbar' with 'footer' %}{% endif %}
+</footer>
+{%endcomment%}

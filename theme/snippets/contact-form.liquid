@@ -1,36 +1,58 @@
 <!-- CONTACT FORM -->
-{% form 'contact' %}
+<div class="footer-form">
+	
 
+{% form 'contact' %}
+{{form | json}}
 <!-- CONTACT FORM CONFIRMATION -->
 {% if form.posted_successfully? %}
 <p class="alert alert-success">
 	Thanks for contacting us! We'll get back to you as soon as possible.
+	
 </p>
 {% endif %}
+<script type="text/javascript">
+	$(function(){
+		
+		{% if form.errors or form.posted_successfully? %}$('html, body').animate({ scrollTop: $('.footer-form').offset().top -150   }, 800);{% endif %}
+		$('.footer-form form').submit(function(){
+			if ( $('input[name="emailList"]:checked').val()  == 'Yes') {
+				if (validateEmail( $('input[name="contact[email"]').val() ) ) {
+					console.log($(this).serialize());
+				}
+				else {
+					
+				}
+				
+				return false;
+			}
+			else {
+				return true;
+			}
+		})
+		
+	})
+	
+function validateEmail(email) { 
+   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;   
+   return reg.test(email);   
+}	
+</script>
 
-<!-- CONTACT FORM ERROR -->
-{% if form.errors %}
-<p class="alert alert-danger">
-	<!-- {{ form.errors.size }} or {{ form.errors | size }} -->
-	Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:<br>
-	{% for field in form.errors %}
-	The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}.
-	{% endfor %}
-</p>
-{% endif %}
 		
 <!-- CONTACT FORM INPUTS -->
-<fieldset>
+
 	<div class="form-group">
 		<label class="control-label sr-only" for="contactFormName"> Name</label>
 		<div class="controls">
 			<input type="text" id="contactFormName" class="input-xlarge form-control" placeholder="Name" name="contact[name]">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group {% if form.errors contains 'email'%}has-error{%endif%}">
 		<label class="control-label sr-only" for="contactFormEmail">Email</label>
 		<div class="controls">
 			<input type="email" id="contactFormEmail" class="input-xlarge form-control" placeholder="Email" name="contact[email]">
+			<div class="input-error-message {% if form.errors contains 'email'%}show-error-message{%endif%}">Email is Required</div>
 		</div>
 	</div>
 	<div class="form-group">
@@ -39,7 +61,28 @@
 			<textarea rows="3" class="input-xlarge form-control" id="contactFormMessage" placeholder="Message" name="contact[body]"></textarea>
 		</div>
 	</div>
+    <div class="form-group" style="">
+       <label style="padding-right: 18px;" class="pull-left ">Subscribe to email list?</label>
+        <div class="">
+            <div class="radio   radio-inline">
+                <input class="radioButtons contactRadio" type="radio" name="emailList" id="emailListYesfooter" value="Yes" CHECKED />
+               
+                <label for="emailListYesfooter" style="position: relative; ;">Yes</label>
+            </div>
+            <div class="radio radio-inline">
+                <input class="radioButtons contactRadio" type="radio" name="emailList" value="No" id="emailListNofooter"  />
+                <label for="emailListNofooter" style="position: relative;">No</label>
+            </div>
+        </div>
+    </div>
+	
+	
 	<button class="btn btn-primary" id="contactFormSubmit" type="submit">Send</button>
-</fieldset>
+
 
 {% endform %}
+</div>
+
+<!-- CONTACT FORM ERROR -->
+
+

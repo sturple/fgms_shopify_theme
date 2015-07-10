@@ -28,9 +28,10 @@
 		var product_tags = '{% for tag in product.tags %}{{tag}} {%endfor%}'
 		console.log('ptags',product_tags);
 		var slideshow_image_count = $('#slideshow').find('img').length;
-		
-		var slideshow_random = Math.floor( (Math.random() * 10) + 1);
-		console.log('random',slideshow_random);
+		//using 0 as the jquery img:equ uses 0 starting point
+		var slideshow_random = {% if template contains 'index'%}0{%else%}Math.floor( (Math.random() * 10) ){%endif%};
+		if (slideshow_random > 10) { slideshow_random = 0;	}
+		console.log(slideshow_random)
 		var slideshow_image = $('#slideshow').find('img:eq('+ slideshow_random +')');
 		slideshow_image.on('load',function(){$(this).delay(300).fadeIn(800 );});
 		slideshow_image.attr('src', slideshow_image.data('src'));		

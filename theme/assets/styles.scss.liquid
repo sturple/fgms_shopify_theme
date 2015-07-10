@@ -16,6 +16,7 @@ $link-color-hover:#f38946 ;
 
 $utility-nav-color: #fff;
 $utility-nav-color-hover: $link-color-hover;
+$heading-color: #0b6384;
 
 /*mixins*/
 @mixin transform($time: 0.5s, $easing : ease-in-out, $transform: scale(1)){
@@ -97,7 +98,7 @@ body {position: relative; color: $body-color; line-height: 1.6em; font-size: 16p
 h1, h2, h3, h4, h5 {margin-top: 0; font-family: 'Raleway', sans-serif; font-weight: 400; margin-bottom: 18px; padding-top: 12px; }
 h1, .h1 { color: #005676; margin-bottom: 24px; font-size: 40px; font-size: 4rem;  padding-top: 0;}
 h1.home {font-size: 44px; font-size: 4.4rem;padding-top: 32px;}
-h2, h3, h4, h5 { color: #0b6384 }
+h2, h3, h4, h5 { color: $heading-color;}
 h2, .h2 { font-size: 24px; font-size: 2.4rem; padding-top: 24px; }
 h5, .h5 { font-size: 16px; font-size: 1.6rem; }
 h2.entry-title {font-weight: 300;}
@@ -129,10 +130,36 @@ ul {list-style: none;padding:0;margin:0;}
 }
 
 .align-right-lg, .align-right-md, .align-right-sm, .align-right-xs,.align-right {text-align: right;} 
-.error-message, .input-error-message {font-size: 13px; font-size: 1.3rem; color: #990000; display: none; padding-left: 2px;}
-.error-message.show-error-message {display: block;}
-
-/*Icons*/
+.error-message, .input-error-message {font-size: 13px; font-size: 1.3rem; color: #990000;  display: none; padding-left: 2px;}
+.footer-form .error-message, .footer-form .input-error-message {color: #fff;}
+.error-message.show-error-message , .input-error-message.show-error-message{display: block; }
+.has-error {
+   input, textearea, select {background-color: #FBE3E4;}
+}
+.strike-line, .heading-line{
+	border-bottom: 1px solid $heading-color;
+	border-top: 1px solid $heading-color;
+	margin: 24px 0 36px;
+	position: relative;
+	height:4px;
+	h1,.h1 {
+		background: none repeat scroll 0 0 white;
+		display: table;
+		margin: 0 auto;
+		padding: 0 24px;
+		position: relative;
+		top: -20px;				
+	}
+	h2,.h2 {
+		background: none repeat scroll 0 0 white;
+		display: table;
+		margin: 0 auto;
+		padding: 0 24px;
+		position: relative;
+		top: -20px;		
+	}
+}
+/*Icons
 .shopify-sprite {
 	background-image : url({{'icons-sprite.png' | asset_url}});
 	background-repeat: none;  background-position: 0 0;
@@ -160,8 +187,10 @@ ul {list-style: none;padding:0;margin:0;}
 }
 .cartLink:hover .icon-your-cart {background-position: -32px -27px;}
 .active .peetz-sprite.icon-your-account{background-position: 1px -27px;}
+*/
 
-
+.icon-your-cart i {margin-right: 6px; font-size: 24px;}
+.icon-your-account i {margin-right: 6px; font-size: 24px;}
 
 
 /********************************************
@@ -760,16 +789,22 @@ ul.B_crumbBox {margin-left: 0; margin-bottom: 36px; }
     display: none;
 }
 #footer-map-wrapper {
-    background-image: url({{'map-static.png' | asset_url }}); 
+    background-image: url({{'map-static.png' | asset_url}});
     postion: relative;
     background-color:#f8f8f8;
 	background-size:cover;
 	background-attachment:scroll;
 	background-position:center top;
 	background-repeat:no-repeat;
-	margin: 0;
-	min-height: 246px;
-    
+	@include opacity(0.6);
+	@include transition(0.5s, ease-out);
+	&:hover{
+		@include transition(0.5s, ease-out);
+		@include opacity(1);
+		cursor: pointer;
+	}
+	&.google-active {	@include opacity(1); cursor: default}
+
     
 }
 #footer-distance-info-wrapper {
@@ -1172,13 +1207,13 @@ html[xmlns] .slides{display:block;}
  }
 .orion-menu > li.showhide span.title {  float: left;  margin: 16px 0 0 6px;}
 .orion-menu > li.showhide span.icon {  margin: 14px 0px;}
-#navigation-orion { position: relative; z-index: 1000; padding: 0 24px 0 0;}
+#navigation-orion { position: relative; z-index: 10; padding: 0 24px 0 0; }
 #navigation-orion  >  ul { padding: 0; background-image: url({{'background-navbar.png' | asset_url}}); background-color: transparent; }
 .orion-menu > li:nth-child(2) {margin-left: 16px;}
 #navigation-orion ul li ul {background-color: #fff;}
 #navigation-wrapper.has-sticky{width: 100%; position: fixed; top: 0px !important; }
 #navigation-wrapper:hover {}
-.navigation-buttons {text-align:right; padding-top: 18px;}
+.navigation-buttons {text-align:right; padding: 20px 0 4px;;}
 .has-sticky .navigation-buttons {float: right; padding: 8px 15px 0 4px;}
 .has-sticky .orion-menu {float: left; }
 .has-sticky .orion-menu > li:nth-child(2) {margin-left: 15px;}
