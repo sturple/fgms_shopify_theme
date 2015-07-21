@@ -1,14 +1,14 @@
-{%comment%}{% include 'collection-page' %}{%endcomment%}
-
-{% paginate collection.products by 10  %}
 {%capture collection_type%}{% if collection.title == 'Products'  %}{% if  current_tags.first.size > 0 %}tags{% else %}all{%endif%}{% else%}{% assign page_title_handle = page_title | handle %}{%assign other_type = 'created' %}{% for vendor in collection.all_vendors %}{% assign vendor_handle = vendor | handle %}{% if vendor_handle == page_title_handle%}{%assign other_type = 'vendor'%}{%endif%}{% endfor %}{% if collection.current_type | handle == page_title_handle %}{%assign other_type = 'types'%}{%endif%}{{other_type}}{%endif%}{%endcapture%}
 {%capture snippet_collection_header%}collection-header-{{collection_type}}{%endcapture%}
-
-
+<!-- page content -->
+<div class="col-sm-12" id="main" role="main">
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
 		<header id="pageHeader" class="collectionHeader textile {% unless collection.description.size > 0 %}titleNoDescription{% endunless %}">
 			<h1 id="pageTitle"><span>{{collection.title}}</span></h1>
 			<div class="intro-text">{{collection.description}}</div>
 		</header>
+{% paginate collection.products by 10  %}
 		<section>
 			<div>			
 				<ul style="list-style: none; padding-left:0;margin-left: 0;" class="index-list ">
@@ -50,8 +50,7 @@
 				</ul>
 			</div><!-- collectionProducts -->
 		  
-		  
-		{% comment %}  {% endcomment %}
+	
 			<div id="collectionControlsBottom" >
 				<div class="row">
 					<div class="col-sm-6">
@@ -93,7 +92,11 @@
 			</div>	
 		</section><!-- content -->
 
-{% endpaginate %}
+{% endpaginate %}		
+   </div>
+</div>             
+
+
 
 <script>
 // Product Tag Filters - Good for any number of filters on any type of collection pages - Modified version of Caroline Schnapp's - http://11heavens.com */

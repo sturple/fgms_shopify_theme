@@ -48,38 +48,25 @@
 	{% assign mainClass = 'col-sm-9 col-sm-push-3' %}
 	{% assign sidebarClass = 'col-sm-3 col-sm-pull-9' %}
 	{% if  template contains 'index'
-		or template contains 'product'
+
 		or template contains 'cart'
 	%}
 		{% assign pageConfig = 'noSidebar' %}
 		{% assign mainClass = 'col-md-12' %}
+		{%comment%}
 		<style>
 		.main-outer-wrapper {  background-image: none; background-color: transparent; }
 		#outer-container{ background-color: #F9F9F9}
 		</style>
+	{%endcomment%}
 	{%endif%}
     <div class="main-outer-wrapper">
         <div class="container {%if pageConfig == 'noSidebar' %}add-box-shadow{%endif%}">
             <div class="main-wrapper main" style="padding-top: 0;">
 				<div class="fgms-body">						
 					<div id="content" class="row">
-						<!-- page content -->
-						<div class="{{mainClass}}" id="main" role="main">
-							<div class="main-col-wrapper  " >
-								<div class="hidden-xs">{% if settings.show-breadcrumbs and template != 'index' %}{% include 'breadcrumbs' %}{% endif %}</div>
-								{{ content_for_layout }}
-						   </div>
-						</div>             
-						<!-- sidebar -->
-						{% if pageConfig != 'noSidebar' %}
-						<div class="{{sidebarClass}}"  >
-							<div class=""  style="padding-right: 36px;" id="sidebar2">
-								<div id="sidebar-wrapper"> 
-									
-								</div>								
-							</div>                
-						</div>
-					    {% endif %}
+						{{ content_for_layout }}
+				   
 					</div>				
 				</div>
             </div> <!-- close main wrapper -->

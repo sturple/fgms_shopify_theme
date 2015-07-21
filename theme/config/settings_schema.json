@@ -44,15 +44,6 @@
         "type": "text",
         "id": "logo-icon-class",
         "label": "Logo icon class"
-      },
-      {
-        "type": "paragraph",
-        "content": "This is the icon class (such as \"icon icon-your-logo\") which enables you to use icons from the likes of Font Awesome, IcoMoon etc. If this is set, it overrides image and text."
-      },
-      {
-        "type": "text",
-        "id": "brand-byline",
-        "label": "Byline"
       }
     ]
   },
@@ -174,25 +165,7 @@
   },
   {
     "name": "Design",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "Round avatars"
-      },
-      {
-        "type": "checkbox",
-        "id": "round-avatars",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show borders"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-borders",
-        "label": "Yes"
-      },
+    "settings": [   
       {
         "type": "paragraph",
         "content": "Site background image"
@@ -206,40 +179,8 @@
         "type": "image",
         "id": "site-background-image-file.jpg",
         "label": "Site background image file"
-      },
-      {
-        "type": "text",
-        "id": "site-background-image-position",
-        "label": "Site background image position",
-        "default": "center top"
-      },
-      {
-        "type": "select",
-        "id": "site-background-image-repeat",
-        "label": "Site background image repeat",
-        "options": [
-          {
-            "value": "repeat",
-            "label": "repeat"
-          },
-          {
-            "value": "repeat-x",
-            "label": "repeat-x"
-          },
-          {
-            "value": "repeat-y",
-            "label": "repeat-y"
-          },
-          {
-            "value": "no-repeat",
-            "label": "no-repeat"
-          },
-          {
-            "value": "inherit",
-            "label": "inherit"
-          }
-        ]
       }
+
     ]
   },
   {
@@ -247,189 +188,29 @@
     "settings": [
       {
         "type": "text",
-        "id": "container-width-small-devices",
-        "label": "Container width, small devices",
-        "default": "720px"
+        "id": "content-grid-home-main-class",
+        "label": "Grid: Home Page, Main Class",
+        "default": "col-sm-9 col-sm-push-3"
       },
       {
         "type": "text",
-        "id": "container-width-medium-devices",
-        "label": "Container width, medium devices",
-        "default": "970px"
+        "id": "content-grid-home-sidebar-class",
+        "label": "Grid: Home Page, Sidebar Class",
+        "default": "col-sm-3 col-sm-pull-9"
       },
       {
         "type": "text",
-        "id": "container-width-large-devices",
-        "label": "Container width, large devices",
-        "default": "1170px"
-      },
-      {
-        "type": "select",
-        "id": "thumbnails-per-row-mobile",
-        "label": "Thumbnails per row, mobile",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "12",
-            "label": "12"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "thumbnails-per-row-tablet",
-        "label": "Thumbnails per row, tablet",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "12",
-            "label": "12"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "thumbnails-per-row-laptop",
-        "label": "Thumbnails per row, laptop",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "12",
-            "label": "12"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "thumbnails-per-row-desktop",
-        "label": "Thumbnails per row, desktop",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "12",
-            "label": "12"
-          }
-        ]
-      },
+        "id": "content-grid-secondary-main-class",
+        "label": "Grid: Secondary Page, Main Class",
+        "default": "col-sm-9 col-sm-push-3"
+      },   
       {
         "type": "text",
-        "id": "default-pagination",
-        "label": "Default pagination",
-        "default": "24"
-      },
-      {
-        "type": "paragraph",
-        "content": "If left blank pagination will be set to 50."
-      },
-      {
-        "type": "select",
-        "id": "product-page-image-placement",
-        "label": "Product page image placement",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Show breadcrumbs"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-breadcrumbs",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Window width thumbnail container"
-      },
-      {
-        "type": "checkbox",
-        "id": "window-width-thumbnail-container",
-        "label": "Yes"
-      }
+        "id": "content-grid-secondary-sidebar-class",
+        "label": "Grid: Secondary Page, Main Class",
+        "default": "col-sm-3 col-sm-pull-9"
+      } 
+
     ]
   },
   {
@@ -1607,11 +1388,31 @@
   },
   {
     "name": "Products",
-    "settings": [
+    "settings": [   
       {
         "type": "paragraph",
-        "content": "Show price if 0"
+        "content": "Product Options"
+      }, 
+      {
+        "type": "checkbox",
+        "id": "productTags",
+        "label": "Show Product Tags"
       },
+      {
+        "type": "checkbox",
+        "id": "productVendor",
+        "label": "Show Product Vendor"
+      },      
+      {
+        "type": "checkbox",
+        "id": "productType",
+        "label": "Show Product Type"
+      },             
+      {
+        "type": "checkbox",
+        "id": "productSKU",
+        "label": "Show Product SKU"
+      },  
       {
         "type": "checkbox",
         "id": "show-price-if-zero",
@@ -2287,6 +2088,12 @@
   {
     "name": "Navigation",
     "settings": [
+       {
+        "type": "text",
+        "id": "main-website",
+        "label": "Main Website url (http://www.example.com)"
+      },       
+        
       {
         "type": "link_list",
         "id": "top-navbar-linklist-left",

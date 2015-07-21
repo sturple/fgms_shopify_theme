@@ -1,7 +1,10 @@
 
 <ul class="orion-menu dl-menu  ">
 		{% if menu_type == 'footer'%}
-				<li ><a href="http://www.missioninnresrot.com">Main Website</a></li>
+		
+			{% if settings.main-website.size > 4%}
+				<li><a href="{{settings.main-website}}">Main Website</a></li>
+			{% endif %}
 		{% endif %}
         {% for link in linklists['main-menu'].links %}							
         {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}

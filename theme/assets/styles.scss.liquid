@@ -10,7 +10,7 @@ $body-font-family: 'Raleway', sans-serif;
 $body-color: #565656;
 
 $price-color: #565656 ;
-$cart-message-background: #ccc;
+$cart-message-background: #f8f8f8;
 $link-color: #df6619;
 $link-color-hover:#f38946 ;
 
@@ -314,7 +314,7 @@ ul {list-style: none;padding:0;margin:0;}
   margin-bottom: 15px;
 
 }
-#productPurchase {  margin: 0 0 20px;}
+#productPurchase {  margin: 40px 0 20px;}
 .price-and-options-title {padding-top: 0; line-height: 1em;}
 /*.product-options-wrapper {margin-bottom: 24px;}*/
 .product-options-wrapper h4 {padding: 0 0 0px;}
@@ -331,15 +331,16 @@ ul {list-style: none;padding:0;margin:0;}
 	}
 
 #product-status-message {
-	
-
 	.message {
 		
 		background-color: $cart-message-background;
 		margin-bottom: 10px;
 		@include box-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
+		
 		i {font-style: normal;}
 		.fa-times {cursor: pointer;}
+		&.padded-box {padding:  8px;}
+		&.centered {text-align: center;}
 		table {
 			margin-bottom: 0;
 			td {
@@ -353,6 +354,46 @@ ul {list-style: none;padding:0;margin:0;}
 			li:last-child {margin-bottom: 0;}
 		}
 		
+		
+	}
+}
+
+
+/*this is because shopify is stupid*/
+.selector-wrapper {
+	content: " ";
+    display: table;
+	clear: both;
+	margin-left: -15px;
+	margin-right: -15px;
+	width: 80%;
+	margin-bottom: 8px;
+	* {
+		float: left;
+		min-height: 1px;
+		padding-left: 15px;
+		padding-right: 15px;
+		position: relative;
+		
+		
+	}
+	label {		
+		width: 32%;
+	}
+	select {
+		
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		@include radius(4px);
+		@include box-shadow(0 1px 1px rgba(0, 0, 0, 0.075) inset);
+		color: #555;		
+		@include font-size(1.4);
+		height: 34px;
+		line-height: 1.42857;
+		padding: 6px 12px;
+		transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+		width: 66%;		
 		
 	}
 }

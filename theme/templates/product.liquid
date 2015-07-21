@@ -1,263 +1,171 @@
-{% comment %}
-{% include 'theme-variables' %}
-{% include 'product-page' %}
-{% include 'product-vendor-description' %}
-{% include 'product-footer' %}
-{%endcomment%}
-
-
 {% capture message_has_free_shipping %}Your order now qualifies for FREE shipping to anywhere in the continental USA and Canada.  {% endcapture %}
-{% capture shipping_learn_more_link %}<a 	href="/community/pages/ajax.html?type=modal&form_class=col-sm-9&label_class=sr-only&placeholder_flag=true&theme_id={{theme.id}}&asset=snippets/shortcode-free-shipping.liquid&product_id={{ product.id }}" class="" data-toggle="modal" rel="nofollow" data-target="#general-modal">Learn More</a>.{%endcapture%}
+<!-- page content -->
 
-        <header id="productHeader" >
-          <h1 id="pageTitle" itemprop="name"><span>{{ product.title }}</span></h1>
+<div class="{{settings.content-grid-secondary-main-class}}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>		
+		<header id="productHeader" >
+			<h1  itemprop="name"><span>{{ product.title }}</span></h1>
         </header>	
+
+		<div id="productDescription" itemprop="description">			
+<!-- Price ***************************************************** -->
+			<div id="productPriceWrapper" class="line-separator-bottom">
+				<div>
+					{% assign variant = product.selected_or_first_available_variant %}											
+					<span id="productPrice" class="{% if product.compare_at_price_max > product.price %}sale-price{%endif%}">{{ variant.price | money}}</span>
+					{% if product.compare_at_price_max > product.price %}
+						<span id="oldPrice">{% if variant.compare_at_price > 0 %}{{ variant.compare_at_price | money }}{% endif %}</span>
+					{% endif %}				
+				</div>				
+			</div>			
+			
+<!-- Model and Options ***************************************************** -->
+			<div class="product-cart-options">
+				<form  method="post" action="/cart/add" id="add-item-form" name="add-item-form" class="textile" enctype="multipart/form-data">
+					<!-- this is varient product options -->
+					{% if product.available %}<!-- START products available -->
+					<div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">							
+						<meta itemprop="price" content="{{ product.price | money_without_currency }}" />
+						<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+						<meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="InStock" />					
+						
+						<!-- this is the models  / variants -->
+						
+						
+						{% if product.variants.size > 1%}
+						<div id="productModel" class="">
+							<h3 class="price-and-options-title" data-pid="{{product.id}}">Choose Model</h3>								
+							<div id="productVariants" class="clearFix">
+								<div >												
+									<select name="id" id="product-select" style="visibility: hidden;" >
+									  {% for variant in product.variants %}
+										<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}	value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+									  {% endfor %}
+									</select> 
+								</div>			  
+							</div>		
+						</div>
+						{% else %}
+						
+						{% assign variant = product.selected_or_first_available_variant %}
+						<input type="hidden" name="id" value="{{ variant.id }}" />
+						{% endif %}
+					</div>
+					{% else %}							
+					<div class="soldOut"><p>{{ settings.soldOutText }}</p></div>						
+					{% endif %}<!-- END products available -->
+					
+	<!-- Add to cart ***************************************************** -->
+					<div id="productPurchase" class="clearFix ">					
+						<div class="pull-left">
+							{% if product_options.size > 50 %}<input type="hidden" name="properties[Ref_line_ID]" value="0" />{%endif%}
+							<input  id="quantity" type="text" pattern="[0-9]*" class="form-control" name="quantity" style="max-width: 50px; font-size: 18px; height: 38px; text-align: center; display: inline;" value="1"  />
+							<span>
+								<input  id=""
+										type="submit"
+										name="add"
+										value="Add to Cart"
+										class="addToCart btn btn-primary"
+										onclick="update_peetz_customer_cart(this) ;return false"/>
+								<i style="display: none; padding: 0px 52px;" class="fa fa-spinner fa-pulse fa-2x" ></i>
+							</span>									
+						</div>
+						<a 	href="/cart"
+								class="btn btn-primary hidden-xs hidden-sm"
+								style="margin-left: 24px;"									
+								>View Cart</a>	
+	
+						<div class="clearfix" style="clear: both"></div>
+					</div>	
+				</form>	
+			</div><!-- end of product-cart-options -->
+			<div id="product-status-message"></div>			
+<!-- tabs ***************************************************** -->
+			<div class="product-details-wrapper">{{product.description}}</div>
 		
-		<article class="row" itemscope itemtype="http://schema.org/Product">
-			<div  class="col-md-4 ">
-<!-- SIDEBAR  Images ***************************************************** -->
-				<div id="main-product-images" class="flexslider">
-					<ul class="slides" style="margin-bottom: 0;">
-						{% for image in product.images %}
-							<li>								
-								<div class="badge {% for tag in product.tags %}{{ tag | downcase | replace: ' ', '-'}} {% endfor %}"></div>
-								<div class="image-magnify-hover"></div>
-								<a  class="product-image-gallery"
-									href="{{ image | product_img_url: 'master' }}"
-									title="{{ product.title }} - {{ image.alt | escape }}"
-									rel="group"
-									data-thumbnail="{{ image | product_img_url: 'thumb' }}">
-									<img 	itemprop="image" 
-											src="{{ image | product_img_url: '1024x1024' }}" 
-											alt="{{ image.alt | escape  }}" 
-											data-retina="{{ image | product_img_url: '2048x2048' }}" />
-							  </a>
-						  </li>
-						{% endfor %}
-					</ul>
-				</div>
-				{% if product.images.size > 1 %}				
-				<div id="product-thumbnails-wrapper" class="flexslider">
-					<ul class="slides" style="margin-bottom: 0">
-						{% for image in product.images %}
-						<li data-image-id="{{ image.id }}"class="product-thumbnail-wrapper {% if forloop.first %}flex-active-slide{% endif %}">
-							<img itemprop="image" data-variant-id="{{image.variants.first.id}}" class="product-thumbnail" src="{{ image | product_img_url: 'small' }}" alt="{{ image.alt | escape }}" data-retina="{{ image | product_img_url: 'compact' }}" />
-						</li>
-						{% endfor %}
-					</ul>
-				</div><!-- product-thumbnails-wrapper -->        
+		</div>
+   </div>
+</div>             
+<!-- sidebar -->					
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+	<div class=""  style="padding-right: 36px;" id="sidebar2">
+		<div id="sidebar-wrapper"> 
+			<div id="main-product-images" class="flexslider">
+				<ul class="slides" style="margin-bottom: 0;">
+					{% for image in product.images %}
+						<li>								
+							<div class="badge {% for tag in product.tags %}{{ tag | downcase | replace: ' ', '-'}} {% endfor %}"></div>
+							<div class="image-magnify-hover"></div>
+							<a  class="product-image-gallery"
+								href="{{ image | product_img_url: 'master' }}"
+								title="{{ product.title }} - {{ image.alt | escape }}"
+								rel="group"
+								data-thumbnail="{{ image | product_img_url: 'thumb' }}">
+								<img 	itemprop="image" 
+										src="{{ image | product_img_url: '1024x1024' }}" 
+										alt="{{ image.alt | escape  }}" 
+										data-retina="{{ image | product_img_url: '2048x2048' }}" />
+						  </a>
+					  </li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% if product.images.size > 1 %}				
+			<div id="product-thumbnails-wrapper" class="flexslider">
+				<ul class="slides" style="margin-bottom: 0">
+					{% for image in product.images %}
+					<li data-image-id="{{ image.id }}"class="product-thumbnail-wrapper {% if forloop.first %}flex-active-slide{% endif %}">
+						<img itemprop="image" data-variant-id="{{image.variants.first.id}}" class="product-thumbnail" src="{{ image | product_img_url: 'small' }}" alt="{{ image.alt | escape }}" data-retina="{{ image | product_img_url: 'compact' }}" />
+					</li>
+					{% endfor %}
+				</ul>
+			</div><!-- product-thumbnails-wrapper -->        
 
-			{% endif %}
+		{% endif %}
 
-				<div class="product-sidebar-wrapper hidden-sm hidden-xs">
+			<div class="product-sidebar-wrapper hidden-sm hidden-xs">
 
 <!-- SIDEBAR  type, vendor and sku ***************************************************** -->						
-					<div class="productExtras">
-						{% if settings.productType == true and product.type.size > 0 %}											
-							<p style="margin-bottom: 4px;"><span class="productExtrasTitle">Type: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
-						{% endif %}												
+				<div class="productExtras">
+					{% if settings.productType == true and product.type.size > 0 %}											
+						<p style="margin-bottom: 4px;"><span class="productExtrasTitle">Type: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
+					{% endif %}												
 
-						{% if settings.productVendor == true and product.vendor.size > 0 %}											
-							<p style="margin-bottom: 4px;" titemprop="manufacturer">
-							  <span class="productExtrasTitle">Brand: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
-							</p>
-						{% endif %}
-			
-						{% if settings.productSKU == true and  variant.sku.size > 0 %}											
-							<p style="margin-bottom: 8px;"><span class="productExtrasTitle">SKU: </span><span id="productSKU">{{ variant.sku }}</span></p>											
-						{% endif %}										
-					</div><!-- productExtras -->					
-					
-			
-					
-<!-- SIDEBAR  TAGS***************************************************** -->
-					{% if settings.productTags == true and product.tags.size > 0 %}
-					<div class="productExtras">
-						<p><span class="productExtrasTitle">Tag(s): </span></p>
-						<p style="margin-bottom: 4px; padding: 8px 0; ">
-							{% for tag in product.tags %}
-								<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="View all product tagged {{ tag }}">{{ tag }}</a>
-							{% endfor %}
-						<p>							
-					</div>
-					{% endif %}		
-				</div>
-								
-					
-
-			</div>				
-<!-- CONTENT  ***************************************************** -->
-			<div  class="col-md-8  sidebar-background">			
-				<div id="productDescription" itemprop="description">
-					
-<!-- Price ***************************************************** -->
-					<div id="productPriceWrapper" class="line-separator-bottom">
-						<div>
-						{% assign variant = product.selected_or_first_available_variant %}											
-						<span id="productPrice" class="{% if product.compare_at_price_max > product.price %}sale-price{%endif%}">{{ variant.price | money}}</span>
-						{% if product.compare_at_price_max > product.price %}
-							<span id="oldPrice">{% if variant.compare_at_price > 0 %}{{ variant.compare_at_price | money }}{% endif %}</span>
-						{% endif %}
-						
-						<!--<span>
-							<span class="money-unit"></span>
-							<span class="seperator"> | </span>
-							<a href=""   data-toggle="modal"  rel="nofollow"  data-target="#currency-modal" >Change Currency</a>
-						</span>	-->							
-						</div>
-						
-					</div>
-					
-					
-<!-- Model and Options ***************************************************** -->
-					<div class="product-cart-options">
-						<form  method="post" action="/cart/add" id="add-item-form" name="add-item-form" class="textile" enctype="multipart/form-data">
-						<!-- this is peetz product options -->
-						
-						<!-- this is varient product options -->
-						{% if product.available %}<!-- START products available -->
-						<div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">							
-							<meta itemprop="price" content="{{ product.price | money_without_currency }}" />
-							<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-							<meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="InStock" />					
-							
-							<!-- this is the models  / variants -->		
-
-						
-{% if shappify_qb_options_count > 1 %}
-							
-							<div id="productModel" class="">
-								<h3 class="price-and-options-title" data-pid="{{product.id}}">Choose Model</h3>								
-								<div id="productVariants" class="clearFix">
-									<div>												
-										<select name="id" id="product-select"  style="visibility: hidden;">
-										  {% for variant in product.variants %}
-											<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}	value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-
-										  {% endfor %}
-										</select> 
-									</div>			  
-								</div><!-- productVariants -->		
-							</div>
-							{% else %}
-							{% assign variant = product.selected_or_first_available_variant %}
-							<input type="hidden" name="id" value="{{ variant.id }}" />
-						{% endif %}
-						<!-- end of the models / variants -->
-						
-
-						
-						</div>
-						{% else %}							
-						<div class="soldOut"><p>{{ settings.soldOutText }}</p></div>						
-						{% endif %}<!-- END products available -->
-						
-<!-- Add to cart ***************************************************** -->
-
-						<div id="productPurchase" class="clearFix ">			
-							
-								<div class="pull-left">
-									{% if product_options.size > 50 %}<input type="hidden" name="properties[Ref_line_ID]" value="0" />{%endif%}
-									<input  id="quantity" type="text" pattern="[0-9]*" class="form-control" name="quantity" style="max-width: 50px; font-size: 18px; height: 38px; text-align: center; display: inline;" value="1"  />
-									<span>
-										<input  id=""
-												type="submit"
-												name="add"
-												value="Add to Cart"
-												class="addToCart btn btn-primary"
-												onclick="update_peetz_customer_cart(this) ;return false"/>
-										<i style="display: none; padding: 0px 52px;" class="fa fa-spinner fa-pulse fa-2x" ></i>
-									</span>
-											
-								</div>
-								<a 	href="/cart"
-										class="btn btn-primary hidden-xs hidden-sm"
-										style="margin-left: 24px;"									
-										>View Cart</a>	
-
-								<div class="clearfix" style="clear: both"></div>
-
-							
-
-						</div><!-- purchaseWrapper -->						
-						
-						
-						</form>	
-					</div><!-- end of product-cart-options -->
-					<div id="product-status-message"></div>
-					
-
+					{% if settings.productVendor == true and product.vendor.size > 0 %}											
+						<p style="margin-bottom: 4px;" titemprop="manufacturer">
+						  <span class="productExtrasTitle">Brand: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
+						</p>
+					{% endif %}
 		
-						
-					
-					
-<!-- tabs ***************************************************** -->
-					<div class="product-details-wrapper">
-						{{product.description}}
-					
-				</div>
+					{% if settings.productSKU == true and  variant.sku.size > 0 %}											
+						<p style="margin-bottom: 8px;"><span class="productExtrasTitle">SKU: </span><span id="productSKU">{{ variant.sku }}</span></p>											
+					{% endif %}										
+				</div><!-- productExtras -->					
 				
-				<div class="product-sidebar-wrapper {% if sidebar_flag %}visible-sm-block visible-xs-block{%endif%}">						
-					{% if settings.productTags == true or settings.productVendor == true or settings.productType == true or settings.productSKU == true %}
-<!-- SIDEBAR  type, vendor and sku ***************************************************** -->							
-					<div class="productExtras">
-						{% if settings.productType == true and product.type.size > 0 %}											
-							<p style="margin-bottom: 4px;"><span class="productExtrasTitle">Type: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
-						{% endif %}												
-
-						{% if settings.productVendor == true and product.vendor.size > 0 %}											
-							<p style="margin-bottom: 4px;" titemprop="manufacturer">
-							  <span class="productExtrasTitle">Brand: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
-							</p>
-						{% endif %}
-			
-						{% if settings.productSKU == true and  variant.sku.size > 0 %}											
-							<p style="margin-bottom: 8px;"><span class="productExtrasTitle">SKU: </span><span id="productSKU">{{ variant.sku }}</span></p>											
-						{% endif %}										
-					</div><!-- productExtras -->
-					{% endif %}					
-					
-<!-- SIDEBAR  TAGS***************************************************** -->
-					{% if settings.productTags == true and product.tags.size > 0 %}
-					<div class="productExtras">
-						<p><span class="productExtrasTitle">Tag(s): </span></p>
-						<p style="margin-bottom: 4px; padding: 8px 0; ">
-							{% for tag in product.tags %}
-								<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="View all product tagged {{ tag }}">{{ tag }}</a>
-							{% endfor %}
-						<p>							
-					</div>
-					{% endif %}		
-				</div>				
-				
-			</div>				
-			
-
-			<!--end  main-product-images -->
-		</article>
-			
-
-	{% if settings.relatedProducts == true %}
-	{% assign collection_state = 0 %}
-		{% for prod_collection in product.collections %}
-			{% assign this_collection = prod_collection  %}
-			{% assign feature_flag = false%}
-			{% if prod_collection.title contains 'Feature' %}{% assign feature_flag = true %}{%endif%}
-			
-			{% if collection_state == 0 and this_collection.description.size > 10  and feature_flag == false %}
-				{%assign collection_state = 1%}
-				{%  include 'featured-carousel'     title : this_collection.title
-							list : this_collection.products
-							exclude_handle : product.handle
-							%}				
-				
-			{%endif%}
-			
-			
 		
+				
+<!-- SIDEBAR  TAGS***************************************************** -->
+				{% if settings.productTags == true and product.tags.size > 0 %}
+				<div class="productExtras">
+					<p><span class="productExtrasTitle">Tag(s): </span></p>
+					<p style="margin-bottom: 4px; padding: 8px 0; ">
+						{% for tag in product.tags %}
+							<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="View all product tagged {{ tag }}">{{ tag }}</a>
+						{% endfor %}
+					<p>							
+				</div>
+				{% endif %}		
+			</div>
+		</div>								
+	</div>                
+</div>	
 
-		{%endfor%}
-    {% endif %}	
+
+
+			
+
+
 
 
 {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
@@ -366,7 +274,7 @@
     });
 
 
-{% if product.available and shappify_qb_options_count > 1 %}
+{% if product.available  %}
     var selectCallback = function(variant, selector) {		
       if (variant && variant.available) {
         $(".addToCart").removeClass("disabled").removeAttr("disabled");
@@ -415,7 +323,7 @@
     $('.selector-wrapper:eq(0)').prepend('<label class="">{{ product.options.first }}</label>');
     {% endif %}
 
-    {% endif %} // ends if product.variants.size > 1
+{% endif %} // ends if product.variants.size > 1
 
  });
 })(jQuery)
