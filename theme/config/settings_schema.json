@@ -2,49 +2,21 @@
   {
     "name": "Branding",
     "settings": [
-      {
-        "type": "paragraph",
-        "content": "Logo image"
-      },
-      {
-        "type": "checkbox",
-        "id": "logo-image",
-        "label": "Yes"
-      },
-      {
-        "type": "image",
-        "id": "logo-image-file.png",
-        "label": "Logo image file"
-      },
-      {
-        "type": "select",
-        "id": "logo-placement",
-        "label": "Logo placement",
-        "options": [
-          {
-            "value": "top-navbar",
-            "label": "Top navbar"
-          },
-          {
-            "value": "sidebar",
-            "label": "Sidebar"
-          },
-          {
-            "value": "above-main-content",
-            "label": "Above main content"
-          }
-        ]
-      },
-      {
-        "type": "image",
-        "id": "favicon.png",
-        "label": "Favicon"
-      },
-      {
-        "type": "text",
-        "id": "logo-icon-class",
-        "label": "Logo icon class"
-      }
+        {
+            "type": "image",
+            "id": "branding-logo-image-file.png",
+            "label": "Logo image file"
+        },      
+        {
+            "type": "image",
+            "id": "branding-favicon.png",
+            "label": "Favicon"
+        },
+        {
+            "type": "text",
+            "id": "branding-logo-icon-class",
+            "label": "Logo icon class"
+        }
     ]
   },
   {
@@ -186,36 +158,78 @@
   {
     "name": "Layout",
     "settings": [
-      {
-        "type": "text",
-        "id": "content-grid-home-main-class",
-        "label": "Grid: Home Page, Main Class",
-        "default": "col-sm-9 col-sm-push-3"
-      },
-      {
-        "type": "text",
-        "id": "content-grid-home-sidebar-class",
-        "label": "Grid: Home Page, Sidebar Class",
-        "default": "col-sm-3 col-sm-pull-9"
-      },
-      {
-        "type": "text",
-        "id": "content-grid-secondary-main-class",
-        "label": "Grid: Secondary Page, Main Class",
-        "default": "col-sm-9 col-sm-push-3"
-      },   
-      {
-        "type": "text",
-        "id": "content-grid-secondary-sidebar-class",
-        "label": "Grid: Secondary Page, Main Class",
-        "default": "col-sm-3 col-sm-pull-9"
-      } 
-
+       {
+            "type": "header",
+            "content": "Secondary Grid Layout"
+        },
+        {
+            "type": "text",
+            "id": "content-grid-secondary-main-class",
+            "label": "Grid: Secondary Page, Main Class",
+            "default": "col-sm-9 col-sm-push-3"
+        },   
+        {
+            "type": "text",
+            "id": "content-grid-secondary-sidebar-class",
+            "label": "Grid: Secondary Page, Main Class",
+            "default": "col-sm-3 col-sm-pull-9"
+        },
+       {
+            "type": "header",
+            "content": "Header / Footer"
+        },        
+       {
+            "type" : "snippet",
+            "id" : "layout-header-snippet",
+            "label" : "Header Snippet"
+        },       
+        
+       {
+            "type" : "snippet",
+            "id" : "layout-footer-snippet",
+            "label" : "Footer Snippet"
+        },       
+       {
+            "type": "header",
+            "content": "Utility Bar"
+        },       
+       {
+            "type": "checkbox",
+            "id": "layout-utility-bar",
+            "label": "Add Utility Bar With Cart Buttons"
+        },
+       {
+            "type" : "snippet",
+            "id" : "layout-utility-snippet",
+            "label" : "Utility Bar Snippet"
+        }  
     ]
   },
   {
     "name": "Homepage",
     "settings": [
+      {
+        "type": "text",
+        "id": "homepage-grid-home-main-class",
+        "label": "Grid: Home Page, Main Class",
+        "default": "col-sm-9 col-sm-push-3"
+      },
+      {
+        "type": "text",
+        "id": "homepage-grid-home-sidebar-class",
+        "label": "Grid: Home Page, Sidebar Class",
+        "default": "col-sm-3 col-sm-pull-9"
+      },
+      {
+        "type": "checkbox",
+        "id": "homepage-sidebar-enable",
+        "label": "Home Page Sidebar Enable"
+      },
+      {
+        "type" : "snippet",
+        "id" : "homepage-sidebar-snippet",
+        "label" : "Hompage Sidebar Snippet"
+      },
       {
         "type": "page",
         "id": "homepage-content",
@@ -225,7 +239,8 @@
         "type": "collection",
         "id": "homepage-products-collection",
         "label": "Products collection"
-      },
+      }
+      /*
       {
         "type": "select",
         "id": "homepage-products-limit",
@@ -261,11 +276,7 @@
           }
         ]
       },
-      {
-        "type": "link_list",
-        "id": "homepage-collections-linklist",
-        "label": "Collections linklist"
-      },
+
       {
         "type": "select",
         "id": "homepage-collections-limit",
@@ -288,66 +299,9 @@
             "label": "Unlimited"
           }
         ]
-      },
-      {
-        "type": "blog",
-        "id": "homepage-blog",
-        "label": "Blog"
-      },
-      {
-        "type": "paragraph",
-        "content": "Displays a grid of featured blog posts on your homepage."
-      },
-      {
-        "type": "blog",
-        "id": "facebook-album-blog",
-        "label": "Facebook album blog"
-      },
-      {
-        "type": "paragraph",
-        "content": "Choose a blog that is linked to Facebook albums."
-      },
-      {
-        "type": "link_list",
-        "id": "features-linklist",
-        "label": "Features linklist"
-      },
-      {
-        "type": "paragraph",
-        "content": "Setup a linklist with links pointing to collections or pages. The page or collection's description will be displayed on the homepage."
-      },
-      {
-        "type": "paragraph",
-        "content": "Instagram feed"
-      },
-      {
-        "type": "checkbox",
-        "id": "instagram-feed",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show an Instagram feed on your home page. You can set the feeds [hashtag in the social settings](#instagram-default-hashtag)."
-      },
-      {
-        "type": "blog",
-        "id": "testimonials-blog",
-        "label": "Testimonials blog"
-      },
-      {
-        "type": "paragraph",
-        "content": "If you wish to display testimonials on the homepage, you can create a blog for this. The title of the blog article needs to be the name of the person and the content of the article is the testimonial itself. You can place an optional image in the excerpt to represent their photo."
-      },
-      {
-        "type": "text",
-        "id": "testimonials-blog-post-limit",
-        "label": "Testimonials blog post limit",
-        "default": "4"
-      },
-      {
-        "type": "paragraph",
-        "content": "Maximum number of testimonial posts to show on the homepage."
       }
+      */
+    
     ]
   },
   {
@@ -1388,213 +1342,44 @@
   },
   {
     "name": "Products",
-    "settings": [   
-      {
-        "type": "paragraph",
-        "content": "Product Options"
-      }, 
-      {
-        "type": "checkbox",
-        "id": "productTags",
-        "label": "Show Product Tags"
-      },
-      {
-        "type": "checkbox",
-        "id": "productVendor",
-        "label": "Show Product Vendor"
-      },      
-      {
-        "type": "checkbox",
-        "id": "productType",
-        "label": "Show Product Type"
-      },             
-      {
-        "type": "checkbox",
-        "id": "productSKU",
-        "label": "Show Product SKU"
-      },  
-      {
-        "type": "checkbox",
-        "id": "show-price-if-zero",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Display vendor description"
-      },
-      {
-        "type": "checkbox",
-        "id": "display-vendor-description",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "If checked and a collection exists with the same handle as the vendor handle, the collection description (and image) will be displayed at the bottom of the product page."
-      },
-      {
-        "type": "paragraph",
-        "content": "Enable image lightbox"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable-image-lightbox",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Enable image zoom"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable-image-zoom",
-        "label": "Yes"
-      },
-      {
-        "type": "text",
-        "id": "hidden-tag-prefixes",
-        "label": "Hidden tag prefixes",
-        "default": "hd,hidden"
-      },
-      {
-        "type": "paragraph",
-        "content": "Comma-separated list of tag prefixes to never display on the site. These can be used for creating more complex collection."
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product description as tabs"
-      },
-      {
-        "type": "checkbox",
-        "id": "product-description-as-tabs",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "h2's in your products description will be used to determine the starting of each tab."
-      },
-      {
-        "type": "link_list",
-        "id": "product-tab-linklist",
-        "label": "Product tab linklist"
-      },
-      {
-        "type": "paragraph",
-        "content": "A linklist of static pages that are generic across all products."
-      },
-      {
-        "type": "text",
-        "id": "secondary-call-to-action-url",
-        "label": "Secondary call to action URL"
-      },
-      {
-        "type": "paragraph",
-        "content": "E.g. link to your contact page for customers who want a customised version of your product."
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product collections"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-collections",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product tags"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-tags",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product type"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-type",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product vendor"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-vendor",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show unavailable products"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-unavailable-products",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show notify me form when sold out"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-notify-me",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show related products"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-related-products",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show social share links"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-social-share-links",
-        "label": "Yes"
-      },
-      {
-        "type": "collection",
-        "id": "secondary-related-collection",
-        "label": "Secondary collection on products page"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show stock availability"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-stock-availability",
-        "label": "Yes"
-      },
-      {
-        "type": "text",
-        "id": "max-stock-availability",
-        "label": "Max stock availability fallback",
-        "default": "100"
-      },
-      {
-        "type": "paragraph",
-        "content": "This can be overridden on a product-by-product basis with the meta feild 'availability.max-stock-level' inside a product. Or on specific variants by using the meta feild 'availability.max-stock-level-[variant sku here]'."
-      },
-      {
-        "type": "paragraph",
-        "content": "Colour stock availability as traffic light"
-      },
-      {
-        "type": "checkbox",
-        "id": "colour-stock-availability",
-        "label": "Yes"
-      }
+    "settings": [    
+        {
+          "type": "paragraph",
+          "content": "For Secondary Page Grid Layout see Layout Section"
+        }, 
+        {
+          "type": "checkbox",
+          "id": "products-sidebar-enable",
+          "label": "Product Sidebar Enable"
+        },      
+        {
+          "type": "paragraph",
+          "content": "Product Options"
+        }, 
+    
+        {
+          "type": "checkbox",
+          "id": "products-vendor",
+          "label": "Show Product Vendor"
+        },      
+        {
+          "type": "checkbox",
+          "id": "products-type",
+          "label": "Show Product Type"
+        },             
+        {
+          "type": "checkbox",
+          "id": "products-sku",
+          "label": "Show Product SKU"
+        },
+        {
+          "type": "checkbox",
+          "id": "products-tags",
+          "label": "Show Product Tags"
+        } 
+
+
+
     ]
   },
   {

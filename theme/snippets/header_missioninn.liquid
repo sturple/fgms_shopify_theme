@@ -1,0 +1,81 @@
+{% include 'contact_variables' %}
+    <div id="middle-wrapper" > 
+		<!-- navigation -->
+        <div id="navigation-placeholder-wrapper">
+            <div id="navigation-wrapper" >
+				<div class="container">
+					<a href="http://www.missioninnresort.com">
+						<div id="logo-wrapper-parallax" class="remove-for-sticky ">
+							<div class="logo-image"><img src="{{'logo-mission-inn-resort.png' | asset_url}}" class="img-responsive" alt="Mission Inn Resort Logo" /></div>
+							<div class="logo-text-wrapper">
+								<div class="logo-text-address">{{g_city}}, {{+g_province}}</div>
+								<div class="logo-text-phone">{{g_phonereservationstollfree}} | {{+g_phonereservations}}</div>
+							</div>    
+						</div>						
+						
+					</a>
+
+					<div class="navbar row " id="navigation-orion" >
+						<div class="col-sm-12">
+							<div class="navigation-buttons" style="">
+								{% comment %}
+								<a      class="btn btn-sm btn-primary popover-form" 
+										style="margin-right: 8px;" 
+										href="https://www.secure-res.com/res/vn4/checka.aspx?hotelid=3841&wtpid=1&scid=1&scdomainid=0&trr=AFFFFFD7F32433&culture=1&culturename=en-US"
+										target="_self">
+									<span class="hidden-sm hidden-xs hidden-md">
+										<span class="remove-for-sticky">Make a </span> Reservation<span class="plurial">s</span>
+									</span>
+									<span class="hidden-lg"><img src="{{'icon-reservations.png' | asset_url}}" alt="reservations icon"/></span>   
+								</a>
+								<a class="btn btn-sm btn-secondary popover-form2"  data-container="body" data-toggle="popover" data-placement="bottom" style="margin-right: 8px;" href="javascript:void(0)" data-original-title="" title="" >
+								<span class="hidden-sm hidden-xs hidden-md">
+									<span class="remove-for-sticky">Book a </span> Tee Time<span class="plurial">s</span> 
+								</span>
+								<span class="hidden-lg"><img src="{{'icon-tee-times.png' | asset_url}}" alt="tee time icon"/></span>
+								</a> 
+								<div class="hide popover-head2">
+										<div style="float: left; padding: 4px 16px 4px 0;">Book Tee Time as a...</div>
+										<div class="pull-right popover-close" style="cursor:pointer; float: left;" onClick="$('.popover-form2').popover('hide')"></div>
+								 
+									<div class="clearfix" ></div>
+								</div>
+								<div class="popover-content2 hide">
+									<div style ="padding: 5px 0 0 0">
+										<a class="btn btn-secondary btn-sm  " href="http://www.missioninnresort.com/golf/mission-inn-public-tee-times.html" style="width: 100%;">Guest</a>
+								
+										
+									</div>
+									<div style ="padding: 14px 0 4px 0">
+										<a class="btn btn-secondary btn-sm " href="http://www.missioninnresort.com/golf/mission-inn-public-tee-times/mission-inn-member-tee-times.html" style="width: 100%;">Member</a>
+									</div>
+								</div>
+							{% endcomment %}
+							{% include 'nav_account_cart'%}
+							</div>
+							{% include 'navbar'  %}
+							<div class="clearfix"></div>
+						</div>						
+						
+					</div>
+				</div>
+				{%comment%}
+				<div id="utility-account-bar">
+					 <div class="siteContainer-off container">
+						 <div class="row header-cart-bar">
+							 <div class="col-md-6">                  
+								 <span class="hidden-xs hidden-sm"></span>					
+							 </div>
+							 <nav id="utilityNavWrapper" class="col-md-6">
+								{% include 'nav_account_cart'%}
+							 </nav><!-- utilityMenuWrapper -->
+						 </div>
+					 </div>
+				 </div>
+				{%endcomment%}
+            </div>            
+        </div>
+		<div id="slideshow">{% include 'slideshow' %}</div>
+        <!-- only show slideshow on homepage-->
+                  
+    </div>

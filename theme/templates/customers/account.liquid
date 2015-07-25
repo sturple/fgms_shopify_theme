@@ -1,5 +1,9 @@
-    <h1><span>Account Settings</span></h1>
-
+{% layout settings.customer_layout %}
+<div id="contentWrapper" class="wideHeader" >
+  <div class="container">
+    <header id="pageHeader">
+      <h1 id="pageTitle"><span>{{ settings.accountText }}</span></h1>
+    </header>
     <div id="content" class="textile noSidebar">
       <div id="customer_sidebar" class="floatLeft">
         <div id="customer_detail" class="group">
@@ -15,14 +19,14 @@
             <p>{{ customer.default_address.zip}}</p>
             <p>{{ customer.default_address.phone }}</p>
             {% endif %}
-            <a id="view_address" href="/account/addresses">Manage Addresses ({{ customer.addresses_count }})</a>
+            <a id="view_address" href="/account/addresses">{{ settings.manageAddressesText }} ({{ customer.addresses_count }})</a>
           </div>
         </div>
       </div>
       
       <div id="customer_orders" class="floatRight textile">
         {% if customer.orders.size != 0 %}
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th class="order_number">Order</th>
@@ -53,3 +57,4 @@
     </div><!-- content -->   
   </div><!-- siteContainer -->
 </div><!-- contentWrapper -->
+{% include 'footer' %}

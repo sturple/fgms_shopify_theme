@@ -1,88 +1,24 @@
 <!-- page content -->
-<div class="{{settings.content-grid-home-main-class}}" id="main" role="main">
-	<div class="main-col-wrapper  " >			
+<div class="{% if settings.homepage-sidebar-enable %}{{settings.homepage-grid-home-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main">
+	<div class="main-col-wrapper  " >
+		{% unless settings.homepage-content == blank %}
+			{% assign homepage = pages[settings.homepage-content] %}		
 			<div style="padding-top: 36px;">
 				<div class="strike-line">
-					<div class="h1">Home Page strike line</div>
+					<div class="h1">{{ homepage.title }}</div>
 				</div>	
 			</div>
-			
-			
-			<h1>Heading One</h1>
-			<h2>Heading Two</h2>		
-			<h3>Heading Three</h3>
-			<h4>Heading Four</h4>
-			<h5>Heading Five</h5>
-			
-			<blockquote><p>"This is an interesting fact or quote"</p> <p class="cite">- Marc Hoelscher</p></blockquote>        
-			<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-			<h3>Ordered List</h3>
-			<ol>
-			   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-			   <li>Aliquam tincidunt mauris eu risus.</li>
-			   <li>Vestibulum auctor dapibus neque.</li>
-			</ol>
-			<h3>Unordered List with default Custom bullets  </h3>
-			<p>Require class="custom-bullet" </p>
-			<ul class="custom-bullets">
-				<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
-			
-				<li>Second Item
-					<ul>
-						<li>First Item</li>
-						<li>Second Item</li>
-						<li>Third Item
-						<ul>
-							<li>First Item</li>
-							<li>Second Item</li>
-						</ul>
-						</li>
-						
-					</ul>
-				</li>
-				<li>Third Item</li>
-				
-			</ul>
-			<h3>Font Awesome Checkbox</h3>
-			<ul class="fa-ul">
-				<li><i class="fa-li fa fa-check"></i>First Item</li>
-				<li><i class="fa-li fa fa-check-square-o"></i>Second Item</li>
-				<li><i class="fa-li fa fa-check-circle-o"></i>Third item"</li>
-				<li><i class="fa-li fa fa-check-circle-o fa-2x"></i>Third item"</li>
-			</ul>
-			<h3>Unordered List No custom-bullets</h3>					
-			<ul >
-				<li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
-			
-				<li>Second Item
-					<ul >
-						<li>First Item</li>
-						<li>Second Item</li>
-						<li>Third Item
-						<ul>
-							<li>First Item</li>
-							<li>Second Item</li>
-						</ul>
-						</li>
-						
-					</ul>
-				</li>
-				<li>Third Item</li>
-				
-			</ul>	
-			<pre>Preformatted code text.La la la.</pre>									
-			<p>I suppose I should put in a line with <em>emphasis</em> and <strong>strong words</strong>, too.</p>  
-			<p class="narrow1">This paragraph uses a reduced line-height that reads better in narrow columns. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-			
-			<p class="narrow2">This paragraph uses a reduced line-height that reads better in narrow columns. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exercitation ulliam corper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-									
+			{{homepage.content}}
+		{% endunless %}			
    </div>
-</div>             
-<!-- sidebar -->					
-<div class="{{settings.content-grid-secondary-home-class}}"  >
+</div>
+{% if settings.homepage-sidebar-enable %}
+<!-- sidebar -->
+<div class="{{settings.homepage-grid-home-sidebar-class}}"  >
 	<div  id="sidebar">
 		<div id="sidebar-wrapper"> 
-			
+			{% include settings.homepage-sidebar-snippet %}
 		</div>								
 	</div>                
-</div>	
+</div>
+{% endif %}

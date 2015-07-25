@@ -1,5 +1,18 @@
 {% include 'theme-variables' %}
-<section id="page-wrap" class="section-wrap">
-		<h1 class="">{{ page_title }}</h1>
-		{% include '__formatted-content' with page.content %}
-</section>
+<div class="{{settings.content-grid-secondary-main-class}}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
+		<section id="page-wrap" class="section-wrap">
+				<h1 class="">{{ page_title }}</h1>
+				{{page.content}}
+		</section>
+	</div>
+</div>
+<!-- sidebar -->					
+<div class="{{settings.content-grid-secondary-home-class}}"  >
+	<div  id="sidebar">
+		<div id="sidebar-wrapper"> 
+			
+		</div>								
+	</div>                
+</div>	

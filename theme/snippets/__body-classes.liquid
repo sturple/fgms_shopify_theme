@@ -1,7 +1,13 @@
+{% if template contains 'index' %}{% assign sidebarEnable = settings.homepage-sidebar-enable %}{%endif%}
+{% if template contains 'product' %}{% assign sidebarEnable = settings.products-sidebar-enable %}{%endif%}
+{% if template contains 'cart' %}{% assign sidebarEnable = settings.cart-sidebar-enable %}{%endif%}
+{% if template contains 'page' %}{% assign sidebarEnable = settings.page-sidebar-enable %}{%endif%}
+{% if template contains 'blog' %}{% assign sidebarEnable = settings.blog-sidebar-enable %}{%endif%}
 {% capture body_classes %}
 page-{{ page.handle }} 
 template-{{ template | replace: '.', '-' }} 
 {% if has_cart %} has-cart{% endif %}
+{% if sidebarEnable %}sidebar-enabled{%else%}sidebar-disabled{%endif%}
 {% if has_prices %} has-prices{% endif %}
 {% if has_social %} has-social{% endif %}
 {% if has_top_navbar %} has-top-navbar{% endif %}
@@ -21,4 +27,5 @@ template-{{ template | replace: '.', '-' }}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 {% if has_mega_menu %} has-mega-menu{% endif %} 
 {% unless product.available %} is-sold-out{% endunless %}
+
 {% endcapture %}{{ body_classes | strip_newlines | strip }}

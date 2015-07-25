@@ -1,7 +1,6 @@
-{% capture message_has_free_shipping %}Your order now qualifies for FREE shipping to anywhere in the continental USA and Canada.  {% endcapture %}
 <!-- page content -->
-
 <div class="{{settings.content-grid-secondary-main-class}}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
+
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>		
 		<header id="productHeader" >
@@ -35,7 +34,7 @@
 						
 						{% if product.variants.size > 1%}
 						<div id="productModel" class="">
-							<h3 class="price-and-options-title" data-pid="{{product.id}}">Choose Model</h3>								
+							<h3 class="price-and-options-title" data-pid="{{product.id}}">{{'products.option.choose-model' | t}}</h3>								
 							<div id="productVariants" class="clearFix">
 								<div >												
 									<select name="id" id="product-select" style="visibility: hidden;" >
@@ -65,16 +64,16 @@
 								<input  id=""
 										type="submit"
 										name="add"
-										value="Add to Cart"
+										value="{{'products.links.add-to-cart' | t}}"
 										class="addToCart btn btn-primary"
-										onclick="update_peetz_customer_cart(this) ;return false"/>
+										onclick="update_customer_cart(this) ;return false"/>
 								<i style="display: none; padding: 0px 52px;" class="fa fa-spinner fa-pulse fa-2x" ></i>
 							</span>									
 						</div>
 						<a 	href="/cart"
 								class="btn btn-primary hidden-xs hidden-sm"
 								style="margin-left: 24px;"									
-								>View Cart</a>	
+								>{{'products.links.view-cart' | t}}</a>	
 	
 						<div class="clearfix" style="clear: both"></div>
 					</div>	
@@ -128,30 +127,30 @@
 
 <!-- SIDEBAR  type, vendor and sku ***************************************************** -->						
 				<div class="productExtras">
-					{% if settings.productType == true and product.type.size > 0 %}											
-						<p style="margin-bottom: 4px;"><span class="productExtrasTitle">Type: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
+					{% if settings.products-type == true and product.type.size > 0 %}											
+						<p style="margin-bottom: 4px;"><span class="productExtrasTitle">{{'products.type' | t}}: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
 					{% endif %}												
 
-					{% if settings.productVendor == true and product.vendor.size > 0 %}											
+					{% if settings.products-vendor == true and product.vendor.size > 0 %}											
 						<p style="margin-bottom: 4px;" titemprop="manufacturer">
-						  <span class="productExtrasTitle">Brand: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
+						  <span class="productExtrasTitle">{{'products.vendor' | t}}: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
 						</p>
 					{% endif %}
 		
-					{% if settings.productSKU == true and  variant.sku.size > 0 %}											
-						<p style="margin-bottom: 8px;"><span class="productExtrasTitle">SKU: </span><span id="productSKU">{{ variant.sku }}</span></p>											
+					{% if settings.products-sku == true and  variant.sku.size > 0 %}											
+						<p style="margin-bottom: 8px;"><span class="productExtrasTitle">{{'products.sku' | t}}: </span><span id="productSKU">{{ variant.sku }}</span></p>											
 					{% endif %}										
 				</div><!-- productExtras -->					
 				
 		
 				
 <!-- SIDEBAR  TAGS***************************************************** -->
-				{% if settings.productTags == true and product.tags.size > 0 %}
+				{% if settings.products-tags == true and product.tags.size > 0 %}
 				<div class="productExtras">
-					<p><span class="productExtrasTitle">Tag(s): </span></p>
+					<p><span class="productExtrasTitle">{{'products.tags' | t}}: </span></p>
 					<p style="margin-bottom: 4px; padding: 8px 0; ">
 						{% for tag in product.tags %}
-							<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="View all product tagged {{ tag }}">{{ tag }}</a>
+							<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="{{ 'products.links.view-all-products-tagged.title' | t}} {{ tag }}">{{ tag }}</a>
 						{% endfor %}
 					<p>							
 				</div>
@@ -294,8 +293,8 @@
       else {
         $(".addToCart").addClass("disabled").attr("disabled", "disabled");
 		$(".currency-modal-link").addClass('hidden');
-		var outOfStock ='<div class="out-of-stock"><div class="out-of-stock-title">'+''+ ' Sold Out</div>';
-		outOfStock += '<div class="out-of-stock-text"><strong>More are on the way!</strong> Call toll free 800.883.0221 to place a pre-order. You will only be charged when this item arrives and your order has been fulfulled.</div></div>';
+		var outOfStock ='<div class="out-of-stock"><div class="out-of-stock-title">'+''+ "{{'products.sold-out' | t }}</div>";
+		outOfStock += '<div class="out-of-stock-text">' + "<strong>{{'products.more-on-the-way' | t}}</strong> {{'products.sold-out-details' | t}}</div></div>";
         $("#productPrice").html(outOfStock);
         $("#oldPrice").empty();
       }
@@ -359,7 +358,7 @@
 	
 	
 	if (cart.total_price  > shipping_trigger) {
-		var has_free = '{{message_has_free_shipping}} '+learn_more_link;
+		var has_free = '{{'products.messages.message-has-free-shipping' | t}} '+learn_more_link;
 		status_message += '<tr><td><i class="fa fa-check"></i></td><td width="100%"><a href="/cart">Shopping cart</a> updated. '+has_free+'</td><td><i class="fa fa-times"></i></td></tr>';
 	}
 	else {
@@ -499,7 +498,7 @@
 		
 	}
 	
-    function update_peetz_customer_cart(button){
+    function update_customer_cart(button){
 		$(button).parent().children().toggle();
 		var timestamp = new Date().getTime();
 		$('#product-status-message').find('.message').remove();

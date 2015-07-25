@@ -2,10 +2,10 @@
 <html>
 <head>
 	{% include 'meta' %}  
-	<link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />	
+	<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />	
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
 	{{'styles.scss.css' | asset_url | stylesheet_tag }}
-	
+	{%comment%}{{'missioninn.scss.css' | asset_url | stylesheet_tag }}{%endcomment%}	
 	{{ 'modernizr.gift-card.js' | asset_url | script_tag }}	
 	{{ 'jquery.min.js' | asset_url | script_tag }}
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
@@ -40,28 +40,13 @@
 <!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
 <!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 {%include 'modal-privacy'%}
+{% include 'contact_variables' %}	
+
+
 <div id="outer-container">
 	{% include 'header' %}
-	{% include 'contact_variables' %}
-	
-	{% assign pageConfig = 'leftSidebar' %}
-	{% assign mainClass = 'col-sm-9 col-sm-push-3' %}
-	{% assign sidebarClass = 'col-sm-3 col-sm-pull-9' %}
-	{% if  template contains 'index'
-
-		or template contains 'cart'
-	%}
-		{% assign pageConfig = 'noSidebar' %}
-		{% assign mainClass = 'col-md-12' %}
-		{%comment%}
-		<style>
-		.main-outer-wrapper {  background-image: none; background-color: transparent; }
-		#outer-container{ background-color: #F9F9F9}
-		</style>
-	{%endcomment%}
-	{%endif%}
     <div class="main-outer-wrapper">
-        <div class="container {%if pageConfig == 'noSidebar' %}add-box-shadow{%endif%}">
+        <div class="container" >
             <div class="main-wrapper main" style="padding-top: 0;">
 				<div class="fgms-body">						
 					<div id="content" class="row">
