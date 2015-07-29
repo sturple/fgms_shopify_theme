@@ -1,50 +1,90 @@
-{% assign form-type = 'horizontal' %}
 
-<section id="addresses" class="section-wrap">
-	{% include '__containers-open' %}
-	<div id="admin_header" class="clearfix">
-		<h1 class="page-header">Manage Account Address</h1>
-		<div class="action_link action_return note pull-right" id='return_to_store'><a href="/account">Return to Account page</a></div>
-		<div id="action" class="action_link action_add note pull-left"><a href="#" class="btn btn-default" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a></div>
-	</div>
-  
-	<div id="add_address" class="customer_address edit_address" style="display:none;">
-		{% include '_form-address' %}
-	</div>
-  
-	<div class="customer_addresses">
-		{% paginate customer.addresses by 10 %}
-		{% for address in customer.addresses %}
-		<div class="well">
-			<div id="view_address_{{address.id}}">
-				<ul class="list-inline pull-right">
-					<li><span class="action_link action_edit">{{ "Edit" | edit_customer_address_link: address.id }}</span></li>
-					<li><span class="action_link action_delete">{{ "Delete" | delete_customer_address_link: address.id }}</span></li>
-				</ul>
-				<h4>{{ address.first_name }} {{address.last_name }} {% if address == customer.default_address %}<span class="default_address note">(Default Address)</span>{% endif %}</h4>
-				<address>
-					{% unless address.company == '' %}{{ address.company }}<br>{% endunless %}
-					{{ address.street }}<br>
-					{{ address.city }} {% if address.province_code %}, {{ address.province_code }}{% endif %}<br>
-					{{ address.country }} {{ address.zip }}<br>
-					{{ address.phone }}
-				</address>
+<div class="{% if settings.sidebar-address-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
+		<h1 >{{ 'accounts.address-settings' | t}}</h1>
+		<p>{{'accounts.intro-text' | t}}</p>
+		<a  class="btn btn-primary script-address-new-button"  style="margin-bottom: 24px;" role="button" data-toggle="collapse" data-parent="#address-add-accordion" href="#address_new" aria-expanded="true" aria-controls="address_new">{{'accounts.add-address' |t}}</a>
+		<div class="" id="address-add-accordion" role="tablist" aria-multiselectable="true">
+			<div class=" ">
+				<div id="address_new" class="collapse" role="tabpanel" >
+					<div class="">
+						<h2>{{'accounts.add-address' |t}}</h2>
+						{% include 'forms' formType : 'customer_address' %}				
+					</div>
+				</div>
 			</div>
-			<div id="edit_address_{{address.id}}" class="customer_address edit_address" style="display:none;">
-				{% include '_form-address' %}
+		</div>		
+
+		{%if customer.addresses.size > 0 %}
+		<h2>{{'accounts.manage-addresses' | t}}</h2>
+		<div class="panel-group" id="address-accordion" role="tablist" aria-multiselectable="true">
+			{% for address in customer.addresses %}
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#address-accordion" href="#address_{{address.id}}" aria-expanded="true" aria-controls="address_{{address.id}}">
+							{{ address.street | default: 'No Address' }}{% if address == customer.default_address %}<span class="default_address note">({{'accounts.default-address' | t}})</span>{% endif %}
+						</a>
+					</h4>
+				</div>
+				<div id="address_{{address.id}}" class="panel-collapse collapse {% if address == customer.default_address %}{%endif%}" role="tabpanel" >
+					<div class="panel-body">						
+						<div class="align-right-sm"><span class="action_link action_delete ">{{ 'accounts.address-delete' | t | delete_customer_address_link: address.id }}</span></div>
+						{% include 'forms' formType : 'customer_address' address : address %}						
+					</div>
+				</div>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
-		<div id="address_pagination">{{ paginate | default_pagination }}</div>  
-		{% endpaginate %}
+		{% endif %}
+		
 	</div>
-	{% include '__containers-close' %}
-</section>
-
+</div>
+{% if settings.sidebar-address-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+	<div  id="sidebar">
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-address-snippet != blank %}
+			{% include settings.sidebar-address-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
+		</div>								
+	</div>                
+</div>
+{% endif %}
 <script type="text/javascript" charset="utf-8">
-// initialize observers on address selectors
-new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
-{% for address in customer.addresses %}
-new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
+	// initialize observers on address selectors
+  
+  new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
+  {% for address in customer.addresses %}
+  new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
 {% endfor %}
+
+   /* customer address helper */
+   
+   Shopify.CustomerAddress = {
+	 toggleForm: function(id) {
+	   var editEl = document.getElementById('edit_address_'+id);
+	   var viewEl = document.getElementById('view_address_'+id);      
+	   editEl.style.display = editEl.style.display == 'none' ? '' : 'none';
+	   viewEl.style.display = viewEl.style.display == 'none' ? '' : 'none';
+	   return false;    
+	 },
+	 
+	 toggleNewForm: function() {
+	   var el = document.getElementById('add_address');
+	   el.style.display = el.style.display == 'none' ? '' : 'none';
+	   return false;
+	 },
+	 
+	 destroy: function(id, confirm_msg) {
+	   if (confirm(confirm_msg || "Are you sure you wish to delete this address?")) {
+		 Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
+	   }      
+	 }
+   }
 </script>
+

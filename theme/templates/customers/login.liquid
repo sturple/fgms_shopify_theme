@@ -1,121 +1,50 @@
-<div class="{{settings.content-grid-secondary-main-class}}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
+<div class="{% if settings.sidebar-login-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>			
 		{% assign form-type = 'horizontal' %}
-		<section id="login-form" class="section-wrap">
-				<h1>Your Account</h1>
-				<div class="row">
-					<div class="col-md-5 ">          
-						<div id="customerLoginForm">
-							<h2>Login</h2>
-							
-							{% form 'customer_login' %}
-							{{ form.errors | default_errors | replace: "Invalid login credentials", 
-								'It looks like you dont have an account with the credentials you have provided. Please try again.  If you have forgotten your password,
-								<a href="javascript:void(0)"  onclick="showRecoverPasswordForm();return false;">click here</a>'
-							}}
-							
-							<div class="form-group" >
-								<label class="control-label sr-only"  for="">Email Address</label>
-								<div class="">		
-									<input type="text" class="form-control" name="customer[email]" value="{{form.email}}" placeholder="Email Address" />
-									
-								</div>
-							</div>
-							{% if form.password_needed %}
-							<div class="form-group" >
-								<label class="control-label sr-only"  for="">Password</label>
-								<div class="">		
-									<input type="password" class="form-control" name="customer[password]"  placeholder="Password" />
-									<a href="#" id="forgotPasswordLink" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
-								</div>
-							</div>
-							{% endif %}                   
-							  
-							<p><input class="btn btn-primary" type="submit" value="Sign In" /></p>
-							{% endform %}			 
-						</div><!-- customerLoginForm -->
-					  
-					  
-						<div id="recover-password" style='display:none'>
-						  <h2>Password Reset</h2>
-						  <p>Forgot your password? No problem.  Submit the email address associated with your account below.  We'll send you a message with a special link to reset your password.  </p>   
-						  <p style="margin-bottom: 24px;"><em>If you don't receive a message in the next 5 minutes, please check your junk mail folder.</em></p>
-						  {% form 'recover_customer_password' %}
-						  {{ form.errors | default_errors }}
-							<div class="form-group" >
-								<label class="control-label sr-only"  for="message">Email</label>
-								<div class="">		
-									<input type="text" class="form-control" name="email"  placeholder="Email" id="recover-email"/>
-									<div class="input-error-message"></div>
-								</div>
-							</div>
-							<p>
-							  <input class="btn btn-primary" type="submit" value="Submit" />
-							  <span class="">or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a></span>
-							</p>
-						  {% endform %}
-						</div><!-- recover-password -->
-					  
-						{% if shop.checkout.guest_login %}
-						<div id="guestForm" class="textile">
-						  <h2>Guest Login</h2>
-						  {% form 'guest_login' %}
-						  <p><input class="btnStyle" type="submit" value="Continue as Guest" /></p>
-						  {% endform %}
-						</div><!-- guestForm -->
-						{% endif %}
-					  
-						<script type="text/javascript">
-						  function showRecoverPasswordForm() {
-							document.getElementById('recover-password').style.display = 'block';
-							document.getElementById('customerLoginForm').style.display='none';
-						  }			  
-						  function hideRecoverPasswordForm() {
-							document.getElementById('recover-password').style.display = 'none';
-							document.getElementById('customerLoginForm').style.display = 'block';
-						  }			  
-						  if (window.location.hash == '#recover') { showRecoverPasswordForm() }
-						</script>
-					</div>
-					<div class="col-md-6 col-md-offset-1">
-						<h2>Create a New  Account</h2>
-						<p> If you don't have a Customer Account yet, click on the button below to get started!</p>
-					  
-							   
-						<a class="btn btn-primary" href="{{ shop.url }}/account/register">Let's Get Started!</a>
+
+		<h1>{{'accounts.your-account' |t}}</h1>       
+		<div  class="panel-group"  role="tablist" aria-multiselectable="true">
+			<div id="section-login" class="collapse in">
+				<h2>{{'accounts.login' | t}}</h2>
+				{% include 'forms' formType : 'customer_login' %}
+			</div>
+			<div id="section-reset" class="collapse">
+				<h2>{{'accounts.password-reset' | t}}</h2>
+				<p>{{'accounts.password-reset-text' | t}} </p>   
+				<p style="margin-bottom: 24px;"><em>{{'accounts.password-reset-junk-email' | t}}</em></p>				
+				{% include 'forms' formType : 'recover_customer_password' labelClass : 'sr-only' controlClass : 'col-xs-7' ph_flag : true %}								
+			</div>
 						
-		
-					</div><!-- customerRight -->
-				</div>
-			
-			{% comment %}
-			Guest Login form for shops with optional customer accounts. This form is displayed only when users click on the checkout link
-			on the cart page.
-			{% endcomment %}
-		
-			{% if shop.checkout.guest_login %}
-			<hr>
-			<div id="guest">
-				<h3 class="title">Guest Login</h3>
+		</div>
+
+	  
+		{% if shop.checkout.guest_login  %}
+			<h2 style="padding-top: 48px;">Guest Login</h3>
+			<div class="form-horizontal">
 				{% form 'guest_login' %}
 				<div class="form-group">
 					<div class="col-lg-12">
-						<input class="btn btn-default" type="submit" value="Continue as Guest" />
+						<input class="btn btn-primary" type="submit" value="Continue as Guest" />
 					</div>
 				</div>
-				{% endform %}
-			</div>
-			{% endif %}
-		
-		</section>
+				{% endform %}					
+			</div>		
+		{% endif %}	
+
 	</div>
 </div>
-<!-- sidebar -->					
-<div class="{{settings.content-grid-secondary-home-class}}"  >
+{% if settings.sidebar-login-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
 	<div  id="sidebar">
-		<div id="sidebar-wrapper"> 
-			
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-login-snippet != blank %}
+			{% include settings.sidebar-login-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
 		</div>								
 	</div>                
-</div>	
+</div>
+{% endif %}

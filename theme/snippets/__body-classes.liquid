@@ -1,13 +1,21 @@
-{% if template contains 'index' %}{% assign sidebarEnable = settings.homepage-sidebar-enable %}{%endif%}
-{% if template contains 'product' %}{% assign sidebarEnable = settings.products-sidebar-enable %}{%endif%}
-{% if template contains 'cart' %}{% assign sidebarEnable = settings.cart-sidebar-enable %}{%endif%}
-{% if template contains 'page' %}{% assign sidebarEnable = settings.page-sidebar-enable %}{%endif%}
-{% if template contains 'blog' %}{% assign sidebarEnable = settings.blog-sidebar-enable %}{%endif%}
+{% if template contains 'index' %}{% assign sidebarEnable = settings.sidebar-home-enable %}{%endif%}
+{% if template contains 'product' %}{% assign sidebarEnable = settings.sidebar-product-enable %}{%endif%}
+{% if template contains 'cart' %}{% assign sidebarEnable = settings.sidebar-cart-enable %}{%endif%}
+{% if template contains 'page' %}{% assign sidebarEnable = settings.sidebar-page-enable %}{%endif%}
+{% if template contains 'blog' %}{% assign sidebarEnable = settings.sidebar-blog-enable %}{%endif%}
+{% if template contains 'article' %}{% assign sidebarEnable = settings.sidebar-article-enable %}{%endif%}
+{% if template contains 'account' %}{% assign sidebarEnable = settings.sidebar-account-enable %}{%endif%}
+{% if template contains 'address' %}{% assign sidebarEnable = settings.sidebar-address-enable %}{%endif%}
+{% if template contains 'order' %}{% assign sidebarEnable = settings.sidebar-orders-enable %}{%endif%}
+{% if template contains 'collection' %}{% assign sidebarEnable = settings.sidebar-collection-enable %}{%endif%}
+{% if template contains 'register' %}{% assign sidebarEnable = settings.sidebar-register-enable %}{%endif%}
+{% if template contains 'login' %}{% assign sidebarEnable = settings.sidebar-login-enable %}{%endif%}
+
 {% capture body_classes %}
 page-{{ page.handle }} 
 template-{{ template | replace: '.', '-' }} 
 {% if has_cart %} has-cart{% endif %}
-{% if sidebarEnable %}sidebar-enabled{%else%}sidebar-disabled{%endif%}
+{% if sidebarEnable %} sidebar-enabled {%else%} sidebar-disabled {%endif%}
 {% if has_prices %} has-prices{% endif %}
 {% if has_social %} has-social{% endif %}
 {% if has_top_navbar %} has-top-navbar{% endif %}

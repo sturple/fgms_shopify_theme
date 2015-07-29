@@ -1,5 +1,5 @@
 <!-- page content -->
-<div class="{% if settings.homepage-sidebar-enable %}{{settings.homepage-grid-home-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main">
+<div class="{% if settings.sidebar-home-enable %}{{settings.homepage-grid-home-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main">
 	<div class="main-col-wrapper  " >
 		{% unless settings.homepage-content == blank %}
 			{% assign homepage = pages[settings.homepage-content] %}		
@@ -12,12 +12,19 @@
 		{% endunless %}			
    </div>
 </div>
-{% if settings.homepage-sidebar-enable %}
+{% if settings.sidebar-home-enable %}
 <!-- sidebar -->
 <div class="{{settings.homepage-grid-home-sidebar-class}}"  >
 	<div  id="sidebar">
-		<div id="sidebar-wrapper"> 
-			{% include settings.homepage-sidebar-snippet %}
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-home-snippet != blank %}
+			{% include settings.sidebar-home-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}	
+
+			
+			{%endif%}
+			
 		</div>								
 	</div>                
 </div>

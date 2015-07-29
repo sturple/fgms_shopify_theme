@@ -4,14 +4,20 @@
 	{% include 'meta' %}  
 	<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />	
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+	{%comment%}{% endcomment %}
+	{% if settings.layout-header-snippet == 'header_missioninn' %}
+	{{'missioninn.scss.css' | asset_url | stylesheet_tag }}
+	{% else %}
 	{{'styles.scss.css' | asset_url | stylesheet_tag }}
-	{%comment%}{{'missioninn.scss.css' | asset_url | stylesheet_tag }}{%endcomment%}	
+	{% endif %}
 	{{ 'modernizr.gift-card.js' | asset_url | script_tag }}	
 	{{ 'jquery.min.js' | asset_url | script_tag }}
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
 	{{ 'orion-menu.js' | asset_url | script_tag }}
+	{{ 'jquery.mb.YTPlayer.min.js' | asset_url | script_tag }}
+	
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: ['Raleway:300,400,800','Lora']}})});</script>
+	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: {{settings.typography-fonts | default: "['Raleway']"}} }})});</script>
 
 <!--[if lt IE 9]>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -59,6 +65,7 @@
     </div>
 	{% include 'footer' %}
 </div>
+{% if settings.layout-header-snippet == 'header_missioninn' %}
 <div id="map-parallax">
     <div class="row">
         <div class="col-sm-12">
@@ -74,10 +81,11 @@
     </div>
     
 </div>   
-
+{%endif%}
+{%comment%}
   {% include 'option-select-callback' %}
   {% include 'currencies' %}
-   {%comment%}
+   
   {{ '_base.js' | asset_url | script_tag }}
   {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
   {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
@@ -85,7 +93,7 @@
   {{ 'isotope.pkgd.min.js' | asset_url | script_tag }} 
   {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
 {%endcomment%}
-  
+
 <script type="text/javascript">
 	var menuState = 'init';
 	$(function(){
@@ -95,7 +103,24 @@
 		$('html, body').animate({scrollTop : $($(this).attr('href')).position().top}, 'slow');
 
 	});
-
+	$('.script-address-new-button').click(function(){
+		$(this).slideUp()
+	})
+	
+	$('.script-toggle-section').click(function(){		
+		$($(this).attr('data-parent')).removeClass('in');
+		$($(this).attr('href')).addClass('in');
+	})
+	
+	$(".player").YTPlayer();
+	$(".player").YTPApplyFilters({
+		sepia  : 66,	
+		blur: 1,		
+		hue_rotate: 45,
+		saturate: 1
+		
+	
+	})
 	/* Nav tabs */
 	$('.nav-tabs.accordion a[role="tab"]').click(function(e){
 		e.preventDefault();

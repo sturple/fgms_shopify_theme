@@ -1,0 +1,201 @@
+{% comment%}<!-- ************************** FORM - CREATE CUSTOMER **************************************** --> {%endcomment%}
+{% if formType == 'create_customer'%}	
+<div class="form-horizontal">
+	{% form 'create_customer' %} 
+		<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
+			<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
+			<div class="{{ controlClass | default: 'col-md-7'}}">		
+				<input type="text"
+					   class="form-control"						   
+					   name="customer[email]"
+					   value="{{form.email}}"
+					   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
+				{% if form.errors contains 'email' %}<div class="error-message  show-error-message ">{{'forms.errors.email' |t}}</div>{% endif %}
+			</div>		
+		</div>	
+		<div class="form-group  {% if form.errors contains 'password' %}has-error{%endif%}" >
+			<label class="control-label {{ labelClass | default: 'col-md-3'}}"   for="login">{{'forms.password' |t}}</label>
+			<div class="{{ controlClass | default: 'col-md-7'}}">
+				<input type="password"
+					   class="form-control password"						   
+					   name="customer[password]"
+					   value=""
+					   {% if ph_flag %}placeholder="{{'forms.password' |t}}"{% endif %}  />
+				{% if form.errors contains 'password' %}<div class="error-message  show-error-message ">{{'forms.errors.password' |t}}</div>{% endif %}			
+			</div>		
+		</div>	
+		<div class="form-group">
+			<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="first_name">{{'forms.first-name' | t}}</label>
+			<div class="{{ controlClass | default: 'col-md-7'}}">	
+				<input type="text" id="first_name" class="form-control" {% if ph_flag %}placeholder="{{'forms.first-name' | t}}"{% endif %} name="customer[first_name]" value="{{form.first_name}}"   />		
+			</div>
+		</div>		
+		<div class="form-group">
+			<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="last_name">{{'forms.last-name' | t}}</label>
+			<div class="{{ controlClass | default: 'col-md-7'}}">	
+				<input type="text" id="last_name" class="form-control" {% if ph_flag %}placeholder="{{'forms.last-name' | t}}"{% endif %}  name="customer[last_name]" value="{{form.last_name}}"   />		
+			</div>
+		</div>	
+	
+		<div class="form-group">
+			<div class="col-sm-12">
+				<input class="btn btn-primary" type="submit" value="{{'general.create'|t}}" />
+			</div>
+			
+		</div>             
+	{% endform %}	
+</div>
+{% comment%}<!-- ************************** FORM - ADDRESS **************************************** --> {%endcomment%}
+{% elsif formType == 'customer_address'%}
+{% if address %}
+	{% capture address_id %}edit_address_{{address_id}}{% endcapture %}
+	
+{%else%}
+	{% assign address_id = '' %}
+	{% assign address = customer.new_address%}
+{%endif%}
+{% assign ph_flag = ph_flag | default: true %}
+<div id="{{address_id}}" class="edit_address form-horizontal" style="display:block;">					
+	{% form 'customer_address', address %}
+		{% if form %}{%assign form_id = form.id %}{% else %}{%assign form_id = 'new' %}{% endif %}
+		<div class="customer_address_table">					  
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_first_name_{{form_id}}">{{'forms.first-name' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">	
+					<input type="text" id="address_first_name_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.first-name' | t}}"{% endif %} name="address[first_name]" value="{{form.first_name}}"   />		
+				</div>
+			</div>		
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_last_name_{{form_id}}">{{'forms.last-name' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">	
+					<input type="text" id="address_last_name_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.last-name' | t}}"{% endif %} name="address[last_name]" value="{{form.last_name}}"   />		
+				</div>
+			</div>			  
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_company_{{form_id}}">{{'forms.company' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">	
+					<input type="text" id="address_company_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.company' | t}}"{% endif %} name="address[company]" value="{{form.company}}"   />		
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_address1_{{form_id}}">{{'forms.address' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">		
+					<input type="text" id="address_address1_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.address' | t}}"{% endif %} name="address[address1]" value="{{form.address1}}"   />		
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}" for="address_address2_{{form_id}}">{{'forms.address' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">	
+					<input type="text" id="address_address2_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.address' | t}}"{% endif %} name="address[address2]" value="{{form.address2}}"   />		
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_city_{{form_id}}">{{'forms.city' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">		
+					<input type="text" id="address_city_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.city' | t}}"{% endif %} name="address[city]" value="{{form.city}}"   />		
+				</div>
+			</div>						
+			
+			
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_country_{{form_id}}">{{'forms.country' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">						
+					<select id="address_country_{{form_id}}" class="form-control" name="address[country]"  {% if ph_flag %}placeholder="{{'forms.country' | t}}"{% endif %}  data-default="{{form.country}}">{{ country_option_tags }}</select>
+				</div>
+			</div>				
+
+			<div class="form-group" id="address_province_container_{{form_id}}" style="display:none">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}" for="address_province_{{form_id}}">{{'forms.province' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">							
+					<select id="address_province_{{form_id}}" class="form-control" name="address[province]"  placeholder="{{'forms.province' | t}}"  data-default="{{form.province}}"></select>
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_zip_{{form_id}}">{{'forms.zip' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">			
+					<input type="text" id="address_zip_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.zip' | t}}"{% endif %} name="address[zip]" value="{{form.zip}}"   />		
+				</div>
+			</div>	
+			<div class="form-group">
+				<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_phone_{{form_id}}">{{'forms.phone' | t}}</label>
+				<div class="{{ controlClass | default: 'col-md-7'}}">		
+					<input type="text" id="address_phone_{{form_id}}" class="form-control" {% if ph_flag %}placeholder="{{'forms.phone' | t}}"{% endif %} name="address[phone]" value="{{form.phone}}"   />		
+				</div>
+			</div>
+			<div class="form-group"><div class="{{ controlClass | default: 'col-md-offset-3 col-md-7'}}">{{ form.set_as_default_checkbox }} {{'forms.set-as-default-address' | t}}</div></div>
+
+			<div class="form-group" style="padding-top: 18px">
+				<div class="col-md-12">
+					<input class="btn btn-primary" type="submit" value="{% if address_id != '' %}{{'accounts.update-address' | t }}{%else%}{{'accounts.add-address' | t }}{%endif%}" />									
+				</div>
+			</div>
+		</div>	
+	{% endform %}
+</div>
+
+{% comment%}<!-- ************************** FORM - LOGIN **************************************** --> {%endcomment%}
+{% elsif formType == 'customer_login' %}
+<div class="form-horizontal">
+	{% capture invalid-login-message %}<p>{{'accounts.login-in-error-message' | t}}
+		<a class="script-toggle-section"  data-parent="#section-login" href="#section-reset" >{{'general.click-here' |t}}</a>{%endcapture%}</p>
+	{% form 'customer_login' %}
+	{{ form.errors | default_errors | replace: "Invalid login credentials",invalid-login-message}}
+	<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
+		<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">		
+			<input type="text"
+				   class="form-control"						   
+				   name="customer[email]"
+				   value="{{form.email}}"
+				   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
+			{% if form.errors contains 'email' %}<div class="error-message  show-error-message ">{{'forms.errors.email' |t}}</div>{% endif %}
+		</div>		
+	</div>
+	{% if form.password_needed %}
+	<div class="form-group  {% if form.errors contains 'password' %}has-error{%endif%}" >
+		<label class="control-label {{ labelClass | default: 'col-md-3'}}"   for="login">{{'forms.password' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">
+			<input type="password"
+				   class="form-control password"						   
+				   name="customer[password]"
+				   value=""
+				   {% if ph_flag %}placeholder="{{'forms.password' |t}}"{% endif %}  />
+			{% if form.errors contains 'password' %}<div class="error-message  show-error-message ">{{'forms.errors.password' |t}}</div>{% endif %}
+			<a  class="script-toggle-section" data-parent="#section-login" href="#section-reset" >{{'accounts.password-forgot' | t}}</a>
+		</div>		
+	</div>	
+	{% endif %}  
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input class="btn btn-primary" type="submit" value="{{'general.sign-in'|t}}" />
+		</div>		
+	</div>
+	{% endform %}
+</div>
+{% comment%}<!-- ************************** FORM - RECOVER PASSWORD **************************************** --> {%endcomment%}
+{% elsif formType == 'recover_customer_password'%}
+<div class="form-horizontal">
+	{% form 'recover_customer_password' %}
+	{{ form.errors | default_errors }}
+
+	<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
+		<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">		
+			<input type="text"   class="form-control"	name="email"   id="recover-email"
+				   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
+			{% if form.errors contains 'email' %}<div class="error-message  show-error-message ">{{'forms.errors.email' |t}}</div>{% endif %}
+		</div>		
+	</div>							
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input class="btn btn-primary" type="submit" value="{{'general.submit'|t}}" />
+			<span class="">{{'general.or' |t}}
+				<a class="script-toggle-section"  data-parent="#section-reset" href="#section-login" >{{'general.cancel' |t}}</a>
+			</span>
+		</div>		
+	</div>							
+						
+	{% endform %}
+</div>
+{% else %}
+{% endif %}

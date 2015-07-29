@@ -18,6 +18,11 @@
         
     {% endif %}
     {% if current_tags == blank %}
+        {% if template contains 'customers' %}
+        {% unless template == 'customers/account' %}
+        » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">{{ 'accounts.account' | t | link_to: '/account' }}</li>
+        {% endunless %}
+        {% endif %}            
         » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ page_title }}</li>
     {% else %}
         » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">{{ page_title | link_to: './' }}</li>
@@ -25,4 +30,5 @@
         
   {% endif %}
 </ul>
+
 

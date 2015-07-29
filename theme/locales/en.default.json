@@ -2,17 +2,75 @@
     "general" : {
         "or" : "or",
         "item" : "item",
-        "footer-form-title" : "Quick Message"
+        "footer-form-title" : "Quick Message",
+        "date" : "date",
+        "total" : "Total",
+        "tax" : "Tax",
+        "subtotal" : "Subtotal",
+        "shipping" : "Shipping",
+        "cancel" : "Cancel",
+        "placed-on" : "Placed on",
+        "create" : "Create",
+        "sign-in" : "Sign In",
+        "submit" : "Submit",
+        "click-here" : "click here"
     },
     "accounts": {
         "navbar-welcome-note": "Welcome, {{ first_name }}!",
         "register": "Register an account",
         "login": "Login",
+        "login-in-error-message" : "It looks like you dont have an account with the credentials you have provided. Please try again.  If you have forgotten your password,",
         "logout": "Logout",
         "your-cart" : "Your Cart",
         "join" : "Join",
-        "account" : "Account",
-        "your-account" : "Your Account"
+        "account" : "Account",        
+        "your-account" : "Your Account",
+        "create-account" : "Create Account",        
+        "default-address" : "Default Address",
+        "manage-addresses" : "Manage Addresses",
+        "billing-address" : "Billing Address",
+        "shipping-address" : "Shipping Address",
+        "return-to-account-page" : "Return to Account page",
+        "you-havent-placed-any-orders-yet" : "You haven't placed any orders yet.",
+        "order" : "Order",
+        "payment-status" : "Payment Status",
+        "fulfillment-status" : "Fulfillment Status",
+        "add-address" : "Add Address",
+        "update-address" :"Update Address",
+        "add-new-address" : "Add New Address",
+        "address-settings" : "Customer Addresses",
+        "address-delete" : "Delete",
+        "intro-text" : "You can add new addresses by clicking on the Add New Adress button , or manage existing Addresses",
+        "password-reset" : "Password Reset",
+        "password-forgot" : "Forgot your password?",
+        "password-reset-junk-email" : "If you don't receive a message in the next 5 minutes, please check your junk mail folder.",
+        "password-reset-text" : "Forgot your password? No problem.  Submit the email address associated with your account below.  We'll send you a message with a special link to reset your password."
+       
+    },
+    "forms" : {
+        "login-details" : "Login Details",
+        "first-name" : "First Name",
+        "last-name" : "Last Name",
+        "email" : "Email",
+        "password" : "Password",
+        "company" : "Company",
+        "address" : "Address",
+        "city" : "City",
+        "country" : "Country",
+        "province" : "Province / State",
+        "zip" : "Postal / Zip",
+        "phone" : "Phone",
+        "set-as-default-address" : "Set as Default Address?",
+        "errors" : {
+            "password" : "Password is required",
+            "email" : "Email is required"
+            
+            
+            
+        }
+
+        
+       
     },
     "currency": {
         "all-prices-in": "All prices in"
@@ -38,6 +96,9 @@
         "type" : "Type",
         "tags" : "Tag(s)",
         "sku" : "SKU",
+        "product" : "Product",
+        "price" : "Price",
+        "quantity" : "Quantity",        
         "vendor" : "Brand",
         "option" : {
             "choose-model" : "Choose Model",

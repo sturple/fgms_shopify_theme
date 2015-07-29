@@ -1,60 +1,46 @@
-{% layout settings.customer_layout %}
-<div id="contentWrapper" class="wideHeader" >
-  <div class="container">
-    <header id="pageHeader">
-      <h1 id="pageTitle"><span>{{ settings.accountText }}</span></h1>
-    </header>
-    <div id="content" class="textile noSidebar">
-      <div id="customer_sidebar" class="floatLeft">
-        <div id="customer_detail" class="group">
-          <h4>{{ customer.name }}</h4>
-          <div class="note">
-	          <p>{{ customer.email }}</p>
-            {% if customer.default_address != nil %}
-            <p>{{ customer.default_address.address1 }}</p>
-            {% if customer.default_address.address2 != "" %}
-            <p>{{ customer.default_address.address2 }}</p>
-            {% endif %}
-            <p>{{ customer.default_address.city}}, {% if address.province_code %}{{customer.default_address.province_code}}, {% endif %}{{customer.default_address.country}}</p>
-            <p>{{ customer.default_address.zip}}</p>
-            <p>{{ customer.default_address.phone }}</p>
-            {% endif %}
-            <a id="view_address" href="/account/addresses">{{ settings.manageAddressesText }} ({{ customer.addresses_count }})</a>
-          </div>
-        </div>
-      </div>
-      
-      <div id="customer_orders" class="floatRight textile">
+<div class="{% if settings.sidebar-account-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
+        <h1>{{'accounts.account' | t}}</h1>      
         {% if customer.orders.size != 0 %}
         <table class="table">
-          <thead>
-            <tr>
-              <th class="order_number">Order</th>
-              <th class="date">Date</th>
-              <th class="payment_status">Payment Status</th>
-              <th class="fulfillment_status">Fulfillment Status</th>
-              <th class="total">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for order in customer.orders %}
-            <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
-              <td>{{ order.name | link_to: order.customer_url }}</td>
-              <td><span class="note">{{ order.created_at | date: "%b %d, %Y" }}</span></td>
-              <td><span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></td>
-              <td><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
-              <td><span class="total money">{{ order.total_price | money }}</span></td>
-            </tr>
-            {% endfor %}
-          </tbody>
+            <thead>
+                <tr>
+                    <th class="order_number">{{ 'accounts.order' |t}}</th>
+                    <th class="date">{{'general.date' | t | capitalize}}</th>
+                    <th class="payment_status">{{'accounts.payment-status' | t}}</th>
+                    <th class="fulfillment_status">{{'accounts.fulfillment-status' | t}}</th>
+                    <th class="total">{{ 'general.total' | t | capitalize}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in customer.orders %}
+                <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
+                    <td>{{ order.name | link_to: order.customer_url }}</td>
+                    <td><span class="note">{{ order.created_at | date: "%b %d, %Y" }}</span></td>
+                    <td><span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></td>
+                    <td><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></td>
+                    <td><span class="total money">{{ order.total_price | money }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         {% else %}
-        <p>You haven't placed any orders yet.</p>  
-        
+        <p>{{'accounts.you-havent-placed-any-orders-yet' | t}}</p>          
         {% endif %}
-      </div>
-      <div class="clearFix"></div>
-    </div><!-- content -->   
-  </div><!-- siteContainer -->
-</div><!-- contentWrapper -->
-{% include 'footer' %}
+	</div>
+</div>
+{% if settings.sidebar-account-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+	<div  id="sidebar">
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-account-snippet != blank %}
+			{% include settings.sidebar-account-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
+		</div>								
+	</div>                
+</div>
+{% endif %}

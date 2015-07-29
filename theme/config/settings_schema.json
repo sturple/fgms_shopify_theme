@@ -3,20 +3,43 @@
     "name": "Branding",
     "settings": [
         {
+          "type": "header",
+          "content": "Header Logo"
+        },
+        {
+            "type": "text",
+            "id": "branding-header-logo-icon-class",
+            "label": "Logo icon class"
+        },        
+        {
             "type": "image",
-            "id": "branding-logo-image-file.png",
+            "id": "branding-header-logo-image-file.png",
             "label": "Logo image file"
-        },      
+        },
+        {
+          "type": "header",
+          "content": "Footer Logo"
+        },
+        {
+            "type": "text",
+            "id": "branding-footer-logo-icon-class",
+            "label": "Logo icon class"
+        },        
+        {
+            "type": "image",
+            "id": "branding-footer-logo-image-file.png",
+            "label": "Logo image file"
+        },
+        {
+          "type": "header",
+          "content": "Fav Icon"
+        },        
         {
             "type": "image",
             "id": "branding-favicon.png",
             "label": "Favicon"
-        },
-        {
-            "type": "text",
-            "id": "branding-logo-icon-class",
-            "label": "Logo icon class"
         }
+
     ]
   },
   {
@@ -30,109 +53,8 @@
         "type": "color",
         "id": "brand-primary",
         "label": "Brand primary colour"
-      },
-      {
-        "type": "color",
-        "id": "background-colour",
-        "label": "Background colour"
-      },
-      {
-        "type": "color",
-        "id": "heading-colour",
-        "label": "Heading colour"
-      },
-      {
-        "type": "color",
-        "id": "text-colour",
-        "label": "Text colour"
-      },
-      {
-        "type": "color",
-        "id": "link-colour",
-        "label": "Link colour"
-      },
-      {
-        "type": "color",
-        "id": "button-colour",
-        "label": "Button colour"
-      },
-      {
-        "type": "color",
-        "id": "button-text-colour",
-        "label": "Button text colour"
-      },
-      {
-        "type": "header",
-        "content": "Footer"
-      },
-      {
-        "type": "color",
-        "id": "footer-background-colour",
-        "label": "Footer background colour"
-      },
-      {
-        "type": "color",
-        "id": "footer-heading-colour",
-        "label": "Footer heading colour"
-      },
-      {
-        "type": "color",
-        "id": "footer-link-colour",
-        "label": "Footer link colour"
-      },
-      {
-        "type": "color",
-        "id": "footer-text-colour",
-        "label": "Footer text colour"
-      },
-      {
-        "type": "header",
-        "content": "Navbar"
-      },
-      {
-        "type": "color",
-        "id": "main-navbar-background-colour",
-        "label": "Navbar main background colour"
-      },
-      {
-        "type": "color",
-        "id": "main-navbar-link-colour",
-        "label": "Navbar main link colour"
-      },
-      {
-        "type": "color",
-        "id": "navbar-background-colour",
-        "label": "Navbar top and footer background colour"
-      },
-      {
-        "type": "color",
-        "id": "navbar-link-colour",
-        "label": "Navbar top and footer link colour"
-      },
-      {
-        "type": "header",
-        "content": "Sidebar"
-      },
-      {
-        "type": "color",
-        "id": "sidebar-background-colour",
-        "label": "Sidebar background colour"
-      },
-      {
-        "type": "color",
-        "id": "sidebar-heading-colour",
-        "label": "Sidebar heading colour"
-      },
-      {
-        "type": "color",
-        "id": "sidebar-link-colour",
-        "label": "Sidebar link colour"
-      },
-      {
-        "type": "color",
-        "id": "sidebar-text-colour",
-        "label": "Sidebar text colour"
       }
+
     ]
   },
   {
@@ -221,11 +143,6 @@
         "default": "col-sm-3 col-sm-pull-9"
       },
       {
-        "type": "checkbox",
-        "id": "homepage-sidebar-enable",
-        "label": "Home Page Sidebar Enable"
-      },
-      {
         "type" : "snippet",
         "id" : "homepage-sidebar-snippet",
         "label" : "Hompage Sidebar Snippet"
@@ -240,67 +157,7 @@
         "id": "homepage-products-collection",
         "label": "Products collection"
       }
-      /*
-      {
-        "type": "select",
-        "id": "homepage-products-limit",
-        "label": "Products limit",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          },
-          {
-            "value": "6",
-            "label": "6"
-          },
-          {
-            "value": "12",
-            "label": "12"
-          },
-          {
-            "value": "unlimited",
-            "label": "Unlimited"
-          }
-        ]
-      },
 
-      {
-        "type": "select",
-        "id": "homepage-collections-limit",
-        "label": "Collections limit",
-        "options": [
-          {
-            "value": "1-row",
-            "label": "1 row"
-          },
-          {
-            "value": "2-rows",
-            "label": "2 rows"
-          },
-          {
-            "value": "3-rows",
-            "label": "3 rows"
-          },
-          {
-            "value": "unlimited",
-            "label": "Unlimited"
-          }
-        ]
-      }
-      */
     
     ]
   },
@@ -757,586 +614,26 @@
   {
     "name": "Typography",
     "settings": [
-      {
-        "type": "paragraph",
-        "content": "Heading \"letterpress\""
-      },
-      {
-        "type": "checkbox",
-        "id": "heading-letterpress",
-        "label": "Yes"
-      },
+
       {
         "type": "header",
-        "content": "Font body"
+        "content": "Fonts"
       },
       {
         "type": "text",
-        "id": "font-body-custom",
-        "label": "Custom font name"
-      },
-      {
-        "type": "select",
-        "id": "font-body",
-        "label": "Fallback\/default",
-        "options": [
-          {
-            "value": "",
-            "label": ""
-          },
-          {
-            "value": "Helvetica, Arial, sans-serif",
-            "label": "Helvetica\/Arial",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
-            "label": "Impact",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
-            "label": "Lucida Grande",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Trebuchet MS, sans-serif",
-            "label": "Trebuchet MS",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Verdana, Helvetica, Arial, sans-serif",
-            "label": "Verdana",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Garamond, Baskerville, Caslon, serif",
-            "label": "Garamond",
-            "group": "Serif"
-          },
-          {
-            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
-            "label": "Georgia",
-            "group": "Serif"
-          },
-          {
-            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
-            "label": "Palatino",
-            "group": "Serif"
-          },
-          {
-            "value": "'Times New Roman', Times, serif",
-            "label": "Times New Roman",
-            "group": "Serif"
-          },
-          {
-            "value": "'Courier New', Courier, monospace",
-            "label": "Courier New",
-            "group": "Monospace"
-          },
-          {
-            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
-            "label": "Monaco\/Lucida Console",
-            "group": "Monospace"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "font-body-weight",
-        "label": "Weight"
-      },
-      {
-        "type": "text",
-        "id": "font-body-size",
-        "label": "Size (eg 14px)"
-      },
-      {
-        "type": "select",
-        "id": "font-body-style",
-        "label": "Style",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "italic",
-            "label": "Italic"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "font-body-case",
-        "label": "Case",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal (as typed)"
-          },
-          {
-            "value": "lowercase",
-            "label": "lowercase"
-          },
-          {
-            "value": "uppercase",
-            "label": "UPPERCASE"
-          },
-          {
-            "value": "title-case",
-            "label": "Title Case"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Font brand"
-      },
-      {
-        "type": "text",
-        "id": "font-brand-custom",
-        "label": "Custom font name"
-      },
-      {
-        "type": "select",
-        "id": "font-brand",
-        "label": "Fallback\/default",
-        "options": [
-          {
-            "value": "",
-            "label": ""
-          },
-          {
-            "value": "Helvetica, Arial, sans-serif",
-            "label": "Helvetica\/Arial",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
-            "label": "Impact",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
-            "label": "Lucida Grande",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Trebuchet MS, sans-serif",
-            "label": "Trebuchet MS",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Verdana, Helvetica, Arial, sans-serif",
-            "label": "Verdana",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Garamond, Baskerville, Caslon, serif",
-            "label": "Garamond",
-            "group": "Serif"
-          },
-          {
-            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
-            "label": "Georgia",
-            "group": "Serif"
-          },
-          {
-            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
-            "label": "Palatino",
-            "group": "Serif"
-          },
-          {
-            "value": "'Times New Roman', Times, serif",
-            "label": "Times New Roman",
-            "group": "Serif"
-          },
-          {
-            "value": "'Courier New', Courier, monospace",
-            "label": "Courier New",
-            "group": "Monospace"
-          },
-          {
-            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
-            "label": "Monaco\/Lucida Console",
-            "group": "Monospace"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "font-brand-weight",
-        "label": "Weight"
-      },
-      {
-        "type": "text",
-        "id": "font-brand-size",
-        "label": "Size (eg 14px)"
-      },
-      {
-        "type": "select",
-        "id": "font-brand-style",
-        "label": "Style",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "italic",
-            "label": "Italic"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "font-brand-case",
-        "label": "Case",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal (as typed)"
-          },
-          {
-            "value": "lowercase",
-            "label": "lowercase"
-          },
-          {
-            "value": "uppercase",
-            "label": "UPPERCASE"
-          },
-          {
-            "value": "title-case",
-            "label": "Title Case"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Font heading"
-      },
-      {
-        "type": "text",
-        "id": "font-heading-custom",
-        "label": "Custom font name"
-      },
-      {
-        "type": "select",
-        "id": "font-heading",
-        "label": "Fallback\/default",
-        "options": [
-          {
-            "value": "",
-            "label": ""
-          },
-          {
-            "value": "Helvetica, Arial, sans-serif",
-            "label": "Helvetica\/Arial",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
-            "label": "Impact",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
-            "label": "Lucida Grande",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Trebuchet MS, sans-serif",
-            "label": "Trebuchet MS",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Verdana, Helvetica, Arial, sans-serif",
-            "label": "Verdana",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Garamond, Baskerville, Caslon, serif",
-            "label": "Garamond",
-            "group": "Serif"
-          },
-          {
-            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
-            "label": "Georgia",
-            "group": "Serif"
-          },
-          {
-            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
-            "label": "Palatino",
-            "group": "Serif"
-          },
-          {
-            "value": "'Times New Roman', Times, serif",
-            "label": "Times New Roman",
-            "group": "Serif"
-          },
-          {
-            "value": "'Courier New', Courier, monospace",
-            "label": "Courier New",
-            "group": "Monospace"
-          },
-          {
-            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
-            "label": "Monaco\/Lucida Console",
-            "group": "Monospace"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "font-heading-weight",
-        "label": "Weight"
-      },
-      {
-        "type": "text",
-        "id": "font-heading-size",
-        "label": "Size (eg 14px)"
-      },
-      {
-        "type": "select",
-        "id": "font-heading-style",
-        "label": "Style",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "italic",
-            "label": "Italic"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "font-heading-case",
-        "label": "Case",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal (as typed)"
-          },
-          {
-            "value": "lowercase",
-            "label": "lowercase"
-          },
-          {
-            "value": "uppercase",
-            "label": "UPPERCASE"
-          },
-          {
-            "value": "title-case",
-            "label": "Title Case"
-          }
-        ]
-      },
-      {
-        "type": "header",
-        "content": "Font navbar"
-      },
-      {
-        "type": "text",
-        "id": "font-navbar-custom",
-        "label": "Custom font name"
-      },
-      {
-        "type": "select",
-        "id": "font-navbar",
-        "label": "Fallback\/default",
-        "options": [
-          {
-            "value": "",
-            "label": ""
-          },
-          {
-            "value": "Helvetica, Arial, sans-serif",
-            "label": "Helvetica\/Arial",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Impact, Charcoal, Helvetica, Arial, sans-serif",
-            "label": "Impact",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif",
-            "label": "Lucida Grande",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Trebuchet MS, sans-serif",
-            "label": "Trebuchet MS",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Verdana, Helvetica, Arial, sans-serif",
-            "label": "Verdana",
-            "group": "Sans-serif"
-          },
-          {
-            "value": "Garamond, Baskerville, Caslon, serif",
-            "label": "Garamond",
-            "group": "Serif"
-          },
-          {
-            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
-            "label": "Georgia",
-            "group": "Serif"
-          },
-          {
-            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
-            "label": "Palatino",
-            "group": "Serif"
-          },
-          {
-            "value": "'Times New Roman', Times, serif",
-            "label": "Times New Roman",
-            "group": "Serif"
-          },
-          {
-            "value": "'Courier New', Courier, monospace",
-            "label": "Courier New",
-            "group": "Monospace"
-          },
-          {
-            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
-            "label": "Monaco\/Lucida Console",
-            "group": "Monospace"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "font-navbar-weight",
-        "label": "Weight"
-      },
-      {
-        "type": "text",
-        "id": "font-navbar-size",
-        "label": "Size (eg 14px)"
-      },
-      {
-        "type": "select",
-        "id": "font-navbar-style",
-        "label": "Style",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal"
-          },
-          {
-            "value": "italic",
-            "label": "Italic"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "font-navbar-case",
-        "label": "Case",
-        "options": [
-          {
-            "value": "normal",
-            "label": "Normal (as typed)"
-          },
-          {
-            "value": "lowercase",
-            "label": "lowercase"
-          },
-          {
-            "value": "uppercase",
-            "label": "UPPERCASE"
-          },
-          {
-            "value": "title-case",
-            "label": "Title Case"
-          }
-        ]
+        "id": "typography-fonts",
+        "label": "Install Fonts format ['fonta', 'fontb']",
+        "default" : "['Raleway:300,400,800','Lora']"
       }
+
     ]
   },
   {
     "name": "Blog",
     "settings": [
       {
-        "type": "select",
-        "id": "blog-list-limit",
-        "label": "Blog list limit",
-        "options": [
-          {
-            "value": "1",
-            "label": "1"
-          },
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Number of blog articles shown in the footer and sidebar blog lists."
-      },
-      {
-        "type": "paragraph",
-        "content": "Show author"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-author",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show author bios"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-author-bios",
-        "label": "Yes"
-      },
-      {
-        "type": "text",
-        "id": "truncate-words",
-        "label": "Truncate words",
-        "default": "25"
-      },
-      {
-        "type": "paragraph",
-        "content": "Number of words to show in the blog article listings. Leave blank if you want to show the entire article."
-      },
-      {
-        "type": "paragraph",
-        "content": "Use Gravatar for avatars"
-      },
-      {
-        "type": "checkbox",
-        "id": "use-gravatars",
-        "label": "Yes"
-      },
-      {
-        "type": "select",
-        "id": "event-date-format",
-        "label": "Events date tag format",
-        "options": [
-          {
-            "value": "dd\/mm\/yyyy",
-            "label": "dd\/mm\/yyy"
-          },
-          {
-            "value": "mm\/dd\/yyyy",
-            "label": "mm\/dd\/yyyy"
-          }
-        ]
+        "type": "header",
+        "content": "--"
       }
     ]
   },
@@ -1347,11 +644,7 @@
           "type": "paragraph",
           "content": "For Secondary Page Grid Layout see Layout Section"
         }, 
-        {
-          "type": "checkbox",
-          "id": "products-sidebar-enable",
-          "label": "Product Sidebar Enable"
-        },      
+     
         {
           "type": "paragraph",
           "content": "Product Options"
@@ -1385,489 +678,228 @@
   {
     "name": "Collections",
     "settings": [
-      {
-        "type": "select",
-        "id": "featured-image-position",
-        "label": "Featured Image Position",
-        "options": [
-          {
-            "value": "do-not-show",
-            "label": "Do Not Show"
-          },
-          {
-            "value": "half-width-left",
-            "label": "Half Width Left"
-          },
-          {
-            "value": "half-width-right",
-            "label": "Half Width Right"
-          },
-          {
-            "value": "full-width-above",
-            "label": "Full Width Above"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Overlay title on hover"
-      },
-      {
-        "type": "checkbox",
-        "id": "overlay-title-on-hover",
-        "label": "Yes"
-      },
-      {
-        "type": "color",
-        "id": "overlay-title-on-hover-background-color",
-        "label": "Overlay title on hover background color"
-      },
-      {
-        "type": "select",
-        "id": "show-on-sale-badge",
-        "label": "Show “On Sale” badge",
-        "options": [
-          {
-            "value": "as-text",
-            "label": "as text"
-          },
-          {
-            "value": "as-percentage-off",
-            "label": "as percentage off"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Show “Compare At” Price"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-compare-at-price",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show Quick Cart"
-      },
-      {
-        "type": "checkbox",
-        "id": "quick-cart",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show products stock availability"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-stock-availability-on-collection",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product sorter"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-sorter",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show product count for collections"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-product-count-for-collections",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show descriptions on nested collections page"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-descriptions-on-nested-collections-page",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Show products on nested collections page"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-products-on-nested-collections-page",
-        "label": "Yes"
-      },
-      {
-        "type": "select",
-        "id": "show-vendor-with-thumbnail",
-        "label": "Show Vendor with Thumbnail",
-        "options": [
-          {
-            "value": "do-not-show",
-            "label": "Do Not Show"
-          },
-          {
-            "value": "above-product-title",
-            "label": "Above Product Title"
-          },
-          {
-            "value": "below-product-title",
-            "label": "Below Product Title"
-          }
-        ]
-      },
-      {
-        "type": "link_list",
-        "id": "all-collections-linklist",
-        "label": "“All collections” collection linklist\""
-      },
-      {
-        "type": "paragraph",
-        "content": "If you would like to specify which collections show on the \/collections page, create a linklist of collections."
-      },
-      {
-        "type": "paragraph",
-        "content": "Show “out of stock” badge"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-out-of-stock-badge",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "If checked and unavailable products are visible, a badge will indicate that the products are out of stock."
-      },
-      {
-        "type": "select",
-        "id": "collections-per-row",
-        "label": "Collections per row",
-        "options": [
-          {
-            "value": "2",
-            "label": "2"
-          },
-          {
-            "value": "3",
-            "label": "3"
-          },
-          {
-            "value": "4",
-            "label": "4"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "hidden-collection-limit",
-        "label": "Hidden collection limit",
-        "default": "0"
-      },
-      {
-        "type": "paragraph",
-        "content": "Hides collections that have less than this number of products."
-      },
-      {
-        "type": "select",
-        "id": "thumbnail-layout",
-        "label": "Thumbnail layout",
-        "options": [
-          {
-            "value": "ordered",
-            "label": "Ordered"
-          },
-          {
-            "value": "masonry",
-            "label": "Masonry"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Thumbnail ratio, alignment and crop settings will only be applied if thumbnail layout is set to 'ordered'."
-      },
-      {
-        "type": "text",
-        "id": "thumbnail-ratio",
-        "label": "Thumbnail ratio",
-        "default": "1:1"
-      },
-      {
-        "type": "paragraph",
-        "content": "Important: must be in the format w:h (i.e., 1:1 would be square)"
-      },
-      {
-        "type": "select",
-        "id": "thumbnail-alignment",
-        "label": "Thumbnail alignment",
-        "options": [
-          {
-            "value": "top",
-            "label": "Top"
-          },
-          {
-            "value": "middle",
-            "label": "Middle"
-          },
-          {
-            "value": "bottom",
-            "label": "Bottom"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "Thumbnails cropped"
-      },
-      {
-        "type": "checkbox",
-        "id": "thumbnails-cropped",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "If checked, thumbnails will be cropped to fit their container. If unchecked, thumbnails will fit inside the container."
-      },
-      {
-        "type": "select",
-        "id": "collection-feature-image",
-        "label": "Collection feature image",
-        "options": [
-          {
-            "value": "collection-image",
-            "label": "Collection image"
-          },
-          {
-            "value": "first-product-image",
-            "label": "First product image"
-          },
-          {
-            "value": "last-product-image",
-            "label": "Last product image"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "collection-header-placement",
-        "label": "Collection header placement",
-        "options": [
-          {
-            "value": "above-products",
-            "label": "Above products"
-          },
-          {
-            "value": "below-products",
-            "label": "Below products"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "The collection header contains the collection description and (if present) the collection’s feature image."
-      },
-      {
-        "type": "text",
-        "id": "tag-button-limit",
-        "label": "Tag button limit",
-        "default": "10"
-      },
-      {
-        "type": "paragraph",
-        "content": "Tags will be shown as buttons until the amount of tags is equal or grater than this limit. If left blank tags will always be shown as buttons."
-      },
-      {
-        "type": "select",
-        "id": "tag-filtering-action",
-        "label": "Tag Filtering Action",
-        "options": [
-          {
-            "value": "build-tag-filter",
-            "label": "Build tag filter"
-          },
-          {
-            "value": "filter-one-tag-at-a-time",
-            "label": "Filter one tag at a time"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "tag-placement",
-        "label": "Tag placement",
-        "options": [
-          {
-            "value": "do-not-show",
-            "label": "Do not show"
-          },
-          {
-            "value": "sidebar",
-            "label": "Sidebar"
-          },
-          {
-            "value": "main-content",
-            "label": "Main content"
-          }
-        ]
-      },
-      {
-        "type": "page",
-        "id": "collection-fallback-page",
-        "label": "Show a page when collections are empty"
-      },
-      {
-        "type": "paragraph",
-        "content": "If a collection is featured on the homepage but is empty, it will fallback to a selected page."
-      },
-      {
-        "type": "collection",
-        "id": "recommended-products-collection",
-        "label": "“Recommended” products collection"
-      },
-      {
-        "type": "paragraph",
-        "content": "You can choose to display “recommended” products on the homepage, collection pages and product pages."
-      },
-      {
+       {
         "type": "header",
-        "content": "“Recommended” Collections Display Locations"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-homepage",
-        "label": "on Homepage"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-collection",
-        "label": "on Collection"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-product",
-        "label": "on Product"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-cart",
-        "label": "on Cart"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-page",
-        "label": "on Page"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-blog",
-        "label": "on Blog"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-article",
-        "label": "on Article"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-search",
-        "label": "on Search"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-recommended-collections-on-404",
-        "label": "on 404"
+        "content": "--"
       }
     ]
   },
   {
     "name": "Sidebar",
     "settings": [
-      {
-        "type": "header",
-        "content": "Display Locations"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-homepage",
-        "label": "on Homepage"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-collection",
-        "label": "on Collection"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-product",
-        "label": "on Product"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-cart",
-        "label": "on Cart"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-page",
-        "label": "on Page"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-blog",
-        "label": "on Blog"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-article",
-        "label": "on Article"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-search",
-        "label": "on Search"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-sidebar-on-404",
-        "label": "on 404"
-      },
-      {
-        "type": "header",
-        "content": "General"
-      },
-      {
-        "type": "blog",
-        "id": "sidebar-blog",
-        "label": "Sidebar blog"
-      },
-      {
-        "type": "link_list",
-        "id": "sidebar-linklist",
-        "label": "Sidebar linklist"
-      },
-      {
-        "type": "link_list",
-        "id": "sidebar-items-linklist",
-        "label": "Sidebar items linklist"
-      },
-      {
-        "type": "select",
-        "id": "sidebar-placement",
-        "label": "Sidebar placement",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
-      }
+        {
+            "type": "header",
+            "content": "Sidebar Typography"
+        },
+        {
+            "type": "color",
+            "id": "sidebar-no-sidebar-color",
+            "label": "Outer Wrapper Color With No Sidebar"
+        },
+        {
+            "type": "image",
+            "id": "sidebar-background-image.gif",
+            "label": "Sidebar Image"
+        },        
+        {
+            "type": "header",
+            "content": "Home Page"
+        },       
+        {
+            "type": "checkbox",
+            "id": "sidebar-home-enable",
+            "label": "Home Page Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-home-snippet",
+            "label" : "Home Page Sidebar Snippet"
+        },       
+        {
+            "type": "header",
+            "content": "Product Page"
+        },        
+        {
+            "type": "checkbox",
+            "id": "sidebar-product-enable",
+            "label": "Product Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-product-snippet",
+            "label" : "Product Sidebar Snippet"
+        },          
+        {
+            "type": "header",
+            "content": "Collection Page"
+        },    
+        {
+            "type": "checkbox",
+            "id": "sidebar-collection-enable",
+            "label": "Collection Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-collection-snippet",
+            "label" : "Collection Sidebar Snippet"
+        },
+         {
+            "type": "header",
+            "content": "Cart Page"
+        },          
+        {
+          "type": "checkbox",
+          "id": "sidebar-cart-enable",
+          "label": "Cart Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-cart-snippet",
+            "label" : "Cart Sidebar Snippet"
+        },
+        {
+            "type": "header",
+            "content": "Pages"
+        },           
+        {
+            "type": "checkbox",
+            "id": "sidebar-page-enable",
+            "label": "Page Sidebar Enable" 
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-page-snippet",
+            "label" : "Page Sidebar Snippet"
+        },
+        {
+            "type": "header",
+            "content": "Blog Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-blog-enable",
+          "label": "Blog Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-blog-snippet",
+            "label" : "Blog Sidebar Snippet"
+        },
+        {
+            "type": "header",
+            "content": "Article Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-article-enable",
+          "label": "Article Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-article-snippet",
+            "label" : "Article Sidebar Snippet"
+        },
+         {
+            "type": "header",
+            "content": "Accounts Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-account-enable",
+          "label": "Account Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-account-snippet",
+            "label" : "Account Sidebar Snippet"
+        },
+        
+        {
+            "type": "header",
+            "content": "Login Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-login-enable",
+          "label": "Login Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-login-snippet",
+            "label" : "Login Sidebar Snippet"
+        },
+         {
+            "type": "header",
+            "content": "Register Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-register-enable",
+          "label": "Register Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-register-snippet",
+            "label" : "Register Sidebar Snippet"
+        },         
+        
+        
+        {
+            "type": "header",
+            "content": "Address Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-address-enable",
+          "label": "Address Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-address-snippet",
+            "label" : "Address Sidebar Snippet"
+        },
+         {
+            "type": "header",
+            "content": "Orders Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-orders-enable",
+          "label": "Orders Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-orders-snippet",
+            "label" : "Orders Sidebar Snippet"
+        },         
+        {
+            "type": "header",
+            "content": "Search Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-search-enable",
+          "label": "Search Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-search-snippet",
+            "label" : "Search Sidebar Snippet"
+        },
+        {
+            "type": "header",
+            "content": "404 Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-404-enable",
+          "label": "404 Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-404-snippet",
+            "label" : "404 Sidebar Snippet"
+        }
     ]
   },
   {
@@ -1975,42 +1007,8 @@
             "label": "Sidebar"
           }
         ]
-      },
-      {
-        "type": "collection",
-        "id": "typeahead-collection",
-        "label": "Search typeahead collection"
-      },
-      {
-        "type": "paragraph",
-        "content": "We recommend you create a collection of all products (i.e., an automatic collection where price (and\/or inventory) is greater than 0."
-      },
-      {
-        "type": "paragraph",
-        "content": "Allow multiple level dropdowns"
-      },
-      {
-        "type": "checkbox",
-        "id": "multiple-level-dropdowns",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "This will allow your dropdowns to go down more than one level. Use this with extreme caution, if your linklists are not crafted correctly you can cause an infinate loop that will result in a Shopify liquid error."
-      },
-      {
-        "type": "paragraph",
-        "content": "Use “Mega” dropdown menu"
-      },
-      {
-        "type": "checkbox",
-        "id": "use-mega-dropdown-menu",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "If you have a large number of dropdowns or more than two levels of nested dropdowns, it is advisable to enable this setting."
       }
+
     ]
   },
   {
@@ -2019,95 +1017,8 @@
       {
         "type": "header",
         "content": "Column 1"
-      },
-      {
-        "type": "blog",
-        "id": "column-1-blog",
-        "label": "Blog"
-      },
-      {
-        "type": "link_list",
-        "id": "column-1-menu",
-        "label": "Menu"
-      },
-      {
-        "type": "textarea",
-        "id": "column-1-text",
-        "label": "Text"
-      },
-      {
-        "type": "paragraph",
-        "content": "The footer can have up to four columns which can contain none, one or all of a blog, menu (linklist), html text or social media icons."
-      },
-      {
-        "type": "header",
-        "content": "Column 2"
-      },
-      {
-        "type": "blog",
-        "id": "column-2-blog",
-        "label": "Blog"
-      },
-      {
-        "type": "link_list",
-        "id": "column-2-menu",
-        "label": "Menu"
-      },
-      {
-        "type": "textarea",
-        "id": "column-2-text",
-        "label": "Text"
-      },
-      {
-        "type": "paragraph",
-        "content": "The footer can have up to four columns which can contain none, one or all of a blog, menu (linklist), html text or social media icons."
-      },
-      {
-        "type": "header",
-        "content": "Column 3"
-      },
-      {
-        "type": "blog",
-        "id": "column-3-blog",
-        "label": "Blog"
-      },
-      {
-        "type": "link_list",
-        "id": "column-3-menu",
-        "label": "Menu"
-      },
-      {
-        "type": "textarea",
-        "id": "column-3-text",
-        "label": "Text"
-      },
-      {
-        "type": "paragraph",
-        "content": "The footer can have up to four columns which can contain none, one or all of a blog, menu (linklist), html text or social media icons."
-      },
-      {
-        "type": "header",
-        "content": "Column 4"
-      },
-      {
-        "type": "blog",
-        "id": "column-4-blog",
-        "label": "Blog"
-      },
-      {
-        "type": "link_list",
-        "id": "column-4-menu",
-        "label": "Menu"
-      },
-      {
-        "type": "textarea",
-        "id": "column-4-text",
-        "label": "Text"
-      },
-      {
-        "type": "paragraph",
-        "content": "The footer can have up to four columns which can contain none, one or all of a blog, menu (linklist), html text or social media icons."
       }
+
     ]
   },
   {
@@ -2312,16 +1223,7 @@
   {
     "name": "Social",
     "settings": [
-      {
-        "type": "text",
-        "id": "social-links-dribbble",
-        "label": "Dribble"
-      },
-      {
-        "type": "text",
-        "id": "social-links-email",
-        "label": "Email"
-      },
+
       {
         "type": "text",
         "id": "social-links-facebook",
@@ -2331,17 +1233,7 @@
         "type": "text",
         "id": "social-links-flickr",
         "label": "Flickr"
-      },
-      {
-        "type": "text",
-        "id": "social-links-foursquare",
-        "label": "Foursquare"
-      },
-      {
-        "type": "text",
-        "id": "social-links-github",
-        "label": "Github"
-      },
+      },    
       {
         "type": "text",
         "id": "social-links-google-plus",
@@ -2366,116 +1258,18 @@
         "type": "blog",
         "id": "social-links-rss",
         "label": "RSS"
-      },
-      {
-        "type": "text",
-        "id": "social-links-skype",
-        "label": "Skype"
-      },
-      {
-        "type": "text",
-        "id": "social-links-stack-exchange",
-        "label": "Stack Exchange"
-      },
-      {
-        "type": "text",
-        "id": "social-links-stack-overflow",
-        "label": "Stack Overflow"
-      },
-      {
-        "type": "text",
-        "id": "social-links-tumblr",
-        "label": "Tumblr"
-      },
+      },    
       {
         "type": "text",
         "id": "social-links-twitter",
         "label": "Twitter"
-      },
-      {
-        "type": "text",
-        "id": "social-links-vimeo",
-        "label": "Vimeo"
-      },
+      },     
       {
         "type": "text",
         "id": "social-links-youtube",
         "label": "YouTube"
-      },
-      {
-        "type": "paragraph",
-        "content": "Enter the url for your social accounts into the fields for each service you want to show. Services left blank wont be shown."
-      },
-      {
-        "type": "select",
-        "id": "social-links-placement",
-        "label": "Social links placement",
-        "options": [
-          {
-            "value": "top-navbar-left",
-            "label": "Top navbar left"
-          },
-          {
-            "value": "top-navbar-right",
-            "label": "Top navbar right"
-          },
-          {
-            "value": "footer-column-1",
-            "label": "Footer column 1"
-          },
-          {
-            "value": "footer-column-2",
-            "label": "Footer column 2"
-          },
-          {
-            "value": "footer-column-3",
-            "label": "Footer column 3"
-          },
-          {
-            "value": "footer-column-4",
-            "label": "Footer column 4"
-          },
-          {
-            "value": "sidebar",
-            "label": "Sidebar"
-          },
-          {
-            "value": "footer-navbar-left",
-            "label": "Footer navbar left"
-          },
-          {
-            "value": "footer-navbar-right",
-            "label": "Footer navbar right"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "instagram-default-hashtag",
-        "label": "Instagram default hashtag"
-      },
-      {
-        "type": "paragraph",
-        "content": "A default hashtag for all instagram feeds to use if a page specific one is not set."
-      },
-      {
-        "type": "text",
-        "id": "instagram-client-id",
-        "label": "Instagram client id"
-      },
-      {
-        "type": "paragraph",
-        "content": "You can obtain a client id registering a new Instagram API client app at [http:\/\/instagram.com\/developer\/clients\/register\/](http:\/\/instagram.com\/developer\/clients\/register\/)"
-      },
-      {
-        "type": "textarea",
-        "id": "instagram-blacklist",
-        "label": "Instagram blacklist"
-      },
-      {
-        "type": "paragraph",
-        "content": "A comma separated list of image ids that you don't wish to show in your instagram feeds."
-      },
+      }, 
+
       {
         "type": "select",
         "id": "newsletter-platform",
@@ -2494,63 +1288,8 @@
             "label": "MailChimp"
           }
         ]
-      },
-      {
-        "type": "select",
-        "id": "newsletter-signup-placement",
-        "label": "Newsletter signup placement",
-        "options": [
-          {
-            "value": "dont-show",
-            "label": "Don't show"
-          },
-          {
-            "value": "top-navbar-left",
-            "label": "Top navbar left"
-          },
-          {
-            "value": "top-navbar-right",
-            "label": "Top navbar right"
-          },
-          {
-            "value": "sidebar",
-            "label": "Sidebar"
-          },
-          {
-            "value": "footer-column-1",
-            "label": "Footer column 1"
-          },
-          {
-            "value": "footer-column-2",
-            "label": "Footer column 2"
-          },
-          {
-            "value": "footer-column-3",
-            "label": "Footer column 3"
-          },
-          {
-            "value": "footer-column-4",
-            "label": "Footer column 4"
-          },
-          {
-            "value": "footer-navbar-left",
-            "label": "Footer navbar left"
-          },
-          {
-            "value": "footer-navbar-right",
-            "label": "Footer navbar right"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "id": "newsletter-form-action-url",
-        "label": "Newsletter submit URL"
-      },
-      {
-        "type": "paragraph",
-        "content": "Paste in Campaign Monitor or MailChimp’s form action URL. Don’t paste the entire form code; just the “action” parameter."
       }
+ 
     ]
   },
   {

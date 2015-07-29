@@ -1,5 +1,5 @@
 {% include 'theme-variables' %}
-<div class="{{settings.content-grid-secondary-main-class}}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
+<div class="{% if settings.sidebar-page-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}"  id="main" role="main" >
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
 		<section id="page-wrap" class="section-wrap">
@@ -8,11 +8,17 @@
 		</section>
 	</div>
 </div>
-<!-- sidebar -->					
-<div class="{{settings.content-grid-secondary-home-class}}"  >
+{% if settings.sidebar-page-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
 	<div  id="sidebar">
-		<div id="sidebar-wrapper"> 
-			
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-page-snippet != blank %}
+			{% include settings.sidebar-page-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
 		</div>								
 	</div>                
-</div>	
+</div>
+{% endif %}

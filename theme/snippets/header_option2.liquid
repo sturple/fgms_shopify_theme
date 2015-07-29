@@ -1,0 +1,26 @@
+<div id="header-top-wrapper" class="option2">
+		<div class="column-wrapper">			
+			<div class="row" style="position: relative;">
+			<!-- header -->
+				<div class="header-logo col-md-4">
+					<a href="/">
+						<span class="sr-only">{{ shop.name }}</span>
+						<img src="{{'branding-header-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-header-logo-icon-class}} " style="" />		        
+					</a>
+				</div>
+				<!-- navigation -->
+				<div id="navigation-wrapper" class="col-md-8 align-right-md">
+					
+		
+					<div class="header-utility-wrapper">{% include 'nav_account_cart'%}</div>
+					<div class="header-nav-wrapper">{% include 'navbar'  %}</div>
+					
+					
+					<div class="clearfix" style="clear:both"></div>
+					
+				</div>              
+			</div>			
+		</div>
+</div>
+
+<div id="slideshow" >{% include 'slideshow' %}</div>

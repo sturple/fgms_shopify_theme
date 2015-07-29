@@ -1,7 +1,7 @@
 {%capture collection_type%}{% if collection.title == 'Products'  %}{% if  current_tags.first.size > 0 %}tags{% else %}all{%endif%}{% else%}{% assign page_title_handle = page_title | handle %}{%assign other_type = 'created' %}{% for vendor in collection.all_vendors %}{% assign vendor_handle = vendor | handle %}{% if vendor_handle == page_title_handle%}{%assign other_type = 'vendor'%}{%endif%}{% endfor %}{% if collection.current_type | handle == page_title_handle %}{%assign other_type = 'types'%}{%endif%}{{other_type}}{%endif%}{%endcapture%}
 {%capture snippet_collection_header%}collection-header-{{collection_type}}{%endcapture%}
 <!-- page content -->
-<div class="col-sm-12" id="main" role="main">
+<div class="{% if settings.sidebar-collection-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
 		<header id="pageHeader" class="collectionHeader textile {% unless collection.description.size > 0 %}titleNoDescription{% endunless %}">
@@ -95,7 +95,20 @@
 {% endpaginate %}		
    </div>
 </div>             
-
+{% if settings.sidebar-collection-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+	<div  id="sidebar">
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-collection-snippet != blank %}
+			{% include settings.sidebar-collection-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
+		</div>								
+	</div>                
+</div>
+{% endif %}
 
 
 <script>
