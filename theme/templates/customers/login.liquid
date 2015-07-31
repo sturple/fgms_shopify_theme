@@ -5,11 +5,11 @@
 
 		<h1>{{'accounts.your-account' |t}}</h1>       
 		<div  class="panel-group"  role="tablist" aria-multiselectable="true">
-			<div id="section-login" class="collapse in">
+			<div id="section-login" >
 				<h2>{{'accounts.login' | t}}</h2>
 				{% include 'forms' formType : 'customer_login' %}
 			</div>
-			<div id="section-reset" class="collapse">
+			<div id="section-reset" class="hidden">
 				<h2>{{'accounts.password-reset' | t}}</h2>
 				<p>{{'accounts.password-reset-text' | t}} </p>   
 				<p style="margin-bottom: 24px;"><em>{{'accounts.password-reset-junk-email' | t}}</em></p>				

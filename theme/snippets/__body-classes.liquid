@@ -10,6 +10,9 @@
 {% if template contains 'collection' %}{% assign sidebarEnable = settings.sidebar-collection-enable %}{%endif%}
 {% if template contains 'register' %}{% assign sidebarEnable = settings.sidebar-register-enable %}{%endif%}
 {% if template contains 'login' %}{% assign sidebarEnable = settings.sidebar-login-enable %}{%endif%}
+{% if template contains 'reset_password' %}{% assign sidebarEnable = settings.sidebar-reset-enable %}{%endif%}
+{% if template contains 'activate' %}{% assign sidebarEnable = settings.sidebar-activate-enable %}{%endif%}
+
 
 {% capture body_classes %}
 page-{{ page.handle }} 

@@ -1,0 +1,31 @@
+<div id="main-product-images" class="flexslider">
+	<ul class="slides" style="margin-bottom: 0;">
+		{% for image in product.images %}
+			<li>								
+				<div class="badge {% for tag in product.tags %}{{ tag | downcase | replace: ' ', '-'}} {% endfor %}"></div>
+				<div class="image-magnify-hover"></div>
+				<a  class="product-image-gallery"
+					href="{{ image | product_img_url: 'master' }}"
+					title="{{ product.title }} - {{ image.alt | escape }}"
+					rel="group"
+					data-thumbnail="{{ image | product_img_url: 'thumb' }}">
+					<img 	itemprop="image" 
+							src="{{ image | product_img_url: '1024x1024' }}" 
+							alt="{{ image.alt | escape  }}" 
+							data-retina="{{ image | product_img_url: '2048x2048' }}" />
+			  </a>
+		  </li>
+		{% endfor %}
+	</ul>
+</div>
+{% if product.images.size > 1 %}				
+<div id="product-thumbnails-wrapper" class="flexslider">
+	<ul class="slides" style="margin-bottom: 0">
+		{% for image in product.images %}
+		<li data-image-id="{{ image.id }}"class="product-thumbnail-wrapper {% if forloop.first %}flex-active-slide{% endif %}">
+			<img itemprop="image" data-variant-id="{{image.variants.first.id}}" class="product-thumbnail" src="{{ image | product_img_url: 'small' }}" alt="{{ image.alt | escape }}" data-retina="{{ image | product_img_url: 'compact' }}" />
+		</li>
+		{% endfor %}
+	</ul>
+</div><!-- product-thumbnails-wrapper -->
+{% endif %}

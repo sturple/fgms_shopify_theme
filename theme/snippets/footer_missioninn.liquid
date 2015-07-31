@@ -68,8 +68,8 @@
                         <div class="col-md-4" >                                
                                 <div class="footer-form-wrapper gutter-sidebar">
                                     <div class="footer-form-content">
-                                    <h3>Quick Message</h3>
-                                    {% include 'contact-form'%}
+                                    <h3>{{ 'general.footer-form-title' | t }}</h3>
+                                    {% include 'forms' formType : 'contact_compact' ph_flag : true labelClass : 'sr-only' controlClass : 'col-sm-12' %}
                                     </div>
                                 </div>                
                                 

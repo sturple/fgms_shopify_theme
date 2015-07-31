@@ -1,3 +1,11 @@
+{% comment%}*********** Logic for ajax contact form ********/{% endcomment %}
+{% assign formErrors = false %}
+{% form 'contact' %}
+{% if form.errors or form.posted_successfully? %}
+	{%capture formErrors%}{{ form | json }}{%endcapture%}	
+{% endif %}
+{% endform %}
+{% if formErrors %}{{formErrors}}{% else %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +22,13 @@
 	{{ 'jquery.min.js' | asset_url | script_tag }}
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
 	{{ 'orion-menu.js' | asset_url | script_tag }}
-	{{ 'jquery.mb.YTPlayer.min.js' | asset_url | script_tag }}
 	
-	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	{% if template contains 'index' and settings.homepage-youtube-video-enable %}{{ 'jquery.mb.YTPlayer.min.js' | asset_url | script_tag }}{% endif %}
+	
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: {{settings.typography-fonts | default: "['Raleway']"}} }})});</script>
 
 <!--[if lt IE 9]>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     {% assign respond_js_secret_key = (shop.domain | md5) %}
     {{ 'respond.min.js' | asset_url | script_tag }}
     <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
@@ -103,24 +111,59 @@
 		$('html, body').animate({scrollTop : $($(this).attr('href')).position().top}, 'slow');
 
 	});
-	$('.script-address-new-button').click(function(){
-		$(this).slideUp()
+
+	$('.script-fixed-header-with-scroll').each(function(){
+		$(this).parent().css({height:$(this).height()+'px','z-index' : '1000'})		
 	})
+	var lastWindowTopLocation = $(window).scrollTop();
 	
-	$('.script-toggle-section').click(function(){		
-		$($(this).attr('data-parent')).removeClass('in');
-		$($(this).attr('href')).addClass('in');
-	})
-	
-	$(".player").YTPlayer();
-	$(".player").YTPApplyFilters({
-		sepia  : 66,	
-		blur: 1,		
-		hue_rotate: 45,
-		saturate: 1
+	$(window).scroll(function(){
+		var headerBottom = parseFloat($('.script-fixed-header-with-scroll').parent().offset().top) +parseFloat($('.script-fixed-header-with-scroll').parent().height() ) ;		
+		var st = $(this).scrollTop();
+		/** scrolling down **/
+		if (st > lastWindowTopLocation){
+		   /* header is still visible */
+		   if (headerBottom > $(this).scrollTop()) {
+				$('.script-fixed-header-with-scroll').removeClass('show navbar-static-top')							
+		   }
+		   /* header is gone */
+		   else {	$('.script-fixed-header-with-scroll').addClass('navbar-static-top').removeClass('show');	  }
 		
+		}
+		/** scrolling up **/
+		else {
+			//means it is at the top;
+		   if ($('.script-fixed-header-with-scroll').parent().offset().top == $(this).scrollTop() ) {
+				$('.script-fixed-header-with-scroll').removeClass('navbar-static-top show')
+			
+		   }
+		   else {		$('.script-fixed-header-with-scroll').addClass('navbar-static-top show');   }
+		}
+		lastWindowTopLocation  = st;
+
+	});
 	
+	
+	$('.script-toggle-section').click(function(){
+		if ($($(this).attr('data-parent')).length > 0) {
+			$($(this).attr('data-parent')).slideUp();
+		}
+		if ($($(this).attr('href')).length > 0) {
+			$($(this).attr('href')).removeClass('hidden').slideDown();
+		}		
+		
+		
 	})
+	{% if template contains 'index' and settings.homepage-youtube-video-enable %}
+		
+		if ($("{{settings.homepage-youtube-video-containment}}").length > 0) {
+
+			//$("{{settings.homepage-youtube-video-containment}}").css({height: ""})
+			$("{{settings.homepage-youtube-video-containment}}").YTPlayer();
+			$("{{settings.homepage-youtube-video-containment}}").YTPApplyFilters({{settings.homepage-youtube-video-filters}});			
+		}
+
+	{%endif%}
 	/* Nav tabs */
 	$('.nav-tabs.accordion a[role="tab"]').click(function(e){
 		e.preventDefault();
@@ -192,6 +235,7 @@
 			$(this).text($(this).attr('data-prefix')+'@'+$(this).attr('data-domain'));
 		}
 	});
+	/*	
 		
 	if ($(window).outerWidth() > 996){
 		if (!!$('.sticky').offset()) { // make sure ".sticky" element exists
@@ -210,7 +254,7 @@
 				else { $('.sticky').css('position','static');	}			
 			});			
 		}     
-	}
+	}*/
 		
 		
 	$('.modal').on('hidden.bs.modal', function() {
@@ -235,6 +279,7 @@
 		
 		   
 	//scrolling menu paralax
+	/*
 	var didScroll = false;
 	if ( (window.innerWidth > 768 ) && (! (($('html').hasClass('v37')) && ($('html').hasClass('chrome'))) ) ) {
 		 set_parallax();
@@ -251,6 +296,7 @@
 			}
 		}, 10);
 	}
+	*/
 	if ($('html').hasClass('no-touch')){
 		$('#outer-container').css('margin-bottom', ($('#map-parallax').innerHeight() -30) + 'px');
 	}		
@@ -485,3 +531,4 @@
   </script>
 </body>
 </html>
+{%endif%}

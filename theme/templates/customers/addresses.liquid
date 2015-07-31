@@ -4,17 +4,21 @@
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
 		<h1 >{{ 'accounts.address-settings' | t}}</h1>
 		<p>{{'accounts.intro-text' | t}}</p>
-		<a  class="btn btn-primary script-address-new-button"  style="margin-bottom: 24px;" role="button" data-toggle="collapse" data-parent="#address-add-accordion" href="#address_new" aria-expanded="true" aria-controls="address_new">{{'accounts.add-address' |t}}</a>
-		<div class="" id="address-add-accordion" role="tablist" aria-multiselectable="true">
-			<div class=" ">
-				<div id="address_new" class="collapse" role="tabpanel" >
-					<div class="">
-						<h2>{{'accounts.add-address' |t}}</h2>
-						{% include 'forms' formType : 'customer_address' %}				
-					</div>
+			
+			<div id="address-add-button"   >
+				<a  class="btn btn-primary script-toggle-section "				 
+					style="margin-bottom: 24px;"
+					data-parent="#address-add-button"
+					href="#address_new" >{{'accounts.add-address' |t}}</a>
+			</div>			
+			<div id="address_new" class="hidden"  >
+				<div class="">
+					<h2>{{'accounts.add-address' |t}}</h2>
+					{% include 'forms' formType : 'customer_address' %}				
 				</div>
 			</div>
-		</div>		
+			
+				
 
 		{%if customer.addresses.size > 0 %}
 		<h2>{{'accounts.manage-addresses' | t}}</h2>

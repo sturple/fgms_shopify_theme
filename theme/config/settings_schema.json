@@ -80,7 +80,7 @@
   {
     "name": "Layout",
     "settings": [
-       {
+        {
             "type": "header",
             "content": "Secondary Grid Layout"
         },
@@ -93,9 +93,25 @@
         {
             "type": "text",
             "id": "content-grid-secondary-sidebar-class",
-            "label": "Grid: Secondary Page, Main Class",
+            "label": "Grid: Secondary Page, Sidebar Class",
             "default": "col-sm-3 col-sm-pull-9"
         },
+        {
+            "type": "header",
+            "content": "Product Grid Layout / Image"
+        },
+        {
+            "type": "text",
+            "id": "content-grid-product-main-class",
+            "label": "Grid: Product Page, Main Class",
+            "default": "col-sm-9 col-sm-push-3"
+        },   
+        {
+            "type": "text",
+            "id": "content-grid-product-sidebar-class",
+            "label": "Grid: Product Page, Sidebar Class",
+            "default": "col-sm-3 col-sm-pull-9"
+        },       
        {
             "type": "header",
             "content": "Header / Footer"
@@ -130,35 +146,101 @@
   {
     "name": "Homepage",
     "settings": [
-      {
-        "type": "text",
-        "id": "homepage-grid-home-main-class",
-        "label": "Grid: Home Page, Main Class",
-        "default": "col-sm-9 col-sm-push-3"
-      },
-      {
-        "type": "text",
-        "id": "homepage-grid-home-sidebar-class",
-        "label": "Grid: Home Page, Sidebar Class",
-        "default": "col-sm-3 col-sm-pull-9"
-      },
-      {
-        "type" : "snippet",
-        "id" : "homepage-sidebar-snippet",
-        "label" : "Hompage Sidebar Snippet"
-      },
-      {
-        "type": "page",
-        "id": "homepage-content",
-        "label": "Homepage content"
-      },
-      {
-        "type": "collection",
-        "id": "homepage-products-collection",
-        "label": "Products collection"
-      }
-
-    
+    {
+      "type": "text",
+      "id": "homepage-grid-home-main-class",
+      "label": "Grid: Home Page, Main Class",
+      "default": "col-sm-9 col-sm-push-3"
+    },
+    {
+      "type": "text",
+      "id": "homepage-grid-home-sidebar-class",
+      "label": "Grid: Home Page, Sidebar Class",
+      "default": "col-sm-3 col-sm-pull-9"
+    },
+    {
+      "type" : "snippet",
+      "id" : "homepage-sidebar-snippet",
+      "label" : "Hompage Sidebar Snippet"
+    },
+    {
+      "type": "page",
+      "id": "homepage-content",
+      "label": "Homepage content"
+    },
+    {
+      "type": "collection",
+      "id": "homepage-products-collection",
+      "label": "Products collection"
+    },
+     {
+          "type": "header",
+          "content": "Home Page Youtube"
+    },  
+    {
+      "type" : "checkbox",
+      "id" : "homepage-youtube-video-enable",
+      "label" : "Enable Youtube Video"
+    },
+    {
+      "type": "text",
+      "id": "homepage-youtube-video-url",
+      "label": "Youtube Video URL"
+   
+    },
+    {
+      "type": "text",
+      "id": "homepage-youtube-video-containment",
+      "label": "Youtube Video Selector "
+   
+    },
+     {
+      "type": "image",
+      "id": "homepage-youtube-background.jpg",
+      "label": "Youtube Container Background"
+   
+    },
+    {
+      "type": "text",
+      "id": "homepage-youtube-video-height",
+      "label": "Youtube Video Height ",
+      "default" : "400px;"
+   
+    },    
+   {
+          "type": "header",
+          "content": "Youtube Properties"
+    },      
+    {
+        "type": "paragraph",
+        "content": "See https://github.com/pupunzi/jquery.mb.YTPlayer/wiki for details "
+    },
+     {
+        "type": "paragraph",
+        "content": "mute | showControls | startAt | stopAt | autoPlay| ratio | quality | opacity|optimizeDisplay | loop | vol | showControls | addRaster | gaTrack"
+    },    
+    {
+      "type": "textarea",
+      "id": "homepage-youtube-video-property",
+      "label": "Youtube Attributes - See above text for details"
+    },
+    {
+          "type": "header",
+          "content": "Youtube Fil"
+    },
+    {
+        "type": "paragraph",
+        "content": "See https://github.com/pupunzi/jquery.mb.YTPlayer/wiki for details "
+    },    
+    {
+        "type" : "paragraph",
+        "content" : "{grayscale : 1-100,hue_rotate: 1-360,invert : 1-100,opacity : 1-100,saturate : 1-400,sepia : 1-100,brightness: 1-400,contrast : 1-400,blur : 1-100}"
+    },
+    {
+      "type": "textarea",
+      "id": "homepage-youtube-video-filters",
+      "label": "Youtube Filters - see above text for details"
+    } 
     ]
   },
   {
@@ -871,7 +953,35 @@
             "type" : "snippet",
             "id" : "sidebar-orders-snippet",
             "label" : "Orders Sidebar Snippet"
-        },         
+        },
+          {
+            "type": "header",
+            "content": "Password Reset Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-reset-enable",
+          "label": "Password Reset Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-reset-snippet",
+            "label" : "Password Reset Sidebar Snippet"
+        },
+         {
+            "type": "header",
+            "content": "Activate Account Page"
+        },           
+        {
+          "type": "checkbox",
+          "id": "sidebar-activate-enable",
+          "label": "Activate Account  Sidebar Enable"
+        },
+        {
+            "type" : "snippet",
+            "id" : "sidebar-activate-snippet",
+            "label" : "Activate Account  Sidebar Snippet"
+        },           
         {
             "type": "header",
             "content": "Search Page"
@@ -1223,72 +1333,99 @@
   {
     "name": "Social",
     "settings": [
-
-      {
+    {
+      "type": "text",
+      "id": "social-links-facebook",
+      "label": "Facebook"
+    },
+    {
+      "type": "text",
+      "id": "social-links-flickr",
+      "label": "Flickr"
+    },    
+    {
+      "type": "text",
+      "id": "social-links-google-plus",
+      "label": "Google+"
+    },
+    {
+      "type": "text",
+      "id": "social-links-instagram",
+      "label": "Instagram"
+    },
+    {
+      "type": "text",
+      "id": "social-links-linkedin",
+      "label": "LinkedIn"
+    },
+    {
+      "type": "text",
+      "id": "social-links-pinterest",
+      "label": "Pinterest"
+    },
+    {
+      "type": "blog",
+      "id": "social-links-rss",
+      "label": "RSS"
+    },    
+    {
+      "type": "text",
+      "id": "social-links-twitter",
+      "label": "Twitter"
+    },     
+    {
+      "type": "text",
+      "id": "social-links-youtube",
+      "label": "YouTube"
+    }, 
+    {
+      "type": "header",
+      "content": "News Letter"
+    },
+    {
+      "type": "select",
+      "id": "newsletter-platform",
+      "label": "Newsletter platform",
+      "options": [
+        {
+          "value": "shopify",
+          "label": "Shopify"
+        },
+        {
+          "value": "campaign-monitor",
+          "label": "Campaign Monitor"
+        },
+        {
+          "value": "mailchimp",
+          "label": "MailChimp"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "social-newsletter-url",
+      "label": "Newsletter Post Url"
+    },
+    {
         "type": "text",
-        "id": "social-links-facebook",
-        "label": "Facebook"
-      },
-      {
+        "id": "social-newsletter-email",
+        "label": "Newsletter Email Field (name attribute)"
+    },      
+    {
         "type": "text",
-        "id": "social-links-flickr",
-        "label": "Flickr"
-      },    
-      {
+        "id": "social-newsletter-name",
+        "label": "Newsletter Name Field (name attribute)"
+    },      
+    {
         "type": "text",
-        "id": "social-links-google-plus",
-        "label": "Google+"
-      },
-      {
+        "id": "social-newsletter-firstname",
+        "label": "Newsletter First Name Field (name attribute)"
+    },      
+    {
         "type": "text",
-        "id": "social-links-instagram",
-        "label": "Instagram"
-      },
-      {
-        "type": "text",
-        "id": "social-links-linkedin",
-        "label": "LinkedIn"
-      },
-      {
-        "type": "text",
-        "id": "social-links-pinterest",
-        "label": "Pinterest"
-      },
-      {
-        "type": "blog",
-        "id": "social-links-rss",
-        "label": "RSS"
-      },    
-      {
-        "type": "text",
-        "id": "social-links-twitter",
-        "label": "Twitter"
-      },     
-      {
-        "type": "text",
-        "id": "social-links-youtube",
-        "label": "YouTube"
-      }, 
-
-      {
-        "type": "select",
-        "id": "newsletter-platform",
-        "label": "Newsletter platform",
-        "options": [
-          {
-            "value": "shopify",
-            "label": "Shopify"
-          },
-          {
-            "value": "campaign-monitor",
-            "label": "Campaign Monitor"
-          },
-          {
-            "value": "mailchimp",
-            "label": "MailChimp"
-          }
-        ]
-      }
+        "id": "social-newsletter-lastname",
+        "label": "Newsletter Last Name Field (name attribute)"
+    }
  
     ]
   },

@@ -126,7 +126,12 @@
 
 			<div class="form-group" style="padding-top: 18px">
 				<div class="col-md-12">
-					<input class="btn btn-primary" type="submit" value="{% if address_id != '' %}{{'accounts.update-address' | t }}{%else%}{{'accounts.add-address' | t }}{%endif%}" />									
+					<input class="btn btn-primary" type="submit" value="{% if address_id != '' %}{{'accounts.update-address' | t }}{%else%}{{'accounts.add-address' | t }}{%endif%}" />
+					{% if address_id == '' %}
+					<span class="">{{'general.or' |t}}
+						<a class="script-toggle-section"  data-parent="#address_new" href="#address-add-button" >{{'general.cancel' |t}}</a>
+					</span>
+					{%endif%}
 				</div>
 			</div>
 		</div>	
@@ -181,8 +186,7 @@
 	<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
 		<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
 		<div class="{{ controlClass | default: 'col-md-7'}}">		
-			<input type="text"   class="form-control"	name="email"   id="recover-email"
-				   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
+			<input type="text"   class="form-control"	name="email"   id="recover-email"   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
 			{% if form.errors contains 'email' %}<div class="error-message  show-error-message ">{{'forms.errors.email' |t}}</div>{% endif %}
 		</div>		
 	</div>							
@@ -197,5 +201,149 @@
 						
 	{% endform %}
 </div>
+{% elsif formType == 'activate_customer_password' or formType == 'reset_customer_password' %}
+<div class="form-horizontal">
+	{% form formType %}
+	{{ form.errors | default_errors }}            
+		<div class="form-group {% if form.errors contains 'password' %}has-error{%endif%}" id="password">
+			<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="login">{{'forms.password' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">		
+				<input type="password"
+					   id="customer_password"
+					   class="form-control"						   
+					   name="customer[password]"
+					   value=""
+					   {% if ph_flag %}placeholder="{{'forms.password' |t}}"{% endif %}  />                
+			</div>
+		</div>        
+		<div class="form-group {% if form.errors contains 'password_confirmation' %}has-error{%endif%}" id="password_confirmation">
+			<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="login">{{'forms.password-confirm' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">		
+				<input type="password"
+					   id="customer_password_confirmation" 
+					   class="form-control"						   
+					   name="customer[password_confirmation]"
+					   value=""
+					   {% if ph_flag %}placeholder="{{'forms.password-confirm' |t}}"{% endif %}   />                
+			</div>            
+		</div>
+		<div class="form-group">
+			<div class="col-sm-12">
+				{% if formType == 'reset_customer_password'%}
+				<input class="btn btn-primary" type="submit" value="{{'accounts.password-reset' | t}}" />
+				{% else %} 
+				<input class="btn btn-primary" type="submit" value="{{'accounts.activate-account' |t }}" />
+				<span class="">{{'general.or' |t}}</span>
+				<input type="submit" class="cancel btn btn-primary" name="decline" id="customer_decline" value="{{'accounts.decline-invitation' |t }}" />
+				{% endif %}
+			</div>
+		</div> 		
+
+	{% endform %}
+</div>
+
+{% elsif formType == 'contact_compact' %}
+<!-- CONTACT FORM -->  
+
+<script type="text/javascript">
+	$(function(){
+		$('.footer-form form').submit(function(){
+			var footerForm = $(this);
+			var action  = '/contact?';
+				action += encodeURIComponent('form_type') +'='+ encodeURIComponent('contact');
+				action += '&'+ encodeURIComponent('utf8') +'='+ encodeURIComponent('✓');
+				action += '&'+ encodeURIComponent('contact[name]') +'='+ encodeURIComponent($(this).find('input[name="contact[name]"]').val());				
+				action += '&'+ encodeURIComponent('contact[email]') +'='+ encodeURIComponent($(this).find('input[name="contact[email]"]').val());
+				action += '&'+ encodeURIComponent('contact[body]') +'='+ encodeURIComponent($(this).find('textarea[name="contact[body]"]').val());
+				
+			$.ajax({
+				type: "POST",
+				async: true,
+				url: action,
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR, textStatus,errorThrown);
+				},
+				success: function(response) {
+					footerForm.find('.has-error').removeClass('has-error');
+					footerForm.find('.show-error-message').removeClass('show-error-message');
+					if (response['posted_successfully?']) {
+						console.log('ok');
+					}
+					else {
+						
+						$.each(response.errors, function(index,value){
+							footerForm.find('*[name="contact['+value+']"]').closest('.form-group').addClass('has-error');
+							footerForm.find('*[name="contact['+value+']"]').siblings('.input-error-message').addClass('show-error-message');
+							console.log('errors', value);
+						})
+						
+					}
+					// Assume Success. 'response' is the complete HTML page of the 
+					// contact success form, so likely won't be helpful
+					//self.submit_thankyou();
+					//console.log(response);
+				},
+				dataType : 'json'
+			});
+			return false;
+		
+		})
+		
+	})
+</script>
+
+<div class="footer-form form-horizontal">
+{% form 'contact' %}
+	
+<!-- CONTACT FORM INPUTS -->
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormName">{{'forms.name' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" id="contactFormName" class="form-control" {% if ph_flag %}placeholder="{{'forms.name' |t}}"{% endif %}  name="contact[name]">
+		</div>
+	</div>
+	<div class="form-group {% if form.errors contains 'email'%}has-error{%endif%}">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormEmail">{{'forms.email' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">			
+			<input type="email" id="contactFormEmail" class="form-control" {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  name="contact[email]">
+			<div class="input-error-message {% if form.errors contains 'email'%}show-error-message{%endif%}">{{'forms.errors.email' |t}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormMessage">{{'forms.message' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<textarea rows="3" class="form-control" id="contactFormMessage" {% if ph_flag %}placeholder="{{'forms.message' |t}}"{% endif %}  name="contact[body]"></textarea>
+		</div>
+	</div>
+    <div class="form-group" >
+		<div class="col-sm-12">
+			<label style="padding-right: 18px;" class="pull-left ">{{'forms.subscribe-elist' | t}}</label>
+			<div class="">
+				<div class="radio   radio-inline">
+					<input class="radioButtons contactRadio" type="radio" name="emailList" id="emailListYesfooter" value="Yes" CHECKED />               
+					<label for="emailListYesfooter" style="position: relative; ;">{{'general.yes'|t}}</label>
+				</div>
+				<div class="radio radio-inline">
+					<input class="radioButtons contactRadio" type="radio" name="emailList" value="No" id="emailListNofooter"  />
+					<label for="emailListNofooter" style="position: relative;">{{'general.no' |t}}</label>
+				</div>
+			</div>
+		</div>
+    </div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input class="btn btn-primary" type="submit" id="contactFormSubmit" value="{{'general.send'|t}}" />
+			
+		</div>		
+	</div>	
+{% endform %}
+</div>
+
+<!-- CONTACT FORM ERROR -->
+
+
+
+
+
 {% else %}
 {% endif %}

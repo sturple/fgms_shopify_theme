@@ -1,10 +1,23 @@
-{% assign form-type = 'horizontal' %}
-<section id="activate-account" class="section-wrap">
-	{% include '__containers-open' %}
-	<div class="customer-activate-form form-wrapper-horizontal">
-		<h1 class="page-header">Activate Account</h1>
-		<p class="note">Create your password to activate your account</p>
-		{% include '_form-password' with 'activate' %}
+<div class="{% if settings.sidebar-activate-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
+	<div class="main-col-wrapper  " >
+		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>		
+		<h1>{{'accounts.activate-account' |t}}</h1>
+		<p>{{'accounts.create-password-text' | t}}</p>
+		{% include 'forms' formType : 'activate_customer_password' %}         		
+
 	</div>
-	{% include '__containers-close' %}
-</section>
+</div>
+{% if settings.sidebar-activate-enable %}
+<!-- sidebar -->
+<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+	<div  id="sidebar">
+		<div id="sidebar-wrapper">
+			{% if settings.sidebar-activate-snippet != blank %}
+			{% include settings.sidebar-register-snippet %}
+			{%else%}
+			{% include 'warning' type : 'no-sidebar' %}				
+			{%endif%}			
+		</div>								
+	</div>                
+</div>
+{% endif %}

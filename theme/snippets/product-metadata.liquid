@@ -1,0 +1,29 @@
+<div class="product-sidebar-wrapper hidden-sm hidden-xs">
+	<!-- SIDEBAR  type, vendor and sku ***************************************************** -->						
+	<div class="productExtras">
+		{% if settings.products-type == true and product.type.size > 0 %}											
+			<p style="margin-bottom: 4px;"><span class="productExtrasTitle">{{'products.type' | t}}: </span><span class="product-type"><a href="/collections/types?q={{ product.type | replace: ' ','+' }}">{{ product.type }}</a></span></p>
+		{% endif %}												
+
+		{% if settings.products-vendor == true and product.vendor.size > 0 %}											
+			<p style="margin-bottom: 4px;" titemprop="manufacturer">
+			  <span class="productExtrasTitle">{{'products.vendor' | t}}: </span><a href="/collections/vendors?q={{ product.vendor | replace: ' ','+' }}">{{ product.vendor }}</a>
+			</p>
+		{% endif %}
+
+		{% if settings.products-sku == true and  variant.sku.size > 0 %}											
+			<p style="margin-bottom: 8px;"><span class="productExtrasTitle">{{'products.sku' | t}}: </span><span id="productSKU">{{ variant.sku }}</span></p>											
+		{% endif %}										
+	</div><!-- productExtras -->	
+	<!-- SIDEBAR  TAGS***************************************************** -->
+	{% if settings.products-tags == true and product.tags.size > 0 %}
+	<div class="productExtras">
+		<p><span class="productExtrasTitle">{{'products.tags' | t}}: </span></p>
+		<p style="margin-bottom: 4px; padding: 8px 0; ">
+			{% for tag in product.tags %}
+				<a href="/collections/all/{{ tag | handle}}" class="btn btn-default btn-xs" title="{{ 'products.links.view-all-products-tagged.title' | t}} {{ tag }}">{{ tag }}</a>
+			{% endfor %}
+		<p>							
+	</div>
+	{% endif %}		
+</div>

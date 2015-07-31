@@ -1,7 +1,8 @@
-<div id="header-top-wrapper" class="option2">
+<div>
+	<div id="header-top-wrapper" class="option2  script-fixed-header-with-scroll">
 		<div class="column-wrapper">			
 			<div class="row" style="position: relative;">
-			<!-- header -->
+				<!-- header -->
 				<div class="header-logo col-md-4">
 					<a href="/">
 						<span class="sr-only">{{ shop.name }}</span>
@@ -10,17 +11,25 @@
 				</div>
 				<!-- navigation -->
 				<div id="navigation-wrapper" class="col-md-8 align-right-md">
-					
-		
-					<div class="header-utility-wrapper">{% include 'nav_account_cart'%}</div>
-					<div class="header-nav-wrapper">{% include 'navbar'  %}</div>
-					
-					
-					<div class="clearfix" style="clear:both"></div>
-					
+					<div class="header-utility-wrapper">{% include 'nav_account_cart'%} </div>
+					<div class="header-nav-wrapper">{% include 'navbar'  %}</div>				
+					<div class="clearfix" style="clear:both"></div>				
 				</div>              
 			</div>			
 		</div>
+	</div>	
 </div>
 
-<div id="slideshow" >{% include 'slideshow' %}</div>
+
+{% if template contains 'index' and settings.homepage-youtube-video-enable %}
+	<div style="background: url({{'homepage-youtube-background.jpg' | asset_url}});	height: {{settings.homepage-youtube-video-height }}">
+		<div id="homepage-youtube"
+			 style="height: {{settings.homepage-youtube-video-height}}"
+			 data-property="{videoURL:'{{settings.homepage-youtube-video-url}}',containment:'{{settings.homepage-youtube-video-containment}}',{{settings.homepage-youtube-video-property}}}">
+			
+		</div>		
+	</div>
+{% else %}
+	<div id="slideshow" >{% include 'slideshow' %}</div>
+{% endif %}
+
