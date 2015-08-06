@@ -319,7 +319,8 @@
 		Shopify.getCart();
 	};
 	Shopify.onCartUpdate = function(cart) {
-		Shopify.updateCartInfo(cart, 'yourCart', 'yourCart');	
+		Shopify.updateCartInfo(cart, 'cart-links-your-count', 'cart-links-your-count');
+		Shopify.updateCartInfo(cart, 'cart-bar-your-count', 'cart-bar-your-count');
 		Shopify.updateStatusMessage(cart,'#product-status-message');	
 	};
 	Shopify.onProduct = function(product) {    Shopify.updateProductInfo(product, 'product-info');  };

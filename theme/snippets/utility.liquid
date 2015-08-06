@@ -1,0 +1,7 @@
+{% if type == 'email' %}
+	{% if email != false %}
+		{% assign email_str = email %}
+		{% assign email_arr = my_str | split: '@' %}		
+		<a href="#" data-prefix="{{email_array[0]}}" data-domain="{{email_array[1]}}">{{email}}</a>
+	{% endif %}
+{%endif%}

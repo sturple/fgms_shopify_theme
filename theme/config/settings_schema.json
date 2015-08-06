@@ -45,16 +45,126 @@
   {
     "name": "Colour",
     "settings": [
-      {
-        "type": "header",
-        "content": "General"
-      },
-      {
-        "type": "color",
-        "id": "brand-primary",
-        "label": "Brand primary colour"
-      }
-
+        {
+            "type": "header",
+            "content": "General"
+        },
+        {
+            "type": "color",
+            "id": "color-body",
+            "label": "Body Color"
+        },
+         {
+            "type": "color",
+            "id": "color-heading",
+            "label": "Heading Color"
+        },
+        {
+            "type": "header",
+            "content": "Section Colors"
+        },
+        {
+            "type": "color",
+            "id": "color-utility-bar-background",
+            "label": "Utility Bar Background"
+        },
+        {
+            "type": "color",
+            "id": "color-header-bar-background",
+            "label": "Header Bar Background"
+        },
+        {
+            "type": "color",
+            "id": "color-footer-bar-background",
+            "label": "Footer Bar Background"
+        },        
+        
+        {
+            "type": "header",
+            "content": "Link"
+        },
+        {
+            "type": "color",
+            "id": "color-link",
+            "label": "Link Color"
+        },
+        {
+            "type": "color",
+            "id": "color-link-hover",
+            "label": "Link Hover Color"
+        },
+        {
+            "type": "header",
+            "content": "Default Button"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-default",
+            "label": "Color"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-default-hover",
+            "label": "Color Hover"
+        },        
+        {
+            "type": "color",
+            "id": "color-btn-default-background",
+            "label": "Background"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-default-background-hover",
+            "label": "Background Hover"
+        },        
+        {
+            "type": "header",
+            "content": "Primary Button"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-primary",
+            "label": "Color"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-primary-hover",
+            "label": "Color Hover"
+        },        
+        {
+            "type": "color",
+            "id": "color-btn-primary-background",
+            "label": "Background"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-primary-background-hover",
+            "label": "Background Hover"
+        },
+        {
+            "type": "header",
+            "content": "Secondary Button"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-secondary",
+            "label": "Color"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-secondary-hover",
+            "label": "Color Hover"
+        },        
+        {
+            "type": "color",
+            "id": "color-btn-secondary-background",
+            "label": "Background"
+        },
+        {
+            "type": "color",
+            "id": "color-btn-secondary-background-hover",
+            "label": "Background Hover"
+        }      
     ]
   },
   {
@@ -144,6 +254,81 @@
     ]
   },
   {
+    "name" : "Contact",
+    "settings": [
+        {
+            "type" : "header",
+            "content" : "Map"            
+        },
+        {
+            "type" :"checkbox",
+            "id": "contact-map-enable",
+            "label": "Map Enable"
+        },
+        {
+          "type": "image",
+          "id": "contact-map-static.png",
+          "label": "Static Map Image"
+       
+        },          
+        {
+            "type": "text",
+            "id": "contact-map-lat",
+            "label": "Lat:"
+           
+        },
+        {
+            "type": "text",
+            "id": "contact-map-lng",
+            "label": "Lng:"
+            
+        },
+      
+        {
+            "type": "text",
+            "id": "contact-map-directions",
+            "label": "Get Directions URL"
+         
+        },
+        {
+            "type": "image",
+            "id": "contact-map-logo-infobox.gif",
+            "label": "Map Info-box Logo"
+         
+        },
+        {
+            "type" : "header",
+            "content" : "Contact"            
+        },
+        {
+            "type": "text",
+            "id": "contact-phone",
+            "label": "Phone Number"
+            
+        },
+        {
+            "type": "text",
+            "id": "contact-toll",
+            "label": "Toll Free Number"
+            
+        },
+        
+        {
+            "type" : "header",
+            "content" : "Emails"            
+        },        
+        {
+            "type": "text",
+            "id": "contact-email-footer",
+            "label": "Footer Email"
+            
+        }
+        
+        
+
+    ]
+  },
+  {
     "name": "Homepage",
     "settings": [
     {
@@ -194,7 +379,7 @@
       "label": "Youtube Video Selector "
    
     },
-     {
+    {
       "type": "image",
       "id": "homepage-youtube-background.jpg",
       "label": "Youtube Container Background"
@@ -1124,11 +1309,45 @@
   {
     "name": "Footer",
     "settings": [
-      {
-        "type": "header",
-        "content": "Column 1"
-      }
-
+        {
+            "type": "header",
+            "content": "Enables"
+        },
+        {
+            "type": "checkbox",
+            "id": "footer-toll-enable",
+            "label": "Enable Footer toll-free phone number (See Contact Section)",
+            "default" : true
+          
+        },      
+        {
+            "type": "checkbox",
+            "id": "footer-phone-enable",
+            "label": "Enable Footer phone number (See Contact Section)",
+            "default" : true
+        },
+        {
+            "type": "checkbox",
+            "id": "footer-email-enable",
+            "label": "Enable Footer email (See Contact Section)",
+            "default" : true
+        },       
+        {
+            "type": "checkbox",
+            "id": "footer-address-enable",
+            "label": "Enable Footer address",
+            "default" : true
+        },
+        {
+            "type": "header",
+            "content": "Footer HTML"
+        },
+        {
+            "type": "textarea",
+            "id": "footer-html",
+            "label": "Footer HTML"           
+        }   
+       
     ]
   },
   {
@@ -1384,7 +1603,7 @@
     },
     {
       "type": "select",
-      "id": "newsletter-platform",
+      "id": "social-newsletter-platform",
       "label": "Newsletter platform",
       "options": [
         {
@@ -1425,8 +1644,16 @@
         "type": "text",
         "id": "social-newsletter-lastname",
         "label": "Newsletter Last Name Field (name attribute)"
-    }
- 
+    },
+    {
+      "type": "header",
+      "content": "Footer Form Auto Reply Text"
+    },   
+    {
+        "type": "textarea",
+        "id": "social-newsletter-autoreply",
+        "label": "Footer Form Auto Reply Text"
+    } 
     ]
   },
   {

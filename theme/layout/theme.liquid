@@ -64,8 +64,7 @@
             <div class="main-wrapper main" style="padding-top: 0;">
 				<div class="fgms-body">						
 					<div id="content" class="row">
-						{{ content_for_layout }}
-				   
+						{{ content_for_layout }}				   
 					</div>				
 				</div>
             </div> <!-- close main wrapper -->
@@ -73,23 +72,22 @@
     </div>
 	{% include 'footer' %}
 </div>
-{% if settings.layout-header-snippet == 'header_missioninn' %}
-<div id="map-parallax">
-    <div class="row">
-        <div class="col-sm-12">
-            <div id="footer-map-wrapper" style="height: 500px;"><div class="map-loading-icon"><i class=" fa fa-spinner fa-spin fa-5x"></i></div></div>
-        </div>
-    </div>  
-    <div class="row">
-        <div class="col-sm-12">
-            <div id="footer-distance-info-wrapper" style="">
-                   {% include 'footer_proximity_rotator' %}                                                    
-            </div>
-        </div>        
-    </div>
-    
-</div>   
+
+{% if settings.contact-map-enable  %}
+<div style="width:100%"  id="map-parallax" >
+	<div id="footer-map-wrapper" style="height: 530px;">
+		<div class="map-loading-icon"><i class=" fa fa-spinner fa-spin fa-5x"></i></div>
+	</div>
+	<div id="footer-wrapper-variant" data-ga-category="Footer 2">
+		<div class="container">
+			<div class="column-wrapper"> 
+				{% include 'footer_proximity_rotator' %}                     
+			</div>          
+		</div>
+	</div>
+</div>
 {%endif%}
+
 {%comment%}
   {% include 'option-select-callback' %}
   {% include 'currencies' %}
@@ -113,31 +111,42 @@
 	});
 
 	$('.script-fixed-header-with-scroll').each(function(){
-		$(this).parent().css({height:$(this).height()+'px','z-index' : '1000'})		
+		if (window.innerWidth > 768) {
+			$(this).parent().css({height:($(this).outerHeight() + 1)+'px'})
+		}
+		
+		$(this).parent().css({'background-color' : $(this).css('background-color'),'z-index' : '1000'})
 	})
 	var lastWindowTopLocation = $(window).scrollTop();
+	
 	
 	$(window).scroll(function(){
 		var headerBottom = parseFloat($('.script-fixed-header-with-scroll').parent().offset().top) +parseFloat($('.script-fixed-header-with-scroll').parent().height() ) ;		
 		var st = $(this).scrollTop();
-		/** scrolling down **/
+		var enlarge_buffer = 60;
+		//scrolling down 
 		if (st > lastWindowTopLocation){
-		   /* header is still visible */
+		   // header is still visible 
 		   if (headerBottom > $(this).scrollTop()) {
 				$('.script-fixed-header-with-scroll').removeClass('show navbar-static-top')							
 		   }
-		   /* header is gone */
-		   else {	$('.script-fixed-header-with-scroll').addClass('navbar-static-top').removeClass('show');	  }
+		   // header is gone 
+		   else {	$('.script-fixed-header-with-scroll').addClass('navbar-static-top shrink').removeClass('show');	  }
 		
 		}
-		/** scrolling up **/
+		///scrolling up 
 		else {
 			//means it is at the top;
-		   if ($('.script-fixed-header-with-scroll').parent().offset().top == $(this).scrollTop() ) {
+		   if ( ($('.script-fixed-header-with-scroll').parent().offset().top ) >= $(this).scrollTop() ) {
 				$('.script-fixed-header-with-scroll').removeClass('navbar-static-top show')
 			
-		   }
+		   }		   
 		   else {		$('.script-fixed-header-with-scroll').addClass('navbar-static-top show');   }
+		   	if ( ($('.script-fixed-header-with-scroll').parent().offset().top + enlarge_buffer ) >= $(this).scrollTop() ) {
+				$('.script-fixed-header-with-scroll').removeClass('shrink')
+			
+		   }
+		   
 		}
 		lastWindowTopLocation  = st;
 
@@ -235,26 +244,7 @@
 			$(this).text($(this).attr('data-prefix')+'@'+$(this).attr('data-domain'));
 		}
 	});
-	/*	
-		
-	if ($(window).outerWidth() > 996){
-		if (!!$('.sticky').offset()) { // make sure ".sticky" element exists
-			var stickyTop = $('.sticky').offset().top; // returns number
-			$(window).scroll(function(){ // scroll event
-				var windowTop = $(window).scrollTop(); // returns number
-				var sidebarBottom = $('#sidebar-wrapper').offset().top + $('#sidebar-wrapper').outerHeight();
-				var footerTop = $('.main-footer').offset().top - 150;
-				if (sidebarBottom < windowTop){
-					var btop = windowTop - sidebarBottom 
-					if (footerTop > windowTop ) {
-						$('.sticky').css({ position: 'relative', top: btop +'px' });
-					}
-					
-				}
-				else { $('.sticky').css('position','static');	}			
-			});			
-		}     
-	}*/
+
 		
 		
 	$('.modal').on('hidden.bs.modal', function() {
@@ -277,52 +267,36 @@
 			
 		
 		
-		   
-	//scrolling menu paralax
-	/*
-	var didScroll = false;
-	if ( (window.innerWidth > 768 ) && (! (($('html').hasClass('v37')) && ($('html').hasClass('chrome'))) ) ) {
-		 set_parallax();
-		 $(window).scroll(function(){
-			 didScroll = true;
-			   
-		 });	     
-	 
-		
-		setInterval(function(){
-			if (didScroll){
-				didScroll = false;
-				set_parallax();
-			}
-		}, 10);
-	}
-	*/
+
 	if ($('html').hasClass('no-touch')){
 		$('#outer-container').css('margin-bottom', ($('#map-parallax').innerHeight() -30) + 'px');
-	}		
-	$('#footer-map-wrapper').click(function(){
-		var $mapIcon = $(this).parent().find('.map-loading-icon')
-		$mapIcon.toggle();
-		google.load('maps','3', {other_params : 'sensor=false', callback : function(){
-
-		  if ($('#footer-map-wrapper').length > 0 ) {
-			set_google_map({
-				lat_offset : 0.00, 
-				lng_offset : 0, 
-				map_id : 'footer-map-wrapper',	
-				lat : 28.725378,
-				lng : -81.7817200,	
-				zoom : 9,	
-				map_type : 'TERRAIN', info_window : '<img style="margin-bottom: 4px;" src="{{'logo-map-mission-inn-resort.gif' | asset_url}}"  alt="{{+g_company}}"/><div style="line-height: 1.3em;">{{+g_address}}<br/>{{+g_city}}, {{+g_province}},<br/>{{+g_country}}, {{+g_postal}}</div><div style="padding-bottom: 3px;"><a href="https://www.google.ca/maps/dir/%27%27/10400+County+Rd+48,+Howey-In-The-Hills,+FL+34737,+USA/@28.7251499,-81.7849964,17z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x88e7941f7747664d:0xf76cffd865e3480!2m2!1d-81.7828506!2d28.7251499" target="_blank">Get Directions</a></div><div>Local: <strong>{{+g_phonereservations}}</strong></div><div>Toll Free: <strong>{{+g_phonereservationstollfree}}</strong></div>'	});
-		  }
-		  
-		  
-		  $('#footer-map-wrapper').css({'background-image': 'none'});
-		  $mapIcon.toggle(1500)
-					   
-		}});	    
-	}) ;
+	}
+	if (('{{settings.contact-map-lat}}').length > 0 ) {
 		
+		$('#footer-map-wrapper').click(function(){
+			var $mapIcon = $(this).parent().find('.map-loading-icon')
+			$mapIcon.toggle();
+			google.load('maps','3', {other_params : 'sensor=false', callback : function(){
+	
+			  if ($('#footer-map-wrapper').length > 0 ) {
+				set_google_map({
+					lat_offset : 0.00, 
+					lng_offset : 0, 
+					map_id : 'footer-map-wrapper',	
+					lat : {{settings.contact-map-lat | default: '0'}},
+					lng : {{settings.contact-map-lng | default: '0'}},	
+					zoom : 9,	
+					map_type : 'TERRAIN', info_window : '<img style="margin-bottom: 4px;" src="{{'contact-map-logo-infobox.gif' | asset_url}}"  alt="{{shop.name}}"/><div style="line-height: 1.3em;">{{shop.address.street}}<br/>{{+shop.address.city}}, {{shop.address.province}},<br/>{{shop.address.country}}, {{shop.address.zip}}</div><div style="padding-bottom: 3px;"><a href="{{settings.contact-map-directions}}" target="_blank">Get Directions</a></div>{%if settings.contact-phone.size > 0 %}<div>Local: <strong>{{settings.contact-phone}}</strong></div>{%endif%}{%if settings.contact-toll.size > 0 %}<div>Toll Free: <strong>{{settings.contact-toll}}</strong></div>{%endif%}'	});
+			  }
+			  
+			  
+			  $('#footer-map-wrapper').css({'background-image': 'none'}).addClass('google-active');
+			  $mapIcon.toggle(1500)
+						   
+			}});	    
+		}) ;		
+		
+	}		
 		
 		
 	});

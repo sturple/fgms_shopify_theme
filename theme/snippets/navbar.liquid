@@ -1,5 +1,5 @@
 
-<ul class="orion-menu dl-menu  ">
+<ul class="{% if  menu_type != 'footer' %}orion-menu{%endif%}">
 		{% if menu_type == 'footer'%}
 		
 			{% if settings.main-website.size > 4%}
