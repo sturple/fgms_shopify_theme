@@ -14,7 +14,7 @@
 					<!-- navigation -->
 					<div id="navigation-wrapper" class="col-md-8 align-right-md">
 						{% if settings.layout-utility-bar  == false %}<div class="header-utility-wrapper">{% include 'nav_account_cart'%} </div>{%endif%}
-						<div class="header-nav-wrapper">{% include 'navbar'  %}</div>				
+						<div class="header-nav-wrapper">{% include 'navbar' linklist : settings.navigation-linklist-main %}</div>				
 						<div class="clearfix" style="clear:both"></div>				
 					</div>              
 				</div>			

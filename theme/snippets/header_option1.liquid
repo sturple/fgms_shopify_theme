@@ -14,13 +14,13 @@
 					<div class="header-global-html hidden-sm hidden-xs align-right-md">
 						{% if settings.layout-utility-bar == false %}{% include 'nav_account_cart'%}{% endif%}
 					</div>
-					{% include 'navbar'  %}
+					{% include 'navbar' linklist : settings.navigation-linklist-main %}
 				</div>              
 			</div>			
 		</div>
 	</div>
 </div>
-{% if settings.layout-utility-bar  %}{% include 'nav_account_cart'%}{% endif%}
+{% if settings.layout-utility-bar  %}{% include 'nav_account_cart' %}{% endif%}
 <div id="slideshow" style="height: 450px;">
 	<a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=ueVb36RsWs8',showControls:false,containment:'#slideshow',autoPlay:true,stopMovieOnBlur: false, mute:true, startAt:6,stopAt:95,showYTLogo:false}">My video</a>
 

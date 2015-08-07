@@ -1204,105 +1204,18 @@
         "type": "text",
         "id": "main-website",
         "label": "Main Website url (http://www.example.com)"
-      },       
+      },
+      {
+        "type" : "header",
+        "content" : "Main Navigation"
         
-      {
-        "type": "link_list",
-        "id": "top-navbar-linklist-left",
-        "label": "Top navbar linklist, left"
       },
       {
         "type": "link_list",
-        "id": "top-navbar-linklist-right",
-        "label": "Top navbar linklist, right"
-      },
-      {
-        "type": "select",
-        "id": "top-navbar-placement",
-        "label": "Top navbar placement",
-        "options": [
-          {
-            "value": "fixed-to-top",
-            "label": "Fixed to top"
-          },
-          {
-            "value": "static-top",
-            "label": "Static top"
-          }
-        ]
-      },
-      {
-        "type": "link_list",
-        "id": "main-menu-linklist",
-        "label": "Main menu linklist"
-      },
-      {
-        "type": "paragraph",
-        "content": "If no link list is selected the main menu will not be shown."
-      },
-      {
-        "type": "select",
-        "id": "main-menu-alignment",
-        "label": "Main menu alignment",
-        "options": [
-          {
-            "value": "left",
-            "label": "Left"
-          },
-          {
-            "value": "center",
-            "label": "Center"
-          },
-          {
-            "value": "right",
-            "label": "Right"
-          }
-        ]
-      },
-      {
-        "type": "link_list",
-        "id": "footer-navbar-linklist-left",
-        "label": "Footer navbar linklist, left"
-      },
-      {
-        "type": "link_list",
-        "id": "footer-navbar-linklist-right",
-        "label": "Footer navbar linklist, right"
-      },
-      {
-        "type": "select",
-        "id": "footer-navbar-placement",
-        "label": "Footer navbar placement",
-        "options": [
-          {
-            "value": "fixed-to-bottom",
-            "label": "Fixed to bottom"
-          },
-          {
-            "value": "static-bottom",
-            "label": "Static bottom"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "search-placement",
-        "label": "Search placement",
-        "options": [
-          {
-            "value": "dont-show",
-            "label": "Don't show"
-          },
-          {
-            "value": "top-navbar",
-            "label": "Top navbar"
-          },
-          {
-            "value": "sidebar",
-            "label": "Sidebar"
-          }
-        ]
+        "id": "navigation-linklist-main",
+        "label": "Main Navigation"
       }
+ 
 
     ]
   },
@@ -1346,8 +1259,35 @@
             "type": "textarea",
             "id": "footer-html",
             "label": "Footer HTML"           
-        }   
-       
+        }, 
+        {
+            "type": "header",
+            "content": "Footer Navigation"
+        },
+        {
+            "type": "paragraph",
+            "content": "To create a menu go to The online Store - Navigation menu or /admin/links to create new list."
+        },       
+        {
+            "type": "link_list",
+            "id": "footer-menu-products",
+            "label": "Footer Products Menu"
+        },
+        {
+            "type": "link_list",
+            "id": "footer-menu-support",
+            "label": "Footer Support Menu"
+        },
+        {
+            "type": "link_list",
+            "id": "footer-menu-about",
+            "label": "Footer About Menu"
+        },
+        {
+            "type": "link_list",
+            "id": "footer-menu-communication",
+            "label": "Footer Communication Menu"
+        }
     ]
   },
   {
@@ -1469,84 +1409,47 @@
   {
     "name": "Money",
     "settings": [
-      {
-        "type": "paragraph",
-        "content": "Show multiple currencies"
-      },
-      {
-        "type": "checkbox",
-        "id": "show-multiple-currencies",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "Although you will be able to display prices on your store front in different currencies, Shopify will still process orders in your shop's currency."
-      },
-      {
-        "type": "text",
-        "id": "currency-switcher-default",
-        "label": "Currency switcher default"
-      },
-      {
-        "type": "paragraph",
-        "content": "If left blank the currency switcher will be set to your shops default currency."
-      },
-      {
-        "type": "text",
-        "id": "supported-currencies",
-        "label": "Supported currencies"
-      },
-      {
-        "type": "paragraph",
-        "content": "Separate your currency codes with a space. Use the ISO 4217 3-letter currency code. Click [here](http:\/\/www.xe.com\/iso4217.php) for a complete list of currency codes. E.g., NZD USD CAD"
-      },
-      {
-        "type": "select",
-        "id": "currency-switcher-position",
-        "label": "Currency switcher position",
-        "options": [
-          {
-            "value": "top-navbar",
-            "label": "Top navbar"
-          },
-          {
-            "value": "footer-navbar",
-            "label": "Footer navbar"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "show-currency-with-prices",
-        "label": "Show currency with prices",
-        "options": [
-          {
-            "value": "with-currency",
-            "label": "With currency"
-          },
-          {
-            "value": "without-currency",
-            "label": "Without currency"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": "E.g., $123.45 NZD"
-      },
-      {
-        "type": "paragraph",
-        "content": "Append “plus taxes” to prices"
-      },
-      {
-        "type": "checkbox",
-        "id": "append-plus-taxes-to-price",
-        "label": "Yes"
-      },
-      {
-        "type": "paragraph",
-        "content": "You can localize the wording in the Localization settings using “plus-taxes: + GST”"
-      }
+        {
+            "type" : "header",
+            "content" : "Payment Types"
+        },
+        {
+            "type" : "checkbox",
+            "id" : "money-payment-visa",
+            "label" : "Use Visa",
+            "default" : true
+        },
+         {
+            "type" : "checkbox",
+            "id" : "money-payment-mastercard",
+            "label" : "Use Mastercard",
+            "default" : true
+        },
+        {
+            "type" : "checkbox",
+            "id" : "money-payment-amex",
+            "label" : "Use Amex",
+            "default" : true
+        },
+         {
+            "type" : "checkbox",
+            "id" : "money-payment-discover",
+            "label" : "Use Discover",
+            "default" : true
+        },
+        {
+            "type" : "checkbox",
+            "id" : "money-payment-paypal",
+            "label" : "Use PayPal",
+            "default" : true
+        },
+         {
+            "type" : "checkbox",
+            "id" : "money-payment-google",
+            "label" : "Use Google ",
+            "default" : true
+        }   
+        
     ]
   },
   {

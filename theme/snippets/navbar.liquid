@@ -1,39 +1,60 @@
 
-<ul class="{% if  menu_type != 'footer' %}orion-menu{%endif%}">
-		{% if menu_type == 'footer'%}
-		
-			{% if settings.main-website.size > 4%}
-				<li><a href="{{settings.main-website}}">Main Website</a></li>
-			{% endif %}
+{% comment %}Assign globls from passed variables from include {%endcomment%}
+{%assign navLinkList = linklist %}
+{%assign navType = type %}
+{% if navType == 'footer' %}
+	{% comment %} Footer Horizontal Menu list style{% endcomment %}	
+	<ul>			
+		{% if settings.main-website.size > 4%}
+			<li><a href="{{settings.main-website}}">Main Website</a></li>
 		{% endif %}
-        {% for link in linklists['main-menu'].links %}							
-        {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
-        <li{% if link.active %} class="activePageMain"{% endif %}>
-            <a href="{{ link.url }}">{{ link.title }}
-                {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 or link.type == 'collection_link' %}{% if  menu_type != 'footer' %}<i class="fa fa-caret-down navigation-arrow"></i>{% endif %}{% endif %}
-            </a>
-            {% if  menu_type != 'footer' %}
-                {% if link.type == 'collection_link' %}
-                      <ul class="dropdown">
-    
-                        {% for l in collections[link.object.handle].products %}										
-                        <li{% if  l.url == current_url %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
-                        {% endfor %}
-                        <li class="hidden-lg{% if  link.object.url == current_url %} activePage{% endif %} "><a href="{{ link.object.url }}">All {{ link.object.title }}</a></li>
-                      
-                      </ul><!-- dropdown -->								
-                {% else %}
-                        
-                    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-                      <ul class="dropdown">
-                          {% for l in linklists[child_list_handle].links %}
-                          <li{% if l.active %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
-                          {% endfor %}
-                      </ul><!-- dropdown -->
-                    {% endif %}
-                {% endif %}
-            {%endif%}
-        </li>
-	{% endfor %}  
-
-</ul>
+		
+		{% for link in linklists[navLinkList].links %}							
+		{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
+		<li{% if link.active %} class="activePageMain"{% endif %}>
+			<a href="{{ link.url }}">{{ link.title }}
+				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 or link.type == 'collection_link' %}{% endif %}
+			</a>
+		</li>
+		{% endfor %}  
+	</ul>
+{% elsif navType == 'footer-link-list' %}
+	{% comment %} Footer Vertical Menu list style{% endcomment %}
+	<ul class="footer-nav">
+		{% for link in linklists[navLinkList].links %}	
+			<li><a href="{{ link.url }}">{{ link.title }}</a></li>		
+		{% endfor%}
+	</ul>
+			
+	
+{% else %}
+	{% comment %} Default is the main orion menue {% endcomment %}
+	<ul class="orion-menu">
+		{% for link in linklists[navLinkList].links %}							
+		{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
+		<li{% if link.active %} class="activePageMain"{% endif %}>
+			<a href="{{ link.url }}">{{ link.title }}
+				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 or link.type == 'collection_link' %}<i class="fa fa-caret-down navigation-arrow"></i>{% endif %}
+			</a>
+			{% if link.type == 'collection_link' %}
+				  <ul class="dropdown">	
+					{% for l in collections[link.object.handle].products %}										
+					<li{% if  l.url == current_url %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
+					{% endfor %}
+					<li class="hidden-lg{% if  link.object.url == current_url %} activePage{% endif %} "><a href="{{ link.object.url }}">All {{ link.object.title }}</a></li>
+				  
+				  </ul><!-- dropdown -->								
+			{% else %}
+					
+				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+				  <ul class="dropdown">
+					  {% for l in linklists[child_list_handle].links %}
+					  <li{% if l.active %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
+					  {% endfor %}
+				  </ul><!-- dropdown -->
+				{% endif %}
+			{% endif %}				
+		</li>
+		{% endfor %}  
+	</ul>	
+{% endif%}

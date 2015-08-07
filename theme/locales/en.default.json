@@ -1,24 +1,29 @@
 {
     "general" : {
+        "about-us" : "About Us",
         "cancel" : "Cancel",
         "click-here" : "click here",
         "create" : "Create",
+        "communications" : "Communications",
         "copyright" : "Copyright",
         "date" : "date",
         "email" : "Email",
         "footer-form-title" : "Quick Message",
         "item" : "item",
         "no" : "No",
+        "online-payments-processed-by-shopify" : "Online payments processed securely by Shopify",
         "or" : "or",        
         "placed-on" : "Placed on",
         "phone" : "Phone",
         "privacy-policy" : "Privacy Policy",
+        "products" : "Products",
         "shipping" : "Shipping",
         "send" : "Send",        
         "sign-in" : "Sign In",
         "site-developed-by" : "Site developed by",
         "submit" : "Submit",        
         "subtotal" : "Subtotal",
+        "support" : "Support",
         "tax" : "Tax",       
         "total" : "Total",
         "toll-free" : "Toll-free",
@@ -84,6 +89,7 @@
         "province" : "Province / State",
         "set-as-default-address" : "Set as Default Address?",
         "subscribe-elist" : "Subscribe to email list?",
+        "subscribe-elist-short" : "Add to email list?",
         "zip" : "Postal / Zip"
 
         
