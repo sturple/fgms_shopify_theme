@@ -244,8 +244,10 @@
 	  $(selector).addClass('form-control')
 
     };
-	
-    new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+	if ($("#product-select").length > 0) {
+		new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+	}
+    
 
 	//this code enables the images being clicked on the product image thumbs to change the variant, also there is a data-variant-id on the img tag
 	var variant_array = new Array;	{%for variant in product.variants%}variant_array.push({{variant | json}});{% endfor%}
