@@ -73,6 +73,8 @@
 	{% include 'footer' %}
 </div>
 
+
+
 {% if settings.contact-map-enable  %}
 <div style="width:100%"  id="map-parallax" >
 	<div id="footer-map-wrapper" style="height: 530px;">
@@ -88,17 +90,6 @@
 </div>
 {%endif%}
 
-{%comment%}
-  {% include 'option-select-callback' %}
-  {% include 'currencies' %}
-   
-  {{ '_base.js' | asset_url | script_tag }}
-  {{ 'jquery.ajax-cart.min.js' | asset_url | script_tag }}
-  {{ 'jquery.uniform_thumbnails.min.js' | asset_url | script_tag }}
-  {{ 'jquery.orderly.min.js' | asset_url | script_tag }}
-  {{ 'isotope.pkgd.min.js' | asset_url | script_tag }} 
-  {{ 'jquery.instagram.min.js' | asset_url | script_tag }}
-{%endcomment%}
 
 <script type="text/javascript">
 	var menuState = 'init';

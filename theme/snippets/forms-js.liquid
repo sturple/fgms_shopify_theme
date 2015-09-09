@@ -1,0 +1,94 @@
+<script type="text/javascript">
+	$(function(){
+		$('.footer-form form').submit(function(){
+			var contact_auto_reply = '<p class="footer-form-reply-text">{{settings.social-newsletter-autoreply}}</p>';
+			var footerForm = $(this);
+			var action  = '/contact?';
+				action += encodeURIComponent('form_type') +'='+ encodeURIComponent('contact');
+				action += '&'+ encodeURIComponent('utf8') +'='+ encodeURIComponent('✓');
+				action += '&'+ encodeURIComponent('contact[name]') +'='+ encodeURIComponent($(this).find('input[name="contact[name]"]').val());				
+				action += '&'+ encodeURIComponent('contact[email]') +'='+ encodeURIComponent($(this).find('input[name="contact[email]"]').val());
+				action += '&'+ encodeURIComponent('contact[body]') +'='+ encodeURIComponent($(this).find('textarea[name="contact[body]"]').val());
+			
+			$.ajax({
+				type: "POST",
+				async: true,
+				url: action,
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR, textStatus,errorThrown);
+				},
+				
+				success: function(response) {
+					footerForm.find('.has-error').removeClass('has-error');
+					footerForm.find('.show-error-message').removeClass('show-error-message');
+					/** NO ERRORS **/
+					if (response['posted_successfully?']) {
+						/* We need to send to email list subscription */
+						if (footerForm.find('*[name="emailList"]:checked').val() == 'Yes') {							
+							$.ajax({
+								type: "POST",
+								async: true,
+								crossDomain: true,    
+								url: '{{settings.social-newsletter-url}}',
+								data : {
+									'{{settings.social-newsletter-name}}': footerForm.find('input[name="contact[name]"]').val(),
+									'{{settings.social-newsletter-email}}' : footerForm.find('input[name="contact[email]"]').val()								
+								},
+								error: function(jqXHR, textStatus, errorThrown) {
+									contact_auto_reply += '<p class="footer-form-reply-text">' + textStatus + '</p>';
+									$('.footer-form').replaceWith(contact_auto_reply)									
+								},
+								/* success for email subscription */
+								success: function(response){
+									contact_auto_reply += '<p class="footer-form-reply-text">' + response.Message + '</p>';
+									$('.footer-form').replaceWith(contact_auto_reply)
+								},
+								dataType : 'jsonp'
+							});		
+							
+						}
+						/* No Email subscription */
+						else {
+							$('.footer-form').replaceWith(contact_auto_reply)
+							
+					
+						}
+					}
+					/** Has ERRORS **/
+					else {
+						
+						$.each(response.errors, function(index,value){
+							footerForm.find('*[name="contact['+value+']"]').closest('.form-group').addClass('has-error');
+							footerForm.find('*[name="contact['+value+']"]').siblings('.input-error-message').addClass('show-error-message');
+							console.log('errors', value);
+						})
+						
+					}
+					// Assume Success. 'response' is the complete HTML page of the 
+					// contact success form, so likely won't be helpful
+					//self.submit_thankyou();
+					//console.log(response);
+				},
+				dataType : 'json'
+			});
+			return false;
+		
+		})
+		
+	})
+	function get_contact_form(response){
+		
+	
+	}
+	function send_ajax(url, dataType, callback){
+
+		$.ajax({
+			type: "POST",
+			async: true,
+			url: url,
+			error: function(jqXHR, textStatus, errorThrown) {	},
+			success: callback,
+			dataType : dataType
+		});		
+	}
+</script>

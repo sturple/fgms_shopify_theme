@@ -3,11 +3,7 @@
 	<div class="main-col-wrapper  " >
 		{% unless settings.homepage-content == blank %}
 			{% assign homepage = pages[settings.homepage-content] %}		
-			<div style="padding-top: 36px;">
-				<div class="strike-line">
-					<div class="h1">{{ homepage.title }}</div>
-				</div>	
-			</div>
+			<h1 class="home-page">{{homepage.title}}</h1>
 			{{homepage.content}}
 		{% endunless %}			
    </div>

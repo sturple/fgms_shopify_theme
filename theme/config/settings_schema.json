@@ -2,189 +2,275 @@
   {
     "name": "Branding",
     "settings": [
-        {
-          "type": "header",
-          "content": "Header Logo"
-        },
-        {
-            "type": "text",
-            "id": "branding-header-logo-icon-class",
-            "label": "Logo icon class"
-        },        
-        {
-            "type": "image",
-            "id": "branding-header-logo-image-file.png",
-            "label": "Logo image file"
-        },
-        {
-          "type": "header",
-          "content": "Footer Logo"
-        },
-        {
-            "type": "text",
-            "id": "branding-footer-logo-icon-class",
-            "label": "Logo icon class"
-        },        
-        {
-            "type": "image",
-            "id": "branding-footer-logo-image-file.png",
-            "label": "Logo image file"
-        },
-        {
-          "type": "header",
-          "content": "Fav Icon"
-        },        
-        {
-            "type": "image",
-            "id": "branding-favicon.png",
-            "label": "Favicon"
-        }
-
+      {
+        "type": "header",
+        "content": "Header Logo"
+      },
+      {
+        "type": "text",
+        "id": "branding-header-logo-icon-class",
+        "label": "Logo icon class"
+      },
+      {
+        "type": "image",
+        "id": "branding-header-logo-image-file.png",
+        "label": "Logo image file"
+      },
+      {
+        "type": "header",
+        "content": "Footer Logo"
+      },
+      {
+        "type": "text",
+        "id": "branding-footer-logo-icon-class",
+        "label": "Logo icon class"
+      },
+      {
+        "type": "image",
+        "id": "branding-footer-logo-image-file.png",
+        "label": "Logo image file"
+      },
+      {
+        "type": "header",
+        "content": "Fav Icon"
+      },
+      {
+        "type": "image",
+        "id": "branding-favicon.png",
+        "label": "Favicon"
+      }
     ]
   },
   {
     "name": "Colour",
     "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "color",
+        "id": "color-body",
+        "label": "Body Text Color"
+      },
+      {
+        "type": "color",
+        "id": "color-link",
+        "label": "Link Color"
+      },
+      {
+        "type": "color",
+        "id": "color-link-hover",
+        "label": "Link Hover Color"
+      },      
+      {
+        "type": "color",
+        "id": "color-heading",
+        "label": "Heading Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Utility Bar Colors"
+      },
+      {
+        "type": "color",
+        "id": "color-utility-bar-background",
+        "label": "Utility Bar Background"
+      },
+       {
+        "type": "color",
+        "id": "color-utility-bar-color",
+        "label": "Utility Bar Text Color"
+      },     
+      {
+        "type": "color",
+        "id": "color-utility-bar-link-color",
+        "label": "Utility Bar Link Color"
+      },
+      {
+        "type": "color",
+        "id": "color-utility-bar-link-color-hover",
+        "label": "Utility Bar Link Color Hover"
+      },          
+       {
+        "type": "header",
+        "content": "Hear Bar Colors"
+      },     
+      {
+        "type": "color",
+        "id": "color-header-bar-background",
+        "label": "Header Bar Background"
+      },
+      
+       {
+        "type": "color",
+        "id": "color-header-bar-color",
+        "label": "Header Bar Text Color"
+      },     
+      {
+        "type": "color",
+        "id": "color-header-bar-link-color",
+        "label": "Header Bar Link Color"
+      },
+      {
+        "type": "color",
+        "id": "color-header-bar-link-color-hover",
+        "label": "Header Bar Link Color Hover"
+      },        
+      
+      
+      {
+        "type": "header",
+        "content": "Footer Colors"
+      },      
+      {
+        "type": "color",
+        "id": "color-footer-bar-background",
+        "label": "Footer Bar Background"
+      },
         {
-            "type": "header",
-            "content": "General"
-        },
-        {
-            "type": "color",
-            "id": "color-body",
-            "label": "Body Color"
-        },
-         {
-            "type": "color",
-            "id": "color-heading",
-            "label": "Heading Color"
-        },
-        {
-            "type": "header",
-            "content": "Section Colors"
-        },
-        {
-            "type": "color",
-            "id": "color-utility-bar-background",
-            "label": "Utility Bar Background"
-        },
-        {
-            "type": "color",
-            "id": "color-header-bar-background",
-            "label": "Header Bar Background"
-        },
-        {
-            "type": "color",
-            "id": "color-footer-bar-background",
-            "label": "Footer Bar Background"
-        },        
-        
-        {
-            "type": "header",
-            "content": "Link"
-        },
-        {
-            "type": "color",
-            "id": "color-link",
-            "label": "Link Color"
-        },
-        {
-            "type": "color",
-            "id": "color-link-hover",
-            "label": "Link Hover Color"
-        },
-        {
-            "type": "header",
-            "content": "Default Button"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-default",
-            "label": "Color"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-default-hover",
-            "label": "Color Hover"
-        },        
-        {
-            "type": "color",
-            "id": "color-btn-default-background",
-            "label": "Background"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-default-background-hover",
-            "label": "Background Hover"
-        },        
-        {
-            "type": "header",
-            "content": "Primary Button"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-primary",
-            "label": "Color"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-primary-hover",
-            "label": "Color Hover"
-        },        
-        {
-            "type": "color",
-            "id": "color-btn-primary-background",
-            "label": "Background"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-primary-background-hover",
-            "label": "Background Hover"
-        },
-        {
-            "type": "header",
-            "content": "Secondary Button"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-secondary",
-            "label": "Color"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-secondary-hover",
-            "label": "Color Hover"
-        },        
-        {
-            "type": "color",
-            "id": "color-btn-secondary-background",
-            "label": "Background"
-        },
-        {
-            "type": "color",
-            "id": "color-btn-secondary-background-hover",
-            "label": "Background Hover"
-        }      
+        "type": "color",
+        "id": "color-footer-bar-color",
+        "label": "Footer Bar Text Color"
+      },     
+      {
+        "type": "color",
+        "id": "color-footer-bar-link-color",
+        "label": "Footer Bar Link Color"
+      },
+      {
+        "type": "color",
+        "id": "color-footer-bar-link-color-hover",
+        "label": "Footer Bar Link Color Hover"
+      },       
+
+      {
+        "type": "header",
+        "content": "Default Button"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-default",
+        "label": "Color"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-default-hover",
+        "label": "Color Hover"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-default-background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-default-background-hover",
+        "label": "Background Hover"
+      },
+      {
+        "type": "header",
+        "content": "Primary Button"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-primary",
+        "label": "Color"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-primary-hover",
+        "label": "Color Hover"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-primary-background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-primary-background-hover",
+        "label": "Background Hover"
+      },
+      {
+        "type": "header",
+        "content": "Secondary Button"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-secondary",
+        "label": "Color"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-secondary-hover",
+        "label": "Color Hover"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-secondary-background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "color-btn-secondary-background-hover",
+        "label": "Background Hover"
+      }
     ]
   },
   {
     "name": "Design",
-    "settings": [   
-      {
-        "type": "paragraph",
-        "content": "Site background image"
-      },
-      {
-        "type": "checkbox",
-        "id": "site-background-image",
-        "label": "Yes"
-      },
-      {
-        "type": "image",
-        "id": "site-background-image-file.jpg",
-        "label": "Site background image file"
-      }
-
+    "settings": [
+        {
+            "type": "header",
+            "content": "Home Pages"
+        },
+        {
+            "type": "checkbox",
+            "id": "design-home-background-enable",
+            "label": "Use Background Image"
+        },
+        {
+            "type" : "radio",
+            "id" : "design-home-position",
+            "label" : "Home Sidebar Position",
+            "options" : [
+                { "value" : "left", "label" : "Left"},
+                { "value" : "right", "label" : "Right"}
+            ],
+            "default" : "left"
+        },        
+        {
+            "type": "image",
+            "id": "design-home-background-image-file.gif",
+            "label": "Home Page background image file"
+        },      
+        {
+            "type": "header",
+            "content": "Secondary Pages"
+        },
+        {
+            "type": "checkbox",
+            "id": "design-secondary-background-enable",
+            "label": "Use Background Image"
+        },
+        {
+            "type" : "radio",
+            "id" : "design-secondary-position",
+            "label" : "Secondary Sidebar Position",
+            "options" : [
+                { "value" : "left", "label" : "Left"},
+                { "value" : "right", "label" : "Right"}
+            ],
+            "default" : "left"
+        },
+        {
+            "type": "image",
+            "id": "design-secondary-background-image-file.gif",
+            "label": "Secondary Page background image file"
+        }
+     
+      
     ]
   },
   {
@@ -199,7 +285,7 @@
             "id": "content-grid-secondary-main-class",
             "label": "Grid: Secondary Page, Main Class",
             "default": "col-sm-9 col-sm-push-3"
-        },   
+        },
         {
             "type": "text",
             "id": "content-grid-secondary-sidebar-class",
@@ -208,224 +294,281 @@
         },
         {
             "type": "header",
-            "content": "Product Grid Layout / Image"
+            "content": "Product Grid Layout \/ Image"
         },
         {
             "type": "text",
             "id": "content-grid-product-main-class",
             "label": "Grid: Product Page, Main Class",
             "default": "col-sm-9 col-sm-push-3"
-        },   
+        },
         {
             "type": "text",
             "id": "content-grid-product-sidebar-class",
             "label": "Grid: Product Page, Sidebar Class",
             "default": "col-sm-3 col-sm-pull-9"
-        },       
-       {
-            "type": "header",
-            "content": "Header / Footer"
-        },        
-       {
-            "type" : "snippet",
-            "id" : "layout-header-snippet",
-            "label" : "Header Snippet"
-        },       
-        
-       {
-            "type" : "snippet",
-            "id" : "layout-footer-snippet",
-            "label" : "Footer Snippet"
-        },       
-       {
+        },
+        {
             "type": "header",
             "content": "Utility Bar"
-        },       
-       {
+        },
+        {
             "type": "checkbox",
             "id": "layout-utility-bar",
             "label": "Add Utility Bar With Cart Buttons"
         },
-       {
-            "type" : "snippet",
-            "id" : "layout-utility-snippet",
-            "label" : "Utility Bar Snippet"
-        }  
+        {
+            "type": "snippet",
+            "id": "layout-utility-snippet",
+            "label": "Utility Bar Snippet"
+        },      
+        {
+            "type": "header",
+            "content": "Header \/ Footer"
+        },
+        {
+            "type": "snippet",
+            "id": "layout-header-snippet",
+            "label": "Header Snippet"
+        },
+        {
+            "type": "snippet",
+            "id": "layout-footer-snippet",
+            "label": "Footer Snippet"
+        },
+        {
+            "type": "header",
+            "content": "Carousel Bar - Home Page"
+        },
+        {
+            "type": "checkbox",
+            "id": "layout-home-carousel-bar-enable",
+            "label": "Add Carousel Bar on Home Page"
+        },
+        {
+            "type" : "collection",
+            "id" : "layout-home-carousel-bar-collection",
+            "label" :"Home Page Carousel Collection"
+        },
+        {
+            "type":      "select",
+            "id":        "layout-home-carousel-bar-count",
+            "label":     "Home Carousel Count",
+            "options": [
+                {  "value": "1",  "label": "1"  },
+                {  "value": "2",  "label": "2"  },
+                {  "value": "3",  "label": "3"  },
+                {  "value": "4",  "label": "4"  },
+                {  "value": "5",  "label": "5"  }           
+            ]
+
+        }, 
+        {
+            "type": "header",
+            "content": "Carousel Bar - Secondary Page"
+        },        
+        {
+            "type": "checkbox",
+            "id": "layout-secondary-carousel-bar-enable",
+            "label": "Add Carousel Bar on Secondary Page"
+        },
+        {
+            "type" : "collection",
+            "id" : "layout-secondary-carousel-bar-collection",
+            "label" :"Secondary Page Carousel Collection"
+        }
     ]
   },
   {
-    "name" : "Contact",
+    "name": "Contact",
     "settings": [
         {
-            "type" : "header",
-            "content" : "Map"            
+            "type": "header",
+            "content": "Map"
         },
         {
-            "type" :"checkbox",
+            "type": "checkbox",
             "id": "contact-map-enable",
             "label": "Map Enable"
         },
         {
-          "type": "image",
-          "id": "contact-map-static.png",
-          "label": "Static Map Image"
-       
-        },          
+            "type": "image",
+            "id": "contact-map-static-footer.png",
+            "label": "Static Map Image"
+        },
         {
             "type": "text",
             "id": "contact-map-lat",
             "label": "Lat:"
-           
         },
         {
             "type": "text",
             "id": "contact-map-lng",
             "label": "Lng:"
-            
         },
-      
         {
             "type": "text",
             "id": "contact-map-directions",
             "label": "Get Directions URL"
-         
         },
         {
             "type": "image",
-            "id": "contact-map-logo-infobox.gif",
+            "id": "contact-map-logo-infobox.jpg",
             "label": "Map Info-box Logo"
-         
         },
         {
-            "type" : "header",
-            "content" : "Contact"            
+            "type": "header",
+            "content": "Contact"
         },
         {
             "type": "text",
             "id": "contact-phone",
             "label": "Phone Number"
-            
         },
         {
             "type": "text",
             "id": "contact-toll",
             "label": "Toll Free Number"
-            
         },
-        
         {
-            "type" : "header",
-            "content" : "Emails"            
-        },        
+            "type": "header",
+            "content": "Office Hours"
+        },
+        {
+            "type": "textarea",
+            "id": "contact-office-hours",
+            "label": "Office Hours"
+        },       
+        {
+            "type": "header",
+            "content": "Emails"
+        },
         {
             "type": "text",
             "id": "contact-email-footer",
             "label": "Footer Email"
-            
         }
-        
-        
-
     ]
   },
   {
     "name": "Homepage",
     "settings": [
-    {
-      "type": "text",
-      "id": "homepage-grid-home-main-class",
-      "label": "Grid: Home Page, Main Class",
-      "default": "col-sm-9 col-sm-push-3"
-    },
-    {
-      "type": "text",
-      "id": "homepage-grid-home-sidebar-class",
-      "label": "Grid: Home Page, Sidebar Class",
-      "default": "col-sm-3 col-sm-pull-9"
-    },
-    {
-      "type" : "snippet",
-      "id" : "homepage-sidebar-snippet",
-      "label" : "Hompage Sidebar Snippet"
-    },
-    {
-      "type": "page",
-      "id": "homepage-content",
-      "label": "Homepage content"
-    },
-    {
-      "type": "collection",
-      "id": "homepage-products-collection",
-      "label": "Products collection"
-    },
-     {
-          "type": "header",
-          "content": "Home Page Youtube"
-    },  
-    {
-      "type" : "checkbox",
-      "id" : "homepage-youtube-video-enable",
-      "label" : "Enable Youtube Video"
-    },
-    {
-      "type": "text",
-      "id": "homepage-youtube-video-url",
-      "label": "Youtube Video URL"
-   
-    },
-    {
-      "type": "text",
-      "id": "homepage-youtube-video-containment",
-      "label": "Youtube Video Selector "
-   
-    },
-    {
-      "type": "image",
-      "id": "homepage-youtube-background.jpg",
-      "label": "Youtube Container Background"
-   
-    },
-    {
-      "type": "text",
-      "id": "homepage-youtube-video-height",
-      "label": "Youtube Video Height ",
-      "default" : "400px;"
-   
-    },    
-   {
-          "type": "header",
-          "content": "Youtube Properties"
-    },      
-    {
-        "type": "paragraph",
-        "content": "See https://github.com/pupunzi/jquery.mb.YTPlayer/wiki for details "
-    },
-     {
-        "type": "paragraph",
-        "content": "mute | showControls | startAt | stopAt | autoPlay| ratio | quality | opacity|optimizeDisplay | loop | vol | showControls | addRaster | gaTrack"
-    },    
-    {
-      "type": "textarea",
-      "id": "homepage-youtube-video-property",
-      "label": "Youtube Attributes - See above text for details"
-    },
-    {
-          "type": "header",
-          "content": "Youtube Fil"
-    },
-    {
-        "type": "paragraph",
-        "content": "See https://github.com/pupunzi/jquery.mb.YTPlayer/wiki for details "
-    },    
-    {
-        "type" : "paragraph",
-        "content" : "{grayscale : 1-100,hue_rotate: 1-360,invert : 1-100,opacity : 1-100,saturate : 1-400,sepia : 1-100,brightness: 1-400,contrast : 1-400,blur : 1-100}"
-    },
-    {
-      "type": "textarea",
-      "id": "homepage-youtube-video-filters",
-      "label": "Youtube Filters - see above text for details"
-    } 
+        {
+            "type": "text",
+            "id": "homepage-grid-home-main-class",
+            "label": "Grid: Home Page, Main Class",
+            "default": "col-sm-9 col-sm-push-3"
+        },
+        {
+            "type": "text",
+            "id": "homepage-grid-home-sidebar-class",
+            "label": "Grid: Home Page, Sidebar Class",
+            "default": "col-sm-3 col-sm-pull-9"
+        },
+        {
+            "type": "snippet",
+            "id": "homepage-sidebar-snippet",
+            "label": "Hompage Sidebar Snippet"
+        },
+        {
+            "type": "page",
+            "id": "homepage-content",
+            "label": "Homepage content"
+        },
+        {
+            "type": "collection",
+            "id": "homepage-products-collection",
+            "label": "Products collection"
+        },
+        {
+            "type": "header",
+            "content": "Home Page Youtube"
+        },
+        {
+            "type": "checkbox",
+            "id": "homepage-youtube-video-enable",
+            "label": "Enable Youtube Video"
+        },
+        {
+            "type": "text",
+            "id": "homepage-youtube-video-containment",
+            "label": "Youtube Video Selector "
+        },        
+        {
+            "type": "image",
+            "id": "homepage-youtube-background.jpg",
+            "label": "Youtube Container Background"
+        },
+        {
+            "type": "image",
+            "id": "homepage-youtube-overlay-background.png",
+            "label": "Youtube Overlay"
+        },
+        {
+            "type" : "snippet",
+            "id" : "homepage-youtube-snippet",
+            "label" : "Select Snippet to use as override to combine Layerslider"
+        },
+        {
+            "type": "header",
+            "content": "Home Page Youtube Stand alone"
+        },     
+        {
+            "type": "text",
+            "id": "homepage-youtube-video-url",
+            "label": "Youtube Video URL"
+        },
+        {
+            "type": "textarea",
+            "id": "homepage-youtube-video-overlay-text",
+            "label": "Youtube Overlay Text "
+         
+        }, 
+          
+        {
+            "type": "header",
+            "content": "Home Page Youtube Settings"
+        },      
+        {
+            "type": "text",
+            "id": "homepage-youtube-video-height",
+            "label": "Youtube Video Height ",
+            "default": "400px;"
+        },
+        {
+            "type": "header",
+            "content": "Youtube Properties"
+        },
+        {
+            "type": "paragraph",
+            "content": "See https:\/\/github.com\/pupunzi\/jquery.mb.YTPlayer\/wiki for details "
+        },
+        {
+            "type": "paragraph",
+            "content": "mute | showControls | startAt | stopAt | autoPlay| ratio | quality | opacity|optimizeDisplay | loop | vol | showControls | addRaster | gaTrack"
+        },
+        {
+            "type": "textarea",
+            "id": "homepage-youtube-video-property",
+            "label": "Youtube Attributes - See above text for details"
+        },
+        {
+            "type": "header",
+            "content": "Youtube Fil"
+        },
+        {
+            "type": "paragraph",
+            "content": "See https:\/\/github.com\/pupunzi\/jquery.mb.YTPlayer\/wiki for details "
+        },
+        {
+            "type": "paragraph",
+            "content": "{grayscale : 1-100,hue_rotate: 1-360,invert : 1-100,opacity : 1-100,saturate : 1-400,sepia : 1-100,brightness: 1-400,contrast : 1-400,blur : 1-100}"
+        },
+        {
+            "type": "textarea",
+            "id": "homepage-youtube-video-filters",
+            "label": "Youtube Filters - see above text for details"
+        }
     ]
   },
   {
@@ -450,7 +593,7 @@
         "id": "slide-1-caption",
         "label": "Caption"
       },
-      {
+      /*{
         "type": "checkbox",
         "id": "slide-1-wedding",
         "default": true,
@@ -479,7 +622,7 @@
         "id": "slide-1-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 2"
@@ -494,7 +637,7 @@
         "id": "slide-2-caption",
         "label": "Caption"
       },
-      {
+      /*{
         "type": "checkbox",
         "id": "slide-2-wedding",
         "default": true,
@@ -523,7 +666,7 @@
         "id": "slide-2-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 3"
@@ -538,7 +681,7 @@
         "id": "slide-3-caption",
         "label": "Caption"
       },
-      {
+     /* {
         "type": "checkbox",
         "id": "slide-3-wedding",
         "default": true,
@@ -567,7 +710,7 @@
         "id": "slide-3-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 4"
@@ -582,7 +725,7 @@
         "id": "slide-4-caption",
         "label": "Caption"
       },
-      {
+    /*  {
         "type": "checkbox",
         "id": "slide-4-wedding",
         "default": true,
@@ -611,7 +754,7 @@
         "id": "slide-4-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 5"
@@ -626,7 +769,7 @@
         "id": "slide-5-caption",
         "label": "Caption"
       },
-      {
+     /* {
         "type": "checkbox",
         "id": "slide-5-wedding",
         "default": true,
@@ -655,7 +798,7 @@
         "id": "slide-5-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 6"
@@ -670,7 +813,7 @@
         "id": "slide-6-caption",
         "label": "Caption"
       },
-      {
+     /* {
         "type": "checkbox",
         "id": "slide-6-wedding",
         "default": true,
@@ -699,7 +842,7 @@
         "id": "slide-6-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 7"
@@ -714,7 +857,7 @@
         "id": "slide-7-caption",
         "label": "Caption"
       },
-      {
+      /*{
         "type": "checkbox",
         "id": "slide-7-wedding",
         "default": true,
@@ -743,7 +886,7 @@
         "id": "slide-7-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 8"
@@ -758,7 +901,7 @@
         "id": "slide-8-caption",
         "label": "Caption"
       },
-      {
+      /*{
         "type": "checkbox",
         "id": "slide-8-wedding",
         "default": true,
@@ -787,7 +930,7 @@
         "id": "slide-8-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 9"
@@ -802,7 +945,7 @@
         "id": "slide-9-caption",
         "label": "Caption"
       },
-      {
+     /* {
         "type": "checkbox",
         "id": "slide-9-wedding",
         "default": true,
@@ -831,7 +974,7 @@
         "id": "slide-9-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },
+      },*/
       {
         "type": "header",
         "content": "Slide 10"
@@ -845,8 +988,8 @@
         "type": "text",
         "id": "slide-10-caption",
         "label": "Caption"
-      },
-      {
+      }
+      /*{
         "type": "checkbox",
         "id": "slide-10-wedding",
         "default": true,
@@ -875,13 +1018,12 @@
         "id": "slide-10-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      }
+      }*/
     ]
   },
   {
     "name": "Typography",
     "settings": [
-
       {
         "type": "header",
         "content": "Fonts"
@@ -890,9 +1032,8 @@
         "type": "text",
         "id": "typography-fonts",
         "label": "Install Fonts format ['fonta', 'fontb']",
-        "default" : "['Raleway:300,400,800','Lora']"
+        "default": "['Raleway:300,400,800','Lora']"
       }
-
     ]
   },
   {
@@ -906,46 +1047,41 @@
   },
   {
     "name": "Products",
-    "settings": [    
-        {
-          "type": "paragraph",
-          "content": "For Secondary Page Grid Layout see Layout Section"
-        }, 
-     
-        {
-          "type": "paragraph",
-          "content": "Product Options"
-        }, 
-    
-        {
-          "type": "checkbox",
-          "id": "products-vendor",
-          "label": "Show Product Vendor"
-        },      
-        {
-          "type": "checkbox",
-          "id": "products-type",
-          "label": "Show Product Type"
-        },             
-        {
-          "type": "checkbox",
-          "id": "products-sku",
-          "label": "Show Product SKU"
-        },
-        {
-          "type": "checkbox",
-          "id": "products-tags",
-          "label": "Show Product Tags"
-        } 
-
-
-
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "For Secondary Page Grid Layout see Layout Section"
+      },
+      {
+        "type": "paragraph",
+        "content": "Product Options"
+      },
+      {
+        "type": "checkbox",
+        "id": "products-vendor",
+        "label": "Show Product Vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "products-type",
+        "label": "Show Product Type"
+      },
+      {
+        "type": "checkbox",
+        "id": "products-sku",
+        "label": "Show Product SKU"
+      },
+      {
+        "type": "checkbox",
+        "id": "products-tags",
+        "label": "Show Product Tags"
+      }
     ]
   },
   {
     "name": "Collections",
     "settings": [
-       {
+      {
         "type": "header",
         "content": "--"
       }
@@ -954,340 +1090,339 @@
   {
     "name": "Sidebar",
     "settings": [
-        {
-            "type": "header",
-            "content": "Sidebar Typography"
-        },
-        {
-            "type": "color",
-            "id": "sidebar-no-sidebar-color",
-            "label": "Outer Wrapper Color With No Sidebar"
-        },
-        {
-            "type": "image",
-            "id": "sidebar-background-image.gif",
-            "label": "Sidebar Image"
-        },        
-        {
-            "type": "header",
-            "content": "Home Page"
-        },       
-        {
-            "type": "checkbox",
-            "id": "sidebar-home-enable",
-            "label": "Home Page Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-home-snippet",
-            "label" : "Home Page Sidebar Snippet"
-        },       
-        {
-            "type": "header",
-            "content": "Product Page"
-        },        
-        {
-            "type": "checkbox",
-            "id": "sidebar-product-enable",
-            "label": "Product Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-product-snippet",
-            "label" : "Product Sidebar Snippet"
-        },          
-        {
-            "type": "header",
-            "content": "Collection Page"
-        },    
-        {
-            "type": "checkbox",
-            "id": "sidebar-collection-enable",
-            "label": "Collection Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-collection-snippet",
-            "label" : "Collection Sidebar Snippet"
-        },
-         {
-            "type": "header",
-            "content": "Cart Page"
-        },          
-        {
-          "type": "checkbox",
-          "id": "sidebar-cart-enable",
-          "label": "Cart Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-cart-snippet",
-            "label" : "Cart Sidebar Snippet"
-        },
-        {
-            "type": "header",
-            "content": "Pages"
-        },           
-        {
-            "type": "checkbox",
-            "id": "sidebar-page-enable",
-            "label": "Page Sidebar Enable" 
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-page-snippet",
-            "label" : "Page Sidebar Snippet"
-        },
-        {
-            "type": "header",
-            "content": "Blog Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-blog-enable",
-          "label": "Blog Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-blog-snippet",
-            "label" : "Blog Sidebar Snippet"
-        },
-        {
-            "type": "header",
-            "content": "Article Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-article-enable",
-          "label": "Article Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-article-snippet",
-            "label" : "Article Sidebar Snippet"
-        },
-         {
-            "type": "header",
-            "content": "Accounts Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-account-enable",
-          "label": "Account Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-account-snippet",
-            "label" : "Account Sidebar Snippet"
-        },
-        
-        {
-            "type": "header",
-            "content": "Login Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-login-enable",
-          "label": "Login Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-login-snippet",
-            "label" : "Login Sidebar Snippet"
-        },
-         {
-            "type": "header",
-            "content": "Register Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-register-enable",
-          "label": "Register Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-register-snippet",
-            "label" : "Register Sidebar Snippet"
-        },         
-        
-        
-        {
-            "type": "header",
-            "content": "Address Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-address-enable",
-          "label": "Address Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-address-snippet",
-            "label" : "Address Sidebar Snippet"
-        },
-         {
-            "type": "header",
-            "content": "Orders Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-orders-enable",
-          "label": "Orders Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-orders-snippet",
-            "label" : "Orders Sidebar Snippet"
-        },
-          {
-            "type": "header",
-            "content": "Password Reset Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-reset-enable",
-          "label": "Password Reset Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-reset-snippet",
-            "label" : "Password Reset Sidebar Snippet"
-        },
-         {
-            "type": "header",
-            "content": "Activate Account Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-activate-enable",
-          "label": "Activate Account  Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-activate-snippet",
-            "label" : "Activate Account  Sidebar Snippet"
-        },           
-        {
-            "type": "header",
-            "content": "Search Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-search-enable",
-          "label": "Search Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-search-snippet",
-            "label" : "Search Sidebar Snippet"
-        },
-        {
-            "type": "header",
-            "content": "404 Page"
-        },           
-        {
-          "type": "checkbox",
-          "id": "sidebar-404-enable",
-          "label": "404 Sidebar Enable"
-        },
-        {
-            "type" : "snippet",
-            "id" : "sidebar-404-snippet",
-            "label" : "404 Sidebar Snippet"
-        }
+      {
+        "type": "header",
+        "content": "Sidebar Typography"
+      },
+      {
+        "type": "color",
+        "id": "sidebar-no-sidebar-color",
+        "label": "Outer Wrapper Color With No Sidebar"
+      },
+      {
+        "type": "image",
+        "id": "sidebar-background-image.gif",
+        "label": "Sidebar Image"
+      },
+      {
+        "type": "header",
+        "content": "Home Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-home-enable",
+        "label": "Home Page Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-home-snippet",
+        "label": "Home Page Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Product Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-product-enable",
+        "label": "Product Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-product-snippet",
+        "label": "Product Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Collection Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-collection-enable",
+        "label": "Collection Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-collection-snippet",
+        "label": "Collection Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Cart Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-cart-enable",
+        "label": "Cart Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-cart-snippet",
+        "label": "Cart Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Pages"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-page-enable",
+        "label": "Page Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-page-snippet",
+        "label": "Page Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Blog Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-blog-enable",
+        "label": "Blog Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-blog-snippet",
+        "label": "Blog Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Article Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-article-enable",
+        "label": "Article Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-article-snippet",
+        "label": "Article Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Accounts Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-account-enable",
+        "label": "Account Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-account-snippet",
+        "label": "Account Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Login Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-login-enable",
+        "label": "Login Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-login-snippet",
+        "label": "Login Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Register Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-register-enable",
+        "label": "Register Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-register-snippet",
+        "label": "Register Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Address Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-address-enable",
+        "label": "Address Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-address-snippet",
+        "label": "Address Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Orders Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-orders-enable",
+        "label": "Orders Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-orders-snippet",
+        "label": "Orders Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Password Reset Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-reset-enable",
+        "label": "Password Reset Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-reset-snippet",
+        "label": "Password Reset Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Activate Account Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-activate-enable",
+        "label": "Activate Account  Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-activate-snippet",
+        "label": "Activate Account  Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "Search Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-search-enable",
+        "label": "Search Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-search-snippet",
+        "label": "Search Sidebar Snippet"
+      },
+      {
+        "type": "header",
+        "content": "404 Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-404-enable",
+        "label": "404 Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-404-snippet",
+        "label": "404 Sidebar Snippet"
+      }
     ]
   },
   {
     "name": "Navigation",
     "settings": [
-       {
-        "type": "text",
-        "id": "main-website",
-        "label": "Main Website url (http://www.example.com)"
-      },
-      {
-        "type" : "header",
-        "content" : "Main Navigation"
-        
-      },
-      {
-        "type": "link_list",
-        "id": "navigation-linklist-main",
-        "label": "Main Navigation"
-      }
- 
-
+        {
+            "type": "text",
+            "id": "main-website",
+            "label": "Main Website url (http:\/\/www.example.com)"
+        },
+        {
+            "type": "header",
+            "content": "Main Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "navigation-linklist-main",
+            "label": "Main Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "navigation-linklist-utility",
+            "label": "Utility Bar Navigation"
+        }   
+      
     ]
   },
   {
     "name": "Footer",
     "settings": [
-        {
-            "type": "header",
-            "content": "Enables"
-        },
-        {
-            "type": "checkbox",
-            "id": "footer-toll-enable",
-            "label": "Enable Footer toll-free phone number (See Contact Section)",
-            "default" : true
-          
-        },      
-        {
-            "type": "checkbox",
-            "id": "footer-phone-enable",
-            "label": "Enable Footer phone number (See Contact Section)",
-            "default" : true
-        },
-        {
-            "type": "checkbox",
-            "id": "footer-email-enable",
-            "label": "Enable Footer email (See Contact Section)",
-            "default" : true
-        },       
-        {
-            "type": "checkbox",
-            "id": "footer-address-enable",
-            "label": "Enable Footer address",
-            "default" : true
-        },
-        {
-            "type": "header",
-            "content": "Footer HTML"
-        },
-        {
-            "type": "textarea",
-            "id": "footer-html",
-            "label": "Footer HTML"           
-        }, 
-        {
-            "type": "header",
-            "content": "Footer Navigation"
-        },
-        {
-            "type": "paragraph",
-            "content": "To create a menu go to The online Store - Navigation menu or /admin/links to create new list."
-        },       
-        {
-            "type": "link_list",
-            "id": "footer-menu-products",
-            "label": "Footer Products Menu"
-        },
-        {
-            "type": "link_list",
-            "id": "footer-menu-support",
-            "label": "Footer Support Menu"
-        },
-        {
-            "type": "link_list",
-            "id": "footer-menu-about",
-            "label": "Footer About Menu"
-        },
-        {
-            "type": "link_list",
-            "id": "footer-menu-communication",
-            "label": "Footer Communication Menu"
-        }
+      {
+        "type": "header",
+        "content": "Enables"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer-toll-enable",
+        "label": "Enable Footer toll-free phone number (See Contact Section)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "footer-phone-enable",
+        "label": "Enable Footer phone number (See Contact Section)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "footer-email-enable",
+        "label": "Enable Footer email (See Contact Section)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "footer-address-enable",
+        "label": "Enable Footer address",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Footer HTML"
+      },
+      {
+        "type": "textarea",
+        "id": "footer-html",
+        "label": "Footer HTML"
+      },
+      {
+        "type": "header",
+        "content": "Footer Navigation"
+      },
+      {
+        "type": "paragraph",
+        "content": "To create a menu go to The online Store - Navigation menu or \/admin\/links to create new list."
+      },
+      {
+        "type": "link_list",
+        "id": "footer-menu-products",
+        "label": "Footer Products Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer-menu-support",
+        "label": "Footer Support Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer-menu-about",
+        "label": "Footer About Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer-menu-communication",
+        "label": "Footer Communication Menu"
+      }
     ]
   },
   {
@@ -1409,154 +1544,153 @@
   {
     "name": "Money",
     "settings": [
-        {
-            "type" : "header",
-            "content" : "Payment Types"
-        },
-        {
-            "type" : "checkbox",
-            "id" : "money-payment-visa",
-            "label" : "Use Visa",
-            "default" : true
-        },
-         {
-            "type" : "checkbox",
-            "id" : "money-payment-mastercard",
-            "label" : "Use Mastercard",
-            "default" : true
-        },
-        {
-            "type" : "checkbox",
-            "id" : "money-payment-amex",
-            "label" : "Use Amex",
-            "default" : true
-        },
-         {
-            "type" : "checkbox",
-            "id" : "money-payment-discover",
-            "label" : "Use Discover",
-            "default" : true
-        },
-        {
-            "type" : "checkbox",
-            "id" : "money-payment-paypal",
-            "label" : "Use PayPal",
-            "default" : true
-        },
-         {
-            "type" : "checkbox",
-            "id" : "money-payment-google",
-            "label" : "Use Google ",
-            "default" : true
-        }   
-        
+      {
+        "type": "header",
+        "content": "Payment Types"
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-visa",
+        "label": "Use Visa",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-mastercard",
+        "label": "Use Mastercard",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-amex",
+        "label": "Use Amex",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-discover",
+        "label": "Use Discover",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-paypal",
+        "label": "Use PayPal",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "money-payment-google",
+        "label": "Use Google ",
+        "default": true
+      }
     ]
   },
   {
     "name": "Social",
     "settings": [
-    {
-      "type": "text",
-      "id": "social-links-facebook",
-      "label": "Facebook"
-    },
-    {
-      "type": "text",
-      "id": "social-links-flickr",
-      "label": "Flickr"
-    },    
-    {
-      "type": "text",
-      "id": "social-links-google-plus",
-      "label": "Google+"
-    },
-    {
-      "type": "text",
-      "id": "social-links-instagram",
-      "label": "Instagram"
-    },
-    {
-      "type": "text",
-      "id": "social-links-linkedin",
-      "label": "LinkedIn"
-    },
-    {
-      "type": "text",
-      "id": "social-links-pinterest",
-      "label": "Pinterest"
-    },
-    {
-      "type": "blog",
-      "id": "social-links-rss",
-      "label": "RSS"
-    },    
-    {
-      "type": "text",
-      "id": "social-links-twitter",
-      "label": "Twitter"
-    },     
-    {
-      "type": "text",
-      "id": "social-links-youtube",
-      "label": "YouTube"
-    }, 
-    {
-      "type": "header",
-      "content": "News Letter"
-    },
-    {
-      "type": "select",
-      "id": "social-newsletter-platform",
-      "label": "Newsletter platform",
-      "options": [
-        {
-          "value": "shopify",
-          "label": "Shopify"
-        },
-        {
-          "value": "campaign-monitor",
-          "label": "Campaign Monitor"
-        },
-        {
-          "value": "mailchimp",
-          "label": "MailChimp"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "id": "social-newsletter-url",
-      "label": "Newsletter Post Url"
-    },
-    {
+      {
+        "type": "text",
+        "id": "social-links-facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social-links-flickr",
+        "label": "Flickr"
+      },
+      {
+        "type": "text",
+        "id": "social-links-google-plus",
+        "label": "Google+"
+      },
+      {
+        "type": "text",
+        "id": "social-links-instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social-links-linkedin",
+        "label": "LinkedIn"
+      },
+      {
+        "type": "text",
+        "id": "social-links-pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "blog",
+        "id": "social-links-rss",
+        "label": "RSS"
+      },
+      {
+        "type": "text",
+        "id": "social-links-twitter",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social-links-youtube",
+        "label": "YouTube"
+      },
+      {
+        "type": "header",
+        "content": "News Letter"
+      },
+      {
+        "type": "select",
+        "id": "social-newsletter-platform",
+        "label": "Newsletter platform",
+        "options": [
+          {
+            "value": "shopify",
+            "label": "Shopify"
+          },
+          {
+            "value": "campaign-monitor",
+            "label": "Campaign Monitor"
+          },
+          {
+            "value": "mailchimp",
+            "label": "MailChimp"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "social-newsletter-url",
+        "label": "Newsletter Post Url"
+      },
+      {
         "type": "text",
         "id": "social-newsletter-email",
         "label": "Newsletter Email Field (name attribute)"
-    },      
-    {
+      },
+      {
         "type": "text",
         "id": "social-newsletter-name",
         "label": "Newsletter Name Field (name attribute)"
-    },      
-    {
+      },
+      {
         "type": "text",
         "id": "social-newsletter-firstname",
         "label": "Newsletter First Name Field (name attribute)"
-    },      
-    {
+      },
+      {
         "type": "text",
         "id": "social-newsletter-lastname",
         "label": "Newsletter Last Name Field (name attribute)"
-    },
-    {
-      "type": "header",
-      "content": "Footer Form Auto Reply Text"
-    },   
-    {
+      },
+      {
+        "type": "header",
+        "content": "Footer Form Auto Reply Text"
+      },
+      {
         "type": "textarea",
         "id": "social-newsletter-autoreply",
         "label": "Footer Form Auto Reply Text"
-    } 
+      }
     ]
   },
   {

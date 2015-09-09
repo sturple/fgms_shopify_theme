@@ -1,36 +1,13 @@
+
 {% include 'contact_variables' %}
-{% if template contains 'index'    %}
-	{% if settings.layout-home-carousel-bar-enable %}
-	<div class="feature-carousel" >
-		<div class="container">
-			<div class="column-wrapper">
-				{% include 'featured-carousel' 	hide_title : false
-												title : collections[settings.layout-home-carousel-bar-collection].title
-												list : collections[settings.layout-home-carousel-bar-collection] %}												
-			</div>
-		</div>				
-	</div>
-	{%endif%}
-{% else %}
-	{% if settings.layout-secondary-carousel-bar-enable %}
-	<div class="feature-carousel" >
-		<div class="container">
-			<div class="column-wrapper">
-				{% include 'featured-carousel' 	hide_title :false
-												title : collections[settings.layout-home-carousel-bar-collection].title
-												list : collections[settings.layout-secondary-carousel-bar-collection] %}												
-			</div>
-		</div>				
-	</div>
-	{%endif%}
-{%endif%}
 <div id="footer-wrapper">
 	<div class="container">
 		<div class="column-wrapper">
             <div class="row">
                 <!-- left side of footer -->
                 <div class="col-lg-8 col-lg-push-4 col-md-7 col-md-push-5 col-sm-6 col-sm-push-6" >
-                    <div class="footer-content-wrapper">                        
+                    <div class="footer-content-wrapper">
+                        
 						<div class="row" >
 							<div class="col-lg-8">
 								<div class="nav-column-wrapper hidden-xs">
@@ -56,24 +33,6 @@
 											{% endif%}
                                         </div>
 									</div>
-									<div class="footer-phone-wrapper" style="padding-top: 4px;">
-										{%if settings.footer-phone-enable %}<span class="footer-phone">{{settings.contact-phone}}</span>{%endif%}   
-										{%if settings.footer-toll-enable and settings.footer-phone-enable %}<span class="seperator">|</span>{%endif%}
-										{%if settings.footer-toll-enable %}<span class="footer-phone toll-free"><span>{{'general.toll-free' | t}}: </span>{{settings.contact-toll}}</span>{%endif%}
-																   
-									</div>
-									{%if settings.footer-email-enable %}
-										<div class="footer-email">
-											<span>{{'general.email' | t}}: </span>
-											{% include 'utility'  type: 'email' email: settings.contact-email-footer %}
-										</div>
-									{%endif%}							
-									<div class="footer-address">
-										{%if settings.footer-address-enable %}
-											<div>{{shop.address.street}} {{shop.address.city}}, {{shop.address.province_code}}, {{shop.address.country}} {{shop.address.zip}}</div>						
-											
-										{%endif%}
-									</div>									
 									{% include 'social-icons' %}  	
 								</div>
 							</div>
@@ -87,10 +46,12 @@
                                               {% if settings.money-payment-amex %}<li><img src="{{ 'amex.png' | asset_url }}" alt="American Express"></li>{% endif %}
                                               {% if settings.money-payment-discover %}<li><img src="{{ 'discover.png' | asset_url }}" alt="Discover Card"></li>{% endif %}
                                               {% if settings.money-payment-paypal %}<li><img src="{{ 'paypal.png' | asset_url }}" alt="PayPal" style="margin-right: 0"></li>{% endif %}
-                                              {% if settings.money-payment-google %}<li><img src="{{ 'google.png' | asset_url }}" alt="Google Checkout"></li>{% endif %}                                              
+                                              {% if settings.money-payment-google %}<li><img src="{{ 'google.png' | asset_url }}" alt="Google Checkout"></li>{% endif %}
+                                              
                                             </ul>                                            
                                         </div>
-										<div class="clearfix" style="clear: both;"></div>
+
+                                        <div class="clearfix" style="clear: both;"></div>
 										<div>
 											<div class="pull-left hidden-xs" style="width: 62%;font-size: 10px;line-height: 1.3em;padding-right: 8px;">{{'general.online-payments-processed-by-shopify' |t}}</div>
 											<div class="shopify-icon " style=""><img style=" max-width: 77px;" src="{{ 'shopify.png' | asset_url}}" alt="Shopify" /></div>
@@ -98,13 +59,35 @@
 										</div>										
 									</div>						
 									<div>
-										<div class="special-notes-text" style=""></div>										
+										<div class="special-notes-text" style="">										
+											
+										
+										</div>
+										
 									</div>										
-								</div>							
+								</div>
+							
 							</div>
-						</div> 
+						</div>                        
+  
+                        
                         {%if settings.footer-html.size > 0 %}<div class="footer-text-wrapper">{{settings.footer-html}}</div>{%endif%}
-                    </div>
+                        
+
+
+
+                        
+                                              
+                    
+                        
+                        <div class="row copyright" >
+                           <div class="col-md-12" >
+ 								{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}
+                               &copy; {{'general.copyright' |t}}  2015 {% if todayDate != '2015' %}- {{todayDate}}{%endif%}  {{shop.name}} <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com">Fifth Gear</a>
+                          </div>
+                       </div>                        
+                    </div>             
+                    
                 </div>
                 <!-- right side of footer -->
                 <div class="col-lg-4 col-lg-pull-8 col-md-5 col-md-pull-7 col-sm-6 col-sm-pull-6" >
@@ -115,13 +98,33 @@
                                     <img src="{{'branding-footer-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-footer-logo-icon-class}} "  />		        
                                 </a>
                             </div>
-							<h3 style="text-align: left; padding-top: 14px;">Connect with Us:</h3>
-
-                            <div style="text-align: left;" class="hidden-xs">
+                            <div class="footer-address">
+                                {%if settings.footer-address-enable %}
+                                    <div>{{shop.address.street}}</div>
+                                    <div>{{shop.address.city}}, {{shop.address.province}}</div>
+                                    <div>{{shop.address.country}}, {{shop.address.zip}}</div>
+                                    
+                                {%endif%}
+                            </div>
+                            <div>
+                                {%if settings.footer-phone-enable %}<span class="footer-phone">{{settings.contact-phone}}</span>{%endif%}   
+                                {%if settings.footer-toll-enable and settings.footer-phone-enable %}<span class="seperator">|</span>{%endif%}
+                                {%if settings.footer-toll-enable %}<span class="footer-phone toll-free"><span>{{'general.toll-free' | t}}: </span>{{settings.contact-toll}}</span>{%endif%}
+                                                           
+                            </div>
+                            {%if settings.footer-email-enable %}
+                                <div class="footer-email">
+                                    <span>{{'general.email' | t}}: </span>
+                                    {% include 'utility'  type: 'email' email: settings.contact-email-footer %}
+                                </div>
+                            {%endif%}
+                            <div style="padding-top: 24px; text-align: left;" class="hidden-xs">
                                 {% include 'forms' formType : 'contact_compact' ph_flag : true labelClass : 'sr-only' controlClass : 'col-sm-12' %}
                             </div>
-                            <div style="text-align: left;font-size: 0.8em;"> <a class="footer-privacy-policy"  href="{{pages.privacy-policy.url}}">{{'general.privacy-policy' |t}}</a></div>
-                         </div>
+                            <div><a class="footer-privacy-policy" href="{{pages.privacy-policy.url}}">{{'general.privacy-policy' |t}}</a></div>
+                            
+                            
+                        </div>
                     </div>                
                 </div>               
             </div>

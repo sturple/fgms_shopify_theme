@@ -1,0 +1,60 @@
+<div class="reachUsDirectInfo {% if page.handle == 'contact-us'%}contact-page{%endif%}"  itemscope itemtype="http://schema.org/Organization"> 
+	<{{heading | default: 'h3'}} style="padding-top: 0;"     itemscope itemtype="http://schema.org/corporation" itemprop="name">{{shop.name}}</{{heading | default: 'h3'}}> 
+	<div style=" " class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+	<table class="table" cellspacing="0" cellpadding="0" width="100%"  style="margin-bottom: 0;" >
+		<tbody >
+			{%if settings.footer-toll-enable %}
+			<tr>
+				<td >{{'general.toll-free-short' | t}}</td>
+				<td itemprop="telephone">{{settings.contact-toll}}</td>
+			</tr>
+			{% endif %}
+			{%if settings.footer-phone-enable %}
+			<tr>
+				<td>{{'general.phone-short' | t}}</td>
+				<td itemprop="telephone">{{settings.contact-phone}}</td>
+			</tr>
+			{%endif%} 
+			{%if settings.footer-email-enable %}
+			<tr>
+				<td >{{'general.email-short' | t}}</td>
+				<td itemprop="email">{% include 'utility'  type: 'email' email: settings.contact-email-footer %}</td>
+			</tr>
+			{%endif%}
+			
+			{% if page.handle != 'contact'%}
+			<tr>
+				<td >Online</td>
+				<td><a  href="/pages/contact-us#general" >Send a Message</a></td>
+			</tr>
+			{%endif%}
+			
+			<tr>
+				
+				<td colspan="2" >
+					<div  itemprop="streetAddress">
+						<div>{{shop.address.street}}</div>						
+					</div>
+					<div><span  itemprop="addressLocality">{{shop.address.city}}, </span><span itemprop="addressRegion"> {{shop.address.province_code}}</span> </div>					
+					<div ><span itemprop="addressCountry">{{shop.address.country}} </span>&nbsp;&nbsp;  <span itemprop="postalCode">{{shop.address.zip}}</span></div>
+					<div style="font-size: 0.9em; padding-top: 12px;">
+						<a  href="{{settings.contact-map-directions}}" target="blank">Get  Directions</a>
+						
+					</div>
+				</td>
+			</tr>
+			{%if settings.contact-office-hours != blank %}
+			<tr>
+				
+				<td colspan="2" itemprop="department">					
+					{{settings.contact-office-hours}}
+				</td>				
+			</tr>
+			{%endif%}
+	  
+		</tbody>
+	</table>   
+	</div>
+</div>
+
+ 						

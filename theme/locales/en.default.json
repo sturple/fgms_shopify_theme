@@ -1,166 +1,161 @@
 {
-    "general" : {
-        "about-us" : "About Us",
-        "cancel" : "Cancel",
-        "click-here" : "click here",
-        "create" : "Create",
-        "communications" : "Communications",
-        "copyright" : "Copyright",
-        "date" : "date",
-        "email" : "Email",
-        "footer-form-title" : "Quick Message",
-        "item" : "item",
-        "no" : "No",
-        "online-payments-processed-by-shopify" : "Online payments processed securely by Shopify",
-        "or" : "or",        
-        "placed-on" : "Placed on",
-        "phone" : "Phone",
-        "privacy-policy" : "Privacy Policy",
-        "products" : "Products",
-        "shipping" : "Shipping",
-        "send" : "Send",        
-        "sign-in" : "Sign In",
-        "site-developed-by" : "Site developed by",
-        "submit" : "Submit",        
-        "subtotal" : "Subtotal",
-        "support" : "Support",
-        "tax" : "Tax",       
-        "total" : "Total",
-        "toll-free" : "Toll-free",
-        "yes" : "Yes"
-
-
+  "general": {
+    "about-us": "About Us",
+    "cancel": "Cancel",
+    "click-here": "click here",
+    "create": "Create",
+    "communications": "Communications",
+    "copyright": "Copyright",
+    "date": "date",
+    "email": "Email",
+    "email-short" : "E:",
+    "footer-form-title": "Quick Message",
+    "item": "item",
+    "no": "No",
+    "online-payments-processed-by-shopify": "Online payments processed securely by Shopify",
+    "or": "or",
+    "placed-on": "Placed on",
+    "phone": "Phone",
+    "phone-short":"P:",
+    "privacy-policy": "Privacy Policy",
+    "products": "Products",
+    "shipping": "Shipping",
+    "send": "Send",
+    "sign-in": "Sign In",
+    "site-developed-by": "Site developed by", 
+    "submit": "Submit",
+    "subtotal": "Subtotal",
+    "support": "Support",
+    "tax": "Tax",
+    "total": "Total",
+    "toll-free": "Toll-free",
+    "toll-free-short" : "T:",
+    "yes": "Yes"
+    
+  },
+  "accounts": {
+    "account": "Account",
+    "activate-account": "Activate Account",
+    "add-new-address": "Add New Address",
+    "add-address": "Add Address",
+    "address-settings": "Customer Addresses",
+    "address-delete": "Delete",
+    "billing-address": "Billing Address",
+    "create-account": "Create Account",
+    "create-password-text": "Create your password below to activate your account.",
+    "decline-invitation": "Decline Invitation",
+    "enter-new-password": "Enter a new password for",
+    "navbar-welcome-note": "Welcome, {{ first_name }}!",
+    "register": "Register an account",
+    "login": "Login",
+    "login-in-error-message": "It looks like you dont have an account with the credentials you have provided. Please try again.  If you have forgotten your password,",
+    "logout": "Logout",
+    "your-cart": "Your Cart",
+    "join": "Join",
+    "your-account": "Your Account",
+    "default-address": "Default Address",
+    "manage-addresses": "Manage Addresses",
+    "shipping-address": "Shipping Address",
+    "return-to-account-page": "Return to Account page",
+    "you-havent-placed-any-orders-yet": "You haven't placed any orders yet.",
+    "order": "Order",
+    "payment-status": "Payment Status",
+    "fulfillment-status": "Fulfillment Status",
+    "update-address": "Update Address",
+    "intro-text": "You can add new addresses by clicking on the Add New Adress button , or manage existing Addresses",
+    "password-reset": "Reset Password",
+    "password-forgot": "Forgot your password?",
+    "password-reset-junk-email": "If you don't receive a message in the next 5 minutes, please check your junk mail folder.",
+    "password-reset-text": "Forgot your password? No problem.  Submit the email address associated with your account below.  We'll send you a message with a special link to reset your password."
+  },
+  "forms": {
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "company": "Company",
+    "email": "Email",
+    "errors": {
+      "password": "Password is required",
+      "email": "Email is required"
     },
-    "accounts": {
-        "account" : "Account",
-        "activate-account" : "Activate Account",        
-        "add-new-address" : "Add New Address",
-        "add-address" : "Add Address",
-        "address-settings" : "Customer Addresses",
-        "address-delete" : "Delete",
-        "billing-address" : "Billing Address",           
-        "create-account" : "Create Account",
-        "create-password-text" : "Create your password below to activate your account.",
-        "decline-invitation" : "Decline Invitation",
-        "enter-new-password" : "Enter a new password for",
-     
-        "navbar-welcome-note": "Welcome, {{ first_name }}!",
-        "register": "Register an account",
-        "login": "Login",
-        "login-in-error-message" : "It looks like you dont have an account with the credentials you have provided. Please try again.  If you have forgotten your password,",
-        "logout": "Logout",
-        "your-cart" : "Your Cart",
-        "join" : "Join",      
-        "your-account" : "Your Account",        
-        "default-address" : "Default Address",
-        "manage-addresses" : "Manage Addresses",
-        "shipping-address" : "Shipping Address",
-        "return-to-account-page" : "Return to Account page",
-        "you-havent-placed-any-orders-yet" : "You haven't placed any orders yet.",
-        "order" : "Order",
-        "payment-status" : "Payment Status",
-        "fulfillment-status" : "Fulfillment Status",
-        "update-address" :"Update Address",
-        "intro-text" : "You can add new addresses by clicking on the Add New Adress button , or manage existing Addresses",
-        "password-reset" : "Reset Password",
-        "password-forgot" : "Forgot your password?",
-        "password-reset-junk-email" : "If you don't receive a message in the next 5 minutes, please check your junk mail folder.",
-        "password-reset-text" : "Forgot your password? No problem.  Submit the email address associated with your account below.  We'll send you a message with a special link to reset your password."
-       
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "login-details": "Login Details",
+    "message": "Message",
+    "name": "Name",
+    "password": "Password",
+    "password-confirm": "Password Confirmation",
+    "phone": "Phone",
+    "province": "Province \/ State",
+    "set-as-default-address": "Set as Default Address?",
+    "subscribe-elist": "Subscribe to email list?",
+    "subscribe-elist-short": "Add to email list?",
+    "zip": "Postal \/ Zip"
+  },
+  "currency": {
+    "all-prices-in": "All prices in"
+  },
+  "navigation": {
+    "search": {
+      "search-form-placeholder": "Search",
+      "search-form-button": "Search"
     },
-    "forms" : {
-        "address" : "Address",        
-        "city" : "City",
-        "country" : "Country",
-        "company" : "Company",
-        "email" : "Email",
-        "errors" : {
-            "password" : "Password is required",
-            "email" : "Email is required"             
-        },
-        "first-name" : "First Name",
-        "last-name" : "Last Name",        
-        "login-details" : "Login Details",
-        "message" : "Message",
-        "name" : "Name",
-        "password" : "Password",
-        "password-confirm" : "Password Confirmation",
-        "phone" : "Phone",        
-        "province" : "Province / State",
-        "set-as-default-address" : "Set as Default Address?",
-        "subscribe-elist" : "Subscribe to email list?",
-        "subscribe-elist-short" : "Add to email list?",
-        "zip" : "Postal / Zip"
-
-        
-       
+    "tags": {
+      "filtered-by-tags": "Filtered by",
+      "sidebar-tag-filter-title": "Filter"
     },
-    "currency": {
-        "all-prices-in": "All prices in"
-    },
-    "navigation": {
-        "search": {
-          "search-form-placeholder": "Search",
-          "search-form-button": "Search"
-        },
-        "tags": {
-          "filtered-by-tags": "Filtered by",
-          "sidebar-tag-filter-title": "Filter"
-        },
-        "links": {          
-            "link-tag-title-attribute": "View {{ link_title }}"
-        }
-    },
-    "products": {
-      
-        "sold-out" : "Sold Out",    
-        "sold-out-details" : "Call us to place a pre-order. You will only be charged when this item arrives and your order has been fulfulled.",
-        "more-on-the-way" : "More are on the way",
-        "type" : "Type",
-        "tags" : "Tag(s)",
-        "sku" : "SKU",
-        "product" : "Product",
-        "price" : "Price",
-        "quantity" : "Quantity",        
-        "vendor" : "Brand",
-        "option" : {
-            "choose-model" : "Choose Model",
-            "value" : "Value"
-        },
-        "messages" : {
-            "message-has-free-shipping" : "Your order now qualifies for FREE shipping to anywhere in the continental USA and Canada. "
-        },
-        "links" : {
-            "add-to-cart" : "Add to Cart",
-            "view-cart" : "View Cart",
-            "view-all-products-tagged" : {  "title" : "View all products tagged"    }   
-             
-        }
-  
-    },
-    "blog": {
-        "sidebar-blog-list-title": "Recent articles"
-    },
-    "carousel": {
-        "product-slide": {
-          "vendor-attribution": "By {{ vendor }}",
-          "call-to-action-button": "View {{ product_title }}"
-        }
-    },
-    "social": {
-        "newsletter": {
-          "sign-up-form-title": "Join our newsletter",
-          "sign-up-form-placeholder": "Your email",
-          "sign-up-form-button": "Subscribe",
-          "sign-up-form-success-message": "Thank you for subscribing to our email newsletter.",
-          "sign-up-form-error-message": "There was an error subscribing to our email newsletter."
-        }
-    },
-    "date_formats": {
-        "short-date": "%d %B %Y",
-        "long-date": "%d %B %Y at %H:%M"
-    },
-    "breadcrumbs" : {
-      
+    "links": {
+      "link-tag-title-attribute": "View {{ link_title }}"
     }
+  },
+  "products": {
+    "sold-out": "Sold Out",
+    "sold-out-details": "Call us to place a pre-order. You will only be charged when this item arrives and your order has been fulfulled.",
+    "more-on-the-way": "More are on the way",
+    "type": "Type",
+    "tags": "Tag(s)",
+    "sku": "SKU",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "vendor": "Brand",
+    "option": {
+      "choose-model": "Choose Model",
+      "value": "Value"
+    },
+    "messages": {
+      "message-has-free-shipping": "Your order now qualifies for FREE shipping to anywhere in the continental USA and Canada. "
+    },
+    "links": {
+      "add-to-cart": "Add to Cart",
+      "view-cart": "View Cart",
+      "view-all-products-tagged": {
+        "title": "View all products tagged"
+      }
+    }
+  },
+  "blog": {
+    "sidebar-blog-list-title": "Recent articles"
+  },
+  "carousel": {
+    "product-slide": {
+      "vendor-attribution": "By {{ vendor }}",
+      "call-to-action-button": "View {{ product_title }}"
+    }
+  },
+  "social": {
+    "newsletter": {
+      "sign-up-form-title": "Join our newsletter",
+      "sign-up-form-placeholder": "Your email",
+      "sign-up-form-button": "Subscribe",
+      "sign-up-form-success-message": "Thank you for subscribing to our email newsletter.",
+      "sign-up-form-error-message": "There was an error subscribing to our email newsletter."
+    }
+  },
+  "date_formats": {
+    "short-date": "%d %B %Y",
+    "long-date": "%d %B %Y at %H:%M"
+  },
+  "breadcrumbs": {
+  }
 }

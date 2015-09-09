@@ -2,8 +2,8 @@
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
 		<section id="page-wrap" class="section-wrap">
-				<h1 class="">{{ page_title }}</h1>
-				{{page.content}}
+				<h1 class="">{{ page_title }}</h1>				
+				{% include 'shortcode' load: page.content %}  				
 		</section>
 	</div>
 </div>
