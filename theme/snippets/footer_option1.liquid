@@ -32,12 +32,13 @@
                             <a class="footer-privacy-policy" href="{{pages.privacy-policy.url}}">{{'general.privacy-policy' |t}}</a>
                         </div>
                         
-                        {% include 'social-icons' %}                        
+                        {% include 'social-icons' type: 'sprite' %}                        
                     
-                        <div class="footer-nav">{% include 'navbar' menu_type : 'footer' %}</div>
+                        <div class="footer-nav">{% include 'navbar' type : 'footer' linklist : settings.navigation-linklist-footer %}</div>
                         <div class="row copyright" >
                            <div class="col-md-12" >
-                               &copy; {{'general.copyright' |t}}  2014 - {{'now' | date: "%Y" }} Fifth Gear Marketing <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com">Fifth Gear</a>
+								{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}
+                               &copy; {{'general.copyright' |t}}  2015 {% if todayDate != '2015' %}- {{todayDate}}{%endif%}  {{shop.name}} <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com">Fifth Gear</a>
                            </div>
                        </div>                        
                     </div>             

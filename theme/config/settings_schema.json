@@ -30,6 +30,20 @@
         "id": "branding-footer-logo-image-file.png",
         "label": "Logo image file"
       },
+       {
+        "type": "header",
+        "content": "Modal Logo"
+      },
+      {
+        "type": "text",
+        "id": "branding-modal-logo-icon-class",
+        "label": "Logo icon class"
+      },
+      {
+        "type": "image",
+        "id": "branding-modal-logo-image-file.png",
+        "label": "Logo image file"
+      },     
       {
         "type": "header",
         "content": "Fav Icon"
@@ -1351,7 +1365,16 @@
             "type": "link_list",
             "id": "navigation-linklist-utility",
             "label": "Utility Bar Navigation"
-        }   
+        },
+        {
+            "type": "header",
+            "content": "Footer Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "navigation-linklist-footer",
+            "label": "Footer Navigation"
+        }      
       
     ]
   },
@@ -1596,13 +1619,28 @@
       },
       {
         "type": "text",
+        "id": "social-links-twitter",
+        "label": "Twitter"
+      },
+       {
+        "type": "text",
+        "id": "social-links-google-plus",
+        "label": "Google+"
+      },
+      {
+        "type": "text",
+        "id": "social-links-youtube",
+        "label": "YouTube"
+      },      
+      {
+        "type": "text",
         "id": "social-links-flickr",
         "label": "Flickr"
       },
       {
         "type": "text",
-        "id": "social-links-google-plus",
-        "label": "Google+"
+        "id": "social-links-pinterest",
+        "label": "Pinterest"
       },
       {
         "type": "text",
@@ -1614,26 +1652,14 @@
         "id": "social-links-linkedin",
         "label": "LinkedIn"
       },
+
       {
         "type": "text",
-        "id": "social-links-pinterest",
-        "label": "Pinterest"
-      },
-      {
-        "type": "blog",
         "id": "social-links-rss",
         "label": "RSS"
       },
-      {
-        "type": "text",
-        "id": "social-links-twitter",
-        "label": "Twitter"
-      },
-      {
-        "type": "text",
-        "id": "social-links-youtube",
-        "label": "YouTube"
-      },
+
+
       {
         "type": "header",
         "content": "News Letter"
