@@ -2,19 +2,20 @@
         <li temtype="http://data-vocabulary.org/Breadcrumb" itemscope="itemscope"  class="B_firstCrumb" >
             <a href="/" rel="Home" itemprop="url" class="B_homeCrumb"><span itemprop="title">Home</span></a>
         </li>
+{%comment%}
     {% unless collection.title == blank or collection.title == page_title or template == 'index' or template contains 'collection' %}       
         » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ collection.url }}" rel="{{ collection.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ collection.title }}</span></a></li>
     {% endunless %}
-  
+{%endcomment%}
     {% if blog.title != blank and blog.title != page_title %}
         » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ blog.url }}" rel="{{ blog.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ blog.title }}</span></a></li>
     {% endif %}
     {% if article.title != blank and article.title != page_title %}
         » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ article.url }}" rel="{{ article.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ article.title }}</span></a></li>
     {% endif %}
-    {% if product.title != blank and product.title != page_title %}
+    {% if product.title != blank  and product.collections.first.handle != blank %}
 
-        » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ product.url | within: collection }}" rel="{{ product.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ product.title }}</span></a></li>
+        » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{product.collections.first.url}}" rel="{{ product.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{product.collections.first.title}}</span></a></li>
         
     {% endif %}
     {% if current_tags == blank %}
@@ -30,5 +31,6 @@
         
   {% endif %}
 </ul>
+
 
 

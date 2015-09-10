@@ -607,7 +607,7 @@
         "id": "slide-1-caption",
         "label": "Caption"
       },
-      /*{
+      {
         "type": "checkbox",
         "id": "slide-1-wedding",
         "default": true,
@@ -636,7 +636,7 @@
         "id": "slide-1-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 2"
@@ -651,7 +651,7 @@
         "id": "slide-2-caption",
         "label": "Caption"
       },
-      /*{
+      {
         "type": "checkbox",
         "id": "slide-2-wedding",
         "default": true,
@@ -680,7 +680,7 @@
         "id": "slide-2-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 3"
@@ -695,7 +695,7 @@
         "id": "slide-3-caption",
         "label": "Caption"
       },
-     /* {
+      {
         "type": "checkbox",
         "id": "slide-3-wedding",
         "default": true,
@@ -724,7 +724,7 @@
         "id": "slide-3-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 4"
@@ -739,7 +739,7 @@
         "id": "slide-4-caption",
         "label": "Caption"
       },
-    /*  {
+      {
         "type": "checkbox",
         "id": "slide-4-wedding",
         "default": true,
@@ -768,7 +768,7 @@
         "id": "slide-4-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 5"
@@ -783,7 +783,7 @@
         "id": "slide-5-caption",
         "label": "Caption"
       },
-     /* {
+      {
         "type": "checkbox",
         "id": "slide-5-wedding",
         "default": true,
@@ -812,7 +812,7 @@
         "id": "slide-5-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 6"
@@ -827,7 +827,7 @@
         "id": "slide-6-caption",
         "label": "Caption"
       },
-     /* {
+      {
         "type": "checkbox",
         "id": "slide-6-wedding",
         "default": true,
@@ -856,7 +856,7 @@
         "id": "slide-6-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 7"
@@ -871,7 +871,7 @@
         "id": "slide-7-caption",
         "label": "Caption"
       },
-      /*{
+      {
         "type": "checkbox",
         "id": "slide-7-wedding",
         "default": true,
@@ -900,7 +900,7 @@
         "id": "slide-7-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 8"
@@ -915,7 +915,7 @@
         "id": "slide-8-caption",
         "label": "Caption"
       },
-      /*{
+      {
         "type": "checkbox",
         "id": "slide-8-wedding",
         "default": true,
@@ -944,7 +944,7 @@
         "id": "slide-8-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 9"
@@ -959,7 +959,7 @@
         "id": "slide-9-caption",
         "label": "Caption"
       },
-     /* {
+     {
         "type": "checkbox",
         "id": "slide-9-wedding",
         "default": true,
@@ -988,7 +988,7 @@
         "id": "slide-9-tennis",
         "default": true,
         "label": "+ 'Tennis' Tag to product to display."
-      },*/
+      },
       {
         "type": "header",
         "content": "Slide 10"
@@ -1055,8 +1055,14 @@
     "settings": [
       {
         "type": "header",
-        "content": "--"
+        "content": "Blog"
+      },
+      {
+        "type" : "blog",
+        "id" : "blog-primary",
+        "label" : "Select Primary Blog"
       }
+      
     ]
   },
   {
@@ -1097,8 +1103,13 @@
     "settings": [
       {
         "type": "header",
-        "content": "--"
-      }
+        "content": "Tag Cloud"
+      },
+      {
+        "type": "checkbox",
+        "id": "collection-tag-cloud-enable",
+        "label": "Show Collections Tags"
+      }      
     ]
   },
   {

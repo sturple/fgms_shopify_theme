@@ -75,7 +75,8 @@
 						<div  class="pagination showingNumbers">{{ settings.showingItems }} {{ paginate.current_offset | plus: 1 }}-{% if paginate.next %}{{ paginate.current_offset | plus: paginate.page_size }}{% else %}{{ paginate.items }}{% endif %} of {{ paginate.items }}</div>
 					</div>
 				</div>
-			</div><!-- collectionControlsBottom -->		  
+			</div><!-- collectionControlsBottom -->
+			{% if settings.collection-tag-cloud-enable %}
 			<div class="tag-cloud">
 				<h3 >Tag Cloud</h3>
 				<div  style="margin-bottom: 24px;">You can view all products available at Mission Inn Resort by selecting from the keywords below:</div>
@@ -89,9 +90,10 @@
 					{%endif%}
 				{% endif %}
 				{% endfor %}		
-			</div>	
+			</div>
+		{% endif %}
 		</section><!-- content -->
-
+		
 {% endpaginate %}		
    </div>
 </div>             

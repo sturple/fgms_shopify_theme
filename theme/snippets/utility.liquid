@@ -4,4 +4,112 @@
 		{% assign email_arr = my_str | split: '@' %}		
 		<a href="#" data-prefix="{{email_array[0]}}" data-domain="{{email_array[1]}}">{{email}}</a>
 	{% endif %}
+{% elsif type == 'accordion' %}
+	{% if style == 'navigation'%}
+		{%capture accordion_title %}{{title | html_escape}}{%endcapture%}
+		{%if collection %}
+		{%capture accordion_title %}{% if title %}{{title}}{%else%}{{collections[collection].title | html_escape}}{%endif%}{%endcapture%}
+		{%elsif menu %}
+		{%else%}	
+		{%endif%}	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">
+					{% if link %}
+					<a  href="{{link}}">{{accordion_title}}</a>	
+					
+					{% else %}
+					<a data-toggle="collapse" data-parent="#{{parent}}" href="#accordion-{{accordion_title | handleize }}">{{accordion_title}}</a>
+					{% endif %}
+				</div>
+			</div>
+			{% if menu %}
+			<div id="accordion-{{accordion_title | handleize }}" class="panel-collapse collapse ">
+				  <div class="panel-body">
+					<ul class="nav">
+						{% for link in linklists[{{menu}}].links %}		
+							{% assign index_thumb = link.object.featured_image.src | product_img_url: 'thumb' %}							
+							{% if link.type == 'collection_link' %}
+								{% assign index_thumb = link.object.image.src | img_url: 'thumb' %}
+							{%else%}
+								{% assign index_thumb = link.object.featured_image.src | product_img_url: 'thumb' %}	
+							{%endif%}
+								
+						{% if index_thumb contains 'no-image'%}
+							{% assign index_thumb =  'thumb-photo-coming-soon.png' | asset_url %}
+						{%endif%}					
+						{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
+						<li class="{% if link.active %}activePage{% endif %} menu-scale-hover">
+							<a href="{{ link.url }}">
+								<div class="row">
+									{% if index_thumb.size > 1 %}
+									<div class="col-md-2 hidden-sm hidden-xs">
+										<img class="img-responsive" src="{{index_thumb}}" alt="{{ link.object.images.first.alt | escape }}" />
+									</div>
+									{%endif%}
+									<div class="col-md-10">{{ link.title }}</div>							
+								</div>
+		
+							</a>
+						  {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+						  <ul class="dropdown">
+							{% for l in linklists[child_list_handle].links %}
+							<li{% if l.active %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a> </li>
+							
+							{% endfor %}
+						  </ul><!-- dropdown -->
+						  {% endif %}
+						</li>
+						{% endfor %}				
+					</ul>				
+				  </div>
+			</div>
+			{%elsif collection%}
+			<div id="accordion-{{accordion_title | handleize }}" class="panel-collapse collapse ">
+				  <div class="panel-body">
+					<ul class="nav">
+						{% for product in collections[collection].products %}
+							
+						{% if product.metafields.FGMS.index_thumb.size > 5  %}
+							{% assign index_thumb = product.metafields.FGMS.index_thumb | asset_url %}
+						{% else %}
+							{% assign index_thumb = product.featured_image.src | product_img_url: 'thumb' %}								
+						{% endif %}
+						{% if index_thumb contains 'no-image'%}
+							{% assign index_thumb =  'thumb-photo-coming-soon.png' | asset_url %}
+						{%endif%}									
+						<li class="menu-scale-hover">
+							<a href="{{product.url}}">
+								<div class="row">
+									{% if index_thumb.size > 1 %}
+									<div class="col-md-2 hidden-sm hidden-xs">
+										<img class="img-responsive" src="{{index_thumb}}" alt="{{ product.images.first.alt | escape }}" />
+									</div>
+									{%endif%}
+									<div class="col-md-10">{{ product.title }}</div>							
+								</div>
+		
+							</a>
+						</li>
+						{% endfor %}				
+					</ul>				
+				  </div>
+			</div>	
+			{%else%}
+			{% endif %}
+		
+		</div>	
+	
+	{% else %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="panel-title"><a data-toggle="collapse" data-parent="#{{parent}}" href="#accordion-{{id}}">{{title}}</a></div>
+		</div>
+		<div id="accordion-{{id}}" class="panel-collapse collapse {{in}}">
+			  <div class="panel-body">
+				{{content}}
+			  </div>
+		</div>
+	</div>
+	{% endif %}
 {%endif%}

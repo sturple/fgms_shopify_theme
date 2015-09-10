@@ -2,7 +2,10 @@
 <div class="{% if settings.sidebar-product-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" itemscope itemtype="http://schema.org/Product">
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
-		<h1  itemprop="name"><span>{{ product.title }}</span></h1>
+		<div class="strike-line" style="margin-bottom: 78px;">
+			<h1  itemprop="name"><span>{{ product.title }}</span></h1>
+		</div>
+		
 		<div class="row">
 			<!-- sidebar -->					
 			<div class="{{settings.content-grid-product-sidebar-class}}"  >

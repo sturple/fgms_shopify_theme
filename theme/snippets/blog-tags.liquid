@@ -1,0 +1,4 @@
+{% for tag in blog.all_tags | limit: 12 %}
+<a class="btn btn-default btn-xs" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>								
+{% endfor %}									
+

@@ -1,5 +1,6 @@
 theme/config.yml
 theme/assets/.*
+graphics
 theme/assets/slide-*
 theme/assets/corner-bottom*
 theme/assets/corner-top*

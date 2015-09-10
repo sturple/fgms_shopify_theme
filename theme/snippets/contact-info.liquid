@@ -3,13 +3,13 @@
 	<div style=" " class="address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 	<table class="table" cellspacing="0" cellpadding="0" width="100%"  style="margin-bottom: 0;" >
 		<tbody >
-			{%if settings.footer-toll-enable %}
+			{%if settings.contact-toll != blank %}
 			<tr>
 				<td >{{'general.toll-free-short' | t}}</td>
 				<td itemprop="telephone">{{settings.contact-toll}}</td>
 			</tr>
 			{% endif %}
-			{%if settings.footer-phone-enable %}
+			{%if settings.contact-phone != blank %}
 			<tr>
 				<td>{{'general.phone-short' | t}}</td>
 				<td itemprop="telephone">{{settings.contact-phone}}</td>
@@ -22,9 +22,9 @@
 			</tr>
 			{%endif%}
 			
-			{% if page.handle != 'contact'%}
+			{% if page.handle != 'contact' and page.handle != 'contact-us'%}
 			<tr>
-				<td >Online</td>
+				<td >Online </td>
 				<td><a  href="/pages/contact-us#general" >Send a Message</a></td>
 			</tr>
 			{%endif%}

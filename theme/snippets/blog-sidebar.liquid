@@ -1,0 +1,42 @@
+{% capture contact_info %}{% include "contact-info" heading : 'h4' %}{% endcapture%}
+{% capture blog_latest_posts %}{% include "blog-latest-posts" compact : true  limit : 5 %}{% endcapture%}
+{% capture blog_tags %}{% include "blog-tags" %}{% endcapture%}
+
+<div class="panel-group" id="sidebar-accordion" role="tablist" aria-multiselectable="true">
+	{% include 'utility'	type : 'accordion'
+							style : 'navigation'
+							link : '/'
+							title : 'Home'
+							parent : 'sidebar-accordion'												
+							%} 
+	
+	{% include 'utility'	type : 'accordion'
+							style : 'navigation'
+							link : {{blogs[settings.blog-primary].url}}
+							title : 'Blog Index'
+							parent : 'sidebar-accordion'											
+							%}
+							
+	{% include 'utility'  	type : 'accordion'			
+							title : "Latest Posts"
+							id : 'latest-posts'
+							parent : 'sidebar-accordion'
+							in : 'in'
+							content : {{blog_latest_posts}}
+							%}
+							
+	{% include 'utility'  	type : 'accordion'			
+							title : "Tag Cloud"
+							id : 'tags'
+							parent : 'sidebar-accordion'
+							content : {{blog_tags}}"
+							%}											
+											
+	{% include 'utility'	type : 'accordion'
+							title : "Contact Us"
+							id : 'contact-us'				
+							content : {{contact_info}}
+							parent : 'sidebar-accordion'
+							%}
+
+</div>

@@ -29,7 +29,7 @@
     "tax": "Tax",
     "total": "Total",
     "toll-free": "Toll-free",
-    "toll-free-short" : "T:",
+    "toll-free-short" : "TF:",
     "yes": "Yes"
     
   },
@@ -120,7 +120,7 @@
     "quantity": "Quantity",
     "vendor": "Brand",
     "option": {
-      "choose-model": "Choose Model",
+      "choose-model": "Options Available",
       "value": "Value"
     },
     "messages": {

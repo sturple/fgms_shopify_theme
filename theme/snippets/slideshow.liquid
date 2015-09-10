@@ -24,16 +24,31 @@
 {% endfor %}
 
 <script type="text/javascript">
+{%assign ptags = ''%}
+{%if template contains 'collection' %}
+	{% if collection.handle contains 'spa' %}{%assign ptags = 'spa' %}{%endif%}
+	{% if collection.handle contains 'dining' %}{%assign ptags = 'dining' %}{%endif%}
+	{% if collection.handle contains 'accommodations' %}{%assign ptags = 'golf' %}{%endif%}
+	{% if collection.handle contains 'tennis' %}{%assign ptags = 'tennis' %}{%endif%}
+{% elsif template contains 'product'%}
+	{%capture ptags%}{% for tag in product.tags %}{{tag | downcase}}{%endfor%}{%endcapture%}
+{% else %}
+	
+{% endif %}
+
 	$(function(){
-		var product_tags = '{% for tag in product.tags %}{{tag}} {%endfor%}'
-		console.log('ptags',product_tags);
-		var slideshow_image_count = $('#slideshow').find('img').length;
-		//using 0 as the jquery img:equ uses 0 starting point
-		var slideshow_random = {% if template contains 'index'%}0{%else%}Math.floor( (Math.random() * 10) ){%endif%};
-		if (slideshow_random > 10) { slideshow_random = 0;	}
-		console.log(slideshow_random)
-		var slideshow_image = $('#slideshow').find('img:eq('+ slideshow_random +')');
-		slideshow_image.on('load',function(){$(this).delay(300).fadeIn(800 );});
-		slideshow_image.attr('src', slideshow_image.data('src'));		
+		var product_tags = '{{ptags}}';
+		var $pSelector = $('#slideshow').find('img');
+		var $pSelectorEq = ''; 
+		// means it mus be a product or collections page
+		if (product_tags.length > 0) {	$pSelector = $('#slideshow').find('img[data-'+product_tags+'="true"]');	}
+		var slideshow_image_count = $pSelector.length - 1;				
+		var slideshow_random = {% if template contains 'index'%}0{%else%}Math.floor( (Math.random() * slideshow_image_count) ){%endif%};
+		if (slideshow_random > slideshow_image_count ) { slideshow_random = 0;	}
+		if (product_tags.length > 0) {	$pSelectorEq = $('#slideshow').find('img[data-'+product_tags+'="true"]:eq('+ slideshow_random +')');	}
+		else {	$pSelectorEq = $('#slideshow').find('img:eq('+ slideshow_random +')')	}
+		console.log(product_tags,slideshow_image_count,slideshow_random)
+		$pSelectorEq.on('load',function(){$(this).delay(300).fadeIn(800 );});
+		$pSelectorEq.attr('src', $pSelectorEq.data('src'));		
 	})
 </script>
