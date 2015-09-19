@@ -112,4 +112,53 @@
 		</div>
 	</div>
 	{% endif %}
+{%elsif type == 'vslider'%}
+	<div class="{{class | default : 'col-md-4'}} ">
+		<div class="widget-vertical-slider-wrapper" style="margin-bottom: 0">
+			<a href="{{link}}">
+				<div class="widget-vertical-slider-header"  style="{{style_header | default : 'color: #fff !important; background:#3c527c'}};  ">     
+					<div style="padding: 12px 20px;">
+						<div class="script-vertical-title heading"  >{{title}}</div>
+						<div class="script-vertical-subtitle" >{{subtitle}}</div>
+					</div>
+				</div>
+			</a>
+			<div class="script-vertical-slider-wrapper" style="">
+				<div class="script-vertical-slider-image" ><img src="{{ image | asset_url}}" alt="{{title}}" class="img-responsive"/></div>
+				<div class="script-vertical-slider-slide" style="{{style_slide_opacity}}">
+				  
+					<div class="script-inner-slider " onclick="location.href='{{link}}'" style="position: relative; {{style_slide}}">
+						<div style="position: relative;">
+							<p style="color: #fff;" class="slider-description">{{summary}}</p>
+						</div>         
+					</div>
+					
+					<div class="slider-button" style="position: relative; bottom: 0;">
+						<a href="{{link}}" style="margin-top: 8px; margin-right:8px; padding: 3px 12px;" class="btn btn-primary ">{{'general.learn-more' |t}}</a>
+					</div>   
+				</div>  
+			</div> 
+		</div>
+	</div>
+{% elsif type == 'flipcard'%}
+	<div class="{{class}}">
+		<div class="ImageWrapper {% if format == 'burst'%}ContentWrapperBe{%else%}ContentWrapperH {%endif%} chrome-fix  " style="{{style}}; ">
+			<img class="img-responsive " style="width:100%" src="{{ image | asset_url}}"  alt="{{alt}}">
+			<div class=" {% if format == 'burst'%}ContentBe{%else%}ContentH TBlack {%endif%}" style=" {{style_content}} {% if speed > 0 %}-webkit-transition: all {{speed}}s ease 0s;-moz-transition: all {{speed}}s ease 0s;-ms-transition: all {{speed}}s ease 0s;-o-transition: all {{speed}}s ease 0s;transition: all {{speed}}s ease 0s;{%endif%}">
+				<div class="Content " style="{{style_content}}">
+					<div class="flipcard-inner-wrapper">
+						<div class="flipcard-inner-text">
+							<div class="flipcard-title">{{title}}</div>
+							{% if subtitle.size > 1%}<div class="flipcard-subtitle ">{{subtitle}}</div>{%endif%}						
+							<div class="flipcard-info hidden-xs">{{text}}</div>
+						</div>
+						<div class="flipcard-inner-button">
+							<a class="btn btn-primary" href="{{link}}" >{{'general.learn-more' | t}}</a>
+						</div>			
+					</div>    
+				</div>
+			</div>
+		</div>		
+	</div>
+
 {%endif%}

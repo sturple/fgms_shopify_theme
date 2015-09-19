@@ -13,6 +13,7 @@
 {% if template contains 'reset_password' %}{% assign sidebarEnable = settings.sidebar-reset-enable %}{%endif%}
 {% if template contains 'activate' %}{% assign sidebarEnable = settings.sidebar-activate-enable %}{%endif%}
 {% if template contains '404' %}{% assign sidebarEnable = settings.sidebar-404-enable %}{%endif%}
+{% if template == blank %}{% assign sidebarEnable = settings.sidebar-proxy-enable %}{%endif%}
 
 {% capture body_classes %}
 {% if page.handle != blank %}page-{{ page.handle }} {%endif%} 

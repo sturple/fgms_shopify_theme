@@ -1341,6 +1341,20 @@
       },
       {
         "type": "header",
+        "content": "Proxy Page"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar-proxy-enable",
+        "label": "Proxy Sidebar Enable"
+      },
+      {
+        "type": "snippet",
+        "id": "sidebar-proxy-snippet",
+        "label": "Proxy Sidebar Snippet"
+      },      
+      {
+        "type": "header",
         "content": "404 Page"
       },
       {

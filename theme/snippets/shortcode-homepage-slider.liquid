@@ -1,0 +1,65 @@
+<div class="row home-vertical-sliders" style="padding-top: 24px;">	
+	{% include 'utility'  	type : 'vslider'
+							title : 'Accommodations'
+							subtitle : ''
+							link : '/collections/accommodations-gift-certificates'
+							summary : ''
+							style_header : ''
+							style_slide_opacity : ''
+	
+	%}
+	{% include 'utility'  	type : 'vslider'
+							title : 'Spa'
+							subtitle : ''
+							link : '/collections/spa-gift-certificates'
+							summary : ''
+							style_header : ''
+							style_slide_opacity : ''							
+	
+	%}
+	{% include 'utility'  	type : 'vslider'
+							title : 'Dining'
+							subtitle : ''
+							link : '/collections/dining-gift-certificates'
+							summary : ''
+							style_header : ''
+							style_slide_opacity : ''							
+	
+	%}	
+
+</div>
+<p>Vertical Sliders</p>
+<style>
+	.widget-vertical-slider-header {min-height: 73px;}
+	.script-vertical-slider-slide > div {height: 160px;color: #fff;}
+	.script-vertical-title {font-family: 'Georgia',serif; font-size: 16px; font-size: 1.6rem; font-style: italic; margin-bottom: 6px;}
+	.script-inner-slider {cursor: pointer}
+	.script-vertical-subtitle {font-size: 22px; font-size: 2.2rem; font-weight: normal;}
+	@media screen and (max-width: 1199px) { .script-vertical-slider-slide > div {height: 100px}
+	@media screen and (max-width: 990px) {.script-vertical-slider-slide > div {height: 180px}}
+	@media screen and (max-width: 768px) { }
+	@media screen and (max-width: 480px) {.script-vertical-slider-slide > div {height: 120px} }	
+</style>
+<script type="text/javascript">
+jQuery(function($){
+	    /*script-vertical-slider code hover code*/
+    $('.widget-vertical-slider-wrapper').hover(
+        function() { $(this).find('.script-vertical-slider-slide').stop(true,true).animate({height: '100%'}, {duration: 500, easing:'swing', queue : true})      },
+        function() { $(this).find('.script-vertical-slider-slide').stop(true,true).animate({height: '2%'}, {duration: 300, easing:'swing', queue : true}) }
+    );
+    /* script-vertical-slider click code */
+    $('.script-vertical-slider-wrapper').click(function(){
+         $(this).find('.script-vertical-slider-slide').animate({height: '100%'}, {duration: 500, easing:'swing', queue : true})  
+    });
+    $('.script-vertical-slider-slide').click(function(){
+         $(this).animate({height: '2%'}, {duration: 300, easing:'swing', queue : false})  
+         
+    });  
+    /*adjust all the heights so button is always at bottom*/
+    $('.script-vertical-slider-slide' ).each(function(){
+
+    });
+	$('.script-vertical-slider-slide').animate({height: '2%'}, {duration: 600, easing:'swing', queue : true})
+
+}
+</script>
