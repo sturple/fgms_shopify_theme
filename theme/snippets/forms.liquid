@@ -1,7 +1,9 @@
 {% comment%}<!-- ************************** FORM - CREATE CUSTOMER **************************************** --> {%endcomment%}
 {% if formType == 'create_customer'%}	
 <div class="form-horizontal">
-	{% form 'create_customer' %} 
+	{% form 'create_customer' %}
+				
+		{% include 'form_errors' %}			
 		<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
 			<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
 			<div class="{{ controlClass | default: 'col-md-7'}}">		
@@ -12,7 +14,8 @@
 					   {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  />
 				{% if form.errors contains 'email' %}<div class="error-message  show-error-message ">{{'forms.errors.email' |t}}</div>{% endif %}
 			</div>		
-		</div>	
+		</div>
+		
 		<div class="form-group  {% if form.errors contains 'password' %}has-error{%endif%}" >
 			<label class="control-label {{ labelClass | default: 'col-md-3'}}"   for="login">{{'forms.password' |t}}</label>
 			<div class="{{ controlClass | default: 'col-md-7'}}">
@@ -23,7 +26,8 @@
 					   {% if ph_flag %}placeholder="{{'forms.password' |t}}"{% endif %}  />
 				{% if form.errors contains 'password' %}<div class="error-message  show-error-message ">{{'forms.errors.password' |t}}</div>{% endif %}			
 			</div>		
-		</div>	
+		</div>
+	
 		<div class="form-group">
 			<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="first_name">{{'forms.first-name' | t}}</label>
 			<div class="{{ controlClass | default: 'col-md-7'}}">	
@@ -57,6 +61,7 @@
 {% assign ph_flag = ph_flag | default: true %}
 <div id="{{address_id}}" class="edit_address form-horizontal" style="display:block;">					
 	{% form 'customer_address', address %}
+		{% include 'form_errors' %}	
 		{% if form %}{%assign form_id = form.id %}{% else %}{%assign form_id = 'new' %}{% endif %}
 		<div class="customer_address_table">					  
 			<div class="form-group">
@@ -144,6 +149,7 @@
 	{% capture invalid-login-message %}<p>{{'accounts.login-in-error-message' | t}}
 		<a class="script-toggle-section"  data-parent="#section-login" href="#section-reset" >{{'general.click-here' |t}}</a>{%endcapture%}</p>
 	{% form 'customer_login' %}
+	
 	{{ form.errors | default_errors | replace: "Invalid login credentials",invalid-login-message}}
 	<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
 		<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
@@ -181,7 +187,7 @@
 {% elsif formType == 'recover_customer_password'%}
 <div class="form-horizontal">
 	{% form 'recover_customer_password' %}
-	{{ form.errors | default_errors }}
+	{% include 'form_errors' %}	
 
 	<div class="form-group {% if form.errors contains 'email' %}has-error{%endif%}" >
 		<label class="control-label {{ labelClass | default: 'col-md-3'}} "  for="">{{'forms.email' |t}}</label>
@@ -204,7 +210,7 @@
 {% elsif formType == 'activate_customer_password' or formType == 'reset_customer_password' %}
 <div class="form-horizontal">
 	{% form formType %}
-	{{ form.errors | default_errors }}            
+	{% include 'form_errors' %}	           
 		<div class="form-group {% if form.errors contains 'password' %}has-error{%endif%}" id="password">
 			<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="login">{{'forms.password' |t}}</label>
 		<div class="{{ controlClass | default: 'col-md-7'}}">		
@@ -243,12 +249,21 @@
 </div>
 
 {% elsif formType == 'contact_compact' %}
-{% include 'forms-js' %}
 
 
 <div class="footer-form form-horizontal">
 {% form 'contact' %}
-	
+	{% include 'form_errors' %}
+	 {% if form.posted_successfully? %}
+		<div class="alert " role="alert">
+			{{'forms.message-form-success-part1' | t}} {{shop.name}}. {{'forms.message-form-success-part2' | t}}
+		</div>
+		<script type="text/javascript">
+			jQuery(function($){
+				$('html, body').animate({ scrollTop: $('.alert').offset().top   }, 2000);   
+			});
+		</script>
+	{% else %}
 <!-- CONTACT FORM INPUTS -->
 	<div class="form-group">
 		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormName">{{'forms.name' |t}}</label>
@@ -269,6 +284,7 @@
 			<textarea rows="3" class="form-control" id="contactFormMessage" {% if ph_flag %}placeholder="{{'forms.message' |t}}"{% endif %}  name="contact[body]"></textarea>
 		</div>
 	</div>
+	{% comment %}
     <div class="form-group" >
 		<div class="col-sm-12">
 			<label style="padding-right: 18px;" class="pull-left ">{{'forms.subscribe-elist-short' | t}}</label>
@@ -284,12 +300,14 @@
 			</div>
 		</div>
     </div>
+{% endcomment %}
 	<div class="form-group">
 		<div class="col-sm-12">
 			<input class="btn btn-primary" type="submit" id="contactFormSubmit" value="{{'general.send'|t}}" />
 			
 		</div>		
-	</div>	
+	</div>
+	{% endif %}
 {% endform %}
 </div>
 
@@ -299,7 +317,12 @@
 
 <div class="contact-form form-horizontal">
 {% form 'contact' %}
-	
+	{% include 'form_errors' %}
+	{%if  form.posted_successfully? %}
+		<div class="alert alert-success" role="alert">
+			{{'forms.message-form-success-part1' | t}} {{shop.name}}. {{'forms.message-form-success-part2' | t}}
+		</div>
+	{% else %}	
 <!-- CONTACT FORM INPUTS -->
 	<div class="form-group">
 		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormName">{{'forms.name' |t}}</label>
@@ -343,7 +366,8 @@
 			
 			
 		</div>		
-	</div>	
+	</div>
+	{% endif %}
 {% endform %}
 </div>
 

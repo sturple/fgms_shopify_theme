@@ -1,5 +1,20 @@
 
 {% include 'contact_variables' %}
+	{% if settings.layout-secondary-carousel-bar-enable  %}
+	{% if  template contains 'index'%}
+	{% else%}
+	<div class="feature-carousel" >
+		<div class="container">
+			<div class="column-wrapper">
+				{% include 'featured-carousel' 	hide_title : true
+												snippet : 'shortcode-homepage-flipcard'
+												title : collections[settings.layout-home-carousel-bar-collection].title
+												list : collections[settings.layout-home-carousel-bar-collection] %}												
+			</div>
+		</div>				
+	</div>
+	{%endif%}
+	{%endif%}
 <div id="footer-wrapper">
 	<div class="container">
 		<div class="column-wrapper">
@@ -25,7 +40,7 @@
                         {%endif%}
                         <div class="footer-address">
                         {%if settings.footer-address-enable %}
-                            {{shop.address.summary}}
+                            {{shop.address.summary}}, {{shop.address.zip}}
                             <span class="seperator">|</span>
                             
                         {%endif%}
@@ -47,8 +62,10 @@
                 <!-- right side of footer -->
                 <div class="col-md-5 col-lg-4 visible-lg-block visible-md-block" >
                     <div class="footer-form-content">
+						{% if page.handle != 'contact' and page.handle != 'contact-us'%}
                         <h3>{{ 'general.footer-form-title' | t }}</h3>
                         {% include 'forms' formType : 'contact_compact' ph_flag : true labelClass : 'sr-only' controlClass : 'col-sm-12' %}
+					{% endif %}
                     </div>                
                 </div>               
             </div>

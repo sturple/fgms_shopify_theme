@@ -10,7 +10,10 @@
 						</span>					
 					</div>
 					<nav class="col-md-6">
-						<ul class="nav-utility">
+						<ul class="nav-utility " >
+							<li class="utility-bar-navigation hidden-xs">
+								{% include 'navbar' linklist : settings.navigation-linklist-utility noSubMenu : true %}
+							</li>
 							{% if shop.customer_accounts_enabled %}
 							<li{% if customer %} class="active"{% endif %}>						  
 								{{ '<div class="pull-left"><i class="fa fa-cogs"></i></div>' | customer_login_link }}							

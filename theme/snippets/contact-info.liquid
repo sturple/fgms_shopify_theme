@@ -24,7 +24,7 @@
 			
 			{% if page.handle != 'contact' and page.handle != 'contact-us'%}
 			<tr>
-				<td >Online </td>
+				<td >Online: </td>
 				<td><a  href="/pages/contact-us#general" >Send a Message</a></td>
 			</tr>
 			{%endif%}
@@ -36,7 +36,7 @@
 						<div>{{shop.address.street}}</div>						
 					</div>
 					<div><span  itemprop="addressLocality">{{shop.address.city}}, </span><span itemprop="addressRegion"> {{shop.address.province_code}}</span> </div>					
-					<div ><span itemprop="addressCountry">{{shop.address.country}} </span>&nbsp;&nbsp;  <span itemprop="postalCode">{{shop.address.zip}}</span></div>
+					<div ><span itemprop="postalCode">{{shop.address.zip}}</span>, <span itemprop="addressCountry">{{shop.address.country}} </span>  </div>
 					<div style="font-size: 0.9em; padding-top: 12px;">
 						<a  href="{{settings.contact-map-directions}}" target="blank">Get  Directions</a>
 						

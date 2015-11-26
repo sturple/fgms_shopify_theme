@@ -5,7 +5,7 @@
 		<section id="page-wrap" class="section-wrap">
 				<h1 class="">{{ page_title }}</h1>				
 					<section id="content">
-                    {% paginate blog.articles by settings.paginateArticlesBy %}
+                    {% paginate blog.articles by settings.blog-index-count %}
                         <ul id="blogArticles">
                             {% for article in blog.articles %}
                             <li>                                    

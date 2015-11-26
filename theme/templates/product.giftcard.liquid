@@ -16,6 +16,7 @@
 			<div class="{{settings.content-grid-product-main-class}}">	
 				<div id="productDescription" itemprop="description">			
 <!-- Price ***************************************************** -->
+{% comment %}
 					<div id="productPriceWrapper" class="line-separator-bottom">
 						<div>
 							{% assign variant = product.selected_or_first_available_variant %}											
@@ -25,7 +26,11 @@
 							{% endif %}				
 						</div>				
 					</div>			
-				
+{% endcomment %}
+
+				<div class="line-separator-bottom">
+					<div class="product-details-wrapper"> {% include 'shortcode' load: product.description %}  	</div>
+				</div>
 <!-- Model and Options ***************************************************** -->
 					<div class="product-cart-options">
 						<form  method="post" action="/cart/add" id="add-item-form" name="add-item-form" class="textile" enctype="multipart/form-data">
@@ -84,7 +89,7 @@
 					</div><!-- end of product-cart-options -->
 					<div id="product-status-message"></div>			
 <!-- tabs ***************************************************** -->
-					<div class="product-details-wrapper">{{product.description}}</div>
+					{%comment%}<div class="product-details-wrapper">{{product.description}}</div>{%endcomment%}
 			
 				</div>
 			</div>

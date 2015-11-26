@@ -1,0 +1,73 @@
+{% comment %}
+usage
+{% include 'featured-carousel'	title : {title | default : 'Our Products by Category'}
+								list : {collection or list to show | default: collections}
+								exclude_handle : {pass a handle, and it will exclude this from list}
+									%}	
+{% endcomment %}
+
+{% assign capture_list = {{list | default: collections['featured-products'] }} %}
+{% assign capture_list = capture_list.products%}
+
+
+<div class="featured-carousel  {% if hide_title %}no-title{%endif%}">
+	{% if hide_title %}
+		
+	{%else%}
+		<div class="strike-line carousel-heading single-strike">
+			<h2>{{ title | default: 'Feature Products'}}</h2>
+		</div>		
+	{%endif%}
+		
+
+	<div class="jquery-slick-carousel feature-products animate-scale-hover">
+		{% if snippet %}
+			{% include snippet%}
+		{% else %}
+		{% for element in  capture_list  %}
+			{% if exclude_handle != element.handle  and element.handle != 'product-options' %}
+			<article class=" {% if forloop.last %}lastProduct{% endif %}">
+				<a class="" href="{{ element.url | within: collection }}">	
+					<div>
+										
+						{% if element.metafields.FGMS.index_thumb.size > 5  %}
+							{% assign index_thumb = element.metafields.FGMS.index_thumb | asset_url %}							
+						{% else %}
+							{% if capture_list == collections%}
+								{% if element.image.src.size > 5 %}
+								{% assign index_thumb = element.image.src | img_url: 'medium' %}
+								{% else %}
+								{% assign index_thumb =  'thumb-photo-coming-soon.png' | asset_url %}
+								{% endif %}								
+								
+							{% else %}
+								{% if element.featured_image.src.size > 5 %}
+								{% assign index_thumb = element.featured_image.src | img_url: 'medium' %}
+								{% else %}
+								{% assign index_thumb =  'thumb-photo-coming-soon.png' | asset_url %}
+								{% endif %}										
+							{% endif %}
+	
+						{% endif %}
+						
+	
+						<img class="collectionProductImage" src="{{ index_thumb }}" alt="{{ element.featured_image.alt | escape }}" />
+					
+						</div>
+					</a>
+				<h4 style="margin-bottom: 4px" class=""><a href="{{ element.url | within: collection }}" title="{{ element.title | strip_html | escape }}">{{ element.title }}</a></h4>
+				{% if capture_list != collections%} 
+					{% if element.compare_at_price > element.price %}
+					<span class="collectionProductPrice money">{% if element.price_varies %}{{ settings.fromText }} {% endif %} <span class="sale-price">{{ element.price | money }} <span class="money-unit"></span></span>  <em class="compareAtPrice oldPrice"> {{ element.compare_at_price | money }}</em> </span>
+					{% if element.metafields.FGMS.sale_descriptor %}<div class="product-sale-descriptor carousel">{{element.metafields.FGMS.sale_descriptor}}</div>{%endif%}
+					{% else %}
+					<span class="collectionProductPrice money">{% if element.price_varies %}{{ settings.fromText }} {% endif %}{{ element.price | money }} <span class="money-unit"></span> </span>
+					{% endif %}
+					<span class="collectionArrow icon-angle-right"></span>
+				{% endif %}
+			</article><!-- collectionProduct -->
+			{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div> 
+</div><!-- featuredProducts -->

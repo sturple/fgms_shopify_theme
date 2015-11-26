@@ -1,17 +1,13 @@
-{% comment%}*********** Logic for ajax contact form ********/{% endcomment %}
-{% assign formErrors = false %}
-{% form 'contact' %}
-{% if form.errors or form.posted_successfully? %}
-	{%capture formErrors%}{{ form | json }}{%endcapture%}	
-{% endif %}
-{% endform %}
-{% if formErrors %}{{formErrors}}{% else %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	{% include 'meta' %}  
 	<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />	
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+	
+	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable or true %}{{'slick.scss.css' | asset_url | stylesheet_tag }}{%endif%}	
+	
 	{%comment%}{% endcomment %}
 	{% if settings.layout-header-snippet == 'header_missioninn' %}
 	{{'missioninn.scss.css' | asset_url | stylesheet_tag }}
@@ -22,7 +18,6 @@
 	{{ 'jquery.min.js' | asset_url | script_tag }}
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
 	{{ 'orion-menu.js' | asset_url | script_tag }}
-	
 	{% if template contains 'index' and settings.homepage-youtube-video-enable %}{{ 'jquery.mb.YTPlayer.min.js' | asset_url | script_tag }}{% endif %}
 	
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -35,7 +30,7 @@
     <link href="{{ shop.url }}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
     <script src="{{ shop.url }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
 <![endif]-->
-
+{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable %}{{ 'slick.min.js' | asset_url | script_tag }}{%endif%}
   {% if template contains 'customers' %}
     {{ "shopify_common.js" | shopify_asset_url | script_tag }}
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
@@ -100,7 +95,12 @@
 		$('html, body').animate({scrollTop : $($(this).attr('href')).position().top}, 'slow');
 
 	});
-
+	$('body').on('click','*[data-scroll-target]', function(e){
+		
+		var scrollSelector = $(this).attr('data-scroll-target');
+		$('html, body').animate({ scrollTop: $(scrollSelector).offset().top  }, 1000);
+		//console.log('data scroll', scrollSelector)
+	});
 	$('.script-fixed-header-with-scroll').each(function(){
 		if (window.innerWidth > 768) {
 			$(this).parent().css({height:($(this).outerHeight() + 1)+'px'})
@@ -109,7 +109,9 @@
 		$(this).parent().css({'background-color' : $(this).css('background-color'),'z-index' : '1000'})
 	})
 	var lastWindowTopLocation = $(window).scrollTop();
-	
+	$('.image-magnify-hover').click(function(){
+		$(this).siblings('.product-image-gallery').trigger('click');
+	})	
 	
 	$(window).scroll(function(){
 		var headerBottom = parseFloat($('.script-fixed-header-with-scroll').parent().offset().top) +parseFloat($('.script-fixed-header-with-scroll').parent().height() ) ;		
@@ -154,6 +156,51 @@
 		
 		
 	})
+	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable %}	
+	if ( ($('.jquery-slick-carousel').length > 0 ) && ( $().slick != undefined)){
+		
+		$('.jquery-slick-carousel').slick({
+			dots: true,
+			infinite: true,
+			autoplay : true,
+			speed: 4000,
+			slidesToShow: {{settings.layout-home-carousel-bar-count | default: '3'}},
+			slidesToScroll: 1,
+			responsive: [
+				{
+					breakpoint: 1200,
+					settings: {
+					  slidesToShow: 3,
+					  slidesToScroll: 3,
+					  infinite: true,
+					  dots: true
+					}
+				},
+				{
+					breakpoint: 900,
+					settings: {
+					  slidesToShow: 2,
+					  slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 700,
+					settings: {
+					  slidesToShow: 1,
+					  slidesToScroll: 1
+					}
+				}
+			  
+			]
+		  })
+		//set_clipping_images('.jquery-slick-carousel  article  div',{{settings.layout-home-carousel-bar-item-height | default: '200'}},{{settings.layout-home-carousel-bar-item-width | default: '300'}});
+		$('.animate-scale-hover').css({'visibility': 'visible'});
+		
+	  
+	}
+{% endif %}	
+	
+	
 	{% if template contains 'index' and settings.homepage-youtube-video-enable %}
 		
 		if ($("{{settings.homepage-youtube-video-containment}}").length > 0) {
@@ -496,4 +543,3 @@
   </script>
 </body>
 </html>
-{%endif%}

@@ -4,10 +4,10 @@
 		
 		<section id="register" class="section-wrap">
 			<h1>{{'accounts.create-account' | t}}</h1>
-			{% if customer.email == nil %}
+
 			<h2>{{'forms.login-details' | t}}</h2>
 			{% include 'forms' formType : 'create_customer' %}			  
-			{% endif %}	
+			
 		</section>
 	</div>
 </div>

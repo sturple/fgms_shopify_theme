@@ -9,6 +9,7 @@
     "date": "date",
     "email": "Email",
     "email-short" : "E:",
+    "error-form" : "We could not process the form because of the following errors:",
     "footer-form-title": "Quick Message",
     "item": "item",
     "learn-more" : "Learn More",
@@ -20,6 +21,7 @@
     "phone-short":"P:",
     "privacy-policy": "Privacy Policy",
     "products": "Products",
+    "purchase" : "Purchase",
     "shipping": "Shipping",
     "send": "Send",
     "sign-in": "Sign In",
@@ -35,8 +37,19 @@
     
   },
   "accounts": {
-    "account": "Account",
+    "account": "My Account",
+    "account-setup-text" : "If this is your first time logging in, please click on the Manage Addresses link in the sidebar to add your shipping address for your purchases today.  You can change this information or add additional addresses at any time.",
+    "account-welcome": "Welcome to the",
+    "account-status-text" : "Below you will see the status of any existing orders in our system.",
+    "account-begin-shopping-text" : "If you would like to begin shopping, please use the navigation drop downs to access all the great gift card ideas for services and accommodations at ",
+    "account-cart-text": "If you already have items in your cart, you may continue shopping or choose the check out option to proceed to order processing.",
+    "account-shop" : "Shop",
+    "account-thank-you" : "Thank you,",
+    "account-team" : "Team",
+    
+
     "activate-account": "Activate Account",
+    
     "add-new-address": "Add New Address",
     "add-address": "Add Address",
     "address-settings": "Customer Addresses",
@@ -60,10 +73,11 @@
     "return-to-account-page": "Return to Account page",
     "you-havent-placed-any-orders-yet": "You haven't placed any orders yet.",
     "order": "Order",
+    "your-orders" :"Your Orders",
     "payment-status": "Payment Status",
     "fulfillment-status": "Fulfillment Status",
     "update-address": "Update Address",
-    "intro-text": "You can add new addresses by clicking on the Add New Adress button , or manage existing Addresses",
+    "intro-text": "You can add new addresses by clicking on the Add New Address button below, or manage existing addresses by clicking on the Manage Addresses on the sidebar.",
     "password-reset": "Reset Password",
     "password-forgot": "Forgot your password?",
     "password-reset-junk-email": "If you don't receive a message in the next 5 minutes, please check your junk mail folder.",
@@ -83,6 +97,8 @@
     "last-name": "Last Name",
     "login-details": "Login Details",
     "message": "Message",
+    "message-form-success-part1" : "Thank you for your interest in",
+    "message-form-success-part2" : "Your correspondence has been successfully delivered and you should receive a response within one working day.",
     "name": "Name",
     "password": "Password",
     "password-confirm": "Password Confirmation",
@@ -91,6 +107,7 @@
     "set-as-default-address": "Set as Default Address?",
     "subscribe-elist": "Subscribe to email list?",
     "subscribe-elist-short": "Add to email list?",
+    
     "zip": "Postal \/ Zip"
   },
   "currency": {

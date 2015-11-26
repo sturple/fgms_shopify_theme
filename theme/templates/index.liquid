@@ -4,7 +4,20 @@
 		{% unless settings.homepage-content == blank %}
 			{% assign homepage = pages[settings.homepage-content] %}
 			<div class="strike-line" style="margin: 50px 0 65px;"><h1 class="home-page">{{homepage.title}}</h1></div>			
-			{% include 'shortcode' load: homepage.content %}  
+			{% include 'shortcode' load: homepage.content %}
+			{% if settings.layout-home-carousel-bar-enable  %}
+			{% if  template contains 'index'%}
+
+			<div class="feature-carousel content-carousel" >
+
+						{% include 'featured-carousel' 	hide_title : true
+														snippet : 'shortcode-homepage-flipcard'
+														title : collections[settings.layout-home-carousel-bar-collection].title
+														list : collections[settings.layout-home-carousel-bar-collection] %}												
+					
+			</div>
+			{%endif%}
+			{%endif%}			
 			
 		{% endunless %}			
    </div>

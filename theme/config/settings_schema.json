@@ -1061,8 +1061,41 @@
         "type" : "blog",
         "id" : "blog-primary",
         "label" : "Select Primary Blog"
-      }
-      
+      },
+      {
+        "type" : "select",
+        "id" : "blog-index-count",
+        "label" : "Blog Index Entries / Page",
+        "options" : [
+          {
+            "value" : "1"
+          },          
+          {
+            "value" : "3"
+          },
+          {
+            "value" : "4"
+          },
+          {
+            "value" : "5"
+          },
+          {
+            "value" : "10"
+          },
+          {
+            "value" : "12"
+          },
+          {
+            "value" : "14"
+          },
+          {
+            "value" : "15"
+          },
+          {
+            "value" : "20"
+          }  
+        ]
+      }        
     ]
   },
   {

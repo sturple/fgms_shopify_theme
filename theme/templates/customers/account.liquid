@@ -1,8 +1,18 @@
 <div class="{% if settings.sidebar-account-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
 	<div class="main-col-wrapper  " >
 		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>
-        <h1>{{'accounts.account' | t}}</h1>      
+        <h1>{{'accounts.account' | t}}</h1>
+		<h2>{{'accounts.account-welcome' | t}} {{shop.name}} {{'accounts.account-shop' | t}}.</h2>
+		<p>{{'accounts.account-setup-text' | t}}</p>
+		<p>{{'accounts.account-status-text' | t}}</p>
+		<p>{{'accounts.account-begin-shopping-text' | t}} {{shop.name}}.</p>
+		<p>{{'accounts.account-cart-text' | t}}</p>
+		<p style="margin-bottom: 4px;">{{'accounts.account-thank-you' | t}}</p>
+		<p style="margin-bottom: 24px;">{{shop.name}} {{'accounts.account-team' | t}}.</p>	
+
+		
         {% if customer.orders.size != 0 %}
+			<h2>{{'accounts.your-orders' | t}}</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -26,7 +36,7 @@
             </tbody>
         </table>
         {% else %}
-        <p>{{'accounts.you-havent-placed-any-orders-yet' | t}}</p>          
+           
         {% endif %}
 	</div>
 </div>

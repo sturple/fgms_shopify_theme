@@ -35,9 +35,10 @@
 		{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
 		<li{% if link.active %} class="activePageMain"{% endif %}>
 			<a href="{{ link.url }}">{{ link.title }}
-				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 or link.type == 'collection_link' %}<i class="fa fa-caret-down navigation-arrow"></i>{% endif %}
+				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 or link.type == 'collection_link' and noSubMenu != true  %}<i class="fa fa-caret-down navigation-arrow"></i>{% endif %}
 			</a>
-			{% if link.type == 'collection_link' %}
+			{% if %}
+			{% if link.type == 'collection_link'   %}
 				  <ul class="dropdown">	
 					{% for l in collections[link.object.handle].products %}										
 					<li{% if  l.url == current_url %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
