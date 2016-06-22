@@ -39,7 +39,13 @@
 			<h1 id="pageTitle" class="articleTitle" itemscope="name">{{ article.title }}</h1>
 				
 			<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />	
+			<meta itemprop="headline" content="{{ article.content | strip_html | truncatewords: 90 }}" />
 			
+			{% if  article.image %}
+			<div id="articleImage" style="text-align: center;">
+				<img  itemprop="image" src="{{article | img_url: 'grande' }}" alt="{{article.title}}" />
+			</div>
+			{% endif%}
 					
 			<div id="articleContent" itemprop="articleBody">{% include 'shortcode' load: article.content %}</div><!-- articleContent -->
 			

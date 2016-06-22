@@ -2,24 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% include 'meta' %}  
-	<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />	
+	{% include 'meta' %}
+	<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />
 	{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
-	
-	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable or true %}{{'slick.scss.css' | asset_url | stylesheet_tag }}{%endif%}	
-	
+
+	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable or true %}{{'slick.scss.css' | asset_url | stylesheet_tag }}{%endif%}
+
 	{%comment%}{% endcomment %}
 	{% if settings.layout-header-snippet == 'header_missioninn' %}
 	{{'missioninn.scss.css' | asset_url | stylesheet_tag }}
 	{% else %}
 	{{'styles.scss.css' | asset_url | stylesheet_tag }}
 	{% endif %}
-	{{ 'modernizr.gift-card.js' | asset_url | script_tag }}	
+	{{ 'modernizr.gift-card.js' | asset_url | script_tag }}
 	{{ 'jquery.min.js' | asset_url | script_tag }}
 	{{ 'bootstrap.min.js' | asset_url | script_tag }}
 	{{ 'orion-menu.js' | asset_url | script_tag }}
 	{% if template contains 'index' and settings.homepage-youtube-video-enable %}{{ 'jquery.mb.YTPlayer.min.js' | asset_url | script_tag }}{% endif %}
-	
+
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">google.load('webfont','1');	google.setOnLoadCallback(function(){WebFont.load({	google: {families: {{settings.typography-fonts | default: "['Raleway']"}} }})});</script>
 
@@ -49,7 +49,7 @@
 <!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
 <!--[if !(IE)]><!--> <body class="{% include '__body-classes' %}"> <!--<![endif]-->
 {%include 'modal-privacy'%}
-{% include 'contact_variables' %}	
+{% include 'contact_variables' %}
 
 
 <div id="outer-container">
@@ -57,11 +57,37 @@
     <div class="main-outer-wrapper">
         <div class="container" >
             <div class="column-wrapper main" style="padding-top: 0;">
-									
+
 					<div id="content" class="row">
-						{{ content_for_layout }}				   
-					</div>				
-				
+						{% if template == blank%}
+							{%comment%}This is for proxies{%endcomment%}
+							<div class="{% if settings.sidebar-proxy-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}"  id="main" role="main" >
+								<div class="main-col-wrapper  " >
+									<div >{% include 'breadcrumbs' %}</div>
+									{{ content_for_layout }}
+								</div>
+							</div>
+							{% if settings.sidebar-proxy-enable %}
+							<!-- sidebar -->
+							<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
+								<div  id="sidebar">
+									<div id="sidebar-wrapper">
+										{% if settings.sidebar-proxy-snippet != blank %}
+										{% include settings.sidebar-proxy-snippet %}
+										{%else%}
+										{% include 'warning' type : 'no-sidebar' %}
+										{%endif%}
+									</div>
+								</div>
+							</div>
+							{% endif %}
+
+
+						{% else %}
+							{{ content_for_layout }}
+						{%endif%}				   
+					</div>
+
             </div> <!-- close main wrapper -->
         </div> <!-- close container -->
     </div>
@@ -77,9 +103,9 @@
 	</div>
 	<div id="footer-wrapper-variant" data-ga-category="Footer 2">
 		<div class="container">
-			<div class="column-wrapper"> 
-				{% include 'footer_proximity_rotator' %}                     
-			</div>          
+			<div class="column-wrapper">
+				{% include 'footer_proximity_rotator' %}
+			</div>
 		</div>
 	</div>
 </div>
@@ -89,14 +115,14 @@
 <script type="text/javascript">
 	var menuState = 'init';
 	$(function(){
-		
+
 	/*this is for tab accordions */
 	$('.tab-accordion-header [role="tab"]').on('shown.bs.tab',function(e){
 		$('html, body').animate({scrollTop : $($(this).attr('href')).position().top}, 'slow');
 
 	});
 	$('body').on('click','*[data-scroll-target]', function(e){
-		
+
 		var scrollSelector = $(this).attr('data-scroll-target');
 		$('html, body').animate({ scrollTop: $(scrollSelector).offset().top  }, 1000);
 		//console.log('data scroll', scrollSelector)
@@ -105,60 +131,60 @@
 		if (window.innerWidth > 768) {
 			$(this).parent().css({height:($(this).outerHeight() + 1)+'px'})
 		}
-		
+
 		$(this).parent().css({'background-color' : $(this).css('background-color'),'z-index' : '1000'})
 	})
 	var lastWindowTopLocation = $(window).scrollTop();
 	$('.image-magnify-hover').click(function(){
 		$(this).siblings('.product-image-gallery').trigger('click');
-	})	
-	
+	})
+
 	$(window).scroll(function(){
-		var headerBottom = parseFloat($('.script-fixed-header-with-scroll').parent().offset().top) +parseFloat($('.script-fixed-header-with-scroll').parent().height() ) ;		
+		var headerBottom = parseFloat($('.script-fixed-header-with-scroll').parent().offset().top) +parseFloat($('.script-fixed-header-with-scroll').parent().height() ) ;
 		var st = $(this).scrollTop();
 		var enlarge_buffer = 60;
-		//scrolling down 
+		//scrolling down
 		if (st > lastWindowTopLocation){
-		   // header is still visible 
+		   // header is still visible
 		   if (headerBottom > $(this).scrollTop()) {
-				$('.script-fixed-header-with-scroll').removeClass('show navbar-static-top')							
+				$('.script-fixed-header-with-scroll').removeClass('show navbar-static-top')
 		   }
-		   // header is gone 
+		   // header is gone
 		   else {	$('.script-fixed-header-with-scroll').addClass('navbar-static-top shrink').removeClass('show');	  }
-		
+
 		}
-		///scrolling up 
+		///scrolling up
 		else {
 			//means it is at the top;
 		   if ( ($('.script-fixed-header-with-scroll').parent().offset().top ) >= $(this).scrollTop() ) {
 				$('.script-fixed-header-with-scroll').removeClass('navbar-static-top show')
-			
-		   }		   
+
+		   }
 		   else {		$('.script-fixed-header-with-scroll').addClass('navbar-static-top show');   }
 		   	if ( ($('.script-fixed-header-with-scroll').parent().offset().top + enlarge_buffer ) >= $(this).scrollTop() ) {
 				$('.script-fixed-header-with-scroll').removeClass('shrink')
-			
+
 		   }
-		   
+
 		}
 		lastWindowTopLocation  = st;
 
 	});
-	
-	
+
+
 	$('.script-toggle-section').click(function(){
 		if ($($(this).attr('data-parent')).length > 0) {
 			$($(this).attr('data-parent')).slideUp();
 		}
 		if ($($(this).attr('href')).length > 0) {
 			$($(this).attr('href')).removeClass('hidden').slideDown();
-		}		
-		
-		
+		}
+
+
 	})
-	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable %}	
+	{% if settings.layout-home-carousel-bar-enable  or settings.layout-secondary-carousel-bar-enable %}
 	if ( ($('.jquery-slick-carousel').length > 0 ) && ( $().slick != undefined)){
-		
+
 		$('.jquery-slick-carousel').slick({
 			dots: true,
 			infinite: true,
@@ -190,24 +216,24 @@
 					  slidesToScroll: 1
 					}
 				}
-			  
+
 			]
 		  })
 		//set_clipping_images('.jquery-slick-carousel  article  div',{{settings.layout-home-carousel-bar-item-height | default: '200'}},{{settings.layout-home-carousel-bar-item-width | default: '300'}});
 		$('.animate-scale-hover').css({'visibility': 'visible'});
-		
-	  
+
+
 	}
-{% endif %}	
-	
-	
+{% endif %}
+
+
 	{% if template contains 'index' and settings.homepage-youtube-video-enable %}
-		
+
 		if ($("{{settings.homepage-youtube-video-containment}}").length > 0) {
 
 			//$("{{settings.homepage-youtube-video-containment}}").css({height: ""})
 			$("{{settings.homepage-youtube-video-containment}}").YTPlayer();
-			$("{{settings.homepage-youtube-video-containment}}").YTPApplyFilters({{settings.homepage-youtube-video-filters}});			
+			$("{{settings.homepage-youtube-video-containment}}").YTPApplyFilters({{settings.homepage-youtube-video-filters}});
 		}
 
 	{%endif%}
@@ -243,7 +269,7 @@
 
 		})
 
-		if (activeclass){			
+		if (activeclass){
 			$(tabSelector).slideUp('300',function(){$(tabSelector).removeClass('active in')});
 		}
 
@@ -252,39 +278,39 @@
 		  $('.tab-accordion-header a').each(function(index){
 			var eachTabSelector = $(this).attr('href');
 			if (eachTabSelector == tabSelector){
-				
 
-			   $(eachTabSelector).slideDown('300',function(){	
+
+			   $(eachTabSelector).slideDown('300',function(){
 					$(eachTabSelector).addClass('active in');
 					$(navtabs).find('[href="' + tabSelector + '"]').parent('li').addClass('active');
 					check_for_refresh(tabSelector);
 
 			   });
-			}				  
+			}
 			else {
 			  $(eachTabSelector).slideUp('300',function(){	 $(eachTabSelector).removeClass('active in'); });
-			 
+
 			}
 		  })
 		}
 
-	}); 
-		
+	});
+
 
 
 	//menu
 	$().orion({	animation: 'fading',indicators: true});
-	
+
 	//masking emails from bots
 	$('.mailto, a[data-domain]').each(function(){
 		$(this).attr('href','mailto:'+$(this).attr('data-prefix')+'@'+$(this).attr('data-domain'));
-		if ($(this).text().length < 2){			
+		if ($(this).text().length < 2){
 			$(this).text($(this).attr('data-prefix')+'@'+$(this).attr('data-domain'));
 		}
 	});
 
-		
-		
+
+
 	$('.modal').on('hidden.bs.modal', function() {
     	$(this).removeData('bs.modal');
 	})
@@ -293,50 +319,50 @@
 	    e.preventDefault()
 	    if($(this).parent().prop('tagName')!=='LI')
 	    {
-	
+
 	        $('ul.nav li a[href="' + $(this).attr('href') + '"]').tab('show');
 	        $('html, body').animate({scrollTop: parseInt($('ul.nav li a[href="' + $(this).attr('href') + '"]').offset().top -20)    }, 1000);
-	    }   
+	    }
 	    else
 	    {
 	        $(this).tab('show')
 	    }
-	})	
-			
-		
-		
+	})
+
+
+
 
 	if ($('html').hasClass('no-touch')){
 		$('#outer-container').css('margin-bottom', ($('#map-parallax').innerHeight() -30) + 'px');
 	}
 	if (('{{settings.contact-map-lat}}').length > 0 ) {
-		
+
 		$('#footer-map-wrapper').click(function(){
 			var $mapIcon = $(this).parent().find('.map-loading-icon')
 			$mapIcon.toggle();
 			google.load('maps','3', {other_params : 'sensor=false', callback : function(){
-	
+
 			  if ($('#footer-map-wrapper').length > 0 ) {
 				set_google_map({
-					lat_offset : 0.00, 
-					lng_offset : 0, 
-					map_id : 'footer-map-wrapper',	
+					lat_offset : 0.00,
+					lng_offset : 0,
+					map_id : 'footer-map-wrapper',
 					lat : {{settings.contact-map-lat | default: '0'}},
-					lng : {{settings.contact-map-lng | default: '0'}},	
-					zoom : 9,	
+					lng : {{settings.contact-map-lng | default: '0'}},
+					zoom : 9,
 					map_type : 'TERRAIN', info_window : '<img style="margin-bottom: 4px;" src="{{'contact-map-logo-infobox.gif' | asset_url}}"  alt="{{shop.name}}"/><div style="line-height: 1.3em;">{{shop.address.street}}<br/>{{+shop.address.city}}, {{shop.address.province}},<br/>{{shop.address.country}}, {{shop.address.zip}}</div><div style="padding-bottom: 3px;"><a href="{{settings.contact-map-directions}}" target="_blank">Get Directions</a></div>{%if settings.contact-phone.size > 0 %}<div>Local: <strong>{{settings.contact-phone}}</strong></div>{%endif%}{%if settings.contact-toll.size > 0 %}<div>Toll Free: <strong>{{settings.contact-toll}}</strong></div>{%endif%}'	});
 			  }
-			  
-			  
+
+
 			  $('#footer-map-wrapper').css({'background-image': 'none'}).addClass('google-active');
 			  $mapIcon.toggle(1500)
-						   
-			}});	    
-		}) ;		
-		
-	}		
-		
-		
+
+			}});
+		}) ;
+
+	}
+
+
 	});
 
 
@@ -352,7 +378,7 @@
 		var point = new google.maps.LatLng(map_object.lat, map_object.lng);
 		var clat = map_object.lat - map_object.lat_offset
 		var clng = map_object.lng - map_object.lng_offset
-	   
+
 		var cpoint = new google.maps.LatLng(clat,clng );
 	  //  point = cpoint;
 		var myMapOptions = {
@@ -361,24 +387,24 @@
 				scrollwheel : false,
 				draggable : false,
 				mapTypeId: google.maps.MapTypeId[map_object.map_type]
-			};  
-			
+			};
+
 		/* create the map   */
 		var map;
 		if ($('body').data(map_object.map_id) == undefined)
 		{
-			map = new google.maps.Map(document.getElementById(map_object.map_id),myMapOptions);    
+			map = new google.maps.Map(document.getElementById(map_object.map_id),myMapOptions);
 			$('body').data(map_object.map_id,{map: map, lat : clat, lng : clng });
 		}
 		else
 		{
 			if (($('body').data(map_object.map_id).lat == map_object.lat)  && ($('body').data(map_object.map_id).lng) == map_object.lng  ){return} /* means it is same lat and lng, no need to put point*/
 		}
-	   
-	
+
+
 		/*sets markers*/
-		
-		var marker = new google.maps.Marker({   position: point, 
+
+		var marker = new google.maps.Marker({   position: point,
 												map: $('body').data(map_object.map_id).map,
 												draggable: false,
 												raiseOnDrag: false,
@@ -387,33 +413,33 @@
 															fillColor: '#c45e20',
 															strokeOpacity: 1,
 															strokeColor: '#c45e20',
-															strokeWeight: 2.0, 
+															strokeWeight: 2.0,
 															scale: 3 //pixels
 														}
 												});
 		/* creating info window  */
-		
-	   if (map_object.info_window.length > 2) 
+
+	   if (map_object.info_window.length > 2)
 	   {
 			var myInfoWindowOptions = { content:  map_object.info_window  };
-			var infoWindow = new google.maps.InfoWindow(myInfoWindowOptions);               
-			infoWindow.open($('body').data(map_object.map_id).map,marker);    
+			var infoWindow = new google.maps.InfoWindow(myInfoWindowOptions);
+			infoWindow.open($('body').data(map_object.map_id).map,marker);
 			google.maps.event.addListener(marker, 'click', function() {
 				var latitude = this.position.lat();
 				var longitude = this.position.lng();
 				infoWindow.open($('body').data(map_object.map_id).map,marker)
-			});           
+			});
 	   }
 		if (map_object.link == true) {
 			var link_href = "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q="+map_object.lat+","+map_object.lng+"&sll="+map_object.lat+","+map_object.lng+"&sspn=0.172749,0.4422&ie=UTF8&ll="+map_object.lat+","+map_object.lng+"&spn=0.162818,0.4422&z=11&iwloc=A";
 			$('#' +map_object.map_id).after('<p style="font-size: 12px; padding: 4px 0 12px;">View on <a class="google-map-link" href="' + link_href +'" target="_blank">Google Maps</a>.</p>');
 		}
-	
-		$('body').data(map_object.map_id).map.setCenter(cpoint);    
-		
+
+		$('body').data(map_object.map_id).map.setCenter(cpoint);
+
 	}
 
-	
+
 	function get_parallax_position(pos, adjust, ratio){
 		return ((pos - adjust) * ratio)  ;
 	}
@@ -427,7 +453,7 @@
 		var navOffset = ((menuState == 'sticky' ) || (menuState == 'hide')) ? 98: $('#navigation-wrapper').offset().top
 		var navWrapperBottom = $('#navigation-placeholder-wrapper').outerHeight() +navOffset;
 		var compactNavTrigger = 400;
-	
+
 		//so this means that the menu is now gone to attept sticky state
 	  //   console.log($(window).outerWidth())
 		if (navWrapperBottom < windowTop){
@@ -443,46 +469,46 @@
 					$('#navigation-wrapper').stop(true,false).animate({'filter':'alpha(opacity=100)','opacity' : 1},1000, function(){})
 					//$('.ie #navigation-wrapper').css({'filter':'alpha(opacity=100)','opacity' : 1});
 				}
-	
+
 			}
 			// this means we are in hidden zone so don't show any menu
 			else {
-				
+
 				if ((menuState == 'sticky') || (menuState == 'init')){
 					menuState= 'hide';
 				   $('#navigation-wrapper').stop(true,false).animate({'filter':'alpha(opacity=0)','opacity' : 0},1000, function(){})
 				}
-				
+
 				//$('#navigation-wrapper').css({'filter':'alpha(opacity=0)','opacity' : 0});
 			}
 			//
 		}
 		else {
-		   
+
 			$('#navigation-wrapper').removeClass('has-sticky');
 			$('.remove-for-sticky').css({'display': 'inherit'})
-			//menuState = 'init'; 
+			//menuState = 'init';
 			$('#navigation-wrapper').stop(true,true).css({'filter':'alpha(opacity=100)','opacity' : 1})
 			var headerTop = get_parallax_position(windowTop, 10, 0.5);
 			var logoTop = get_parallax_position(windowTop, 10, 0.32)
 			headerTop = (headerTop < 0) ? 0 : headerTop;
-			logoTop = (logoTop < 0) ? 0 : logoTop;        
+			logoTop = (logoTop < 0) ? 0 : logoTop;
 			$('#logo-wrapper-parallax').css({ top: -logoTop+'px' })    ;
 			$('#navigation-wrapper:not(.has-sticky)').css({ top: headerTop+'px' })    ;
-	
-			
+
+
 		}
-		
-	
-	}	
-	
-	
-	
+
+
+	}
+
+
+
 	{%comment%}
     {% unless current_handle == blank %}
       $('.handle_{{ current_handle }}').parents('.collapse').addClass('in');
     {% endunless %}
-	
+
   	{% if settings.instagram-feed and settings.instagram-client-id != blank %}
   	  if(instagramThumbnailClass === undefined){
     		var instagramThumbnailClass = "{% include '__thumbnail-span' %}";
@@ -493,21 +519,21 @@
   			});
   		});
   	{% endif %}
-  
+
     {% if thumbnail_layout == 'masonry' %}
       var $container = $('.masonry-collection').imagesLoaded(function(){
         $container.isotope({
           itemSelector: '.masonry',
           layoutMode: 'masonry'
         });
-        
+
         $('.product-main-thumb').orderly();
       });
     {% else %}
     	if(uniformThumbnailElements === undefined){
     		var uniformThumbnailElements = '.thumbnail-image a, .product-main-thumb a';
     	}
-	  
+
       var uniformThumbnailsOpts = {};
       {% if settings.thumbnail-alignment != blank %} uniformThumbnailsOpts.align = '{{ settings.thumbnail-alignment }}'; {% endif %}
       {% if settings.thumbnail-ratio != blank %} uniformThumbnailsOpts.ratio = '{{ settings.thumbnail-ratio }}'; {% endif %}
@@ -518,10 +544,10 @@
         $('.row').find('.caption').orderly({ method: 'children' });
       });
     {% endif %}
-    
+
     $(document).ready(function(){
-		
-	
+
+
       $('.search-bar').typeahead({
         name: 'Products',
         local: [{{ typeahead }}]
@@ -529,7 +555,7 @@
         $(this).closest('form').submit();
       });
     });
-	
+
 	{% if settings.ajax-cart %}
 		$(document).ajaxCart();
 	{% endif %}
