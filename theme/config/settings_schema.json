@@ -465,6 +465,116 @@
     ]
   },
   {
+    "name" : "Homepage layout",
+    "settings" :[
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-1",
+        "label": "Section 1"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-2",
+        "label": "Section 2"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-3",
+        "label": "Section 3"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-4",
+        "label": "Section 4"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-5",
+        "label": "Section 5"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-6",
+        "label": "Section 6"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-7",
+        "label": "Section 7"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-8",
+        "label": "Section 8"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-9",
+        "label": "Section 9"
+      },
+      {
+        "type": "snippet",
+        "id": "home-snippet-section-10",
+        "label": "Section 10"
+      }      
+    ]
+  },
+  {
+    "name" : "Page layout",
+    "settings" :[
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-1",
+        "label": "Section 1"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-2",
+        "label": "Section 2"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-3",
+        "label": "Section 3"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-4",
+        "label": "Section 4"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-5",
+        "label": "Section 5"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-6",
+        "label": "Section 6"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-7",
+        "label": "Section 7"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-8",
+        "label": "Section 8"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-9",
+        "label": "Section 9"
+      },
+      {
+        "type": "snippet",
+        "id": "page-snippet-section-10",
+        "label": "Section 10"
+      }      
+    ]
+  },  
+  {
     "name": "Homepage",
     "settings": [
         {
