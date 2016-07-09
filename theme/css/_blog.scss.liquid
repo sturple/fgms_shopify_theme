@@ -1,0 +1,125 @@
+
+
+/********************************************
+ * 	BLOG
+ *******************************************/
+#blogArticles, .media-kit{
+	li {
+		margin-bottom: 24px;
+		padding-bottom: 24px;
+		border-bottom: 1px dotted #ccc;
+		&:last-child {border-bottom: none;}
+	
+		h2 {
+			color: $link-color;
+			margin-bottom: 12px;
+			&:hover {color: $link-color-hover;}
+			padding-top: 0;
+
+		}
+		.blog-index-image-full {			
+					
+			img {
+				width: 100%;
+				max-width: 240px;	
+				margin-bottom: 8px;
+				@include box-shadow(2px 2px 4px rgba(0,0,0,0.15));
+				padding: 10px;				
+				
+			}
+		}
+		.article-date {
+			margin-bottom: 12px;;
+			padding-bottom: 12px;
+			border-bottom: 1px dotted #ccc;
+		}
+		
+	}
+	
+}
+
+.article-blog-post-heading{
+	@include font-size(1.8);
+	color: #827366;		
+	line-height: 2em;
+	padding-top: 30px;
+	
+}
+article {
+	h1.articleTitle#pageTitle{
+		@include font-size(3);
+		background: none;
+		margin-bottom: 26px;
+	}
+	#commentsTitle {margin-top: -18px;}
+	
+	.subtitle {
+		
+		@include font-size(2);
+		margin: -30px 0 32px;
+		
+	}
+	
+	.article-date{
+		@include font-size(1.5);
+		margin-bottom: 12px;
+		
+		
+	}
+	.article-summary {
+		font-style: italic;
+		@include font-size(1.4);
+		
+	}
+	.article-footer {
+		
+		@include font-size(1.4);
+		.btn {margin-bottom: 4px; margin-right: 4px; } 
+		
+	}
+	.learn-more-link {
+		font-style: normal;
+		color: $link-color;
+		&:hover {color: $link-color-hover;}
+		i {
+			margin-left: 4px;
+			@include font-size(2.1);			
+			padding-top: 1px;
+			&:hover {}
+		}
+	}
+	.comment-link {line-height:2.6em;}
+	.articlePostedIn {
+		
+	}
+	#articleContent {
+		margin-bottom: 42px;
+	}
+	
+	.image-framed{
+		margin: 24px 0; 
+		&.center {margin: 24px auto ;}
+		max-width: 560px;
+		img {
+			background-color: #fff;
+			padding: 12px;
+			@include box-shadow(2px 2px 4px rgba(0,0,0,0.15));
+			max-width: 560px;
+			width: 100%;			
+			border: 0;
+		}
+		
+		div {
+			padding: 12px 8px 0;
+			
+			text-align: center;
+			font-size: .85em;
+			font-style: italic;
+		}
+
+	
+	}
+
+	
+
+}

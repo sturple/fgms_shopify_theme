@@ -1,0 +1,129 @@
+
+/*mixins*/
+@mixin transform($time: 0.5s, $easing : ease-in-out, $transform: scale(1)){
+   -webkit-transition: $time $easing;
+   -moz-transition: $time $easing;
+   -o-transition: $time $easing;
+   transition: $time $easing;
+   transform: scale(1.1);   
+   -webkit-transform: $transform;
+   -moz-transform: $transform;
+   -ms-transform: $transform;
+   -o-transform: $transform;   
+}
+
+@mixin opacity($o: 1){
+   -moz-opacity:$o;
+   -khtml-opacity:$o;
+   -webkit-opacity:$o;
+   opacity:$o;
+   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=$o * 100);
+   filter:alpha(opacity=$o*100);  
+}
+
+@mixin transition($duration:0.2s, $ease:ease-out) {
+	-webkit-transition: all $duration $ease;
+	-moz-transition: all $duration $ease;
+	-o-transition: all $duration $ease;
+	transition: all $duration $ease;
+}
+@mixin transition-color($color-time: .3s, $color-easing: linear,$background-time: .3s, $background-easing: linear){
+   -o-transition: color $color-time $color-easing, background $background-time $background-easing;	
+   -webkit-transition: color $color-time $color-easing,background $background-time $background-easing; 
+   -moz-transition: color $color-time $color-easing, background $background-time $background-easing;
+   transition: color $color-time $color-easing, background $background-time $background-easing;    
+}
+
+@mixin transition-color-simple($color-time: .2s, $color-easing: linear){
+   -o-transition: color $color-time $color-easing $color-time;	
+   -webkit-transition: color $color-time $color-easing $color-time; 
+   -moz-transition: color $color-time $color-easing $color-time;
+   transition: color $color-time $color-easing $color-time;    
+}
+
+@mixin transform-scale($scalex:1.1,$scaley:1.1){	
+	transform: scale($scalex, $scaley);
+	-webkit-transform: scale($scalex, $scaley);
+	-moz-transform: scale($scalex, $scaley);
+	-o-transform: scale($scalex, $scaley);
+	-ms-transform: scale($scalex, $scaley);
+}
+@mixin radius($radius: 0){
+     border-radius: $radius; -moz-border-radius: $radius; border-radius: $radius;
+}
+
+@mixin box-shadow($shadows: 0px 2px 59px 0px rgba(0,0,0,0.4) ){
+    -webkit-box-shadow:$shadows ;
+	-moz-box-shadow:  $shadows;
+	box-shadow: $shadows;
+}
+
+@mixin btn-template($color,$background,$padding,$radius,$boxshadow){
+  color: $color !important;  padding: $padding; background-color: $background;  *background-color: $background;   background-image: none;  background-repeat: repeat-x;  border-color: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26387f', endColorstr='#26387f', GradientType=0); filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  @include radius($radius);
+  @include box-shadow($boxshadow);
+  vertical-align: bottom;
+  
+}
+@mixin btn-template-hover($background){
+    background-color: $background ;  *background-color: $background;  border-color: transparent;  @include transition-color(); text-decoration: none !important;
+}
+
+
+@mixin font-size($sizeValue, $percent: 1) {
+  $remValue: $sizeValue * $percent;
+  $pxValue: ($sizeValue * 10 *$percent) ;
+  font-size: $pxValue + px; 
+  font-size: $remValue + rem;
+}
+
+@mixin a-border($color,$color-border, $color-hover, $color-hover-border,$preselector:' ', $pseudo:'') {
+	#{$preselector} a#{$pseudo} {
+		 &, &:visited, &:focus {
+			color: $color;
+			text-decoration: none;
+			border-bottom: 1px solid $color-border;
+			@include transition(0.25s);
+		}
+		&:hover, &:active {
+			color: $color-hover;
+			text-decoration: none;
+			border-bottom: 1px solid $color-hover-border;
+			@include transition(0.75s);
+		}
+	}
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;  
+  -moz-box-ordinal-group: $val;     
+  -ms-flex-order: $val;     
+  -webkit-order: $val;  
+  order: $val;
+}
+
+@mixin background($image:none, $color:#ffffff, $position:center top, $size:auto, $repeat:no-repeat, $attachment: scroll ){
+	background-image: $image;
+	background-color: $color;
+	background-position: $position;
+	background-size: $size;
+	background-repeat: $repeat;
+	background-attachment: $attachment;
+}

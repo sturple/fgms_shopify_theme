@@ -1,3 +1,12 @@
 theme/config.yml
-theme/assets/.jpg
-theme/assets/.gif
+theme/assets/*.jpg
+theme/assets/*.gif
+theme/snippets/template*.liquid
+
+theme/assets/syles-tmp.scss.liquid
+theme/assets/theme.js.liquid
+theme/assets/*.eot
+theme/assets/*.svg
+theme/assets/*.ttf
+theme/assets/*.woff*
+theme/node_modules/
