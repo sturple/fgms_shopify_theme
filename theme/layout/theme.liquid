@@ -1,17 +1,33 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
-		{% include 'meta' %}
+		{% include 'meta' | strip | strip_newlines %}
 		<link rel="shortcut icon" href="{{ 'branding-favicon.png' | asset_url}}" type="image/png" />
 		{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
-		{{'styles.scss.css' | asset_url | stylesheet_tag }}
+		{{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
+		{{ 'theme.scss.css' | asset_url | stylesheet_tag }}
 		{{ 'modernizr.gift-card.js' | asset_url | script_tag }}
 		{{ 'jquery.min.js' | asset_url | script_tag }}
 		{{ 'bootstrap.min.js' | asset_url | script_tag }}
-		{{ 'orion-menu.js' | asset_url | script_tag }}
+		
+		{{ 'javascript.isotope.pkgd.min.js' | asset_url | script_tag }}
+		{%comment%}{{ 'easing.js' | asset_url | script_tag }}{%endcomment%}
+		
+		{{ 'smoothzoom.min.js' | asset_url | script_tag }}
+		{{ 'stickycomponent.min.js' | asset_url | script_tag }}
+		{{ 'wow.min.js' | asset_url  | script_tag }}
+		{{ 'parallax.min.js' | asset_url | script_tag }}
+		
+		{% if template contains 'index' %}		 
+			{{ 'greensock.js' | asset_url | script_tag }}
+			{{ 'layerslider.transitions.js' | asset_url | script_tag }}
+			{{ 'layerslider.kreaturamedia.jquery.js' | asset_url | script_tag }}		
+			{{ 'layerslider.css' | asset_url | stylesheet_tag }}
+			{{ 'skin.css' | asset_url | stylesheet_tag }}		
+		{% endif %}
+		
 		{{ 'script.js' | asset_url | script_tag }}
-	
+		{{ 'theme.js' | asset_url | script_tag }}
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
 	  {% if template contains 'customers' %}
@@ -21,21 +37,24 @@
 	
 	  {{ content_for_header }}
 	</head>
-	<!--[if IE]><body class="{% include '__body-classes' %} ie"> <![endif]-->
-	<!--[if !(IE)]><body class="{% include '__body-classes' %}"> <!--<![endif]-->
-	{%include 'modal-privacy'%}
+	{% capture body_class %}{% include '__body-classes' %}{% endcapture %}
+	{% include 'data-site' %}
+
+	<body class="{{body_class | strip_newlines | strip }}"> 	
 	
-	<div id="outer-container">
-		{% include 'header' %}
-		<div class="main-outer-wrapper">
-			<div id="content" >
-				{% if template == blank%}
-				{% else %}
-					{{ content_for_layout }}
-				{%endif%}				   
+		<div id="outer-container">
+			{% include 'header' %}
+			<div class="main-outer-wrapper">
+				<div id="content" >
+					{% if template == blank%}
+					{% else %}
+						{{ content_for_layout }}
+					{%endif%}				   
+				</div>
 			</div>
+			{% include 'footer' %}
 		</div>
-		{% include 'footer' %}
-	</div>
+		
+	{%include 'modal-privacy'%}
 	</body>
 </html>

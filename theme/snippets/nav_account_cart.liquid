@@ -1,97 +1,45 @@
-<div class="cart-account-wrapper">
-	{% if settings.layout-utility-bar and fullBar  %}
-	<div class="cart-account-bar">
-		<div class="container">
-			<div class="column-wrapper">		
-				<div class="row">
-					<div class="col-md-6">                  
-						<span class="hidden-xs hidden-sm">
-							{% if settings.layout-utility-snippet != blank%}{% include settings.layout-utility-snippet %}{% endif %}
-						</span>					
-					</div>
-					<nav class="col-md-6">
-						<ul class="nav-utility " >
-							<li class="utility-bar-navigation hidden-xs">
-								{% include 'navbar' linklist : settings.navigation-linklist-utility noSubMenu : true %}
-							</li>
-							{% if shop.customer_accounts_enabled %}
-							<li{% if customer %} class="active"{% endif %}>						  
-								{{ '<div class="pull-left"><i class="fa fa-cogs"></i></div>' | customer_login_link }}							
-								
-								<div class="pull-right cart-account-text" >							
-									<div class="heading">{{'accounts.your-account' | t}}</div>
-									<div class="">
-										{% if customer %}
-										<strong>{{ 'accounts.logout' | t | customer_logout_link }}</strong> {{ 'general.or' | t}}
-										<span ><a href="/account" title="Account">{{'accounts.account' | t}}</a></span>								
-										{% else %}
-										<strong>{{ 'accounts.login' | t | customer_login_link }}</strong> {{ 'general.or' | t}}
-										<strong>{{ 'accounts.join' | t | customer_register_link}}</strong>
-										{% endif %}
-									</div>
-								</div>
-								<div class="clearfix" style="clear: both;"></div>
-							</li>					
-							{% endif %}
-							<li >
-								<a href="/cart" >
-									{% if shop.customer_accounts_enabled %}<div class="pull-left" ></div>{% endif %}
-									<div class="pull-left"><i class="fa fa-shopping-cart"></i></div>
-									<div class="pull-right cart-account-text" >
-										<div class="" >{{'accounts.your-cart' | t}}</div>
-										<div  id="cart-bar-your-count" >{{ cart.item_count }} {% if cart.item_count == 1 %}{{'general.item' | t | capitalize  }}{% else %}{{'general.item' | t | capitalize | append: 's' }}{% endif %}  </div>
-									</div>
-									<div class="clearfix" style="clear: both;" ></div>
-								</a>
-							</li>
-							<li class="clearfix" style="clear:both"></li>
-						</ul>
-					</nav>
+
+		                 
+	<div class="section-nav">
+		{% if settings.layout-utility-snippet != blank%}{% include settings.layout-utility-snippet %}{% endif %}
+	</div>
+	<ul class="nav-utility section-account">
+		{% comment %} if customer accounts enabled then show account information {% endcomment %}
+		{% if shop.customer_accounts_enabled  and false %}
+		<li{% if customer %} class="active"{% endif %}>						  
+			{{ '<div class="pull-left"><i class="fa fa-cogs"></i></div>' | customer_login_link }}							
+			
+			<div class="pull-right cart-account-text" >							
+				<div class="heading">{{'accounts.your-account' | t}}</div>
+				<div class="">
+					{% if customer %}
+					<strong>{{ 'accounts.logout' | t | customer_logout_link }}</strong> {{ 'general.or' | t}}
+					<span ><a href="/account" title="Account">{{'accounts.account' | t}}</a></span>								
+					{% else %}
+					<strong>{{ 'accounts.login' | t | customer_login_link }}</strong> {{ 'general.or' | t}}
+					<strong>{{ 'accounts.join' | t | customer_register_link}}</strong>
+					{% endif %}
 				</div>
 			</div>
-		</div>
-	</div>	
-	{% else %}
-	<div class="cart-account-links">
-		<ul class="nav-utility">
-			{% if shop.customer_accounts_enabled %}
-			<li{% if customer %} class="active"{% endif %}>						  
-				{{ '<div class="pull-left"><i class="fa fa-cogs"></i></div>' | customer_login_link }}							
-				
-				<div class="pull-right cart-account-text" >							
-					<div class="heading">{{'accounts.your-account' | t}}</div>
-					<div class="">
-						{% if customer %}
-						<strong>{{ 'accounts.logout' | t | customer_logout_link }}</strong> {{ 'general.or' | t}}
-						<span ><a href="/account" title="Account">{{'accounts.account' | t}}</a></span>								
-						{% else %}
-						<strong>{{ 'accounts.login' | t | customer_login_link }}</strong> {{ 'general.or' | t}}
-						<strong>{{ 'accounts.join' | t | customer_register_link}}</strong>
-						{% endif %}
-					</div>
+			<div class="clearfix" style="clear: both;"></div>
+		</li>					
+		{% endif %}
+	
+		<li >
+			<a href="/cart" >
+				{% if shop.customer_accounts_enabled %}<div class="pull-left" ></div>{% endif %}
+				<div class="pull-left"><i class="fa fa-shopping-cart"></i></div>
+				<div class="pull-right cart-account-text" >
+					<div class="" >{{'accounts.your-cart' | t}} <span  id="cart-bar-your-count" >{{ cart.item_count }} {% if cart.item_count == 1 %}{{'general.item' | t | capitalize  }}{% else %}{{'general.item' | t | capitalize | append: 's' }}{% endif %}  </span></div>
+					
 				</div>
-				<div class="clearfix" style="clear: both;"></div>
-			</li>					
-			{% endif %}
-			<li >
-				<a href="/cart" >
-					{% if shop.customer_accounts_enabled %}<div class="pull-left" ></div>{% endif %}
-					<div class="pull-left">
-						<i class="fa fa-shopping-cart"></i>
-					</div>
-					<div class="pull-right cart-account-text" >
-						<div class="" >{{'accounts.your-cart' | t}}</div>
-						<div  id="cart-links-your-count" >{{ cart.item_count }} {% if cart.item_count == 1 %}{{'general.item' | t | capitalize  }}{% else %}{{'general.item' | t | capitalize | append: 's' }}{% endif %}  </div>
-					</div>
-					<div class="clearfix" style="clear: both;" ></div>
-				</a>
-			</li>
-			<li class="clearfix" style="clear:both"></li>
-		</ul>
-		<div class="clearfix" style="clear: both"></div>	
-	</div>	
-	{% endif %}
-</div>
+				<div class="clearfix" style="clear: both;" ></div>
+			</a>
+		</li>
+		<li class="social-icons" >{% include 'social-icons'  %}</li>
+		<li class="clearfix" style="clear:both"></li>
+	</ul>
+
 
 
 

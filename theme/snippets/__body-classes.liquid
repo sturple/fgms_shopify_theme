@@ -37,5 +37,4 @@ template-{{ template | replace: '.', '-' }}
  {{ thumbnail_layout | prepend: 'thumbnail-layout-' }}
 
 {% unless product.available %} is-sold-out{% endunless %}
-
-{% endcapture %}{{ body_classes | strip_newlines | strip }}
+{% endcapture %}{{ body_classes }}

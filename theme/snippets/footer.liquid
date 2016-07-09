@@ -1,57 +1,72 @@
-<div id="footer-wrapper">
-	<div class="container">
+<div id="footer-wrapper" >
+	<div class="contact-container"
+		 data-parallax="scroll"
+		 data-bleed="0"
+		 data-speed="0"
+		 data-image-src="https://cdn.shopify.com/s/files/1/1334/6905/files/background-footer.jpg?15914333796042654014">
+		<div class="container">
+			<div class="modular">
+				<div class="row">
+					<!-- left side of footer -->
+					<div class="col-md-7 col-lg-8" >
+						<div class="footer-content-wrapper">
+							<div class="footer-logo">
+								<a href="{{settings.main-website}}">
+									<img src="{{'branding-footer-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-footer-logo-icon-class}} "  />		        
+								</a>
+							</div>    
+							
+							{%if settings.footer-html.size > 0 %}<div class="footer-text-wrapper">{{settings.footer-html}}</div>{%endif%}
+							
+							{%if phone_toll %}<div class="footer-phone toll-free"><span>{{'general.toll-free' | t}}: </span>{{phone_toll}}</div>{%endif%}
+							{%if phone_office %}<div class="footer-phone"><span>{{'general.phone' | t}}: </span>{{phone_office}}</div>{%endif%}
+							{%if email_info %}
+								<div class="footer-email">
+									<span>{{'general.email' | t}}: </span>
+									{% include 'utility'  type: 'email' email: email_info %}
+								</div>
+							{%endif%}
+							<div class="footer-address">
+							{%if settings.footer-address-enable %}
+								{{shop.address.summary}}, {{shop.address.zip}}
+								<span class="seperator">|</span>								
+							{%endif%}
+								<a class="footer-privacy-policy" href="{{pages.privacy-policy.url}}">{{'general.privacy-policy' |t}}</a>
+							</div>
+							
+							{% include 'social-icons' iconouter: 'fa-square-o' %}
+						   
+						</div>             
+						
+					</div>
+					<!-- right side of footer -->
+					<div class="col-md-5 col-lg-4 visible-lg-block visible-md-block" >
+						<div class="footer-form-content">
+							{% if page.handle != 'contact' and page.handle != 'contact-us'%}
+							<h3>{{ 'general.footer-form-title' | t }}</h3>
+							{% include 'forms' formType : 'contact_compact' ph_flag : true labelClass : 'sr-only' controlClass : 'col-sm-12' %}
+						{% endif %}
+						</div>                
+					</div>               
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="footer-fake-container"></div>
+	<div class="copyright-container full-wrapper">
 		<div class="modular">
-            <div class="row">
-                <!-- left side of footer -->
-                <div class="col-md-7 col-lg-8" >
-                    <div class="footer-content-wrapper">
-                        <div class="footer-logo">
-                            <a href="{{settings.main-website}}">
-                                <img src="{{'branding-footer-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-footer-logo-icon-class}} "  />		        
-                            </a>
-                        </div>    
-                        
-                        {%if settings.footer-html.size > 0 %}<div class="footer-text-wrapper">{{settings.footer-html}}</div>{%endif%}
-                        
-                        {%if settings.footer-toll-enable %}<div class="footer-phone toll-free"><span>{{'general.toll-free' | t}}: </span>{{settings.contact-toll}}</div>{%endif%}
-                        {%if settings.footer-phone-enable %}<div class="footer-phone"><span>{{'general.phone' | t}}: </span>{{settings.contact-phone}}</div>{%endif%}
-                        {%if settings.footer-email-enable %}
-                            <div class="footer-email">
-                                <span>{{'general.email' | t}}: </span>
-                                {% include 'utility'  type: 'email' email: settings.contact-email-footer %}
-                            </div>
-                        {%endif%}
-                        <div class="footer-address">
-                        {%if settings.footer-address-enable %}
-                            {{shop.address.summary}}, {{shop.address.zip}}
-                            <span class="seperator">|</span>
-                            
-                        {%endif%}
-                            <a class="footer-privacy-policy" href="{{pages.privacy-policy.url}}">{{'general.privacy-policy' |t}}</a>
-                        </div>
-                        
-                        {% include 'social-icons' type: 'sprite' %}                        
-                    
-                        <div class="footer-nav">{% include 'navbar' type : 'footer' linklist : settings.navigation-linklist-footer %}</div>
-                        <div class="row copyright" >
-                           <div class="col-md-12" >
-								{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}
-                               &copy; {{'general.copyright' |t}}  2015 {% if todayDate != '2015' %}- {{todayDate}}{%endif%}  {{shop.name}} <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com">Fifth Gear</a>
-                           </div>
-                       </div>                        
-                    </div>             
-                    
-                </div>
-                <!-- right side of footer -->
-                <div class="col-md-5 col-lg-4 visible-lg-block visible-md-block" >
-                    <div class="footer-form-content">
-						{% if page.handle != 'contact' and page.handle != 'contact-us'%}
-                        <h3>{{ 'general.footer-form-title' | t }}</h3>
-                        {% include 'forms' formType : 'contact_compact' ph_flag : true labelClass : 'sr-only' controlClass : 'col-sm-12' %}
-					{% endif %}
-                    </div>                
-                </div>               
-            </div>
-        </div>
-    </div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="footer-nav">{% include 'navbar' type : 'footer' linklist : settings.navigation-linklist-footer %}</div>
+
+				</div>
+			</div>
+			<div class="row copyright" >
+			   <div class="col-md-12" >
+					{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}
+				   &copy; {{'general.copyright' |t}}  2015 {% if todayDate != '2015' %}- {{todayDate}}{%endif%}  {{shop.name}} <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com">Fifth Gear</a>
+			   </div>
+		   </div> 		
+		</div>
+	</div>
 </div>

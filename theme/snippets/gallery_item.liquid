@@ -1,0 +1,15 @@
+{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{image}}{%endif%}"   title="{{image.title}}" data-caption="{{image.caption}}"{% endcapture %}
+                            <li class="__st_gallery_thumb_item fg-wow zoomIn   " data-wow-offset="20" style="position: relative; display: block; float: left; top: 0; left: 0; padding: 0; margin: 0;">
+                                <a {{attributes}} class="script-gallery-action" data-smoothzoom="gallery">
+                                    <img data-image="{{image}}"  alt="" style="width:100%;"  data-loaded="false" />
+                                    <div class="__st_gallery_overlay" style="position: absolute;top: 0;">
+                                        <div class="gallery-overlay-content">                                    
+                                            <div class="gallery-expander"><i class="fa {% if youtubeid %}fa-youtube-play{%else%}fa-search{%endif%}"></i></div>       
+                                            {% if thumbtext %}
+                                                {% if title %}<div class="gallery-title">{{title}}</div>{%endif%}
+                                                {% if caption%}<div class="gallery-caption">{{caption}}</div>{%endif%}
+                                            {% endif %}
+                                        </div>
+                                    </div>                                                       
+                                </a>
+                            </li>

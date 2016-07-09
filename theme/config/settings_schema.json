@@ -336,20 +336,7 @@
             "id": "layout-utility-snippet",
             "label": "Utility Bar Snippet"
         },      
-        {
-            "type": "header",
-            "content": "Header \/ Footer"
-        },
-        {
-            "type": "snippet",
-            "id": "layout-header-snippet",
-            "label": "Header Snippet"
-        },
-        {
-            "type": "snippet",
-            "id": "layout-footer-snippet",
-            "label": "Footer Snippet"
-        },
+
         {
             "type": "header",
             "content": "Carousel Bar - Home Page"
@@ -1780,6 +1767,11 @@
   {
     "name": "Social",
     "settings": [
+      {
+        "type": "text",
+        "id": "social-links-tripadvisor",
+        "label": "Tripadvisor"
+      },      
       {
         "type": "text",
         "id": "social-links-facebook",

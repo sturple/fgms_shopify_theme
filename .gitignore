@@ -10,3 +10,4 @@ theme/assets/*.svg
 theme/assets/*.ttf
 theme/assets/*.woff*
 theme/node_modules/
+theme/snippets/data-*
