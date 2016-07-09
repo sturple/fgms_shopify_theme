@@ -1,23 +1,28 @@
-<div class="{% if settings.sidebar-page-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}"  id="main" role="main" >
-	<div class="main-col-wrapper  " >
-		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
-		<section id="page-wrap" class="section-wrap">
-				<h1 class="">{{ page_title }}</h1>				
-				{% include 'shortcode' load: page.content %}  				
-		</section>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9"  id="main" role="main" >
+			<div class="main-col-wrapper  " >
+				<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
+				<section id="page-wrap" class="section-wrap">
+						<h1 class="">{{ page_title }}</h1>				
+						{% include 'shortcode' load: page.content %}  				
+				</section>
+			</div>
+		</div>
+		
+		<!-- sidebar -->
+		<div class="col-md-3"  >
+			<div  id="sidebar">
+				<div id="sidebar-wrapper">
+					{% if settings.sidebar-page-snippet != blank %}
+					{% include settings.sidebar-page-snippet %}
+					{%else%}
+					{% include 'warning' type : 'no-sidebar' %}				
+					{%endif%}			
+				</div>								
+			</div>                
+		</div>		
 	</div>
 </div>
-{% if settings.sidebar-page-enable %}
-<!-- sidebar -->
-<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
-	<div  id="sidebar">
-		<div id="sidebar-wrapper">
-			{% if settings.sidebar-page-snippet != blank %}
-			{% include settings.sidebar-page-snippet %}
-			{%else%}
-			{% include 'warning' type : 'no-sidebar' %}				
-			{%endif%}			
-		</div>								
-	</div>                
-</div>
-{% endif %}
+
+

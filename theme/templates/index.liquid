@@ -1,10 +1,12 @@
-{% if settings.home-snippet-section-1 != blank %}{% include settings.home-snippet-section-1 %}{%endif%}
-{% if settings.home-snippet-section-2 != blank %}{% include settings.home-snippet-section-2 %}{%endif%}
-{% if settings.home-snippet-section-3 != blank %}{% include settings.home-snippet-section-3 %}{%endif%}
-{% if settings.home-snippet-section-4 != blank %}{% include settings.home-snippet-section-4 %}{%endif%}
-{% if settings.home-snippet-section-5 != blank %}{% include settings.home-snippet-section-5 %}{%endif%}
-{% if settings.home-snippet-section-6 != blank %}{% include settings.home-snippet-section-6 %}{%endif%}
-{% if settings.home-snippet-section-7 != blank %}{% include settings.home-snippet-section-7 %}{%endif%}
-{% if settings.home-snippet-section-8 != blank %}{% include settings.home-snippet-section-8 %}{%endif%}
-{% if settings.home-snippet-section-9 != blank %}{% include settings.home-snippet-section-9 %}{%endif%}
-{% if settings.home-snippet-section-10 != blank %}{% include settings.home-snippet-section-10 %}{%endif%}
+{% assign page = pages.frontpage %}
+{% include 'data-site' %}
+{% if settings.home-snippet-section-1 != blank %}{% include settings.home-snippet-section-1, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-2 != blank %}{% include settings.home-snippet-section-2, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-3 != blank %}{% include settings.home-snippet-section-3, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-4 != blank %}{% include settings.home-snippet-section-4, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-5 != blank %}{% include settings.home-snippet-section-5, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-6 != blank %}{% include settings.home-snippet-section-6, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-7 != blank %}{% include settings.home-snippet-section-7, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-8 != blank %}{% include settings.home-snippet-section-8, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-9 != blank %}{% include settings.home-snippet-section-9, content : {{ page.content }} %}{%endif%}
+{% if settings.home-snippet-section-10 != blank %}{% include settings.home-snippet-section-10, content : {{ page.content }} %}{%endif%}
