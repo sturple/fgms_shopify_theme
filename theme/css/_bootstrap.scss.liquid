@@ -15,17 +15,48 @@
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {  color: #565656; text-decoration: none; background: none; font-weight: bold; cursor: default;}
 .navbar {border: 0; min-height: 0; margin-bottom: 0;}
 /* tables */
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {  border-top: 0; border-bottom: 1px dotted #dde5e7}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  border-top: 0; border-bottom: 1px dotted #aaa;}
 .table > thead > tr > th{  border-bottom: 1px dotted #DDE5E7;  border-top: 0 none;  padding-bottom: 12px;}
 .table  tr:last-child >td {border-bottom: 0px;}
 .table th {  color: #666;}
 /* forms */
-.form-horizontal .control-label {  text-align: left;}
+/*
+
 .form-horizontal .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline { font-size: 14px; font-size: 1.4rem;  line-height: 1.2em;}
-.form-control {@include radius(0); padding: 6px;}
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {  background-color: #f8f8f8;  cursor: pointer;}
+
+
 .radio.radio-inline {  margin-top: -6px;}
+
+*/
+.form-control {
+  @include radius(0);
+  padding: 12px;
+  height: auto;
+  @include font-size(1.8);
+ 
+  
+}
+.form-horizontal .control-label {  text-align: left;}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {  background-color: #f8f8f8;  cursor: pointer;}
 label {font-weight: normal;}
+::-webkit-input-placeholder { 
+  color: #aaa;
+
+}
+::-moz-placeholder { 
+
+  color: #aaa;
+}
+:-ms-input-placeholder { 
+
+  color: #aaa;
+}
+:-moz-placeholder { 
+
+  color: #aaa;
+}
+
 /* components */
 .progress-bar {  background-color: #00394D;}
 .popover-close { background: url({{'sprite-modal-close.png' | asset_url}}); width: 24px; height: 24px;}
@@ -49,6 +80,9 @@ label {font-weight: normal;}
 .modal { top : 100px;}
 .modal-body {  max-height: 610px;  overflow: auto;}
 .meetings-modal .modal-body { max-height: none; }
+.modal-header img {
+  max-width: 310px;
+}
 .modal-body h2 { padding-top: 0px;}
 
 /* Carousel */
@@ -95,9 +129,15 @@ label {font-weight: normal;}
 	@include btn-template($btn-default-color,$btn-default-background, $btn-default-padding,$btn-default-radius,$btn-default-box-shadow);
 	border: 1px solid #ccc;
 	&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
-		@include btn-template-hover($btn-default-background-hover);
+		@include btn-template-hover($btn-default-background-hover !important);
 		color: $btn-default-color-hover;
-		}
+	}
+  &.active {
+    &:hover, &:focus {
+      @include btn-template-hover($btn-default-background-hover !important);
+      color: $btn-default-color-hover;
+    }
+  }
 	@media screen and (max-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
 	@media screen and (max-width: $screen-md-max) {padding: $btn-primary-padding-md; @include font-size($btn-primary-font-size-md);}
 	@media screen and (max-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
@@ -108,14 +148,24 @@ label {font-weight: normal;}
 
 .btn-primary, input[type="submit"]{
 	font-family: $btn-font-family;
-	
+    text-transform: uppercase;
+    font-size: 20px;;
+    font-weight: bold;
 	@include btn-template( $btn-primary-color,$btn-primary-background, $btn-primary-padding,$btn-primary-radius,$btn-primary-box-shadow);
 	
 
 	&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
 		@include btn-template-hover($btn-primary-background-hover);
 		color: $btn-primary-color-hover;
+    border-color: $btn-primary-background-hover;
 	}
+  &.active, &:active {
+    &:hover, &:focus, &:active {
+      @include btn-template-hover($btn-primary-background-hover);
+      color: $btn-primary-color-hover;
+       border-color: $btn-primary-background-hover !important;;      
+    }
+  }  
 	@media screen and (max-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
 	@media screen and (max-width: $screen-md-max) {padding: $btn-primary-padding-md; @include font-size($btn-primary-font-size-md);}
 	@media screen and (max-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
@@ -140,7 +190,7 @@ label {font-weight: normal;}
 }
 
 .btn-lg, .btn-group-lg > .btn {  padding: $btn-lg-padding; }
-.btn-sm, .btn-group-sm > .btn {  padding: $btn-sm-padding;}
+.btn-sm, .btn-group-sm > .btn {  padding: 4px 20px; font-size: 0.8em;}
 .btn-xs, .btn-group-xs > .btn {  padding: $btn-xs-padding; }
 
 .btn-header {

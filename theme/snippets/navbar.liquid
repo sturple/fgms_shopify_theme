@@ -16,7 +16,7 @@
 		</a>
 	</div>
 	{% endif %}
-	<div class="navbar-collapse collapse ">			
+	{% if navType == blank or navType == 'main' %}<div class="navbar-collapse collapse ">{% endif %}			
 		<ul class="nav navbar-nav">
 			{% for link in linklists[navLinkList].links %}							
 			{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}               
@@ -25,7 +25,7 @@
 						<a href="{{ link.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ link.title }} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">                                                            
 							{% for l in linklists[child_list_handle].links %}
-								<li{% if l.active %} class="activePage"{% endif %}><a href="{{ l.url }}">{{ l.title }}</a></li>
+								<li{% if l.active %} class="activePage"{% endif %}><a class="subnav" href="{{ l.url }}">{{ l.title }}</a></li>
 							{% endfor %}
 						</ul>
 					</li>
@@ -34,5 +34,5 @@
 				{% endif %}
 			{% endfor %}
 		</ul>
-	</div>
+	{% if navType == blank or navType == 'main' %}</div>{% endif %}
 </nav> 

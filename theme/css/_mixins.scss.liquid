@@ -77,7 +77,23 @@
   font-size: $pxValue + px; 
   font-size: $remValue + rem;
 }
-
+@mixin a($color, $text-decoration:none, $color-hover: #fff, $text-decoration-hover:none) {
+	a {
+		 &, &:visited, &:focus {
+			color: $color;
+			text-decoration: $text-decoration;			
+			@include transition(0.25s);
+			border-bottom: none;
+		}
+		&:hover, &:active {
+			color: $color-hover;
+			text-decoration: $text-decoration-hover;			
+			@include transition(0.75s);
+			border-bottom: none;
+			
+		}
+	}
+}
 @mixin a-border($color,$color-border, $color-hover, $color-hover-border,$preselector:' ', $pseudo:'') {
 	#{$preselector} a#{$pseudo} {
 		 &, &:visited, &:focus {

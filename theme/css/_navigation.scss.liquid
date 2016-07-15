@@ -40,7 +40,7 @@
 
 
 .nav.navbar-nav {
-    float: right;
+    
     position: relative;
     text-transform: uppercase;
     >li{
@@ -62,11 +62,38 @@
            
          
     }    
-    >li:last-child {
-        
-            padding-right: 0;
-        
-    } 
+
+}
+
+.navbar.main {
+    .nav.navbar-nav {        
+        position: relative;
+        text-transform: uppercase;
+        >li{
+            padding: 15px 10px;
+            > a  {
+                padding: 0;
+                font-size: 0.7em;
+                &:hover, &:focus {
+                    background-color: transparent;
+                } 
+            }        
+        }
+        >li:last-child {        
+                padding-right: 0;
+            
+        }         
+    }    
+    @media  screen and (min-width: 1500px) {
+        .nav.navbar-nav { 
+            >li{
+                padding: 15px;
+                > a  {                  
+                    font-size: 0.9em;                  
+                }        
+            }
+        }
+    }
 }
 
 #navigation-wrapper {
@@ -79,14 +106,35 @@
         }
     }    
 }
-.top-header-nav {
+.top-header-nav, .footer-nav  {
     .nav.navbar-nav {
         >li{
             @include a-border(#fff,transparent, #fff, #fff,'>');     
         }
     }      
 }
-
+.top-header-nav {
+    .nav.navbar-nav {
+        float: right;
+        > li:last-child {
+            padding-right: 0;
+        }
+        > li:first-child {
+            padding-left: 0;
+        }
+    }
+}
+.footer-nav  {
+    .navbar {
+        @include flexbox();
+    }
+    .nav.navbar-nav {
+        @include flexbox();
+        align-self: center;
+        justify-content: center;;
+        margin: 0 auto;
+    }
+}
 
 .sticky-scroll-down {
 	@include opacity(0);

@@ -138,14 +138,16 @@ html[xmlns] .slides{display:block;}
 
 /** Gallery **/
 
-.gallery-grid-20 li {width: 20%;}
-.mod-gallery{
 
-	
-}
+
 .gallery-filters {
 	text-align: center;
 	margin: 0 0 36px;
+	.btn {
+		margin: 4px;
+	}
+	
+
 	
 }
 .__st_gallery_title_caption {
@@ -164,8 +166,15 @@ html[xmlns] .slides{display:block;}
 .__st_gallery_thumb_wrapper{
     margin: 0 ;
     padding: 0;
-    list-style: none;    
+    list-style: none;
+	&:after {
+		clear: both;
+		content: ' ';
+		display: table;
+	}
     li {
+		width: 20%;
+		overflow: hidden;
 		.gallery-video-notification {
 			color: #fff;
 			top: 8px;
@@ -190,9 +199,9 @@ html[xmlns] .slides{display:block;}
             padding: $gallery-grid-overlay-padding;
             .gallery-overlay-content {
                 position: absolute;
-				height: 100%;
-                top: 0;
-				padding: 27% 0%;
+				height: inherit;
+              
+				top: 48% ;
 				width: 100%;
 				left: 0;
 				text-align: center;
@@ -221,6 +230,11 @@ html[xmlns] .slides{display:block;}
                 @include transition(1s);
                 @include opacity(1);
             }
+			img {
+			        @include transform-scale(1.1,1.1);
+                    @include transition(0.75s);  				
+			}
+
         }
 		&.active {
 			.__st_gallery_overlay {
@@ -232,7 +246,50 @@ html[xmlns] .slides{display:block;}
 		}
     }
 }
+.gallery-grid-25 li {width: 25%;}
+.gallery-grid-20 li {width: 20%;}
+.gallery-grid-big-small-5 {
+	li {
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}
+    @media screen and (min-width: $screen-lg-max){
+        li {
+			
+			&:nth-child(odd) {
+				width: 23%;
+			}
+			&:nth-child(even){
+				width: 15.5%;
+			}
 
+		}
+
+    }	
+}
+.gallery-grid-small-big-5 {
+	li {
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}	
+    @media screen and (min-width: $screen-lg-max){
+        li {
+			&:nth-child(odd) {
+				width: 16%;
+			}
+			&:nth-child(even){
+				width: 26%;
+			}
+			
+			height: 180px;
+			
+			
+		}		
+    }	
+}
+.on-page-gallery {
+	margin:  0 0 36px ;
+}
 article {
 	.__st_gallery_thumb_wrapper{
 		img  {
@@ -258,6 +315,8 @@ article {
     .image-wrapper {
         position: relative;
         overflow: hidden;
+		max-width: 360px;
+		margin: 0 auto 24px;
         img {
             @include transition(0.75s);
             @include transform-scale(1,1);            
@@ -271,6 +330,7 @@ article {
             padding: 36px 24px;
             display: flex;
             flex-flow: row wrap;
+			font-size: 1.2em;
             
             
             h1,h2,h3,h4,h5,h6 {
@@ -307,7 +367,40 @@ article {
             }
         }
         
-    }  
+    }
+	@media  screen and (min-width: $screen-md-max){
+		.image-wrapper {
+			.image-overlay {           
+				padding: 12px 8px;
+				font-size: 0.9em;
+				.btn {
+					padding: 4px 8px;
+				}
+			}
+		}
+	}	
+	@media  screen and (min-width: $screen-lg-max){
+		.image-wrapper {
+			.image-overlay {           
+				padding: 36px 24px;
+				font-size: 1em;
+				
+			}
+		}
+	}
+}
+
+.touch {
+	.zoom-overlay-wrapper {
+		.image-wrapper {	
+			.image-overlay {
+				@include opacity(0.8);
+				@include transition(1s);                
+			}
+		}
+	}
+	
+	
 }
 
 /** Layerslider **/
@@ -374,13 +467,7 @@ article {
   left:0;
   width:100%;
   height:100%;
-  background-color:#000;
-  -moz-opacity:0.95;
-  -khtml-opacity:0.95;
-  -webkit-opacity:0.95;
-  opacity:0.95;
-  -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
-  filter:alpha(opacity=95);
+  background-color: rgba(0,0,0,0.85);
   -webkit-transform:translateZ(0);
 }
 .sz-zoomed {
@@ -422,6 +509,11 @@ article {
   font-size:34px;
   border-radius:42px;
   display:none;
+  &:hover {
+	color: $link-color-hover;
+	@include transition(0.75s);
+  }
+  
 }
 .sz-left, .sz-right {
   z-index:9999;
@@ -433,12 +525,11 @@ article {
   height:80px;
   line-height:80px;
   width:3%;
-  -moz-opacity:0.5;
-  -khtml-opacity:0.5;
-  -webkit-opacity:0.5;
-  opacity:0.5;
-  -ms-filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
-  filter:alpha(opacity=50);
+  @include opacity(1);
+  &:hover {
+	color: $link-color-hover;
+	@include transition(0.75s);
+  }
   background:#fff;
   color:#666;
   text-align:center;

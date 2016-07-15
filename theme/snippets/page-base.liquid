@@ -1,0 +1,62 @@
+{% include 'data-site' %}
+{% capture backgroundImages %}
+https://cdn.shopify.com/s/files/1/1334/6905/files/background-introduction.jpg?13411058541587716939
+<!--%%-%%-->
+{% endcapture %}
+
+
+<div class="parallax-window"
+	 over-scroll-fix="true"
+	 data-parallax="scroll"
+	 data-bleed="130"
+	 data-image-src="https://cdn.shopify.com/s/files/1/1334/6905/files/background-introduction.jpg?13411058541587716939">
+    <div class="modular modular-page "  >
+        <div class="container">
+			<div class="hidden-xs breadcrumbs-container opacity-ffffff-95">{% include 'breadcrumbs' %}</div>		
+			<div class="opacity-ffffff-80  page-template-content ">
+				<div class="row"><div class="col-md-12"><h1 class="">{{ page.title }}</h1></div></div>
+				<div class="row">
+                    {% if template == 'gallery' %}
+                    <div class="col-md-12">
+                         <div class="page-content">
+                            {% include 'shortcode' load: content %}
+                            <div class="gallery-filters">
+                                <button class="btn btn-primary btn-sm active" data-filter="*">All</button>
+                                <button class="btn btn-primary btn-sm" data-filter=".video">Video</button>
+                                <button class="btn btn-primary btn-sm" data-filter=".true-north">True North</button>
+                                <button class="btn btn-primary btn-sm" data-filter=".stars-and-stripes">Stars &amp; Stripes</button>
+                                <button class="btn btn-primary btn-sm" data-filter=".canada-2">Canada II</button>
+                                
+                            </div>
+                            <div class="script-grid-gallery __st_gallery gallery-grid-25" data-thumbpadding="0" data-thumbsperrow="5">       
+                                <ul  class="__st_gallery_thumb_wrapper" style="position: relative;">        
+                                     {% include 'data-gallery'  %}        
+                                </ul>
+                            </div>                   
+                        </div>                       
+                    </div>
+                    {% else %}
+					<div class="col-md-9">										
+						<div class="page-content">                            
+							{% include 'shortcode' load: content %}
+                            
+						</div>
+					</div>
+					<div class="col-md-3">
+                        <div class="sidebar">
+                            {% include 'shortcode-sidebar_call_to_action' %}
+                            <div id="testimonial-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-pause="false">
+                               <ul class="carousel-inner" role="listbox">
+                                 {% include 'data-testimonials', type : "widget" %}
+                              </ul>
+                           </div>                             
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>  
+    </div>    
+</div>
+{% if template != 'gallery' %}{% include 'template_page_gallery' %}{% endif %}
+{% include 'template_page_ready_for_adventure' %}

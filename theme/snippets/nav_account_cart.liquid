@@ -1,7 +1,6 @@
-
-		                 
+         
 	<div class="section-nav">
-		{% if settings.layout-utility-snippet != blank%}{% include settings.layout-utility-snippet %}{% endif %}
+		{{header_top}}
 	</div>
 	<ul class="nav-utility section-account">
 		{% comment %} if customer accounts enabled then show account information {% endcomment %}
@@ -25,15 +24,15 @@
 		</li>					
 		{% endif %}
 	
-		<li >
-			<a href="/cart" >
-				{% if shop.customer_accounts_enabled %}<div class="pull-left" ></div>{% endif %}
-				<div class="pull-left"><i class="fa fa-shopping-cart"></i></div>
-				<div class="pull-right cart-account-text" >
-					<div class="" >{{'accounts.your-cart' | t}} <span  id="cart-bar-your-count" >{{ cart.item_count }} {% if cart.item_count == 1 %}{{'general.item' | t | capitalize  }}{% else %}{{'general.item' | t | capitalize | append: 's' }}{% endif %}  </span></div>
-					
-				</div>
-				<div class="clearfix" style="clear: both;" ></div>
+		<li class="cart-count {% if cart.item_count > 0 %}have-items-in-cart {% endif %}" >
+			<a href="/cart" class="icons cart-account-icon">
+				<i class="fa fa-shopping-cart {% if cart.item_count > 0 %}flash{% endif %}" "></i>
+			</a>
+			<a href="/cart"><span class="cart-account-text" >{{ 'accounts.your-cart' |t }}
+					<span  id="cart-bar-your-count" >{{ cart.item_count }}
+					{% if cart.item_count == 1 %}{{'general.item' | t | capitalize  }}{% else %}{{'general.item' | t | capitalize | append: 's' }}{% endif %}
+					</span>					
+				</span>				
 			</a>
 		</li>
 		<li class="social-icons" >{% include 'social-icons'  %}</li>

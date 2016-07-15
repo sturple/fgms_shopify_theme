@@ -1,13 +1,19 @@
 theme/config.yml
+theme/assets/*.png
 theme/assets/*.jpg
 theme/assets/*.gif
-theme/snippets/template*.liquid
 
+theme/snippets/template*.liquid
 theme/assets/syles-tmp.scss.liquid
 theme/assets/theme.js.liquid
+
 theme/assets/*.eot
 theme/assets/*.svg
 theme/assets/*.ttf
 theme/assets/*.woff*
+
 theme/node_modules/
+
 theme/snippets/data-*
+theme/snippets/shortcode-*.liquid
+!theme/snippets/shortcode-render.liquid

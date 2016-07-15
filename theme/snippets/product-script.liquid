@@ -181,7 +181,9 @@
 		if (cart.item_count == 0) 		{ cart_count_text = '0 {{ settings.cartItemPluralText }}'   }
 		else if (cart.item_count == 1)	{ cart_count_text = '1 {{ settings.cartItemText }}' }
 		else 							{ cart_count_text = cart.item_count +' {{ settings.cartItemPluralText }}' }			
-		
+		if (cart.item_count > 0 ){
+			$('.cart-count').addClass('have-items-in-cart').find('i').addClass('flash');
+		}
 		if (cart.total_price  > shipping_trigger) {
 			var has_free = '{{'products.messages.message-has-free-shipping' | t}} '+learn_more_link;
 			status_message += '<tr><td><i class="fa fa-check"></i></td><td width="100%"><a href="/cart">Shopping cart</a> updated. '+has_free+'</td><td><i class="fa fa-times"></i></td></tr>';

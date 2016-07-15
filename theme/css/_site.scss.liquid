@@ -21,14 +21,15 @@ h1, h2, h3, h4, h5, p, ul, ol{
 } 
 
 h1, h2, h3, h4, h5,.h1,.h2,.h3 {
-	margin: $headings-margin;	
+	margin: $headings-margin;
+	font-weight: 700;
 }
 
 h1, .h1  {
-    font-size: 4.4em;
-    font-weight: 700;
+    font-size: 3em;
+   
     line-height: 1em;
-	margin: 0 0 24px;
+	margin: 0 0 36px;
     text-transform: uppercase;
 	color: $h1-color;
 }
@@ -49,11 +50,12 @@ h1.home-page {
 }
 
 h2,.h2 { 
-	font-size: 3em; 
-	padding: 12px 0;;
-    font-weight: 700;
-    text-transform: uppercase;
+	font-size: 2.4em; 
+	padding: 24px 0 0;;
+	margin-bottom: 12px;
     
+    text-transform: uppercase;
+
 	color: $h2-color;
 }
 
@@ -62,9 +64,11 @@ h2.tab, h3.tab, h4.tab {
 }
 
 h3,.h3 { 
-	@include font-size($h3-font-size); 
+	font-size: 1.6em;
 	padding: $h3-padding;
 	color: $h3-color;
+	text-transform: uppercase;
+	
 }
 
 
@@ -88,12 +92,14 @@ p {
 
 
 blockquote ,h1.blockquote, h2.blockquote, .archive-meta p, .intro-text {
-	font-size: 1.3em;
+	font-size: 1.6em;
+	font-family: Overlock, cursive; 
 	line-height: $blockquote-line-height;	
 	border: 0; 
 	padding: 0; 
 	text-transform: none;
-    font-style: italic;
+	margin-bottom: 36px;
+ 
 }
 .archive-meta p {
     margin: 0 0 24px;
@@ -118,7 +124,8 @@ ul {list-style: none;padding:0;margin:0;}
 a, a:visited, a:focus, #recaptcha_privacy a , #recaptcha_privacy a:visited, #recaptcha_privacy a:focus,  .panel-title > a  {	color: $link-color ;	text-decoration: none;}
 a:hover , #recaptcha_privacy a:hover, .panel-title > a:hover{color: $link-color-hover;	text-decoration: none;}
 */
-@include a-border($link-color,transparent, $link-color-hover, $link-color-hover,'',':not(.btn):not(.icons)');
+
+@include a-border($link-color,transparent, $link-color-hover, $link-color-hover,'',":not(.btn):not(.icons):not(.logo):not(.subnav):not(.photo):not(.sz-close):not(.sz-left):not(.sz-right):not(.sz-zoomed)");
 
 
 	@media screen and (max-width: $screen-lg-max) {
@@ -163,7 +170,13 @@ ul {
 
 	
 	&.B_crumbBox {
-		margin: 0 0 38px; line-height: 1em; padding: 0;
+		i {
+			font-size: 0.8em;
+			position: relative;
+			top: 1px;
+			left: 2px;
+		}
+		line-height: 1em; padding: 0;
 		li {  display: inline;  font-size: 11px; font-size: 1.1rem;  list-style-type: none;  text-transform: none;  padding: 0; margin: 0; }
 	}
 	&.rss-feed-wrapper {

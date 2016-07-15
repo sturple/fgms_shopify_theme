@@ -1,17 +1,18 @@
 <div  id="header-top-nav-parent" >{% include 'nav_account_cart' fullBar : true %}</div>
+{% comment %}{% endcomment %}
 <div>
 	<div id="header-top-parent" class="full-wrapper script-navigation-off" >
 		<div id="header-wrapper">
-			<div class="row" style="position: relative; display:flex;">
+			<div class="row" style="position: relative; ">
 				<!-- header -->
-				<div class="header-logo col-md-3">
-					<a href="{{settings.main-website}}">
+				<div class="header-logo col-lg-3 col-md-2">
+					<a href="{{settings.main-website}}" class="logo">
 						<span class="sr-only">{{ shop.name }}</span>
 						<img src="{{'branding-header-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-header-logo-icon-class}} " style="" />		        
 					</a>
 				</div>
 				<!-- navigation -->
-				<div id="navigation-wrapper" class="col-md-9 align-right-md">
+				<div id="navigation-wrapper" class="col-lg-9 col-md-10 align-right-md">
 					{% if settings.layout-utility-bar  == false %}<div class="header-utility-wrapper">{% include 'nav_account_cart'%} </div>{%endif%}
 					<div class="header-nav-wrapper">{% include 'navbar' linklist : settings.navigation-linklist-main, type : 'main' %}</div>				
 					<div class="clearfix" style="clear:both"></div>				

@@ -21,10 +21,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-facebook fa-stack-1x icon-inner"></i>
+				<i class="fa {{social_facebook | default: "fa-facebook"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}
-		<i class="fa fa-facebook"></i>
+		<i class="fa {{social_facebook | default: "fa-facebook"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -34,10 +34,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-twitter fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_twitter | default: "fa-twitter"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-twitter"></i>
+		<i class="fa {{ social_twitter | default: "fa-twitter"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -47,10 +47,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-google-plus fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_google | default: "fa-google-plus"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-google-plus"></i>
+		<i class="fa {{ social_google | default: "fa-google-plus"}} "></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -60,10 +60,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-youtube-square fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_youtube | default: "fa-youtube-square"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-youtube-square"></i>
+		<i class="fa {{ social_youtube | default: "fa-youtube-square"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -72,10 +72,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-flickr fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_flickr | default: "fa-flickr"}} fa-flickr fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-flickr"></i>
+		<i class="fa {{ social_flickr | default: "fa-flickr"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -85,10 +85,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-pinterest fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_pinterest | default: "fa-pinterest"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-pinterest"></i>
+		<i class="fa {{ social_pinterest | default: "fa-pinterest"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -98,10 +98,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-instagram fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_instagram | default: "fa-instagram"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-instagram"></i>
+		<i class="fa {{ social_instagram | default: "fa-instagram"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -110,10 +110,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-linkedin fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_linkedin | default: "fa-linkedin"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-linkedin"></i>
+		<i class="fa {{ social_linkedin | default: "fa-linkedin"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}
@@ -122,10 +122,10 @@
 		{% if iconouter != blank %}
 			<span class="fa-stack fa-lg ">
 				<i class="fa {{iconouter}} fa-stack-2x icon-outer"></i>
-				<i class="fa fa-rss fa-stack-1x icon-inner"></i>
+				<i class="fa {{ social_rss | default: "fa-rss"}} fa-stack-1x icon-inner"></i>
 			</span>		
 		{% else %}		
-		<i class="fa fa-rss"></i>
+		<i class="fa {{ social_rss | default: "fa-rss"}}"></i>
 		{% endif %}
 	</a>
 	{% endunless %}

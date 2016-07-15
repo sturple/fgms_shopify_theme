@@ -1,0 +1,12 @@
+{% layout none %}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle fa-2x"></i></button>
+        <div class="logo ">
+            <img src="{{'branding-modal-logo-image-file.png' | asset_url}}"  alt="Logo"  class="{{settings.branding-modal-logo-icon-class}}" />
+        </div>
+    </div>
+    <div class="modal-body">{% include 'shortcode' load: page.content %}</div>
+    <div class="modal-footer"></div>
+</div>        

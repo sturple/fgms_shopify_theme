@@ -29,7 +29,7 @@
             {% if snippet3 != blank and selectedSnippet == 'snippet3' %}<div class="content-snippet ">"{{snippet3}}"</div>{% endif %}
             {% if snippet4 != blank and selectedSnippet == 'snippet4' %}<div class="content-snippet ">"{{snippet4}}"</div>{% endif %}
             {% if snippet5 != blank and selectedSnippet == 'snippet5' %}<div class="content-snippet ">"{{snippet5}}"</div>{% endif %}            
-            <div class="snippet-meta"><span>~ {% if publisherLink != blank %}<a href="{{publisherLink}}" target="_blank">{% endif %} {{publisher}}{% if publisherLink != blank %}</a>{% endif %}{% if date != blank %}</span> - <span>{{date}}</span>{% endif %} </div>
+            <div class="snippet-meta"><span>~ {% if publisherLink != blank %}<a href="{{publisherLink}}" target="_blank">{% endif %} {{publisher}}{% if publisherLink != blank %}</a>{% endif %}{% if date != blank %}</span><span class="dash"> - </span><span>{{date}}</span>{% endif %} </div>
         </div>
     </div>
 </li>    

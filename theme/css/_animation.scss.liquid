@@ -272,3 +272,29 @@
     80% { transform: translateX(-10px); }
     100% { transform: translateX(0); }
 }
+
+@-webkit-keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from, 50%, to {
+    @include opacity(1);
+  }
+
+  25%, 75% {
+    @include opacity(0.45);
+  }
+}
+
+.flash {
+  -webkit-animation-name: flash;
+  animation: flash 4s infinite;
+	
+}
