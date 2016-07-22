@@ -1,0 +1,22 @@
+{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{image}}{%endif%}"   title="{{title}}" data-caption="{{caption}}"{% endcapture %}
+<li class="row {{class}}">
+    <div class="col-sm-4">        
+        <div class="h3 hidden-lg hidden-md hidden-sm">{% if link %}<a href="{{link}}">{% endif %}{{title}}{% if link %}</a>{% endif %}</div>
+        <a {% if link %} href="{{link}}" class="image-wrapper icons"{% else %}{{attributes}} class="script-gallery-action photo image-wrapper" data-smoothzoom="listinggallery" {% endif %}>
+            
+                <img  data-image="{{thumb | defaut: image}}"  >
+                <div class="image-overlay {% if youtubeid %}has-video{% endif %}">
+                    <button  class="btn btn-secondary btn-sm">Learn More</button>
+                </div>
+            
+
+        </a>
+    </div>
+    <div class="col-sm-8">
+        <h3 class="hidden-xs">{% if link %}<a href="{{link}}">{% endif %}{{title}}{% if link %}</a>{% endif %}</h3>
+        <div class="listing-content">{{content}}</div>
+        <div class="action-buttons">
+            {{action}}
+        </div>
+    </div>
+</li>

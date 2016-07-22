@@ -7,7 +7,7 @@
             <img data-image="{{thumb}} alt="{{publisher}}" />
         </div>
         {% endif %}
-        <div class="card-details col-lg-9 col-sm-8">
+        <div class="card-details  {% if thumb == blank %}col-lg-offset-3 col-md-offset-4 {% endif %} col-lg-9 col-sm-8">
             <div class="content-full content-snippet">{{full}}</div>            
             <div class="snippet-meta"><span>~ {% if publisherLink != blank %}<a href="{{publisherLink}}"{% endif %}{{publisher}}{% if publisherLink != blank %}</a>{% endif %}{% if date != blank %}</span> - <span>{{date}}</span>{% endif %} </div>
         </div>
