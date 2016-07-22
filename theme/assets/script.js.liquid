@@ -12,10 +12,20 @@ if (window.innerWidth <= 480)  { sizePostfix = 'xxs'; }
 
 jQuery(function($) {
   /*** Email cloaking ***/
-  var lastWindowTopLocation = $(window).scrollTop();
-  console.log('loading script file')
+  //var lastWindowTopLocation = $(window).scrollTop();
   emailCloak();
 
+  
+  $('*[data-random="true"]').each(function(){
+    var randomlimit = parseInt($(this).attr('data-limit'));    
+    if (randomlimit > 0 ) {
+      randomizeChildren($(this).children(), randomlimit);
+    }
+    else {
+      randomizeChildren($(this).children());
+    }
+    $(this).addClass('randomized');
+  });
   /*** Updates all background images according to screen size; */
   $('*[data-background-' + sizePostfix + ']').each(function() {
     $(this).css({
@@ -23,9 +33,19 @@ jQuery(function($) {
     });
   });
   $('*[data-background]').each(function() {
-    $(this).css({
-      'background-image': 'url(' + $(this).data('background')+')'
-    });
+    // adding random if there are multiple images seperated by ,
+    var imageArray = $(this).attr('data-background').split(',');
+    var item = imageArray[Math.floor(Math.random()*imageArray.length)];
+    if (($(this).attr('data-before') === 'true' ) && false ){      
+      $('<style>.script-overflow-background:before { background-image: url(' + item+')}</style>').insertBefore(this);
+    }
+    else {
+      $(this).css({
+         'background-image': 'url(' + item+')'
+      });      
+    }
+
+    
   });  
 
 
@@ -39,7 +59,7 @@ jQuery(function($) {
    
 
   });
-  $.each(document.getElementsByTagName("img"), function(index, value) {
+  $.each(document.getElementsByTagName("img"), function() {
     if (this.getAttribute('src') === null) {
       this.setAttribute('src', this.getAttribute('data-image'));
     }
@@ -53,7 +73,7 @@ jQuery(function($) {
 
   });
 
-  var imgs=$('#articleContent img');
+  var imgs=$('article img');
   if ((imgs.length > 0) && imgs.smoothZoom) {
     imgs.smoothZoom({
       navigationRight: '<i class=\"fa fa-angle-right\"></i>',
@@ -96,10 +116,12 @@ jQuery(function($) {
   
   if (($('.script-grid-gallery').length > 0) && $().isotope ) {	
 	  var $element = $('.script-grid-gallery');
+    $('.script-grid-gallery').animate({opacity: 0},0);
 	  var $grid = $element.find('ul').isotope({itemSelector: 'li', layoutMode: 'fitRows'});
-	  imagesLoaded($element.find('img'), function(e,msg){
-      console.log('found gallery and found isotope')
+    
+	  imagesLoaded($element.find('img'), function(){      
       $grid.isotope('layout');
+      $('.script-grid-gallery').animate({opacity: 1},1000);
       $('.gallery-filters').on('click','button',function(){
             var filterValue = $(this).data('filter');
             $grid.isotope({filter: filterValue}) ;
@@ -188,6 +210,7 @@ jQuery(function($) {
   if ((hash.length>1) && ($('a[href="' + hash + '"]').length > 0)) {
 	hash = hash && $('a[href="' + hash + '"]').tab('show');
 	if ($('a[href="' + hash + '"]').length > 0) {
+  
 	  $('html, body').animate({ scrollTop: $('a[href="' + hash + '"]').offset().top -50   }, 2000);
 	}
 	
@@ -328,7 +351,9 @@ function updateParallax($obj, minheight){
 	
 }
 
-function randomizeChildren($children){
+function randomizeChildren($children, limit){
+    limit = (limit === undefined) ? 100 : limit;
+    
     var allElems = $children.get(),
 		getRandom = function(max) {	return Math.floor(Math.random() * max);	},
 		shuffled = $.map(allElems, function(){
@@ -337,5 +362,13 @@ function randomizeChildren($children){
 			allElems.splice(random, 1);
 			return randEl;
 	   });
-	$children.each(function(i){$(this).replaceWith($(shuffled[i])); });
+	$children.each(function(i){
+    if (i < limit){
+      $(this).replaceWith($(shuffled[i]));
+    }
+    else {
+      $(this).remove();
+    }
+    
+  });
 }

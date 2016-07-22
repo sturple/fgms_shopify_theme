@@ -4,6 +4,7 @@
     "cancel": "Cancel",
     "click-here": "click here",
     "create": "Create",
+    "collections-all" : "Gift Shop",
     "communications": "Communications",
     "copyright": "Copyright",
     "date": "date",
@@ -25,9 +26,11 @@
     "purchase" : "Purchase",
     "shipping": "Shipping",
     "send": "Send",
+    "send-group-regatta-inquiry" : "Send Group Regatta Inquiry",
     "sign-in": "Sign In",
     "site-developed-by": "Site by", 
     "submit": "Submit",
+    
     "subtotal": "Subtotal",
     "support": "Support",
     "tax": "Tax",
@@ -86,11 +89,25 @@
     "password-reset-text": "Forgot your password? No problem.  Submit the email address associated with your account below.  We'll send you a message with a special link to reset your password."
   },
   "forms": {
+
     "address": "Address",
+    "agenda-request" : "Comments or special requests?",    
+    "alternative-date" : "Alternate Regatta date",
+    "arrival-date": "Arrival date",
+    "attendees" : "Number of attendees",
+    "business-email" : "Business email",
+    "business-phone" : "Business phone",    
     "city": "City",
     "country": "Country",
     "company": "Company",
+    "departure-date" : "Departure date",
     "email": "Email address",
+    "event-name" : "Event name",
+    "guest-rooms" : "Number of guest rooms",  
+    "organization" : "Organization",
+    "preferred-date" : "Preferred Regatta date",    
+    "title" : "Title",
+ 
     "errors": {
       "password": "Password is required",
       "email": "Email is required"
