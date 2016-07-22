@@ -1,192 +1,182 @@
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12" id="main" role="main"  itemscope itemtype="http://schema.org/Product">
-			<div class="main-col-wrapper  " >
-				<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
-			
-				<section id="cart-wrap" class="section-wrap">
+<section id="cart-wrap" class="section-wrap" itemscope itemtype="http://schema.org/Product">
+		<div>
+			{% comment %}cart is empty {% endcomment %}
+			{% if cart.item_count == 0 %}
+			<div>
+{%comment%}
+<!-- Click & Collect -->{% include 'clickcollect' %}<!-- Click & Collect -->
+{%endcomment%}
+				<p class="intro-text">There are currently no items in your cart.</p>			
+				<a 	class="btn btn-primary btn-back"							
+								data-toggle="tooltip"
+								title=""
+								data-placement="top"											
+								data-original-title="Previous Page"
+								href="javascript:void(0);"
+								onclick="window.history.back();"><i class="fa fa-hand-o-left"></i></a>
+				<h1 class="page-header">{{ page_title }}</h1>
+				<div id="collectionProducts" class="clearFix feature-products" >				
+					{%comment%}{%  include 'featured-carousel' %}	{%endcomment%}					
+				</div>				
+			</div>
+
+
+			{% else %}
+			<div id="cartStuff">
+				<div class="row" style="margin-top: -14px; margin-bottom: 32px;">
+					<div class="col-sm-6 col-xs-2">
+						<a 	class="btn btn-primary btn-back"							
+							data-toggle="tooltip"
+							title=""
+							data-placement="top"											
+							data-original-title="Previous Page"
+							href="javascript:void(0);"
+							onclick="window.history.back();">
+							<i class="fa fa-hand-o-left"></i>
+						</a>
+					</div>
+					<div class="col-sm-6 col-xs-10 align-right-sm">
 						<div>
-							{% comment %}cart is empty {% endcomment %}
-							{% if cart.item_count == 0 %}
-							<div>
-				{%comment%}
-				<!-- Click & Collect -->{% include 'clickcollect' %}<!-- Click & Collect -->
-				{%endcomment%}
-								<p class="intro-text">There are currently no items in your cart.</p>			
-								<a 	class="btn btn-primary btn-back"							
-												data-toggle="tooltip"
-												title=""
-												data-placement="top"											
-												data-original-title="Previous Page"
-												href="javascript:void(0);"
-												onclick="window.history.back();"><i class="fa fa-hand-o-left"></i></a>
-								<h1 class="page-header">{{ page_title }}</h1>
-								<div id="collectionProducts" class="clearFix feature-products" >				
-									{%comment%}{%  include 'featured-carousel' %}	{%endcomment%}					
-								</div>				
-							</div>
-				
-							
-							{% else %}
-							<div id="cartStuff">
-								<div class="row" style="margin-top: -14px; margin-bottom: 32px;">
-									<div class="col-sm-6 col-xs-2">
-										<a 	class="btn btn-primary btn-back"							
+							<a href="javascript:void(0);" onclick="$('#checkout').trigger('click');" class="btn btn-primary"><i style="margin-right: 2px;" class="fa fa-lock"></i><span class="display-none-480">Proceed to</span>  <span class="hidden-xs">Secure</span> Checkout</a>
+							<a 	style=""
+								href="javascript:void(0);"
+								data-toggle="tooltip"
+								title=""
+								data-placement="top"											
+								data-original-title="Empty Cart"
+								class="btn btn-primary empty-cart-button ">
+								<i class="fa fa-trash"></i>
+							</a>
+						</div>						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">	</div>
+				</div>
+				<h1 class="page-header">{{ page_title }}</h1>
+<div id="shappify-qty-cart-msg"></div>				
+				<form action="/cart" method="post" id="cartform">					
+					<div class="table-responsive">
+					<table class="table cart-table">
+						<thead>
+							<tr>
+								<th class="hidden-xs hidden-sm">Item #</th>
+								<th>Product Description</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Subtotal</th>
+								<th style="text-align: center">Remove</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% assign cartitems = 0 %}
+							{% assign allowupdate_flag = true %}
+							{% for item in cart.items  %}
+
+
+								<tr class="cart-row script-cart-row"  data-line-id="{{item.properties['Ref_line_ID']}}" data-line="{{ forloop.index }}">
+									<td class="cart-line-item hidden-xs hidden-sm">{{ forloop.index }}</td>
+									<td class="cart-item" >
+										<div class="row">
+											<div class="col-sm-2 hidden-xs hidden-768">
+												<a href="{{ item.url }}"><img class="itemImage" src="{{ item | img_url: 'compact' }}" alt="{{ item.title | escape }}" /></a>                   
+											</div>
+											<div class="col-sm-10 col-xs-12">
+												<a href="{{ item.url }}"><h3>{{ item.product.title }} </h3></a>
+												{% if item.variant.title != 'Default Title' %}<div class="cart-subtitle">{{ item.variant.title }} </div>{%endif%}
+
+											</div>
+										</div>
+									</td>
+									<td class="cart-price">{{ item.price | money }}</td>
+									<td class="cart-qty">										
+										<input type="text" size="4" class="form-control" name="updates[]"  value="{{ item.quantity }}" />										
+										<a  href="javascript:void(0);"
 											data-toggle="tooltip"
 											title=""
 											data-placement="top"											
-											data-original-title="Previous Page"
-											href="javascript:void(0);"
-											onclick="window.history.back();">
-											<i class="fa fa-hand-o-left"></i>
-										</a>
-									</div>
-									<div class="col-sm-6 col-xs-10 align-right-sm">
-										<div>
-											<a href="javascript:void(0);" onclick="$('#checkout').trigger('click');" class="btn btn-primary"><i style="margin-right: 2px;" class="fa fa-lock"></i><span class="display-none-480">Proceed to</span>  <span class="hidden-xs">Secure</span> Checkout</a>
-											<a 	style=""
-												href="javascript:void(0);"
-												data-toggle="tooltip"
-												title=""
-												data-placement="top"											
-												data-original-title="Empty Cart"
-												class="btn btn-primary empty-cart-button ">
-												<i class="fa fa-trash"></i>
-											</a>
-										</div>						
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12">	</div>
-								</div>
-								<h1 class="page-header">{{ page_title }}</h1>
-				<div id="shappify-qty-cart-msg"></div>				
-								<form action="/cart" method="post" id="cartform">					
-									<div class="table-responsive">
-									<table class="table cart-table">
-										<thead>
-											<tr>
-												<th class="hidden-xs hidden-sm">Item #</th>
-												<th>Product Description</th>
-												<th>Price</th>
-												<th>Quantity</th>
-												<th>Subtotal</th>
-												<th style="text-align: center">Remove</th>
-											</tr>
-										</thead>
-										<tbody>
-											{% assign cartitems = 0 %}
-											{% assign allowupdate_flag = true %}
-											{% for item in cart.items  %}
-												
-												
-												<tr class="cart-row script-cart-row"  data-line-id="{{item.properties['Ref_line_ID']}}" data-line="{{ forloop.index }}">
-													<td class="cart-line-item hidden-xs hidden-sm">{{ forloop.index }}</td>
-													<td class="cart-item" >
-														<div class="row">
-															<div class="col-sm-2 hidden-xs hidden-768">
-																<a href="{{ item.url }}"><img class="itemImage" src="{{ item | img_url: 'compact' }}" alt="{{ item.title | escape }}" /></a>                   
-															</div>
-															<div class="col-sm-10 col-xs-12">
-																<a href="{{ item.url }}"><h3>{{ item.product.title }} </h3></a>
-																{% if item.variant.title != 'Default Title' %}<div class="cart-subtitle">{{ item.variant.title }} </div>{%endif%}
-																
-															</div>
-														</div>
-													</td>
-													<td class="cart-price">{{ item.price | money }}</td>
-													<td class="cart-qty">										
-														<input type="text" size="4" class="form-control" name="updates[]"  value="{{ item.quantity }}" />										
-														<a  href="javascript:void(0);"
-															data-toggle="tooltip"
-															title=""
-															data-placement="top"											
-															data-original-title="Update Cart"
-															class="btn btn-primary cart-update-clone update-cart-item">
-															<i class="fa fa-refresh"></i>											
-														</a>										
-													</td>
-													<td class="cart-total">{{ item.line_price | money }}</td>
-													<td class="cart-delete"><a href="javascript:void(0);" class="remove-cart-item"><i class="fa fa-times"></i></a></td>
-												</tr>
-										
-											{% assign cartitems = cartitems | plus: 1 %}
-										{% endfor %}
-										
-										</tbody>
-										<tfoot>
-											<tr>
-												<td class="hidden-xs hidden-sm"></td>
-												<td style="vertical-align: middle;" colspan="6">
-													<span class="hidden-xs">Total:</span>
-													<span class="hidden-sm hidden-md hidden-lg">Before taxes &amp; shipping</span>
-													<span class="subTotal">
-														<span class="money" style="">{{ cart.total_price | money }}</span>
-													
-													</span><!-- subTotal -->	
-												</td>
-										
-												
-											</tr>
-										</tfoot>
-									</table>
-									</div>
-				{%comment%}					
-				<!-- Click & Collect -->
-				<!--[if gt IE 8]><!-->{% include 'clickcollect' %}<!--<![endif]-->
-				<!-- Click & Collect -->
-				{%endcomment%}
-									<div id="basketCheckout" class="">
-										
-										<div id="specialInstructions" class="">
-											<div class="row">
-												<div class="col-lg-9 col-md-10 col-sm-12">
-													<h3>Would you like to include any special instructions with your order?</h3>							
-													<div class="special-instruction-box" style="" >
-														<textarea id="" class="form-control" name="note" rows="4"  placeholder="Provide your instructions here...">{{ cart.note }}</textarea>
-													</div>											
-												</div>						
-											</div>
-										</div><!-- specialInstructions -->
-										
-										<div id="checkoutButtons" class="">
-											<h3 style="padding-top: 0;">Ready to place your order?</h3>
-											
-											<p style="margin-bottom: 24px;"><strong>
-												
-											  </p></strong>
-											
-											<input type="submit" id="updateCart" name="update" value="{{ settings.updateText }}"  class="" style="display:none;"/>
-											<button type="submit" id="checkout" class="btn btn-primary btn-lg" name="checkout"><i style="margin-right: 8px;" class="fa fa-lock"></i>Proceed to <span class="display-none-480">Secure</span> Checkout</button>
-											{%comment%}		
-											<input type="submit" id="checkout" class="btn btn-primary btn-lg"  value="Proceed to Secure Checkout" />
-											
-										<div style="padding-top: 24px;">
-											{% if additional_checkout_buttons %}
-												{{ content_for_additional_checkout_buttons }}
-											{% endif %}							
-										</div>
-										{%endcomment%}
-				
-				
-											
-										</div><!-- checkoutButtons -->
-									</div><!-- basketCheckout -->
-								</form>
-								{%comment %}{% if settings.shipping_calculator == true %}{% include 'shipping-calculator' %}{% endif %}{%endcomment%}
-							</div><!-- cartStuff -->
-							
-				
-							{% endif %}
-						</div><!-- content -->
-		
-				
-				
-				</section>
-			</div>
-		</div>		
-	</div>
-</div>
+											data-original-title="Update Cart"
+											class="btn btn-primary cart-update-clone update-cart-item">
+											<i class="fa fa-refresh"></i>											
+										</a>										
+									</td>
+									<td class="cart-total">{{ item.line_price | money }}</td>
+									<td class="cart-delete"><a href="javascript:void(0);" class="remove-cart-item"><i class="fa fa-times"></i></a></td>
+								</tr>
+
+							{% assign cartitems = cartitems | plus: 1 %}
+						{% endfor %}
+
+						</tbody>
+						<tfoot>
+							<tr>
+								<td class="hidden-xs hidden-sm"></td>
+								<td style="vertical-align: middle;" colspan="6">
+									<span class="hidden-xs">Total:</span>
+									<span class="hidden-sm hidden-md hidden-lg">Before taxes &amp; shipping</span>
+									<span class="subTotal">
+										<span class="money" style="">{{ cart.total_price | money }}</span>
+
+									</span><!-- subTotal -->	
+								</td>
+
+
+							</tr>
+						</tfoot>
+					</table>
+					</div>
+{%comment%}					
+<!-- Click & Collect -->
+<!--[if gt IE 8]><!-->{% include 'clickcollect' %}<!--<![endif]-->
+<!-- Click & Collect -->
+{%endcomment%}
+					<div id="basketCheckout" class="">
+
+						<div id="specialInstructions" class="">
+							<div class="row">
+								<div class="col-lg-9 col-md-10 col-sm-12">
+									<h3>Would you like to include any special instructions with your order?</h3>							
+									<div class="special-instruction-box" style="" >
+										<textarea id="" class="form-control" name="note" rows="4"  placeholder="Provide your instructions here...">{{ cart.note }}</textarea>
+									</div>											
+								</div>						
+							</div>
+						</div><!-- specialInstructions -->
+
+						<div id="checkoutButtons" class="">
+							<h3 style="padding-top: 0;">Ready to place your order?</h3>
+
+							<p style="margin-bottom: 24px;"><strong>
+
+								</p></strong>
+
+							<input type="submit" id="updateCart" name="update" value="{{ settings.updateText }}"  class="" style="display:none;"/>
+							<button type="submit" id="checkout" class="btn btn-primary btn-lg" name="checkout"><i style="margin-right: 8px;" class="fa fa-lock"></i>Proceed to <span class="display-none-480">Secure</span> Checkout</button>
+							{%comment%}		
+							<input type="submit" id="checkout" class="btn btn-primary btn-lg"  value="Proceed to Secure Checkout" />
+
+						<div style="padding-top: 24px;">
+							{% if additional_checkout_buttons %}
+								{{ content_for_additional_checkout_buttons }}
+							{% endif %}							
+						</div>
+						{%endcomment%}
+
+
+
+						</div><!-- checkoutButtons -->
+					</div><!-- basketCheckout -->
+				</form>
+				{%comment %}{% if settings.shipping_calculator == true %}{% include 'shipping-calculator' %}{% endif %}{%endcomment%}
+			</div><!-- cartStuff -->
+
+
+			{% endif %}
+		</div><!-- content -->
+
+
+
+</section>
 
 
 

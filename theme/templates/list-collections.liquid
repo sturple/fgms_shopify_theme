@@ -1,25 +1,20 @@
-{% if settings.all-collections-linklist == blank %}
-<section class="section-wrap">
-	{% include '__containers-open' %}
-	<h1 class="page-header">{% include '__localize' with "All Collections" %}</h1>
-  {% include '__default-pagination' %}
-  {% paginate collections by default-pagination %}
-  {% if collections.size > 0 %}
-    {% include 'collections-list' %}
-    {% include 'pagination' %}
-  {% else %}
-    <div class="alert alert-info text-center">
-      <h3><i class="fa fa-info-circle"></i> No {% include '__localize' with 'collections' %} found.</h3>
-    </div>
-  {% endif %}
-  {% endpaginate %}
-  {% include '__containers-close' %}
-</section>
-{% else %}
-<section class="section-wrap">
-	{% include '__containers-open' %}
-		<h1 class="page-header">{{ linklists[settings.all-collections-linklist].title }}</h1>
-		{% include 'collections-list' with 'all-collections' %}
-	{% include '__containers-close' %}
-</section>
-{% endif %}
+<ul class="collections-list">
+	{% for collection in collections %}
+		{% capture thumb %}{% if collection.image %}{{ collection.image | img_url: 'medium' }}{% endif %}{% endcapture %}
+		{% capture collectionUrl %}{{shop.url}}{{collection.url}}{% endcapture %}
+		{% capture collectionContent %}
+			<div class="collection-product-count">Items ({{collection.products_count}})</div>
+			<div class="collection-product-description">{{collection.description}}</div>
+			<div class="collection-product-action">											
+				<a href="{{collectionUrl}}" class="btn btn-primary">{{ 'general.learn-more' | t}}</a>
+			</div>
+	{% endcapture %}
+		{% include 'utility_listing',
+			thumb : {{thumb}},
+			image : {{thumb}},
+			title : {{collection.title}},
+			link : {{collectionUrl}},
+			content : {{collectionContent}}
+		%}
+	{% endfor %}
+</ul>

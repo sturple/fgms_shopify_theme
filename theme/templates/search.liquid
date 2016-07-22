@@ -4,7 +4,7 @@
 {% unless search.terms == respond_js_secret_key %}
 
 <section id="search-wrap" class="section-wrap">
-  {% include '__containers-open' %}
+
   <h1 class="page-header">{% include 'smart-title' %}</h1>
 
   {% if search.results_count > 0 %}
@@ -12,6 +12,7 @@
   {% paginate search.results by default-pagination %}
   <div class="row search-products">
     {% for i in search.results %}
+    {{i | json}}
     {% if i.price != blank %}
     {% assign product_count = forloop.length %}
     {% include 'product-loop' with i %}
@@ -41,7 +42,7 @@
     </div>
   </form>
   {% endif %}
-  {% include '__containers-close' %}
+
 </section>
 
 {% else %}

@@ -1,109 +1,91 @@
-<div class="{% if settings.sidebar-blog-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}"  id="main" role="main" >
-	<div class="main-col-wrapper  " >
-		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
-		<section id="page-wrap" class="section-wrap">
-			<h1 class="">{{ page_title }}</h1>				
-			<section id="content">
-			{% paginate blog.articles by settings.blog-index-count %}
-				<ul id="blogArticles">
-					{% for article in blog.articles %}
-					<li>                                    
-						<article class="articleWrapper" itemscope itemtype="http://schema.org/Article">									
-							{% if article.content contains "<img"  and article.content contains 'id="feature-image"' %}
-								{% assign src = article.content | split: 'id="feature-image"' %}
-								{% assign src = src[1] | split: 'src="' %}                                            
-								{% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
-							{% elsif article.image.src.size > 10 %}
-								{% assign src = article | img_url: 'compact'%}
-							
-							{% endif %}                          
-							<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />	
-							<div  class="article-summary" itemprop="description">
-								<div class="row">
-									{% if src %}<div class="col-sm-4 blog-index-image-full"><a href="{{ article.url }}"><img  style="" src="{{src}}" alt="feature image {{article.title | escape}}" /></a> </div>{%endif%}
-									<div class="{% if src %}col-sm-8{%else%}col-sm-12{%endif%}">
-										<a href="{{ article.url }}" title="{{ article.title | escape }}" itemprop="url"><h2 itemprop="name">{{ article.title }}</h2></a> 
-										<span class="articleDate" itemprop="datePublished"><b>{{ article.published_at | date: "%B %d, %Y" }}</b></span> - 
-										{% if article.excerpt.size > 0 %}
-										{{ article.excerpt }}
-										{% else %}
-										{{ article.content | strip_html | truncatewords: 90 }}
-										{% endif %}																								  
-									</div>										 
-								</div>									   
-								{% comment %}This is the Full Story Link plus comment count{% endcomment %}
-								<div class="row" style="padding-top:12px;">
-									<div class="col-sm-6">                                                   
-										<a class="learn-more-link" href="{{ article.url }}">Full Story<i class="learn-more-icon fa fa-arrow-circle-right"></i></a>                                                 
-									</div>
-									<div class="col-sm-6 align-right-sm comment-link">
-										{% if blog.comments_enabled? %}                                                    
-										{% if settings.useDisqus == true %}
-										<a class="articleCommentsCount" href="{{shop.url}}{{article.url}}#disqus_thread" data-disqus-identifier="{{ article.id }}"></a>
-										{% else %}
-										{% if article.comments_count > 0 %}
-										<a  class="articleCommentsCount"
-											href="{{article.url}}#comments">{{ article.comments_count }}
-											{% if article.comments_count == 1 %}
-												{{ settings.commentsText }}
-											{% else %}
-												{{ settings.commentsPluralText }}
-											{% endif %}</a>
-										{% endif %}
-										
-										{% endif %}                                                    
-									</div>
-								</div>  
-							</div><!-- articleSummary -->                                       
-								<footer class="article-footer" style="padding-top: 12px;">                                        
-								  
-									{%comment%}<span class="articleAuthor" itemprop="author">{{ settings.postedByText }} {{ article.author }}</span>{%endcomment%}
-									{% if article.tags.size > 0 %}                                           
-									<span class="articlePostedIn" itemprop="keywords"><span style="margin-right: 4px;">TAG(S):</span> 
-										{% for tag in article.tags %}
-											<a class="btn btn-default btn-tags btn-xs" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-											{% endfor %}
-									</span>
-									{% endif %}                                  
-									
-								{% endif %}                                          
-								</footer><!-- articleDetails -->                                   
-							</article><!-- articleWrapper -->
-						</li>
-					   {% assign src = false %}
-					  {% endfor %}
-					</ul><!-- blogArticles -->
-					<nav id="blogPagination" class="pagination">
-						{% if paginate.previous %}
-						<a id="paginationPrev" class="icon-angle-left" href="{{ paginate.previous.url }}"></a>
-						{% endif %}
-						{% for part in paginate.parts %}
-						{% if part.is_link %}
-						<span class="paginationLink">{{ part.title | link_to: part.url }}</span>
-						{% else %}
-						<span id="paginationCurrent">{{ part.title }}</span>
-						{% endif %}        
-						{% endfor %}
-						{% if paginate.next %}
-						<a id="paginationNext" class="icon-angle-right" href="{{ paginate.next.url }}"></a>
-						{% endif %}
-					</nav><!-- blogPagination -->
-					{% endpaginate %}
-				</section><!-- content -->			
-		</section>
-	</div>
-</div>
-{% if settings.sidebar-blog-enable %}
-<!-- sidebar -->
-<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
-	<div  id="sidebar">
-		<div id="sidebar-wrapper">
-			{% if settings.sidebar-blog-snippet != blank %}
-			{% include settings.sidebar-blog-snippet %}
-			{%else%}
-			{% include 'warning' type : 'no-sidebar' %}				
-			{%endif%}			
-		</div>								
-	</div>                
-</div>
-{% endif %}
+
+{% paginate blog.articles by settings.blog-index-count | default: 20 %}
+	<ul id="blogArticles">
+		{% for article in blog.articles %}
+		<li>                                    
+			<article class="articleWrapper" itemscope itemtype="http://schema.org/Article">									
+				{% if article.content contains "<img"  and article.content contains 'id="feature-image"' %}
+
+					{% assign src = article.content | split: 'id="feature-image"' %}
+					{% assign src = src[1] | split: 'src="' %}                                            
+					{% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
+				{% elsif article.image.src.size > 10 %}
+					{% assign src = article | img_url: 'compact'%}
+
+				{% endif %}                          
+				<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />	
+				<div  class="article-summary" itemprop="description">
+					<div class="row">
+						{% if src %}
+						<div class="col-sm-4 blog-index-image-full">
+							<a href="{{ article.url }}">
+								<img  style="" src="{{src}}" alt="feature image {{article.title | escape}}" /></a> </div>{%endif%}
+						<div class="{% if src %}col-sm-8{%else%}col-sm-12{%endif%}">
+							<a href="{{ article.url }}" title="{{ article.title | escape }}" itemprop="url"><h2 itemprop="name">{{ article.title }}</h2></a> 
+							<span class="articleDate" itemprop="datePublished"><b>{{ article.published_at | date: "%B %d, %Y" }}</b></span> - 
+							{% if article.excerpt.size > 0 %}
+							{{ article.excerpt }}
+							{% else %}
+							{{ article.content | strip_html | truncatewords: 90 }}
+							{% endif %}																								  
+						</div>										 
+					</div>									   
+					{% comment %}This is the Full Story Link plus comment count{% endcomment %}
+					<div class="row" style="padding-top:12px;">
+						<div class="col-sm-6">                                                   
+							<a class="learn-more-link" href="{{ article.url }}">Full Story<i class="learn-more-icon fa fa-arrow-circle-right"></i></a>                                                 
+						</div>
+						<div class="col-sm-6 align-right-sm comment-link">
+							{% if blog.comments_enabled? %}                                                    
+							{% if settings.useDisqus == true %}
+							<a class="articleCommentsCount" href="{{shop.url}}{{article.url}}#disqus_thread" data-disqus-identifier="{{ article.id }}"></a>
+							{% else %}
+							{% if article.comments_count > 0 %}
+							<a  class="articleCommentsCount"
+								href="{{article.url}}#comments">{{ article.comments_count }}
+								{% if article.comments_count == 1 %}
+									{{ settings.commentsText }}
+								{% else %}
+									{{ settings.commentsPluralText }}
+								{% endif %}</a>
+							{% endif %}
+
+							{% endif %}                                                    
+						</div>
+					</div>  
+				</div><!-- articleSummary -->                                       
+					<footer class="article-footer" style="padding-top: 12px;">                                        
+
+						{%comment%}<span class="articleAuthor" itemprop="author">{{ settings.postedByText }} {{ article.author }}</span>{%endcomment%}
+						{% if article.tags.size > 0 %}                                           
+						<span class="articlePostedIn" itemprop="keywords"><span style="margin-right: 4px;">TAG(S):</span> 
+							{% for tag in article.tags %}
+								<a class="btn btn-default btn-tags btn-xs" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+								{% endfor %}
+						</span>
+						{% endif %}                                  
+
+					{% endif %}                                          
+					</footer><!-- articleDetails -->                                   
+				</article><!-- articleWrapper -->
+			</li>
+			 {% assign src = false %}
+			{% endfor %}
+		</ul><!-- blogArticles -->
+		<nav id="blogPagination" class="pagination">
+			{% if paginate.previous %}
+			<a id="paginationPrev" class="icon-angle-left" href="{{ paginate.previous.url }}"></a>
+			{% endif %}
+			{% for part in paginate.parts %}
+			{% if part.is_link %}
+			<span class="paginationLink">{{ part.title | link_to: part.url }}</span>
+			{% else %}
+			<span id="paginationCurrent">{{ part.title }}</span>
+			{% endif %}        
+			{% endfor %}
+			{% if paginate.next %}
+			<a id="paginationNext" class="icon-angle-right" href="{{ paginate.next.url }}"></a>
+			{% endif %}
+		</nav><!-- blogPagination -->
+		{% endpaginate %}             
+											
