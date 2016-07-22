@@ -1,0 +1,37 @@
+<div class="row" style="padding-top: 12px;">
+  <div class="col-xs-2" >
+    <a 	class="btn btn-primary btn-back"							
+      data-toggle="tooltip"
+      title=""
+      data-placement="top"											
+      data-original-title="Previous Page"
+      href="javascript:void(0);"
+      onclick="window.history.back();"><i class="fa fa-hand-o-left"></i></a>
+  </div>		
+
+  <div class="col-xs-10 align-right-xs">
+    {% if blog.comments_enabled? %}										
+      {% if settings.useDisqus == true %}
+      <a class="articleCommentsCount" href="{{shop.url}}{{article.url}}#disqus_thread" data-disqus-identifier="{{ article.id }}"></a>
+      {% else %}
+      <a class="btn btn-primary btn-md" href="javascript:void(0);" data-scroll-target="#comments">
+        {% if comment and comment.created_at %}
+          {% assign a_comment_was_just_published_successfully = true %}											
+          {{ article.comments_count | plus: 1 }} 
+          {% unless article.comments_count | plus: 1 == 1 %}
+            {{ settings.commentsText }}
+          {% endunless %}
+
+        {{ settings.commentsPluralText }}
+
+        {% elsif article.comments_count > 0 %}
+
+        <i style="margin-right: 4px;" class="fa fa-comments"></i>{{ article.comments_count }} {% if article.comments_count == 1 %}{{ settings.commentsText }}{% else %}{{ settings.commentsPluralText }}{% endif %}
+        {% else %}
+        <i style="margin-right: 4px;" class="fa fa-comments"></i>Add a Comment
+        {% endif %}
+      </a>                    
+      {% endif %}
+    {% endif %}                                                
+  </div>
+</div>			

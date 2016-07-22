@@ -1,0 +1,30 @@
+{% if blog.comments_enabled? %}
+<section id="comments">
+  <h2 id="comments-title">{{ settings.commentsText }}</h2>
+	{% if settings.useDisqus == true %}    
+    {% if settings.disqusUsername != blank %}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">      
+       var disqus_config = function () {
+            this.page.url = '{{ shop.url }}{{blog.url}}';
+            this.page.identifier = '{{ article.id }}';
+       };
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() { 
+            var d = document, s = d.createElement('script');        
+            s.src = '//{{ settings.disqusUsername }}.disqus.com/embed.js';        
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    {% else %}
+      <p><strong>Disqus is enabled, but no username is selected in theme settings</strong></p>
+    {% endif %}
+	{% else %}
+  {% include 'comment_content' %}
+	{% endif %}
+</section>
+{% endif %}				
+
+

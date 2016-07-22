@@ -1,0 +1,40 @@
+{% case template %}
+	{% when 'page' %}
+		{% assign current_url = page.url %}    
+    {% assign sidebar_grid = 'col-md-3' %}   
+	{% when 'blog' %}
+		{% assign current_url = blog.url %}
+    {% assign sidebar_grid = 'col-md-3' %}
+	{% when 'article' %}
+		{% assign current_url = blog.url %}
+    {% assign sidebar_grid = 'col-md-3' %}
+	{% when 'collection' or 'list-collections' %}
+		{% assign current_url = collection.url %}
+    {% assign sidebar_grid = 'col-md-3' %}
+	{% when 'product' %}
+		{% assign current_url = product.url %}        
+{% endcase %}
+
+              {% comment %}Bottom of page content{% endcomment %}
+							</div>                       
+					</div>
+					{% if sidebar_grid  %}
+					<div class="{{sidebar_grid}}">
+							<div class="sidebar">
+							 {% include 'shortcode-sidebar_call_to_action' %}
+							 <div id="testimonial-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-pause="false">
+								 <ul class="carousel-inner" role="listbox">
+									 {% include 'data-testimonials', type : "widget" %}
+								</ul>
+							</div>                             
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>  
+	</div>    
+</div>
+
+{% if current_url != pages.photos-videos.url %}{% include 'template_page_gallery' %}{% endif %}
+{% include 'template_page_ready_for_adventure' %}

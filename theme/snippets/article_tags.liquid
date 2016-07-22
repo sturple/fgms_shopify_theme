@@ -1,0 +1,7 @@
+{% if article.tags.size > 0 %}                                           
+<span class="articlePostedIn" itemprop="keywords"><span style="margin-right: 4px;">TAG(S): </span>
+  {% for tag in article.tags %}
+    <a class="btn btn-default btn-xs" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+    {% endfor %}
+</span>
+{% endif %}

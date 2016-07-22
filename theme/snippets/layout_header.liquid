@@ -1,0 +1,30 @@
+{% include 'data-site' %}
+{% case template %}
+	{% when 'page' %}
+		{% assign title = page.title %}
+    {% assign content_grid = 'col-md-9' %}   
+	{% when 'blog' %}
+		{% assign title = blog.title %}
+    {% assign content_grid = 'col-md-9' %}
+	{% when 'article' %}
+		{% assign title = blog.title %}
+    {% assign content_grid = 'col-md-9' %}
+	{% when 'collection' or 'list-collections' %}
+		{% assign title = collection.title %}
+    {% assign content_grid = 'col-md-9' %}
+	{% when 'product' %}
+		{% assign title = product.title %}
+        {% assign content_grid = 'col-md-12' %}
+{% endcase %}
+
+<div class="script-overflow-background" data-selector="#header-top-parent" data-before="true";
+	 data-background="{{pageBackgroundImages | default: 'https://cdn.shopify.com/s/files/1/1334/6905/files/background-introduction.jpg?13411058541587716939' | strip}}"
+	 >
+  <div class="modular modular-page "  >
+    <div class="container">
+			<div class="hidden-xs breadcrumbs-container opacity-ffffff-95">{% include 'breadcrumbs' %}</div>		
+			<div class="opacity-ffffff-80  page-template-content ">
+				<div class="row"><div class="col-md-12"><h1 class="">{{title}}</h1></div></div>
+				<div class="row">                    
+					<div class="{{content_grid}}">
+						<div class="page-content">

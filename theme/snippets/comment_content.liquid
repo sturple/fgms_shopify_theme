@@ -1,0 +1,109 @@
+{% comment %} This requires fixing however only used if using shopify comments{% endcomment %}
+
+{% paginate article.comments by 12 %}
+									{% if comment and comment.created_at %}
+									{% assign a_comment_was_just_published_successfully = true %}
+									<h2 id="commentsTitle">{{ article.comments_count | plus: 1 }} {% unless article.comments_count | plus: 1 == 1 %}{{ settings.commentsText }}{% else %}{{ settings.commentsPluralText }}{% endunless %}</h2>
+									{% elsif article.comments_count > 0 %}
+									<h2 id="commentsTitle">{{ article.comments_count }} {% if article.comments_count == 1 %}{{ settings.commentsText }}{% else %}{{ settings.commentsPluralText }}{% endif %}</h2>
+									{% else %}
+
+									{% endif %}
+									{% if article.comments_count > 0 or comment.created_at %}
+
+									<div id="commentsList">
+										<ul class="fa-ul">
+										{% if comment and comment.created_at %}
+
+										<li id="comment-{{ comment.id }}" class="{{ comment.status }} not-yet-published last">
+											<i class="fa-li fa fa-comments"></i>
+											<div class="commentDetails">
+												<div> <span class="commentAuthor">{{ comment.author }}</span> says:</div>
+
+											</div><!-- commentDetails -->
+											<div class="commentBody"> "{{ comment.content | strip_html}}" ~ <span class="commentDate">{{ comment.created_at | date: "%B %d, %Y" }}</span></div><!-- commentBody -->
+										</li>
+										{% endif %}
+										{% for comment in article.comments %}
+										<li class="comment {% cycle 'even', 'odd' %}">
+											<i class="fa-li fa fa-comments"></i>
+											<div class="commentDetails">
+												<div> <span class="commentAuthor">{{ comment.author }}</span> says:</div>									  
+											</div><!-- commentDetails -->
+											<div class="commentBody"> "{{ comment.content | strip_html}}" ~ <span class="commentDate">{{ comment.created_at | date: "%B %d, %Y" }}</span></div><!-- commentBody -->
+
+										</li>
+										{% endfor %}
+										</ul>
+									</div><!-- commentsList-->
+
+									{% if paginate.pages > 1 %}
+									<nav id="commentsPagination" class="pagination floatRight">
+										{% if paginate.previous %}
+										<span id="paginationPrev">{{ 'Previous' | link_to: paginate.previous.url }}</span>
+										{% endif %}
+										{% for part in paginate.parts %}
+										{% if part.is_link %}
+										<span class="paginationLink">{{ part.title | link_to: part.url }}</span>
+										{% else %}
+										<span id="paginationCurrent">{{ part.title }}</span>
+										{% endif %}        
+										{% endfor %}
+										{% if paginate.next %}
+										<span id="paginationNext">{{ 'Next' | link_to: paginate.next.url }}</span>
+										{% endif %}
+									</nav><!-- commentsPagination -->
+									{% endif %}
+								{% endif %}
+                  {% include 'comment_form' }
+									<div id="commentForm" class="form-horizontal info-box">
+										{% form article %}
+										<h2 style="padding-top:0">Leave a Comment</h2>
+										{% if form.posted_successfully? %}
+										{% if blog.moderated? %}
+										<p class="noticeSuccess">
+											{{ settings.commentSuccessText }}. {{ settings.needApprovedText }}.
+										</p><!-- noticeSuccess -->
+										{% else %}
+										<p class="noticeSuccess">
+											{{ settings.commentSuccessText }}.
+										</p><!-- noticeSuccess -->
+										{% endif %}
+										{% endif %}
+										{% if form.errors %}
+										<p class="noticeError">
+											{{ settings.commentErrorText }}.
+										</p><!-- noticeError -->
+										{% endif %}
+										<div id="commentFormFields">
+											<div class="form-group {% if form.errors contains 'author' %}has-error{% endif %}">
+												<label class="control-label col-sm-2"  for="commentAuthor">Name</label>
+												<div class="col-sm-8">		
+													<input  id="commentAuthor" type="text" class="form-control "  name="comment[author]" value="{% if shop.customer_accounts_enabled %}{% if customer  %}{{customer.name}}{% else %}{{form.author}}{% endif %}{% endif %}"   />
+												</div>
+											</div>									
+											<div class="form-group {% if form.errors contains 'email' %}has-error{% endif %}">
+												<label class="control-label col-sm-2"  for="commentEmail">Email</label>
+												<div class="col-sm-8">		
+													<input id="commentEmail" type="email" class="form-control "  name="comment[email]" value="{% if shop.customer_accounts_enabled %}{% if customer  %}{{customer.email}}{% else %}{{form.email}}{% endif %}{% endif %}"   />
+												</div>
+											</div>
+
+											<div class="form-group {% if form.errors contains 'body' %}has-error{% endif %}">
+												<label class="control-label col-sm-2"  for="commentBody">Comment</label>
+												<div class="col-sm-8">		
+													<textarea id="commentBody" name="comment[body]"  class="form-control {% if form.errors contains 'body' %}input-error{% endif %}">{{form.body}}</textarea>
+												</div>
+											</div>
+											<div class="form-group" style="padding: 12px 0 12px;">
+												<div class="col-sm-12">
+													<input type="submit" value="Comment" class="btn btn-primary btn-lg" id="commentSubmit" />
+
+												</div>
+											</div>
+											{% if blog.moderated? %}<div class="commentHint"> <em>Please note that comments are moderated by {{shop.name}}. You will receive an email when your comment has been added to this post</em>.</div>{% endif %}
+										{% endform %}
+										</div><!-- commentFormFields -->
+
+									</div><!-- commentForm -->
+									{% endpaginate %}

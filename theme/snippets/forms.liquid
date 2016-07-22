@@ -321,10 +321,147 @@
 <!-- CONTACT FORM ERROR -->
 
 {% elsif formType == 'contact_full' %}
+<div class="contact-form form-horizontal">
+{% form 'contact' %}
+	{% include 'form_errors' %}
+	{% comment %}This adds javascript if inside a tab to open tab{% endcomment %}	
+	<script type="text/javascript">
+		$(function(){
+			
+			{% if form.email  %}
+			if ( $('.nav a[href="#group_form"]').length > 0 ){
+				$('.nav a[href="#group_form"]').trigger('click');				
+			}
+			{% endif %}
+			new Shopify.CountryProvinceSelector('address_country', 'address_province', {hideElement: 'address_province_container'});  
+			new Shopify.CountryProvinceSelector('address_country', 'address_province', {hideElement: 'address_province_container'});
+		
+		});
+	
+	</script>
+	
+
+	{%if  form.posted_successfully? %}
+		<div class="alert alert-success" role="alert">
+			{{'forms.message-form-success-part1' | t}} {{shop.name}}. {{'forms.message-form-success-part2' | t}}
+		</div>
+	{% else %}	
+<!-- CONTACT FORM INPUTS -->
+
+	<div class="form-group ">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormFirstName">{{'forms.first-name' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input required type="text" id="contactFormFirstName" class="form-control" {% if ph_flag %}placeholder="{{'forms.first-name' |t}}"{% endif %}  name="contact[first name]" value="{{form['first name']}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormLastName">{{'forms.last-name' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input  type="text" id="contactFormLastName" class="form-control" {% if ph_flag %}placeholder="{{'forms.last-name' |t}}"{% endif %}  name="contact[last name]" value="{{form['last name']}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.address' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.address' |t}}"{% endif %}  name="contact[address]"  value="{{form['address']}}" >
+		</div>
+	</div>
+			
+	<div class="form-group">
+		<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_country">{{'forms.country' | t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">						
+			<select id="address_country" class="form-control" name="contact[country]"  {% if ph_flag %}placeholder="{{'forms.country' | t}}"{% endif %}  data-default="{{form['country']}}">{{ country_option_tags }}</select>
+		</div>
+	</div>				
+
+	<div class="form-group" id="address_province_container" style="display:none">
+		<label class="control-label {{ labelClass | default: 'col-md-3'}}" for="address_province">{{'forms.province' | t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">							
+			<select id="address_province" class="form-control" name="contact[province]"  placeholder="{{'forms.province' | t}}"  data-default="{{form['province']}}"></select>
+		</div>
+	</div>	
+	<div class="form-group">
+		<label class="control-label {{ labelClass | default: 'col-md-3'}}"  for="address_zip">{{'forms.zip' | t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">			
+			<input type="text" id="address_zip" class="form-control" {% if ph_flag %}placeholder="{{'forms.zip' | t}}"{% endif %} name="contact[zip]" value="{{form['zip']}}"   />		
+		</div>
+	</div>	
+	
+	<div class="form-group {% if form.errors contains 'email'%}has-error{%endif%}">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormEmail">{{'forms.email' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">			
+			<input type="email" id="contactFormEmail" class="form-control" {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  name="contact[email]"  value="{{form['email']}}" >
+			<div class="input-error-message {% if form.errors contains 'email'%}show-error-message{%endif%}">{{'forms.errors.email' |t}}</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.phone' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.phone' |t}}"{% endif %}  name="contact[phone]"  value="{{form['phone']}}" >
+		</div>
+	</div>
+	
+
+
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormMessage">{{'forms.message' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<textarea rows="3" class="form-control" id="contactFormMessage" {% if ph_flag %}placeholder="{{'forms.message' |t}}"{% endif %}  name="contact[body]">{{form['body']}}</textarea>
+		</div>
+	</div>
+	{% comment %}
+    <div class="form-group" >
+		<div class="col-sm-12">
+			<label style="padding-right: 18px;" class="pull-left ">{{'forms.subscribe-elist-short' | t}}</label>
+			<div class="">
+				<div class="radio   radio-inline">
+					<input class="radioButtons contactRadio" type="radio" name="emailList" id="emailListYesfooter" value="Yes" CHECKED />               
+					<label for="emailListYesfooter" style="position: relative; ;">{{'general.yes'|t}}</label>
+				</div>
+				<div class="radio radio-inline">
+					<input class="radioButtons contactRadio" type="radio" name="emailList" value="No" id="emailListNofooter"  />
+					<label for="emailListNofooter" style="position: relative;">{{'general.no' |t}}</label>
+				</div>
+			</div>
+		</div>
+    </div>
+{% endcomment %}
+	<div class="form-group" style="padding-top: 32px;">
+		<div class="col-sm-12">
+			<input class="btn btn-primary" type="submit"  value="{{'general.send'|t}}" />
+			
+			
+		</div>		
+	</div>
+	{% endif %}
+{% endform %}
+</div>
+
+<!-- CONTACT FORM ERROR -->
+
+{% elsif formType == 'group_form' %}
 
 <div class="contact-form form-horizontal">
 {% form 'contact' %}
 	{% include 'form_errors' %}
+	{% comment %}This adds javascript if inside a tab to open tab{% endcomment %}
+	
+	<script type="text/javascript">
+		$(function(){
+			{% comment %}
+			{% if form.email  %}
+			if ( $('.nav a[href="#group_form"]').length > 0 ){
+				$('.nav a[href="#group_form"]').trigger('click');				
+			}
+			{% endif %}
+			new Shopify.CountryProvinceSelector('address_country', 'address_province', {hideElement: 'address_province_container'});  
+			new Shopify.CountryProvinceSelector('address_country', 'address_province', {hideElement: 'address_province_container'});
+		{% endcomment %}
+		});
+	
+	</script>
+	
+
 	{%if  form.posted_successfully? %}
 		<div class="alert alert-success" role="alert">
 			{{'forms.message-form-success-part1' | t}} {{shop.name}}. {{'forms.message-form-success-part2' | t}}
@@ -332,22 +469,70 @@
 	{% else %}	
 <!-- CONTACT FORM INPUTS -->
 	<div class="form-group">
-		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormName">{{'forms.name' |t}}</label>
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.organization' |t}}</label>
 		<div class="{{ controlClass | default: 'col-md-7'}}">	
-			<input type="text" id="contactFormName" class="form-control" {% if ph_flag %}placeholder="{{'forms.name' |t}}"{% endif %}  name="contact[name]">
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.organization' |t}}"{% endif %}  name="contact[organization]"  value="{{form['organization']}}" >
+		</div>
+	</div>	
+	<div class="form-group ">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormFirstName">{{'forms.first-name' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input required type="text" id="contactFormFirstName" class="form-control" {% if ph_flag %}placeholder="{{'forms.first-name' |t}}"{% endif %}  name="contact[first name]" value="{{form['first name']}}">
 		</div>
 	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormLastName">{{'forms.last-name' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input  type="text" id="contactFormLastName" class="form-control" {% if ph_flag %}placeholder="{{'forms.last-name' |t}}"{% endif %}  name="contact[last name]" value="{{form['last name']}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.title' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.title' |t}}"{% endif %}  name="contact[title]" value="{{form['title']}}" >
+		</div>
+	</div>
+	
+	
 	<div class="form-group {% if form.errors contains 'email'%}has-error{%endif%}">
 		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormEmail">{{'forms.email' |t}}</label>
 		<div class="{{ controlClass | default: 'col-md-7'}}">			
-			<input type="email" id="contactFormEmail" class="form-control" {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  name="contact[email]">
+			<input type="email" id="contactFormEmail" class="form-control" {% if ph_flag %}placeholder="{{'forms.email' |t}}"{% endif %}  name="contact[email]"  value="{{form['email']}}" >
 			<div class="input-error-message {% if form.errors contains 'email'%}show-error-message{%endif%}">{{'forms.errors.email' |t}}</div>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormMessage">{{'forms.message' |t}}</label>
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.phone' |t}}</label>
 		<div class="{{ controlClass | default: 'col-md-7'}}">	
-			<textarea rows="3" class="form-control" id="contactFormMessage" {% if ph_flag %}placeholder="{{'forms.message' |t}}"{% endif %}  name="contact[body]"></textarea>
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.phone' |t}}"{% endif %}  name="contact[phone]"  value="{{form['phone']}}" >
+		</div>
+	</div>
+	
+
+
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.preferred-date' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.preferred-date' |t}}"{% endif %}  name="contact[regatta date]"  value="{{form['regatta date']}}" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.alternative-date' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.alternative-date' |t}}"{% endif %}  name="contact[alt regatta date]"  value="{{form['alt regatta date']}}" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" >{{'forms.attendees' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<input type="text" class="form-control" {% if ph_flag %}placeholder="{{'forms.attendees' |t}}"{% endif %}  name="contact[attendees]"  value="{{form['attendees']}}" >
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label  {{ labelClass | default: 'col-md-3'}}" for="contactFormMessage">{{'forms.agenda-request' |t}}</label>
+		<div class="{{ controlClass | default: 'col-md-7'}}">	
+			<textarea rows="3" class="form-control" id="contactFormMessage" {% if ph_flag %}placeholder="{{'forms.agenda-request' |t}}"{% endif %}  name="contact[body]">{{form['body']}}</textarea>
 		</div>
 	</div>
 	{%comment%}
@@ -367,9 +552,9 @@
 		</div>
     </div>
 {%endcomment%}
-	<div class="form-group">
+	<div class="form-group" style="padding-top: 32px;">
 		<div class="col-sm-12">
-			<input class="btn btn-primary" type="submit"  value="{{'general.send'|t}}" />
+			<input class="btn btn-primary" type="submit"  value="{{'general.send-group-regatta-inquiry'|t}}" />
 			
 			
 		</div>		
@@ -377,6 +562,7 @@
 	{% endif %}
 {% endform %}
 </div>
+
 
 
 {% else %}
