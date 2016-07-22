@@ -246,8 +246,14 @@ html[xmlns] .slides{display:block;}
 		}
     }
 }
-.gallery-grid-25 li {width: 25%;}
-.gallery-grid-20 li {width: 20%;}
+.gallery-grid-25 li {
+	width: 25%;
+	border: 1px solid #fff;
+}
+.gallery-grid-20 li {
+	width: 20%;
+	border: 1px solid #fff;
+}
 .gallery-grid-big-small-5 {
 	li {
 		border-left: 1px solid #fff;
@@ -279,9 +285,13 @@ html[xmlns] .slides{display:block;}
 			}
 			&:nth-child(even){
 				width: 26%;
+				img {
+					position: relative;
+					top: -100px;
+				}
 			}
 			
-			height: 180px;
+			max-height: 180px;
 			
 			
 		}		
@@ -315,7 +325,7 @@ article {
     .image-wrapper {
         position: relative;
         overflow: hidden;
-		max-width: 360px;
+		
 		margin: 0 auto 24px;
         img {
             @include transition(0.75s);
@@ -324,10 +334,12 @@ article {
 
         .image-overlay {
             position: absolute;
+						display: flex;
+						align-items: center;
             width: 100%;
             top: 0;
             height: 100%;
-            padding: 36px 24px;
+            padding: 8px ;
             display: flex;
             flex-flow: row wrap;
 			font-size: 1.2em;

@@ -1,13 +1,53 @@
 /* navigation */
 
-.nav-tabs {margin-bottom: 24px; padding-top: 24px;} 
-.nav-tabs > li > a { /*color: #005676;*/ font-size: 14px; font-size: 1.4rem; /*background:  #DDE5E7;*/   -moz-border-bottom-colors: none;  -moz-border-left-colors: none;  -moz-border-right-colors: none;  -moz-border-top-colors: none;  border-color: #DDDDDD ;  border-image: none;  border-style: solid;  border-width: 1px; border-radius: 0; -moz-border-radius: 0; border-radius: 0;}
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {  color: #666; text-decoration: none; }
-.nav-tabs > li.disable {display : none;}
+.nav-tabs {
+  margin-bottom: 32px;
+  border-bottom: 1px solid #fff;
+  padding-top: 24px;
+  > li > a {
+    @include font-size(1.4);
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: rgba(255,255,255,1);;
+    background-color: rgba(255,255,255,0.4);
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    border-bottom: 0px !important;
+    @include radius(0);
+    margin-right: 0;
+    &:hover {
+      border-color: rgba(255,255,255,1);
+      background-color: rgba(255,255,255,1);
+    }
+  }
+  > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #666;
+    text-decoration: none;
+    border-color: #fff !important;
+    }
+  > li.disable {display : none;}
+  > li:first-child > a {
+    @include radius(8px 0 0 0);
+  }
+  > li:last-child > a {
+    @include radius(0 8px 0 0);
+  }
 
-.tab-content.accordion .tab-accordion-header {font-size:15px;	font-size:1.5rem;border-radius:1px;	-moz-border-radius:1px;	display:none;	cursor:pointer;	background-color:#f8f8f8;}
+} 
+
+.tab-content.accordion .tab-accordion-header {
+  @include font-size(1.5);
+  @include radius(1px);
+  display:none;
+  cursor:pointer;
+  background-color:#f8f8f8;
+}
 .tab-content .disable {display: none;}
+
 .nav-pills {margin-bottom: 24px;} 
 .nav-pills > li > a {color: #BA3C01;  font-size: 14px; font-size: 1.4rem; background:  none;   border-width: 0px;}
 .nav-pills.nav > li > a {  padding: 10px 15px 10px 0px;}
@@ -30,8 +70,9 @@
 
 */
 .form-control {
-  @include radius(0);
+  @include radius(4px);
   padding: 12px;
+  border: none;
   height: auto;
   @include font-size(1.8);
  
@@ -64,10 +105,62 @@ label {font-weight: normal;}
 .dropdown-menu {  z-index: 11000;}
 
 /* accordion */
-.panel-group { padding-top: 12px; }
-.panel-group .panel { border-radius: 0px; }
-.panel-heading { border-top-left-radius: 0; border-top-right-radius: 0; -moz-border-top-right-radius: 0px; -webkit-border-top-right-radius: 0px; -moz-border-top-left-radius: 0px; -webkit-border-top-left-radius: 0px;}
-.panel-title { padding-top: 0; }
+.panel-group {
+  padding-top: 12px;
+  .panel {
+    border-radius: 0px;
+  }
+  .panel-heading {
+    @include radius(0); 
+   }
+  .panel-title {
+    padding-top: 0;
+  }
+  &.panel-group-arrow {
+    h4 {
+      font-weight: normal;
+      
+    }
+    p {
+     font-size: 0.9em;
+    }
+    > div > div {
+      margin-bottom: 15px;
+      border-bottom: 1px dotted #666;
+      padding-bottom: 3px;;
+    }
+    .collapse-trigger {
+        &:before {
+          content:"\f0da";
+          font-family: FontAwesome;
+          margin-right: 4px;
+          transform: rotate(90deg);
+          -moz-transform:  rotate(90deg);
+          -webkit-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);					
+          transition: all 0.25s linear;
+          -moz-transition: all 0.25s linear;
+          -webkit-transition: all 0.25s linear;
+          -o-transition: all 0.25s linear;	
+          display: inline-block;
+        }
+        &:hover {
+          text-decoration: none;
+        }
+        &.collapsed:before {
+					margin-right: 4px;
+					transform: rotate(0);
+					-moz-transform:  rotate(0);
+					-webkit-transform: rotate(0);
+					-o-transform: rotate(0);
+					-ms-transform: rotate(0);				
+				}	    
+    }
+  }
+}
+
+
 
 /* popovers */
 .popover-content label { font-size: 11px !important; }

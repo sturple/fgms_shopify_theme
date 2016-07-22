@@ -122,6 +122,7 @@
 }
 
 #header-top-parent {
+    position: relative;
     .row {
         @include flexbox();
         flex-flow: column;
@@ -168,8 +169,8 @@
     @include radius(0 0 10px 10px);
     padding: 50px $media-xl-theme-padding-primary;
     p {
-        font-size: 1.2em;
-        line-height: 1.4em;
+        
+        line-height: 1.5em;
     }
     .page-content {
         margin-right: 36px;
@@ -264,7 +265,7 @@
              position: absolute;
              text-align: center;
              background-color: rgba(255,255,255,0.85);
-             z-index: 9999;
+             
              top: 13%;;
              right: 10%;
              padding: 12px;
@@ -408,6 +409,29 @@
 }
 .home-photo-row {
     padding-top: $media-xl-theme-padding-secondary-half;
+    > div {
+        max-width: 400px;
+        border: 1px solid #fff;
+        margin: 12px auto;
+        .zoom-overlay-wrapper .image-wrapper      {
+            margin: 0;
+        }
+    }
+
+    @media  screen and (min-width: $screen-md-max){
+        
+        &:after {
+            display: table;
+            content: " ";
+            clear: both;
+            
+        }    
+        > div {
+            width: 33.333%;
+            float: left;
+        }
+    }
+    
 }
 
 .seperator-boat-stripe {
@@ -421,7 +445,7 @@
 
 #footer-wrapper {
     
-    
+    position: relative;
     color: #fff;
     @include a-border(#fff,transparent, #fff, #fff ,'',':not(.icons):not(.btn):not(.logo)');
     .contact-container {
@@ -518,7 +542,7 @@
     
 }
 .footer-form-content {
-    padding-top: 160px;
+    padding-top: 190px;
     
     h3, .h3 {
         @include font-size(4.5);
@@ -543,6 +567,79 @@
     }
 }
 
+
+ul.boat-types, ul.collections-list {
+    padding-top: 36px;
+    li {
+        margin-bottom: 36px;
+        padding-bottom: 36px;
+        border-bottom: 1px dotted #aaa;
+        &:last-child {
+            border: none;
+        }
+        h2, .h2, h3, .h3 {
+            padding-top: 0;
+        }
+        .listing-content {
+            font-size: 0.9em;
+            
+        }
+        .image-wrapper {
+            overflow: hidden;
+            display: block;
+            @include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));                
+            border: 1px solid rgba(0,0,0,0.2);
+          
+            position: relative;
+            .image-overlay {
+                @include transition(0.75s);
+                background-color: rgba(0,0,0,0.05);
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: flex;                
+                color: #fff;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                button {
+                    @include opacity(0);
+                }
+                
+                
+            }
+            img {
+                width: 100%;
+                max-width: 300px;
+                @include transition(0.5s);
+                @include transform-scale(1,1);                    
+    
+            }            
+            &:hover {
+                .image-overlay {
+                    background-color: rgba(0,0,0,0.7);
+                    @include transition(0.75s);
+                    &:after {
+                        
+                        font-family: FontAwesome;                        
+                    }
+                    &.has-video:after {
+                       
+                    }
+                button {
+                    @include opacity(1);
+                }                    
+                }
+                img {                     
+                    @include transition(0.75s);
+                    @include transform-scale(1.1,1.1);     
+                }
+            }
+        }
+
+    }
+}
 
 
 /* Testimonials */
@@ -695,22 +792,59 @@
 }
 
 
-.scroll-next-button {
+.scroll-button {
     position: absolute;
-    width: 100px;
-    height: 40px;
-    margin: 0 auto;
-    bottom: 0;
-    z-index: 10;
-    background-color : rgba(255,255,255, 0.9);
-    left: 49%;
-    text-align: center;
-    @include radius(10px 10px 0 0);
+    width: 100%;
+    &.top-button {
+        bottom: 0;
+        a {
+            @include radius(10px 10px 0 0);
+            //@include radius(0 0 10px 10px);
+        }
+        span {
+            &::after {
+                content: '\f106';
+            }
+            &:hover {            
+                &::after {
+                    content: 'Top';
+                }
+            }
+        }
+    }
+    &.next-button {
+      bottom: 0;
+      a {
+            @include radius(10px 10px 0 0);
+      }
+        span {
+            &::after {
+                content: '\f107';
+            }
+            &:hover {            
+                &::after {
+                    content: 'Scroll Down';
+                }
+            }
+        }      
+    }    
+    z-index: 10;    
+    a {
+        width: 100px;
+        margin: 0 auto;
+        height: 40px;
+        display: block;
+        background-color : rgba(255,255,255, 0.9);
+        text-align: center;
+        &:hover {
+            border-bottom: none !important;
+        }
+        
+    }
     span{
         padding: 6px;
         display: block;
-        &::after {
-            content: '\f107';
+        &::after {            
             font-family: FontAwesome;
             font-size:  2.2em;
             color: #666 !important;
@@ -718,15 +852,32 @@
         }
         &:hover {
             padding: 3px;
-            &::after {
-                content: 'Scroll Down';
+            &::after {                
                 text-transform: uppercase;
                 font-family: inherit;
                 font-size: 0.5em;
                 color: #666 !important;
             }
-
         }        
     }
     
+}
+
+.corporate-guests {
+    > div {
+        float: left;
+        width: 25%;
+        border: 2px solid rgba(255,255,255,0.1);
+        text-align: center;
+        .zoom-overlay-wrapper .image-wrapper {
+            margin: 0;
+            overflow: hidden;
+            max-height: 112px;
+        }
+    }
+    &:after {
+        display: table;
+        content: " ";
+        clear: both;
+    }
 }
