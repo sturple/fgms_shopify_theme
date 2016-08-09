@@ -1,0 +1,24 @@
+{% include 'archive-logic' %}
+{% assign archivetags = '' %}
+{% for article in articles_all %}  
+  {% assign pubmonth = article.published_at | date: '%B|%Y' %}
+  {% if archivetags contains pubmonth %}{% else %}{% assign archivetags = archivetags | append: ',' | append: pubmonth %}{% endif %}
+{% endfor %}
+
+<div class="rssBody">
+  <ul class="rss-feed-wrapper">
+    {% assign tags =archivetags | split: ',' %}
+    {% for tag in  tags %}    
+      {% if tag != blank %}
+      {% assign sections = tag | split : '|' %}
+      <li class="rssRow article-row">
+        <h4>
+          <a title="{{sections[0]}} {{sections[1]}}"
+             href="/search?q=archives--{{sections[0] | downcase }}--{{sections[1]}}"
+             target="_self">{{sections[0]}} {{sections[1]}}</a>
+        </h4>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

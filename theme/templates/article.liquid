@@ -1,35 +1,71 @@
 {% comment %}{% include 'article_header' %}{% endcomment %}
 
-<article id="content" itemscope itemtype="http://schema.org/Article">
 
+<article id="content" class="{{blog_handle}}" itemscope itemtype="http://schema.org/Article">
+	<div class="comment-buton-header">
+		<div class="row" >
+			<div class="col-xs-2" >
+				<a 	class="btn btn-primary btn-md btn-back"
+					data-toggle="tooltip"
+					title=""
+					data-placement="top"
+					data-original-title="Previous Page"
+					href="javascript:void(0);"
+					onclick="window.history.back();"><i class="fa fa-hand-o-left"></i>
+				</a>
+			</div>
+			<div class="col-xs-10 align-right-md">
+				{% if blog.comments_enabled? %}
+					{% if settings.useDisqus == true  and settings.disqusUsername != blank %}    
+						<a class="articleCommentsCount" href="{{shop.url}}{{article.url}}#disqus_thread" data-disqus-identifier="{{ article.id }}"></a>
+					{% endif %}
+				<a class="btn btn-primary btn-md" href="#comments" data-scroll="">
+					<i style="margin-right: 4px;" class="fa fa-comments"></i>{{ 'general.add-comment' | t}}						  
+				</a>							
+				{% endif %}
+			</div>
+		</div>		
+	</div>
+
+	
 	<div class="article-blog-post-heading">
 		<span >Posted </span>
 		<span class="article-date" itemprop="datePublished">{{ article.published_at | date: "%B %d, %Y" }}</span>
 	</div>
+	<div class="article-sharing">{% include 'social-sharing' %}</div>
 
-	<h1 id="pageTitle" class="articleTitle" itemscope="name">{{ article.title }}</h1>
+	<h1  class="article-title" itemscope="name">{{ article.title }}</h1>
 	<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />	
 	<meta itemprop="headline" content="{{ article.content | strip_html | truncatewords: 90 }}" />
+	
+	{% if  article.handle contains 'media-clippings' %}	
+		{% include 'shortcode' load: article.content, article: article %}			
+	{% else %}
+		{% if  article.image %}
+		<div id="article-image" class="script-gallery-action" style="text-align: center;max-width: 600px; margin-left: auto; margin-right: auto;">
+			{% capture image %}{{article | img_url: 'grande' }}{% endcapture %}
+			{% capture imageOrg %}{{article | img_url: 'master' }}{% endcapture %}
+			{% capture attributes %}data-smoothzoom="gallery" title="{{article.title}}"{% endcapture %}
+			{% include 'utility_zoom_overlay' ,	
+				class : '',
+				content : {{article.title}},
+				link : {{imageOrg}},
+				image : {{image}},
+				attributes : {{attributes}}
+			%}
+			
+		</div>	
+		{% endif%}
+		<div id="articleContent" itemprop="articleBody">{% include 'shortcode' load: article.content %}</div>
+	
+	{% endif %}
+	
 
-	{% if  article.image %}
-	<div id="article-image" style="text-align: center;max-width: 600px; margin-left: auto; margin-right: auto;">
-		{% capture image %}{{article | img_url: 'grande' }}{% endcapture %}
-		{% capture imageOrg %}{{article | img_url: 'master' }}{% endcapture %}
-		{% capture attributes %}data-smoothzoom="gallery" title="{{article.title}}"{% endcapture %}
-		{% include 'utility_zoom_overlay' ,	
-			class : '',
-			content : {{article.title}},
-			link : {{imageOrg}},
-			image : {{image}},
-			attributes : {{attributes}}
-		%}
+	
 
-	</div>
-	{% endif%}
-
-	<div id="articleContent" itemprop="articleBody">{% include 'shortcode' load: article.content %}</div>
+	
 	<div  class="article-footer" >{% include 'article_tags' %}</div>
 
-	<div class="article-sharing">{% include 'social-sharing' %}</div>
+	
 	{% include 'article_comments' %}
 </article>

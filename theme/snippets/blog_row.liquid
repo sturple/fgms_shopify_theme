@@ -1,0 +1,47 @@
+{% assign src = article | img_url: 'compact'%}
+
+
+
+<article class="articleWrapper" itemscope itemtype="http://schema.org/Article">
+
+	<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />
+	<div class="article-summary article-heading {{ article.url | remove: 'blogs/'  | remove: article.handle | remove: "/" }}" itemprop="description ">
+		<a href="{{ article.url }} " title="{{ article.title | escape }} " itemprop="url "><h2 itemprop="name ">{{ article.title }}</h2></a>
+		<div class="row">			
+		{% if article.image.src %}
+			<div class="col-sm-4  ">
+				<a href="{{ article.url }} " class="blog-index-image-full">
+					<img style=" " src="{{article | img_url: 'compact'}} " alt="feature image {{article.title | escape}} " /></a>
+			</div>
+		{%endif%}
+			
+			<div class="{% if article.image.src %}col-sm-8{%else%}col-sm-12{%endif%}">
+				
+				<span class="articleDate " itemprop="datePublished "><b>{{ article.published_at | date: "%B %d, %Y " }}</b></span> - 
+				<span class="article-excerpt">
+				{% if article.excerpt.size > 0 %} 
+					{{ article.excerpt | truncatewords: 30}} 
+				{% else %} 
+					{{ article.content | strip_html | truncatewords: 30 }} 
+				{% endif%}
+				</span>
+				<div>
+					<a class="learn-more-link " href="{{ article.url }} ">Full Story<i style="position:relative;top:2px;left:4px;" class="fa fa-caret-right" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- articleSummary -->
+	<footer class="article-footer " >		
+		{% if article.tags.size > 0 %}
+		<div class="articlePostedIn " style="padding-top: 32px; " itemprop="keywords ">
+			<span style="margin-right: 4px; ">TAG(S):</span> 
+			{% for tag in article.tags %}
+				<a class="btn btn-default btn-tags btn-xs " href="{{ blog.url }}/tagged/{{ tag | handle }} ">{{ tag }}</a> 
+			{% endfor %}
+		</div>
+		{% endif %} 
+	</footer>
+	<!-- articleDetails -->
+</article>
+<!-- articleWrapper -->

@@ -1,8 +1,9 @@
-{% capture contact_info %}{% include "contact-info" heading : 'h4' %}{% endcapture%}
 {% capture blog_latest_posts %}{% include "blog-latest-posts" compact : true  limit : 5 %}{% endcapture%}
 {% capture blog_tags %}{% include "blog-tags" %}{% endcapture%}
+{% capture blog_archives %}{% include "blog-archives" %}{% endcapture %}
+{% assign featureBlogs = 'posts,media-clippings,news-releases' | split: ',' %}
 
-<div class="panel-group" id="sidebar-accordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group" id="sidebar-accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 32px;">
 	{% include 'utility'	type : 'accordion'
 							style : 'navigation'
 							link : '/'
@@ -10,33 +11,33 @@
 							parent : 'sidebar-accordion'												
 							%} 
 	
-	{% include 'utility'	type : 'accordion'
-							style : 'navigation'
-							link : {{blogs[settings.blog-primary].url}}
-							title : 'Blog Index'
-							parent : 'sidebar-accordion'											
-							%}
+	{% for featureBlog in featureBlogs %}
+		{% assign btitle = blogs[featureBlog].title %}
+		{% assign burl = blogs[featureBlog].url %}
+		{% include 'utility'	type : 'accordion',	style : 'navigation',	link : burl,	title : btitle,	parent : 'sidebar-accordion'	%}	
+	{% endfor %}
 							
 	{% include 'utility'  	type : 'accordion'			
 							title : "Latest Posts"
 							id : 'latest-posts'
 							parent : 'sidebar-accordion'
 							in : 'in'
-							content : {{blog_latest_posts}}
+							content : blog_latest_posts
 							%}
-							
+	{% include 'utility'  	type : 'accordion'			
+							title : "By Month"
+							id : 'archives'
+							parent : 'sidebar-accordion'
+							content : blog_archives
+							%}									
 	{% include 'utility'  	type : 'accordion'			
 							title : "Tag Cloud"
 							id : 'tags'
 							parent : 'sidebar-accordion'
-							content : {{blog_tags}}"
-							%}											
+							content : blog_tags
+							%}										
+	
 											
-	{% include 'utility'	type : 'accordion'
-							title : "Contact Us"
-							id : 'contact-us'				
-							content : {{contact_info}}
-							parent : 'sidebar-accordion'
-							%}
+
 
 </div>

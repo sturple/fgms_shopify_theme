@@ -1,0 +1,17 @@
+{% assign blog_title = blogs['posts'].title %}
+{% capture blog_url %}{{shop.url}}{{blogs['posts'].url}}{% endcapture %}
+{% assign media_clippings_title = blogs['media-clippings'].title %}
+{% assign news_releases_title = blogs['news-releases'].title %}
+
+{% if search.terms %}
+  {% assign archive_terms = search.terms | split: '--' %}
+  {% assign archive_terms_size = archive_terms | size %}
+  {% if archive_terms_size > 2  and archive_terms[0] == 'archives' %}
+    {% assign archive_month = archive_terms[1] | capitalize %}
+    {% assign archive_year = archive_terms[2] %}   
+  {% endif %}
+{% endif %}  
+{% if hide_articles %}
+{% else %}
+{% assign articles_all = blogs['posts'].articles | concat: blogs['media-clippings'].articles | concat: blogs['news-releases'].articles | sort: 'published_at' | reverse %}
+{% endif %}

@@ -1,4 +1,13 @@
-{% for tag in blog.all_tags | limit: 12 %}
-<a class="btn btn-default btn-xs" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>								
+{% include 'archive-logic' %}
+{% assign checkString = '' %}
+{% for article in articles_all  %}
+  {% for tag in article.tags %}
+  {% capture tagString %}##{{tag}}{% endcapture %}  
+  {% if checkString contains tagString %}
+  {%else%}
+    {% capture checkString %}{{checkString}}##{{tag}}{% endcapture %}
+    <a class="btn btn-default btn-xs" href="{{blogs['posts'].url}}/tagged/{{ tag | strip | handle }}">{{ tag }}</a>
+  {% endif %}  			
+  {% endfor %}
 {% endfor %}									
 

@@ -1,47 +1,54 @@
-{% if settings.blog-primary != blank %}
-{% capture blog_limit %}{%if limit %}{{limit}}{% else%}3{%endif%}{%endcapture%}
-{% if compact %}
+{% if settings.blog-primary != blank %} 
+{% capture blog_limit %}{%if limit %}{{limit}}{% else%}3{%endif%}{%endcapture%} 
+{% include 'archive-logic' %}
+
+
+{% if compact %} 
 {%else%}
-	    <h2 class="sidebarTitle">Latest News</h2>  		
-{%endif%}	
+<h2 class="sidebarTitle">Latest News</h2> {%endif%}
 <div id="latest-news" class="rssFeed {% if compact %} rssFeed-compact{%endif%}{%if sidebar %} sidebar {%endif%}">
-	<div class="rssBody">		
-		<ul data-limit="{{blog_limit}}">
-			{% for article in blogs[settings.blog-primary].articles | limit: blog_limit %}
-			<li class="rssRow">
+	<div class="rssBody">
+		<ul data-limit="{{blog_limit}}" class="rss-feed-wrapper">
+			{% for article in articles_all | limit: blog_limit %}			
+			{% capture articleClass %}
+				{% if article.url contains 'media-clippings' %}
+					media-clippings
+				{% elsif article.url contains 'news-releases' %}
+					news-releases
+				{% else %}
+					posts
+				{% endif %}
+			{% endcapture %}
+			<li class="rssRow article-row {{ articleClass | strip }}">
 				{% if compact %}
-				<h4><a title="{{article.title}}"
+				<h4 class="latest-post"><a  title="{{article.title}} {{article.url}}"
 					   href="{{article.url}}"
 					   target="_self">{{article.title}}</a>
-				</h4>
-				{% else %}
-					
+				</h4> 
+				{% else %} 
 				
-					{% if article.content contains "<img"  and article.content contains 'id="feature-image"' %}
-						{% assign srci = article.content | split: 'id="feature-image"' %}
-						{% assign srci = srci[1] | split: 'src="' %}                                            
-						{% assign srci = srci[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
-					{% endif %}
-		
-		
+
 				<div class="row">
-					{% if srci %}<div class="blog-index-image-index col-sm-4"><a href="{{article.url}}"><img  style="" src="{{srci}}" alt="feature image {{article.title | escape}}" /></a> </div>{%endif%}
+					{% if srci %}
+					<div class="blog-index-image-index col-sm-4">
+						<a href="{{article.url}}"><img style="" src="{{srci}}" alt="feature image {{article.title | escape}}" /></a>
+					</div>{%endif%}
 					<div class="{% if srci %}col-sm-8{%else%}col-sm-12{%endif%}">
 						<h4><a title="{{article.title}}"   href="{{article.url}}"  target="_self">{{article.title}}</a>	</h4>
-						<p>	<span><b>{{ article.published_at | date: "%B %d, %Y" }} </b> - </span>{% if article.excerpt.size > 0 %}
-							{{article.excerpt | strip_html | truncatewords: 25 }}
-							{% else %}
-							{{ article.content | strip_html | truncatewords: 25 }}
-							{% endif %}
-						</p>							
+						<p> <span><b>{{ article.published_at | date: "%B %d, %Y" }} </b> - </span>
+					{% if article.excerpt.size > 0 %} 
+						{{article.excerpt | strip_html | truncatewords: 25 }} 
+					{% else %} 
+						{{ article.content | strip_html | truncatewords: 25 }} 
+					{% endif %}
+						</p>
 					</div>
-				</div>		
-				
+				</div>
+
 				{% endif %}
 
 			</li>
-			{% assign srci = false %}
-			{% endfor %}
+			{% assign srci = false %} {% endfor %}
 		</ul>
 	</div>
 </div>

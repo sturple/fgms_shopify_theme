@@ -1,6 +1,6 @@
 {% if blog.comments_enabled? %}
-<section id="comments">
-  <h2 id="comments-title">{{ settings.commentsText }}</h2>
+<section id="comments" class="comment-wrapper">
+  <h2 >{{ 'general.comments' | t}}</h2>
 	{% if settings.useDisqus == true %}    
     {% if settings.disqusUsername != blank %}
       <div id="disqus_thread"></div>
