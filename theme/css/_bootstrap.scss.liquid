@@ -5,6 +5,9 @@
   margin-bottom: 32px;
   border-bottom: 1px solid #fff;
   padding-top: 24px;
+	&.accordion {
+		display: none;
+	}
   > li > a {
     @include font-size(1.4);
     -moz-border-bottom-colors: none;
@@ -36,16 +39,43 @@
   > li:last-child > a {
     @include radius(0 8px 0 0);
   }
+	
+	@media  screen and (min-width: $screen-lg-max) {
+		&.accordion {
+			display: block;
+		}
+	}
 
 } 
 
-.tab-content.accordion .tab-accordion-header {
-  @include font-size(1.5);
-  @include radius(1px);
-  display:none;
-  cursor:pointer;
-  background-color:#f8f8f8;
+.tab-content.accordion {
+	.tab-accordion-header {
+		@include font-size(1.5);		
+		padding: 4px 12px;
+		cursor:pointer;
+		background-color: rgba(255,255,255,0.65);;
+	
+	}
+
+	.tab-pane {
+		border-left: 1px solid rgba(255,255,255,0.65);
+		border-right: 1px solid rgba(255,255,255,0.65);
+		padding: 12px;
+	}
+
+	@media  screen and (min-width: $screen-lg-max) {
+		.tab-accordion-header {
+			display:none;
+		}
+		.tab-pane {
+			border: 0px;
+			padding: 0;
+		}
+	}	
 }
+
+
+
 .tab-content .disable {display: none;}
 
 .nav-pills {margin-bottom: 24px;} 
@@ -69,9 +99,10 @@
 .radio.radio-inline {  margin-top: -6px;}
 
 */
-.form-control {
+.form-control , .single-option-selector {
   @include radius(4px);
-  padding: 12px;
+	background-color: rgba(255,255,255,0.8);
+  padding: 10px;
   border: none;
   height: auto;
   @include font-size(1.8);
@@ -106,55 +137,59 @@ label {font-weight: normal;}
 
 /* accordion */
 .panel-group {
-  padding-top: 12px;
+  
   .panel {
     border-radius: 0px;
+		border-color: rgba(255,255,255,1);;
+    background-color: rgba(255,255,255,0.65);
+		&.panel-blank {
+			background-color: transparent;
+			border: none;
+		}
   }
   .panel-heading {
     @include radius(0); 
    }
   .panel-title {
     padding-top: 0;
+		text-transform: uppercase;
   }
   &.panel-group-arrow {
     h4 {
       font-weight: normal;
+			margin-left: 24px;
       
     }
     p {
      font-size: 0.9em;
     }
     > div > div {
-      margin-bottom: 15px;
-      border-bottom: 1px dotted #666;
-      padding-bottom: 3px;;
+      margin-bottom: 32px;    
+			background-color: rgba(255,255,255,0.45);
+			padding: 18px;
+			@include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));
+			@include radius(10px);
+			
     }
-    .collapse-trigger {
-        &:before {
+    a.collapse-trigger {
+				
+				&::before {
           content:"\f0da";
           font-family: FontAwesome;
-          margin-right: 4px;
-          transform: rotate(90deg);
-          -moz-transform:  rotate(90deg);
-          -webkit-transform: rotate(90deg);
-          -o-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);					
-          transition: all 0.25s linear;
-          -moz-transition: all 0.25s linear;
-          -webkit-transition: all 0.25s linear;
-          -o-transition: all 0.25s linear;	
+          
+					@include transform(rotate(90deg));
+					@include transition(all 0.25s linear);
           display: inline-block;
+					position: absolute;
+					left: 24px;
+					
         }
         &:hover {
           text-decoration: none;
         }
         &.collapsed:before {
-					margin-right: 4px;
-					transform: rotate(0);
-					-moz-transform:  rotate(0);
-					-webkit-transform: rotate(0);
-					-o-transform: rotate(0);
-					-ms-transform: rotate(0);				
+					
+					@include transform(rotate(0deg));			
 				}	    
     }
   }
@@ -220,7 +255,8 @@ label {font-weight: normal;}
 	font-family: $btn-font-family;
 	color: $btn-default-color-hover;	
 	@include btn-template($btn-default-color,$btn-default-background, $btn-default-padding,$btn-default-radius,$btn-default-box-shadow);
-	border: 1px solid #ccc;
+	border: 1px solid #666;
+	text-transform: uppercase;
 	&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
 		@include btn-template-hover($btn-default-background-hover !important);
 		color: $btn-default-color-hover;
@@ -284,7 +320,17 @@ label {font-weight: normal;}
 
 .btn-lg, .btn-group-lg > .btn {  padding: $btn-lg-padding; }
 .btn-sm, .btn-group-sm > .btn {  padding: 4px 20px; font-size: 0.8em;}
-.btn-xs, .btn-group-xs > .btn {  padding: $btn-xs-padding; }
+
+
+.btn-md, input[type="submit"].btn-md .btn-group-md > .btn { 
+	padding: 12px 28px !important;
+	font-size: 14px !important;
+}
+.btn-xs, .btn-group-xs > .btn { 
+	padding: 2px 6px; 
+	@include font-size(1); 
+	letter-spacing: 0.05em;
+}
 
 .btn-header {
     padding: 12px 48px;

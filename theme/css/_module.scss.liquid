@@ -1,20 +1,42 @@
+.parallax-window {
+	
+	@media  screen and (max-width: $screen-lg-max) {
+		height: auto !important;
+	}
+}
+.full-wrapper {		
 
-.full-wrapper {
-    padding-left: $theme-padding-primary;
-    padding-right: $theme-padding-primary;
-    
-    @media  screen and (min-width: $screen-lg-max) {
-        padding-left: $media-lg-theme-padding-primary;
-        padding-right: $media-lg-theme-padding-primary;        
+	@media  screen and (min-width: $screen-sm-max) {
+		padding-left: $theme-padding-primary;
+		padding-right: $theme-padding-primary;			
+	}
+	@media  screen and (min-width: $screen-lg-max) {
+		padding-left: $media-lg-theme-padding-primary;
+		padding-right: $media-lg-theme-padding-primary;        
 
-    }
-    @media  screen and (min-width: $screen-xl-max) {
-        padding-left: $media-xl-theme-padding-primary;
-        padding-right: $media-xl-theme-padding-primary; 
-    }       
+	}
+	@media  screen and (min-width: $screen-xl-max) {
+		padding-left: $media-xl-theme-padding-primary;
+		padding-right: $media-xl-theme-padding-primary; 
+	}       
 }
 
-
+.comment-wrapper, .cart-wrapper {
+	background-color: rgba(255,255,255,0.65);
+	@include radius(10px);
+	@include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));    
+	padding: 24px 24px 15px;
+	min-height: 300px;
+	h2 {
+		padding-top: 0;
+	}
+}
+.comment-wrapper {
+		margin-top: 42px;
+}
+.cart-wrapper {
+	margin: 24px 0 36px;
+}
 /**************** Top header bar ****************/
 
 #header-top-nav-parent {
@@ -37,6 +59,9 @@
         i {            
              font-size: 1.2em;
          }         
+				.cart-account-text {
+					font-size: 0.85em;
+				}
         .cart-account-icon {
             margin-right: 12px;
             &:hover {
@@ -75,9 +100,19 @@
         color: #fff;
     }
     
-
+		.social-icons {
+			display : none;
+			visibility: hidden;
+		}	
+		@media screen and (min-width: $screen-xs-max) {
+			.social-icons {
+				display : block;
+				visibility: visible;
+			}
+		}
     
     @media screen and (min-width: $screen-sm-max) {
+			
         @include flexbox();
          
         .section-nav {
@@ -147,11 +182,18 @@
         }        
     }
 }
+
+.secondary-background {
+	background-size: cover;
+	@media  screen and (min-width: $screen-xl-max) {
+		background-size: 100% auto;
+	}
+}
 #layerslider-home {
    background-image: url('https://cdn.shopify.com/s/files/1/1334/6905/files/preload-12-metre-challenge-01.jpg?16331132729006305899');
    background-position: top center;
    background-attachment: scroll;
-   background-size: cover;
+   background-size: auto 100%;
 
    
 }
@@ -163,21 +205,27 @@
     
 }
 .page-template-content {
-    position: relative;
-    margin: 0 0  $media-xl-theme-padding-primary;
-    
-    @include radius(0 0 10px 10px);
-    padding: 50px $media-xl-theme-padding-primary;
-    p {
-        
-        line-height: 1.5em;
-    }
-    .page-content {
-        margin-right: 36px;
-    }
-    .sidebar {
-    
-    }
+	position: relative;
+	margin: 0 -15px 0;
+
+	@include radius(0 0 10px 10px);
+	padding: (50px* 0.5) ($media-xl-theme-padding-primary * 0.5);
+	p {
+
+			line-height: 1.5em;
+	}
+	@media  screen and (min-width: $screen-sm-max) {	
+		margin: 0 0  $media-xl-theme-padding-primary;	
+	}
+	@media  screen and (min-width: $screen-md-max) {		
+		
+		.page-content {
+				margin-right: 36px;
+		}		
+	}
+	@media  screen and (min-width: $screen-lg-max) {		
+		padding: 50px $media-xl-theme-padding-primary;	
+	}
 }
 
 .sidebar {
@@ -205,28 +253,29 @@
         }
         .btn {
             width: 100%;
+						max-width: 200px;
         }
     }
     
  
 }
 
-.home-page-content {
+.home-page-content {	
     position: relative;
-    margin: $media-xl-theme-padding-primary 0px;
+    margin: (0.5 * $media-xl-theme-padding-primary) 0px;
     
     @include radius(10px);
-    padding: $media-xl-theme-padding-primary;
+    padding: (0.5 * $media-xl-theme-padding-primary);
     &.minify-top-padding {
         padding-top: 12px;
     }
     
     h1, .h1 {
         margin-bottom: 0px;
-        font-size: 4.4em;
+        font-size: ($h1-font-size * 1.17);
     }
     h2, .h2 {
-        font-size: 3em; 
+        font-size: ($h2-font-size * 1);
     }
 
     .intro-text {
@@ -253,6 +302,17 @@
         }
         
     }    
+	@media  screen and (min-width: $screen-lg-max){
+		margin: $media-xl-theme-padding-primary 0px;
+		padding: $media-xl-theme-padding-primary;
+		h1, .h1 {
+			font-size: ($h1-font-size * 1.46666);
+		}
+		h2, .h2 {
+			font-size: ($h2-font-size * 1.25);
+		}
+	}
+	
 }
 .modular {
     position: relative;
@@ -267,10 +327,10 @@
              background-color: rgba(255,255,255,0.85);
              
              top: 13%;;
-             right: 10%;
+             right: 3.9%;
              padding: 12px;
              @include radius(10px);
-             font-size:  1.1em;
+             @include font-size(1.8);
              a.btn-primary {
                  margin-bottom: 12px;
                  font-size: 1.2em;
@@ -282,11 +342,11 @@
         .action-button {
              padding: 18px;
 
-             font-size:  1.4em;
+             @include font-size(2.2);
              a.btn-primary {
                  margin-bottom: 18px;
-                 font-size: 1.4em;
-                 padding: 24px 60px;
+                 font-size: 1.3em;
+                 padding: 18px 48px;
              }
         }            
             
@@ -340,7 +400,7 @@
         padding-top: $media-xl-theme-padding-secondary;
         padding-bottom: $media-xl-theme-padding-secondary;
         .home-page-content {
-            padding: $media-xl-theme-padding-primary $media-xl-theme-padding-primary 170px ;
+            padding-bottom: 170px ;
             &.minify-top-padding {
                 padding-top: 12px;
             }            
@@ -382,18 +442,27 @@
 }
 
 .opacity-ffffff, .opacity-ffffff-80 {
+	background-color: rgba(255,255,255,0.9);
+	@media  screen and (min-width: $screen-md-max){
     background-color: rgba(255,255,255,0.8);
+	}
 }
 
 .opacity-ffffff-95 {
+		background-color: rgba(255,255,255,0.95);
+	 @media  screen and (min-width: $screen-md-max){			 
     background-color: rgba(255,255,255,0.85);
+	}
+	
 }
 
 
 
 .home-action-buttons {
     a {
-        margin: $media-xl-theme-padding-secondary $media-xl-theme-padding-secondary-half 0;
+        margin: ($media-xl-theme-padding-secondary * 0.5) 0 0;
+				width: 100%;
+				max-width: 400px;
     }
     &.blue {
         a.btn-secondary {
@@ -406,6 +475,12 @@
         }
     
     }
+	@media  screen and (min-width: $screen-sm-max){
+    a {
+				width: auto;
+        margin: $media-xl-theme-padding-secondary $media-xl-theme-padding-secondary-half 0;
+    }		
+	}
 }
 .home-photo-row {
     padding-top: $media-xl-theme-padding-secondary-half;
@@ -449,6 +524,7 @@
     color: #fff;
     @include a-border(#fff,transparent, #fff, #fff ,'',':not(.icons):not(.btn):not(.logo)');
     .contact-container {
+				background-size: cover;
         padding: $media-xl-theme-padding-secondary 0 120px;
         border-bottom: 4px solid #fff;
         
@@ -483,7 +559,11 @@
     }
     
 
+	.logo img {
+		max-width: 100%;
+	}
     .footer-content-wrapper{
+				text-align: center;
         line-height: 1.6em;
         font-size: 1.2em;
         .footer-title {
@@ -527,8 +607,8 @@
         .social-icons {
             @include a(#fff,none,$link-color-hover,none);
             i  {
-                @include font-size(4.6);
-                margin-right: 18px;
+                @include font-size(3);
+                margin-right: 12px;
             }
         }
         .footer-action {
@@ -538,6 +618,22 @@
             }
         }
     }
+	@media  screen and (min-width: $screen-md-max){
+		.footer-content-wrapper {
+			text-align: left;
+			.social-icons {					
+				i  {
+						@include font-size(4.6);
+						margin-right: 18px;
+				}
+			}			
+		}
+	}	
+	@media  screen and (min-width: $screen-xl-max){
+		.contact-container {
+			background-size: 100% auto;
+		}
+	}
     
     
 }
@@ -549,6 +645,7 @@
         color: #fff;
         font-family: Overlock;
         margin-bottom: $media-xl-theme-padding-secondary;
+				font-weight: normal;
     }
     .footer-privacy-policy {
         font-style: italic;
@@ -579,13 +676,19 @@ ul.boat-types, ul.collections-list {
         }
         h2, .h2, h3, .h3 {
             padding-top: 0;
+						text-transform: none;
         }
         .listing-content {
             font-size: 0.9em;
             
         }
+				.collection-product-action {
+					padding-top: 8px;
+				}
         .image-wrapper {
             overflow: hidden;
+						max-width: 300px;
+						margin: 0 0 12px;
             display: block;
             @include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));                
             border: 1px solid rgba(0,0,0,0.2);
@@ -610,8 +713,7 @@ ul.boat-types, ul.collections-list {
                 
             }
             img {
-                width: 100%;
-                max-width: 300px;
+                width: 100%;                
                 @include transition(0.5s);
                 @include transform-scale(1,1);                    
     
@@ -620,9 +722,8 @@ ul.boat-types, ul.collections-list {
                 .image-overlay {
                     background-color: rgba(0,0,0,0.7);
                     @include transition(0.75s);
-                    &:after {
-                        
-                        font-family: FontAwesome;                        
+                    &:after {                       
+                        font-family: FontAwesome;                       
                     }
                     &.has-video:after {
                        
@@ -648,7 +749,7 @@ ul.boat-types, ul.collections-list {
         font-size: 0.9em;
           
     }
-    .card-img {
+    .card-img, .card-thumb {
         margin-bottom: 18px;
     }
     .title , .pretitle {       
@@ -746,7 +847,7 @@ ul.boat-types, ul.collections-list {
 
 .sidebar {
     #testimonial-carousel {
-        min-height: 300px;;
+        min-height: 200px;;
         text-align: center;
         .card-wrapper {
             font-size: 14px;
@@ -789,6 +890,16 @@ ul.boat-types, ul.collections-list {
         font-size: 14px;
     }
     
+	@media  screen and (min-width: $screen-sm-max) {
+    #testimonial-carousel {
+      min-height: 200px;
+		}
+	}
+	@media  screen and (min-width: $screen-md-max) {
+    #testimonial-carousel {
+      min-height: 300px;
+		}
+	}	
 }
 
 

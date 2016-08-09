@@ -66,7 +66,15 @@
 }
 
 .navbar.main {
-    .nav.navbar-nav {        
+		.navbar-toggle {
+			float: none;
+			border-bottom: none !important;
+			.icon-bar {
+				background-color: $link-color;
+			}
+		}	
+    .nav.navbar-nav { 
+
         position: relative;
         text-transform: uppercase;
         >li{
@@ -97,15 +105,29 @@
 }
 
 #navigation-wrapper {
-    @include flexbox();
-    align-self: center;
-    justify-content: flex-end;
+
     .nav.navbar-nav {
         >li{
-            @include a-border(#666,transparent, #666, #666,'>');     
+            @include a-border(#666,transparent, #666, #666,'>');  
+						&.active {
+							a {
+								color: $link-color-hover;
+							}
+						}
         }
-    }    
+    }   
+	@media  screen and (min-width: $screen-sm-max) {	
+    @include flexbox();
+    align-self: center;
+    justify-content: flex-end;	
+	}
 }
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+	background-color: transparent;
+	color: $link-color-hover !important;
+}
+
 .top-header-nav, .footer-nav  {
     .nav.navbar-nav {
         >li{
@@ -114,26 +136,54 @@
     }      
 }
 .top-header-nav {
+		float: none;
+		display: none;
+		visibility: hidden;
     .nav.navbar-nav {
-        float: right;
+			
+        
+
+    }
+	
+
+	
+	@media  screen and (min-width: $screen-sm-max) {		
+		display: block;
+		visibility: visible;
+		float: right;
+		
         > li:last-child {
             padding-right: 0;
         }
         > li:first-child {
             padding-left: 0;
-        }
-    }
+        }		
+	}
+	
 }
+
 .footer-nav  {
     .navbar {
         @include flexbox();
     }
     .nav.navbar-nav {
+        margin: 0 auto;
+			>li {
+				padding-top: 2px;
+				padding-bottom: 2px;
+				display: block;
+				float: none;
+			}
+    }
+	@media  screen and (min-width: $screen-lg-max) {	
+    .nav.navbar-nav {
         @include flexbox();
         align-self: center;
         justify-content: center;;
-        margin: 0 auto;
-    }
+       
+    }		
+		
+	}
 }
 
 .sticky-scroll-down {

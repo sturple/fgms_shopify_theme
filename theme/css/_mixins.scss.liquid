@@ -27,6 +27,12 @@
 	-o-transition: all $duration $ease;
 	transition: all $duration $ease;
 }
+@mixin transition($value...){
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-o-transition: $value;
+	transition: $value;
+}
 @mixin transition-color($color-time: .3s, $color-easing: linear,$background-time: .3s, $background-easing: linear){
    -o-transition: color $color-time $color-easing, background $background-time $background-easing;	
    -webkit-transition: color $color-time $color-easing,background $background-time $background-easing; 
@@ -70,7 +76,13 @@
     background-color: $background ;  *background-color: $background;  border-color: transparent;  @include transition-color(); text-decoration: none !important;
 }
 
-
+@mixin transform($value...){
+	transform: $value;
+	-moz-transform:  $value;
+	-webkit-transform: $value;
+	-o-transform: $value;
+	-ms-transform: $value;	
+}
 @mixin font-size($sizeValue, $percent: 1) {
   $remValue: $sizeValue * $percent;
   $pxValue: ($sizeValue * 10 *$percent) ;
