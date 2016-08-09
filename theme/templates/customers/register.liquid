@@ -1,27 +1,5 @@
-<div class="{% if settings.sidebar-register-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
-	<div class="main-col-wrapper  " >
-		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>		
-		
-		<section id="register" class="section-wrap">
-			<h1>{{'accounts.create-account' | t}}</h1>
+<section id="register" class="section-wrap">
+	<h2>{{'forms.login-details' | t}}</h2>
+	{% include 'forms' formType : 'create_customer' %}
+</section>
 
-			<h2>{{'forms.login-details' | t}}</h2>
-			{% include 'forms' formType : 'create_customer' %}			  
-			
-		</section>
-	</div>
-</div>
-{% if settings.sidebar-register-enable %}
-<!-- sidebar -->
-<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
-	<div  id="sidebar">
-		<div id="sidebar-wrapper">
-			{% if settings.sidebar-register-snippet != blank %}
-			{% include settings.sidebar-register-snippet %}
-			{%else%}
-			{% include 'warning' type : 'no-sidebar' %}				
-			{%endif%}			
-		</div>								
-	</div>                
-</div>
-{% endif %}

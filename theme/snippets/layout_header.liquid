@@ -1,30 +1,44 @@
 {% include 'data-site' %}
+{% capture page_heading %}<h1>{{page_title}}</h1>{% endcapture %}
+{% assign content_grid = 'col-lg-9 col-md-8' %}
+
 {% case template %}
-	{% when 'page' %}
-		{% assign title = page.title %}
-    {% assign content_grid = 'col-md-9' %}   
-	{% when 'blog' %}
-		{% assign title = blog.title %}
-    {% assign content_grid = 'col-md-9' %}
-	{% when 'article' %}
-		{% assign title = blog.title %}
-    {% assign content_grid = 'col-md-9' %}
-	{% when 'collection' or 'list-collections' %}
-		{% assign title = collection.title %}
-    {% assign content_grid = 'col-md-9' %}
-	{% when 'product' %}
-		{% assign title = product.title %}
+
+	{% when 'page.full' or 'cart' %}		
+		{% assign content_grid = 'col-md-12' %}
+	{% when 'list-collections' %}
+		{% capture page_heading %}<h1>{{'general.gift-shop' | t }}</h1>{% endcapture %}
+  {% when 'product' %}		
         {% assign content_grid = 'col-md-12' %}
+	{% when 'search' %}
+		{% capture page_heading %}	
+			{% include 'archive-logic' hide_articles : true %}
+			{% if archive_terms_size > 2 %}
+				{{archive_month}} {{archive_year}}
+			{% else %}
+				{{'general.search-results' | t}} 
+			{% endif %}
+		{% endcapture %}
+		{% capture page_heading %}<h1>{{page_heading}}</h1>{% endcapture %}
+	{% when 'article' %}
+		
+		{% if article.url contains 'blogs/posts' %}{% capture page_heading %}<div class="article-heading blog"><div class="h1 has-underline ">Blog</div></div>{% endcapture %}{% endif %}
+		{% if article.url contains 'blogs/media-clippings' %}{% capture page_heading %}<div class="article-heading  media-clippings"><div class="h1 has-underline">Media Clippings</div></div>{% endcapture %}{% endif %}
+		{% if article.url contains 'blogs/news-release' %}{% capture page_heading %}<div class="article-heading news-releases"><div class="h1 has-underline ">News Releases</div></div>{% endcapture %}{% endif %}
+		
+		{% capture page_heading %}
+			{{page_heading}}
+
+		{% endcapture %}
 {% endcase %}
 
-<div class="script-overflow-background" data-selector="#header-top-parent" data-before="true";
-	 data-background="{{pageBackgroundImages | default: 'https://cdn.shopify.com/s/files/1/1334/6905/files/background-introduction.jpg?13411058541587716939' | strip}}"
-	 >
+<div class="script-overflow-background secondary-background" data-selector="#header-top-parent" data-before="true" data-background="{{backgroundImages}}"	 >
   <div class="modular modular-page "  >
     <div class="container">
 			<div class="hidden-xs breadcrumbs-container opacity-ffffff-95">{% include 'breadcrumbs' %}</div>		
 			<div class="opacity-ffffff-80  page-template-content ">
-				<div class="row"><div class="col-md-12"><h1 class="">{{title}}</h1></div></div>
+				<div class="row"><div class="col-md-12">{{page_heading | strip }}</div></div>
 				<div class="row">                    
 					<div class="{{content_grid}}">
 						<div class="page-content">
+						

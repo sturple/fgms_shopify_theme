@@ -35,7 +35,7 @@
 							<h3 class="price-and-options-title" data-pid="{{product.id}}">{{'products.option.choose-model' | t}}</h3>								
 							<div id="productVariants" class="clearFix">
 								<div >												
-									<select name="id" id="product-select" style="visibility: hidden;" >
+									<select name="id" id="product-select" class="form-control" style="visibility: hidden;" >
 										{% for variant in product.variants %}
 										<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %}	value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
 										{% endfor %}
@@ -55,19 +55,19 @@
 					<div id="productPurchase" class="clearFix ">					
 						<div class="pull-left">
 							{% if product_options.size > 50 %}<input type="hidden" name="properties[Ref_line_ID]" value="0" />{%endif%}
-							<input  id="quantity" type="text" pattern="[0-9]*" class="form-control" name="quantity" style="max-width: 50px; font-size: 18px; height: 38px; text-align: center; display: inline;" value="1"  />
+							<input  id="quantity" type="text" pattern="[0-9]*" class="form-control" name="quantity" style="max-width: 50px;  text-align: center; display: inline;" value="1"  />
 							<span>
 								<input  id=""
 										type="submit"
 										name="add"
 										value="{{'products.links.add-to-cart' | t}}"
-										class="addToCart btn btn-primary"
+										class="addToCart btn btn-primary btn-md"
 										onclick="update_customer_cart(this) ;return false"/>
 								<i style="display: none; padding: 0px 52px;" class="fa fa-spinner fa-pulse fa-2x" ></i>
 							</span>									
 						</div>
 						<a 	href="/cart"
-								class="btn btn-primary hidden-xs hidden-sm"
+								class="btn btn-primary hidden-xs hidden-sm btn-md"
 								style="margin-left: 24px;"									
 								>{{'products.links.view-cart' | t}}</a>	
 

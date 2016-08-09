@@ -1,32 +1,12 @@
-<div class="{% if settings.sidebar-404-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}"  id="main" role="main" >
-	<div class="main-col-wrapper  " >
-		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>	
-		<section id="page-wrap" class="section-wrap">
-			<h1 class="">{{ page_title }}</h1>				
-			<h2>Whoa! We didn't see that coming!</h2>
+	
+			<p class="intro-text">Whoa! We didn't see that coming!</p>
 			<p>{{'general.error.message-404' | t}}</p>
 			<ol class="customList">
 				<li>If you got here from an external link, please notify the administrator of the site that he/she is linking to a broken link.</li>
 				<li>If you got here from a link on this web site, please notify our webmaster at <a href="" class="mailto" data-prefix="webmaster" data-domain="fifthgeardev.com"></a>.
-				<li>If you got here some other way, the best solution is to return <a href="[[~1]]">to the homepage</a> and try navigating from there.
+				<li>If you got here some other way, the best solution is to return <a href="{{shop.url}}">to the homepage</a> and try navigating from there.
 			</ol>
 			<p style="font-style: italic; margin-bottom: 32px;">Have a great day!</p>
 			<p>Tech Support<br />
 			{{shop.name}}</p>			
-		</section>
-	</div>
-</div>
-{% if settings.sidebar-404-enable %}
-<!-- sidebar -->
-<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
-	<div  id="sidebar">
-		<div id="sidebar-wrapper">
-			{% if settings.sidebar-404-snippet != blank %}
-			{% include settings.sidebar-404-snippet %}
-			{%else%}
-			{% include 'warning' type : 'no-sidebar' %}				
-			{%endif%}			
-		</div>								
-	</div>                
-</div>
-{% endif %}
+	

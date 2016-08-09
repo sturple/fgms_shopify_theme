@@ -1,20 +1,24 @@
+{% paginate collections | default_pagination %}
+{% include 'pagination' %}
 <ul class="collections-list">
+	
 	{% for collection in collections %}
 		{% capture thumb %}{% if collection.image %}{{ collection.image | img_url: 'medium' }}{% endif %}{% endcapture %}
 		{% capture collectionUrl %}{{shop.url}}{{collection.url}}{% endcapture %}
 		{% capture collectionContent %}
 			<div class="collection-product-count">Items ({{collection.products_count}})</div>
-			<div class="collection-product-description">{{collection.description}}</div>
+			<p class="collection-product-description">{{collection.description | strip_html}}</p>
 			<div class="collection-product-action">											
-				<a href="{{collectionUrl}}" class="btn btn-primary">{{ 'general.learn-more' | t}}</a>
+				<a href="{{collectionUrl}}" class="btn btn-primary btn-md">{{ 'general.learn-more' | t}}</a>
 			</div>
 	{% endcapture %}
-		{% include 'utility_listing',
-			thumb : {{thumb}},
-			image : {{thumb}},
+		{% include 'utility_listing',			
+			image : {{collection.image}},
 			title : {{collection.title}},
 			link : {{collectionUrl}},
 			content : {{collectionContent}}
 		%}
 	{% endfor %}
 </ul>
+{% include 'pagination' %}
+{% endpaginate %}

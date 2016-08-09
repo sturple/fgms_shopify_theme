@@ -1,18 +1,48 @@
+{% comment %}Default Sidebar {% endcomment %}
+{% capture sidebar %}
+	{% include 'shortcode-sidebar_call_to_action' %}
+	<div id="testimonial-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-pause="false">
+		<ul class="carousel-inner" role="listbox">
+			 {% include 'data-testimonials', type : "widget" %}
+		</ul>
+	</div> 
+{% endcapture %}
+
+{% comment %}Blog sidebar{% endcomment %}
+{% capture blogsidebar %}	
+	{% include "blog-sidebar" %}	
+	{{ sidebar}}
+	
+{% endcapture %}
+
+{% assign sidebar_grid = 'col-lg-3 col-md-4' %}
+
 {% case template %}
 	{% when 'page' %}
-		{% assign current_url = page.url %}    
-    {% assign sidebar_grid = 'col-md-3' %}   
+		{% assign current_url = page.url %}  
+	{% when 'page.full' %}
+		{% assign sidebar_grid = false %}
 	{% when 'blog' %}
+		{% assign sidebar = blogsidebar %}
 		{% assign current_url = blog.url %}
-    {% assign sidebar_grid = 'col-md-3' %}
+    
 	{% when 'article' %}
-		{% assign current_url = blog.url %}
-    {% assign sidebar_grid = 'col-md-3' %}
+		{% assign sidebar = blogsidebar %}
+		{% assign current_url = article.url %}
+  
 	{% when 'collection' or 'list-collections' %}
 		{% assign current_url = collection.url %}
-    {% assign sidebar_grid = 'col-md-3' %}
 	{% when 'product' %}
-		{% assign current_url = product.url %}        
+		{% assign current_url = product.url %}  
+		{% assign sidebar_grid = false %}
+	{% when 'cart' %}
+		{% assign sidebar_grid = false %}
+	{% when 'search' %}
+		{% capture  sidebar %}
+			{% if archive_month and archive_year %}
+				{{blogsidebar}}
+			{% endif %}
+		{% endcapture %}
 {% endcase %}
 
               {% comment %}Bottom of page content{% endcomment %}
@@ -20,14 +50,7 @@
 					</div>
 					{% if sidebar_grid  %}
 					<div class="{{sidebar_grid}}">
-							<div class="sidebar">
-							 {% include 'shortcode-sidebar_call_to_action' %}
-							 <div id="testimonial-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-pause="false">
-								 <ul class="carousel-inner" role="listbox">
-									 {% include 'data-testimonials', type : "widget" %}
-								</ul>
-							</div>                             
-						</div>
+							<div class="sidebar">{{sidebar}}</div>
 					</div>
 					{% endif %}
 				</div>

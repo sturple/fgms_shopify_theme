@@ -1,51 +1,88 @@
-{% include 'theme-variables' %}
-
-{% assign respond_js_secret_key = (shop.domain | md5) %}
-{% unless search.terms == respond_js_secret_key %}
-
+{% include 'archive-logic' %}
 <section id="search-wrap" class="section-wrap">
+	{% if archive_terms_size > 2 and articles_all %}
+	<ul id="blogArticles">
+		{% for article in articles_all %} {% capture date %}{{article.published_at | date: "%B %Y" }}{% endcapture %} 
+			{% if date contains archive_month and date contains archive_year %}
+				<li>{% include 'blog_row' with article %}</li>
+			{% endif %} 
+		{% endfor %}
+	</ul>
 
-  <h1 class="page-header">{% include 'smart-title' %}</h1>
+	{% elsif search.results_count > 0 %}
+	<div class="search-terms intro-text">
+		Below are pages containing the search word or phrase "<strong>{{ search.terms }}</strong>":
+	</div>
 
-  {% if search.results_count > 0 %}
-  {% include '__default-pagination' %}
-  {% paginate search.results by default-pagination %}
-  <div class="row search-products">
-    {% for i in search.results %}
-    {{i | json}}
-    {% if i.price != blank %}
-    {% assign product_count = forloop.length %}
-    {% include 'product-loop' with i %}
-    {% endif %}
-    {% endfor %}
-  </div>
-  <div class="search-pages">
-    {% for i in search.results %}
-    {% if i.price == blank %}
-    {% include 'search-loop' %}
-    {% endif %}
-    {% endfor %}
-  </div>
-  {% include 'pagination' %}
-  {% endpaginate %}
-  {% else %}
-  <h3>{% include '__localize' with 'No search results found' %}.</h3>
-  <p class="lead">
-    {% include '__localize' with 'Try another search' %}{% unless settings.collection-to-link-to-if-cart-empty == blank %} <a href="{{ collections.[settings.collection-to-link-to-if-cart-empty].url }}">{% include '__localize' with ' or browse all products' %}</a>.{% endunless %}
-  </p>
-  <form class="form-inline" action="/search">
-    <div class="input-group input-group-appended">
-      <input type="search" name="q" class="form-control search-bar" autocomplete="off" placeholder="{% include '__localize' with 'Search' %}" value="{{ search.terms }}">
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-primary" value="Search" />
-      </span>
-    </div>
-  </form>
-  {% endif %}
+	{% paginate search.results | default_pagination %}
+	{% include 'pagination' %}
+	<ul class="collections-list">
+		{% for item in search.results %} 		
+			
+			{% assign imageSize = item.images | size %} 
+			{% capture searchImage %} 
+				{% if imageSize > 0 %} 	
+					{{item.images | first | img_url: 'large' }} 
+				{% elsif item.image.src %}
+					{% assign imageSize = item.image.src | size %} 
+					{% if imageSize	> 0 %} 
+						{{item.image.src | img_url: 'large' }} 
+					{% endif %} 
+				{% endif %} 
+			{% endcapture %} 
+		
+			{% assign searchImage = searchImage | strip %}
+		
+			{% capture searchContent %}
+				{% if item.price > 0 %}
+				<div class="price collection-product-price">
+					{% if item.compare_at_price > item.price %}						
+						<span class="">{% if item.price_varies %}{{settings.fromText}} {% endif %}<span class="sale-price">{{ item.price | money }}</span> <em class="oldPrice"> {{ item.compare_at_price | money }}</em> <span class="money-unit"></span></span>
+						
+					{% else %}
+						<span class="">{% if item.price_varies %}{{settings.fromText}} {% endif %}{{ item.price | money }} <span class="money-unit"></span></span>
+					{% endif %}								
+				</div>				
+				{% endif %}
+				<p>{{ item.content | highlight: search.terms | strip_html | truncatewords: 30 }}</p>
+				<div class="collection-product-action">											
+					{% if item.price > 0 %}
+					<a href="{{item.url}}" class="btn btn-primary btn-md">{{ 'general.purchase' | t}}</a>
+					{% else %}
+					<a class="learn-more-link " href="{{ item.url }} ">Full Story<i style="position:relative;top:2px;left:4px;" class="fa fa-caret-right" aria-hidden="true"></i></a>
+					{% endif %}
+				</div>
+			{% endcapture %} 
+		
+			{% capture articleClass %}article-heading {{ item.url | remove: 'blogs/'  | remove: item.handle | remove: "/" }}{% endcapture %}
+		
+			{% include 'utility_listing', 
+				class : articleClass,
+				thumb : searchImage, 
+				image_attributes : 'style="width: 100%; max-width: 600px;"'
+				title : item.title, 
+				link : item.url, 
+				content : searchContent %} 
+		
+		{% endfor %}
+	</ul>
+	{% include 'pagination' %}
+	{% endpaginate %} 
+	{% else %}
+
+	<p class="info-text">
+		
+		Sorry no mathch for your search '<strong>{{search.terms}}</strong>
+	</p>
+	
+	<form class="form-inline" action="/search">
+		<div class="input-group input-group-appended">
+			<input type="search" name="q" class="form-control search-bar" autocomplete="off" placeholder="Search" value="{{ search.terms }}">
+			<span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Search" />
+        </span>
+		</div>
+	</form>
+	{% endif %}
 
 </section>
-
-{% else %}
-{% layout none %}
-{% include 'respond' %}
-{% endunless %}

@@ -1,88 +1,132 @@
 {% assign bread_seperator = '<i class="fa fa-caret-right" aria-hidden="true"></i>' %}
-
-
 {% assign current_url = '' %}
 
-{% case template %}
-	{% when 'page' %}
-		{% assign current_url = page.url %}
-	{% when 'blog' %}
-		{% assign current_url = blog.url %}
-	{% when 'article' %}
-		{% assign current_url = blog.url %}
-	{% when 'collection' %}
-		{% assign current_url = collection.url %}
-	{% when 'product' %}
-		{% assign current_url = product.url %}
-{% endcase %}
-
 <ul class="B_crumbBox">
-        <li temtype="http://data-vocabulary.org/Breadcrumb" itemscope="itemscope"  class="B_firstCrumb" >
-            <a href="/" rel="Home" itemprop="url" class="B_homeCrumb"><span itemprop="title">Home</span></a>
-        </li>
-{%comment%}
-    {% unless collection.title == blank or collection.title == page_title or template == 'index' or template contains 'collection' %}       
-        » <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ collection.url }}" rel="{{ collection.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ collection.title }}</span></a></li>
-    {% endunless %}
-{%endcomment%}
-    {% if blog.title != blank and blog.title != page_title %}
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ blog.url }}" rel="{{ blog.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ blog.title }}</span></a></li>
-    {% endif %}
-    {% if article.title != blank and article.title != page_title %}
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{ article.url }}" rel="{{ article.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{ article.title }}</span></a></li>
-    {% endif %}
-    {% if product.title != blank  and product.collections.first.handle != blank %}
+	<li temtype="http://data-vocabulary.org/Breadcrumb" itemscope="itemscope"  class="B_firstCrumb" >
+			<a href="/" rel="Home" itemprop="url" class="B_homeCrumb"><span itemprop="title">Home</span></a>
+	</li>
+	{{bread_seperator}}
+	{% capture crumb %}<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ page_title }}</li>{% endcapture %}
+	
+	
+	{% case template %}
+		{% when 'page' or 'page.full' %}
+	
+			{% assign current_url = page.url %}
+			{% assign subpage_title = false %}
+			{% assign subpage_url = false %}    
+			{% assign root_page_title = false %}
+			{% assign root_page_url = false %}    
+			{% for link in linklists[settings.navigation-linklist-main].links %}     
+					{% if link.url == current_url %}
+							{% assign root_page_title = link.title %}
+							{% assign root_page_url = link.url %}
+					{% endif %}
+					{% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}               
+					{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0  %}                                    
+							{% for l in linklists[child_list_handle].links %}
+									{% if l.url == current_url %}
+											{% assign root_page_title = link.title %}
+											{% assign root_page_url = link.url %}
+											{% assign subpage_title = l.title %}
+											{% assign subpage_url = l.url %}                    
+									{% endif %}
+							{% endfor %}  
+					{% endif %}
+			{% endfor %}
 
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope"><a href="{{product.collections.first.url}}" rel="{{ product.title }}" itemprop="url" class="B_crumb"><span itemprop="title">{{product.collections.first.title}}</span></a></li>
-        
-    {% endif %}
-    
-    {% if current_tags == blank %}
-        {% if template contains 'customers' %}
-        {% unless template == 'customers/account' %}
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">{{ 'accounts.account' | t | link_to: '/account' }}</li>
-        {% endunless %}
-    {% endif %}
-    
-    {% assign subpage_title = false %}
-    {% assign subpage_url = false %}
-    
-    {% assign root_page_title = false %}
-    {% assign root_page_url = false %}
-    
-    {% for link in linklists[settings.navigation-linklist-main].links %}     
-        {% if link.url == current_url %}
-            {% assign root_page_title = link.title %}
-            {% assign root_page_url = link.url %}
-        {% endif %}
-        {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}               
-        {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0  %}                                    
-            {% for l in linklists[child_list_handle].links %}
-                {% if l.url == current_url %}
-                    {% assign root_page_title = link.title %}
-                    {% assign root_page_url = link.url %}
-                    {% assign subpage_title = l.title %}
-                    {% assign subpage_url = l.url %}                    
-                {% endif %}
-            {% endfor %}  
-        {% endif %}
-    {% endfor %}
-    {% comment %} This means it has subpage on pages.{% endcomment %}
-    {% if subpage_url != false and subpage_url != root_page_url %}
-        {{bread_seperator}}
-        <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
-            <a href="{{ root_page_url }}" rel="{{ root_page_title }}" itemprop="url" class="B_crumb">
-                <span itemprop="title">{{ root_page_title }}</span>
-            </a>
-        </li>        
-    {% endif %}   
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ page_title }}</li>
-    {% else %}
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">{{ page_title | link_to: './' }}</li>
-        {{bread_seperator}} <li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ 'navigation.tags.filtered-by-tags' | t }} {{ current_tags | join: ' + ' }}</li>       
-        
-  {% endif %}
+			{% comment %} This means it has subpage on pages.{% endcomment %}
+			{% capture crumb %}
+			{% if subpage_url != false and subpage_url != root_page_url %}       
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+							<a href="{{ root_page_url }}" rel="{{ root_page_title }}" itemprop="url" class="B_crumb">
+									<span itemprop="title">{{ root_page_title }}</span>
+							</a>
+					</li>        
+					{{bread_seperator}} 
+			{% endif %}			
+				<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ page_title }}</li>
+			{% endcapture %}
+	
+		{% when 'blog' %}
+			{% assign current_url = blog.url %}		
+
+
+		{% when 'article' %}
+			{% assign current_url = blog.url %}
+			{% capture precrumb %}
+			{% assign currentBlogName = article.url | remove: article.handle | remove: 'blogs' | remove: '/' %}
+			{% assign currentBlog = blogs[currentBlogName] %}
+			<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+				<a href="{{ currentBlog.url }}" rel="{{ currentBlog.title }}" itemprop="url" class="B_crumb">
+					<span itemprop="title">{{ currentBlog.title }}</span>
+				</a>
+			</li>
+			{{bread_seperator}}
+			{% endcapture %}
+			{% capture crumb %}{{precrumb}}{{crumb}}{% endcapture %}
+		{% when 'collection' or 'list-collections' %}
+			{% assign current_url = collection.url %}			
+			{% capture crumb %}
+				{% if template != 'list-collections' %}
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+						<a href="{{shop.url}}/collections" rel="{{'general.gift-shop'| t}}" itemprop="url" class="B_crumb">
+							<span itemprop="title">{{'general.gift-shop'| t}}</span>
+						</a>
+					</li>	
+					{{bread_seperator}}
+			{% endif %}
+			
+			<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{% if page_title == 'Collections' %}{{'general.gift-shop'| t}}{% else %}{{ page_title }}{% endif %}</li>
+		{% endcapture %}
+	
+		
+
+		{% when 'customers/account'  %}
+			{% capture crumb %}
+			<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">{{ 'accounts.account' | t | link_to: '/account' }}</li>
+			{% endcapture %}
+	
+	
+		{% when 'search' %}
+			{% include 'archive-logic', hide_articles : true %}	
+			{% capture crumb %}
+				{% if archive_month and archive_year %}
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+						<a href="{{blog_url}}" rel="{{blog_title}}" itemprop="url" class="B_crumb">
+							<span itemprop="title">{{blog_title}}</span>
+						</a>
+					</li>	
+					{{bread_seperator}}
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{archive_month}} {{archive_year}}</li>
+				{% else %}
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_currentCrumb" itemscope="itemscope">{{ 'general.search-results' | t }}</li>
+				{% endif %}
+			{% endcapture %}
+
+		{% when 'product' %}
+			{% assign current_url = product.url %}
+			{% assign productCollection = product.collections | first %}
+			{% if productCollection %}
+				{% capture precrumb %}
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+						<a href="{{shop.url}}/collections" rel="{{'general.gift-shop'| t}}" itemprop="url" class="B_crumb">
+							<span itemprop="title">{{'general.gift-shop'| t}}</span>
+						</a>
+					</li>	
+					{{bread_seperator}}	
+					<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
+						<a href="{{shop.url}}{{productCollection.url}}" rel="{{productCollection.title}}" itemprop="url" class="B_crumb">
+							<span itemprop="title">{{productCollection.title}}</span>
+						</a>
+					</li>	
+				{% endcapture %}
+				{% capture crumb %}
+					{{precrumb}}
+					{{bread_seperator}}
+					{{crumb}}
+				{% endcapture %}
+			{% endif %}
+	{% endcase %}
+		{{ crumb | strip }}
 </ul>
-
-
-

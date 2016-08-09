@@ -1,18 +1,24 @@
 {
   "general": {
     "about-us": "About Us",
+    "add-comment"  : "Add a Comment",
     "cancel": "Cancel",
     "click-here": "click here",
     "create": "Create",
     "collections-all" : "Gift Shop",
     "communications": "Communications",
+    "comments" : "Comments",
     "copyright": "Copyright",
     "date": "date",
     "email": "Email",
     "email-short" : "E:",
+    "error" : {
+       "message-404" : "Unfortunately, the page you were attempting to access doesn't exist now (or maybe it never existed). Here's what we suggest:"
+    },
     "error-form" : "We could not process the form because of the following errors:",
     "fax" : "Fax",
     "footer-form-title": "Send Us a Message",
+    "gift-shop" : "Gift Shop",
     "item": "item",
     "learn-more" : "Learn More",
     "no": "No",
@@ -26,6 +32,7 @@
     "purchase" : "Purchase",
     "shipping": "Shipping",
     "send": "Send",
+    "search-results" : "Search Results",
     "send-group-regatta-inquiry" : "Send Group Regatta Inquiry",
     "sign-in": "Sign In",
     "site-developed-by": "Site by", 

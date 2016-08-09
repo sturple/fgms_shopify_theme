@@ -1,38 +1,38 @@
 <div class="intro-text">
 {{collection.description | strip_html }}
 </div>
-<ul class="collections-list">
-	{% paginate collection.products by 10  %}
-	{% for product in collection.products %}
+{% paginate collection.products  | default_pagination  %}
+{% include 'pagination' %}
+<ul class="collections-list article-heading">
 	
-		{% assign thumb = product.featured_image.src | product_img_url: 'medium' %}								
-		{% if thumb contains 'no-image'%}
-			{% assign thumb =  'card.gift-card.jpg' | asset_url %}
-		{%endif%}
+	{% for product in collection.products %}					
+
 
 		{% capture collectionUrl %}{{shop.url}}{{ product.url | within: collection }}{% endcapture %}
 		{% capture collectionContent %}
-			<div class="collection-product-description">{{product.description}}</div>
-			<div class="price">
+			<div class="price collection-product-price">
 			{% if product.compare_at_price > product.price %}						
 				<span class="">{% if product.price_varies %}{{settings.fromText}} {% endif %}<span class="sale-price">{{ product.price | money }}</span> <em class="oldPrice"> {{ product.compare_at_price | money }}</em> <span class="money-unit"></span></span>
 				{% if product.metafields.FGMS.sale_descriptor %}<div class="product-sale-descriptor carousel">{{product.metafields.FGMS.sale_descriptor}}</div>{%endif%}
 			{% else %}
 				<span class="">{% if product.price_varies %}{{settings.fromText}} {% endif %}{{ product.price | money }} <span class="money-unit"></span></span>
 			{% endif %}								
-			</div>						
+			</div>			
+			<p class="collection-product-description">{{product.description | strip_html | truncatewords: 30}}</p>
+				
 			<div class="collection-product-action">											
-				<a href="{{collectionUrl}}" class="btn btn-primary">{{ 'general.purchase' | t}}</a>
+				<a href="{{collectionUrl}}" class="btn btn-primary btn-md">{{ 'general.purchase' | t}}</a>
 			</div>
 		{% endcapture %}
 	
-		{% include 'utility_listing',
-			thumb : {{thumb}},
-			image : {{thumb}},
+		{% include 'utility_listing',	
+			image : {{product.featured_image.src}},
 			title : {{product.title}},
 			link : {{collectionUrl}},
 			content : {{collectionContent}}
 		%}
 	{% endfor %}
-	{% endpaginate %}
+	
 </ul>
+{% include 'pagination' %}
+{% endpaginate %}

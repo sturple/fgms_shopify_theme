@@ -1,50 +1,26 @@
-<div class="{% if settings.sidebar-login-enable %}{{settings.content-grid-secondary-main-class}}{% else %}col-lg-12{% endif %}" id="main" role="main" >
-	<div class="main-col-wrapper  " >
-		<div class="hidden-xs">{% include 'breadcrumbs' %}</div>			
-		{% assign form-type = 'horizontal' %}
+{% assign form-type = 'horizontal' %}
 
-		<h1>{{'accounts.your-account' |t}}</h1>       
-		<div  class="panel-group"  role="tablist" aria-multiselectable="true">
-			<div id="section-login" >
-				<h2>{{'accounts.login' | t}}</h2>
-				{% include 'forms' formType : 'customer_login' %}
-			</div>
-			<div id="section-reset" class="hidden">
-				<h2>{{'accounts.password-reset' | t}}</h2>
-				<p>{{'accounts.password-reset-text' | t}} </p>   
-				<p style="margin-bottom: 24px;"><em>{{'accounts.password-reset-junk-email' | t}}</em></p>				
-				{% include 'forms' formType : 'recover_customer_password' labelClass : 'sr-only' controlClass : 'col-xs-7' ph_flag : true %}								
-			</div>
-						
-		</div>
-
-	  
-		{% if shop.checkout.guest_login  %}
-			<h2 style="padding-top: 48px;">Guest Login</h3>
-			<div class="form-horizontal">
-				{% form 'guest_login' %}
-				<div class="form-group">
-					<div class="col-lg-12">
-						<input class="btn btn-primary" type="submit" value="Continue as Guest" />
-					</div>
-				</div>
-				{% endform %}					
-			</div>		
-		{% endif %}	
-
+<div class="panel-group" role="tablist" aria-multiselectable="true">
+	<div id="section-login">
+		<h2>{{'accounts.login' | t}}</h2> {% include 'forms' formType : 'customer_login' %}
+	</div>
+	<div id="section-reset" class="hidden">
+		<h2>{{'accounts.password-reset' | t}}</h2>
+		<p>{{'accounts.password-reset-text' | t}} </p>
+		<p style="margin-bottom: 24px;"><em>{{'accounts.password-reset-junk-email' | t}}</em></p>
+		{% include 'forms' formType : 'recover_customer_password' labelClass : 'sr-only' controlClass : 'col-xs-7' ph_flag : true %}
 	</div>
 </div>
-{% if settings.sidebar-login-enable %}
-<!-- sidebar -->
-<div class="{{settings.content-grid-secondary-sidebar-class}}"  >
-	<div  id="sidebar">
-		<div id="sidebar-wrapper">
-			{% if settings.sidebar-login-snippet != blank %}
-			{% include settings.sidebar-login-snippet %}
-			{%else%}
-			{% include 'warning' type : 'no-sidebar' %}				
-			{%endif%}			
-		</div>								
-	</div>                
-</div>
-{% endif %}
+
+{% if shop.checkout.guest_login %}
+	<h2 style="padding-top: 48px;">Guest Login</h2>
+	<div class="form-horizontal">
+		{% form 'guest_login' %}
+		<div class="form-group">
+			<div class="col-lg-12">
+				<input class="btn btn-primary" type="submit" value="Continue as Guest" />
+			</div>
+		</div>
+		{% endform %}
+	</div>
+{% endif %} 
