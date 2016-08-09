@@ -1,0 +1,8 @@
+{
+  "name": "shopify-email-update",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-template" : "~1.0"
+    
+  }
+}

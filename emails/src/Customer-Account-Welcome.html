@@ -1,0 +1,63 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Account Confirmation
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Your {{shop.name}} account is ready to go.
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Hello{% if customer.name %} {{ customer.name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Save time at checkout by logging into your account the next time you shop with us. This simple step will prefill your address information on all the order documentation and ensure smooth processing.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								If have any questions or comments, you can reach us {% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%= salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

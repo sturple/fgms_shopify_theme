@@ -1,0 +1,18 @@
+SUBJECT
+Order {{ name }} Cancelled | {{shop.name}}
+
+{% if billing_address.name %}Dear {{ billing_address.name }},{% endif %}
+
+Your order {{ name }} was cancelled {% case cancel_reason %}{% when 'customer' %}at your request.{% when 'inventory' %}because unfortunately we did not have enough stock to fulfill your order.{% when 'fraud' %}because we suspect it was fraudulent.{% when 'other' %}due to unforseen circumstances.{% endcase %}
+
+{% if financial_status == 'voided' %}Your payment was also voided.{% elsif financial_status == 'refunded' %}Your payment was also refunded.{% endif %}
+
+If you would like to proceed with your order at a future date, or if you feel the cancellation was an error, please contact us {% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 	{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+
+We look forward to serving you soon,
+
+<%= salutation %>
+{{shop.name}}
+{{shop.url}}
+
+

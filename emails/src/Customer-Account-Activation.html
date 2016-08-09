@@ -1,0 +1,72 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Account Setup
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Let's activate your new {{shop.name}} account.
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Hello{% if customer.name %} {{ customer.name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								An account has been created for you at {{shop.name}}. Please click on the link below to activate this new account and set your personal password:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{{ customer.account_activation_url }}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								If you have any questions or comments, you can reach us {% if toll-free.size > 3 %}toll free at <strong>{{toll-free}}</strong>{% else %}at <strong>{{phone}}</strong>{% endif %}{%if operating-hours.size > 5 %} {{operating-hours}}{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								If have any questions or comments, you can reach us {% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%= salutation %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+
+						<!-- END BODY MESSAGE -->

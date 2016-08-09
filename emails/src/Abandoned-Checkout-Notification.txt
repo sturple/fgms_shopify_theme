@@ -1,0 +1,23 @@
+SUBJECT
+Your Shopping Cart at {{shop.name}}
+
+Hello{% if billing_address.name %} {{ billing_address.name }}{% endif %},
+
+Your shopping cart at {{ shop.name }} is still active and waiting for your return!
+In your cart, you currently have:
+
+{% for line in line_items %}
+ {{ line.quantity }} x {{ line.title }} }}
+{% endfor %}
+
+But it's not too late! To complete your purchase, you can still click this link:
+
+{{ url }}
+
+Thanks for shopping at {{shop.name}}.
+
+All the best,
+
+<%- salutation %>
+{{shop.name}}
+{{shop.url}}

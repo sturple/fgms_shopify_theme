@@ -1,0 +1,143 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Fulfillment Request
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Please fulfill order {{ name }}.
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Hello {{ service_name }},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>;padding-bottom: 24px; ">
+								Below are the details of order {{ name }} from {{shop.name}}. If you have any questions regarding fulfillment, please contact us 
+								{% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="border-collapse:collapse;">
+								<table class="order-table" width="558" cellspacing="0" cellpadding="0" style="border-collapse:collapse; border: 1px solid #f4f3f2;">
+
+									<tbody>
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>; padding: 6px;">
+												Total number of items: {{ fulfillment.item_count }}
+											</td>
+										</tr>
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>; padding: 6px;  ">
+												Unique items: {{ fulfillment.fulfillment_line_items.size }}
+											</td>
+										</tr>
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>;padding: 6px;   ">
+												<table class="message-table" width="546" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+													<tbody>
+														<tr>
+															<td class="message-cell" width="546" style="<%= bodySmallStyle %>;padding-bottom: 6px; ">
+																Items to fulfill:
+															</td>
+														</tr>
+														<tr>
+															<td class="message-cell" width="546" style="<%= bodySmallStyle %>; padding-bottom: 0; ">
+																{% for line in fulfillment.fulfillment_line_items %}
+																<p>Variant Title: {{ line.line_item.title }}</p>
+																<p>SKU: {{ line.line_item.sku }}</p>
+																<p>Quantity: {{ line.quantity }}</p>
+																<p>Grams: {{ line.line_item.grams }}</p>
+																<p>Vendor: {{ line.line_item.vendor }}</p>
+																{% endfor %}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+
+												{% if shipping_address %}
+
+												<table class="message-table" width="510" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+													<tbody>
+														<tr>
+															<td class="message-cell" width="524" style="<%= bodySmallStyle %>;padding-top: 6px; padding-bottom: 6px;">
+																Shipping address:
+															</td>
+														</tr>
+														<tr>
+															<td class="message-cell" width="524" style="<%= bodySmallStyle %>;padding-bottom: 0;">
+																<p>{{ shipping_address.name }}{% if shipping_address.company %} {{ shipping_address.company }}{% endif %}</p>
+																<p>{{ shipping_address.address1 }}</p>
+																<p>{{ shipping_address.address2 }}</p>
+																<p>{{ shipping_address.city }}, {{ shipping_address.province }}</p>
+																<p>{{ shipping_address.zip }}</p>
+																<p>{{ shipping_address.country }}</p>
+																{% if shipping_address.phone %}
+																<p>Telephone: {{ shipping_address.phone }}</p>{% endif %}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+
+												{% endif %}
+
+											</td>
+										</tr>
+
+										{% if shipping_method %}
+
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>; padding: 6px; ">
+												Shipping Method: {{ shipping_method.title }}
+											</td>
+										</tr>
+
+										{% endif %} {% if fulfillment.tracking_number %}
+
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>; padding: 6px; ">
+												Tracking Number: {{ fulfillment.tracking_number }}
+											</td>
+										</tr>
+
+										{% endif %}
+
+										<tr class="order-table" style="border: 1px solid #f4f3f2;">
+											<td class="message-cell" width="546" style="<%= bodySmallStyle %>;padding: 6px;">
+												Customer Email: {{ email }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

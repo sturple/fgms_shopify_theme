@@ -1,0 +1,111 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Shipment Confirmation
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Your {{shop.name}} order {{ name }}
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								We just wanted to take a moment to let you know that {% if fulfillment.item_count == item_count %}all{% elsif fulfillment_status == 'fulfilled' %}the last{% else %}some{% endif %} of the items from your order {{ name }} have now been shipped:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>; font-size: 13px; ">
+								<ul style="list-style-type: none; padding: 0; margin: 0;">
+									{% for line in fulfillment.fulfillment_line_items %}
+
+									<li style="padding-bottom: 6px;"> <img src="{{ line.line_item | img_url: 'small' }}" /> {{ line.quantity }}x {{ line.line_item.title }} </li>
+
+									{% endfor %}
+
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+
+								{% if requires_shipping %}Your {{shop.name}} order is being shipped {% if fulfillment.tracking_company %}via {{ fulfillment.tracking_company }} {% endif %}to the following address:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{{ shipping_address.name }}<br /> {{ shipping_address.street }}<br /> {{ shipping_address.city }}<br /> {{ shipping_address.province }} {{ shipping_address.zip }}<br /> {{ shipping_address.country }} {% if fulfillment.tracking_numbers.size > 0
+								%} {% if fulfillment.tracking_numbers.size == 1 %}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								The tracking details for this shipment are as follows:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{% for tracking_number in fulfillment.tracking_numbers %} {{ tracking_number }}<br /> {% endfor %}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Click the links below to see the shipping status on these items:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{% for tracking_url in fulfillment.tracking_urls %}
+
+								<a href="{{ tracking_url }}">{{ tracking_url }}</a><br /> {% endfor %}{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Please allow some time for the status of the shipment to correctly display at the above link. {% endif %}{% endif %}{% if fulfillment_status != 'fulfilled' %} As soon as more items from your order are shipped, we will send you another confirmation email.
+								{% endif %}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Thanks for shopping with {{shop.name}}. If have any questions or comments about this shipping update, you can reach us{% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%= salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

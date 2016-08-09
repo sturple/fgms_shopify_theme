@@ -17,3 +17,6 @@ theme/node_modules/
 theme/snippets/data-*
 theme/snippets/shortcode-*.liquid
 !theme/snippets/shortcode-render.liquid
+
+emails/node_modules/
+emails/dist/

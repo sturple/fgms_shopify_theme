@@ -1,0 +1,44 @@
+SUBJECT
+Confirmation of Order {{ name }}  | {{shop.name}}
+
+
+Hello{% if customer.name %} {{ customer.name }}{% endif %},
+
+Below are the details of your recent order (order: {{ name }}) with {{shop.name}}. Please review carefully. If you find an error, please contact us {% if toll-free.size > 3 %}toll free at {{toll-free}}{% else %}at {{phone}}{% endif %} {%if operating-hours.size > 5 %}{{operating-hours}}{% endif %}.
+
+Order date: {{ date | date: "%m/%d/%Y" }}{% if requires_shipping and shipping_address %}
+  
+Shipping address:
+    {{ shipping_address.name }}
+    {{ shipping_address.street }}
+    {{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}
+    {{ shipping_address.country }}{% endif %}{% if billing_address %}
+
+Billing address:
+    {{ billing_address.name }}
+    {{ billing_address.street }}
+    {{ billing_address.city }}, {{ billing_address.province }}  {{ billing_address.zip }}
+    {{ billing_address.country }}{% endif %}
+  
+{% for line in line_items %}{% if line.properties.master_builder == blank %}{{ line.quantity }} x {{ line.title }}{% for p in line.properties %}{% unless p.last == blank %} - {{ p.first }}: {{ p.last }}{% endunless %}{% endfor %} for {{ line.price | money }} each 
+{% else %}
+{{ line.quantity }} x {{ line.title }}{% for p in line.properties %}
+{% if p.first == "builder_id" or p.first == "builder_info" or p.first == "master_builder" %}{% else %}{{ p.first }}: {% if p.last contains '/uploads/' %} {{ p.last | split: '/' | last }}
+{% else %}
+{{ p.last }}
+{% endif %}{% endif %}{% endfor %} for {{ line.price | money }} each
+{% endif %}{% endfor %}
+
+{% if discounts %}Discount (code: {{ discounts.first.code }}): {{ discounts_savings | money_with_currency }}{% endif %}
+Subtotal: {{ subtotal_price | money_with_currency  }}{% for tax_line in tax_lines %}
+{{ tax_line.title }}: {{ tax_line.price | money_with_currency  }}{% endfor %}{% if requires_shipping %}
+Shipping: {{ shipping_price | money_with_currency }}{% endif %}
+Total: {{ total_price | money_with_currency }}
+
+Thanks for shopping at {{shop.name}}. 
+
+All the best, 
+
+<%= salutation %>
+{{shop.name}}
+{{shop.url}}

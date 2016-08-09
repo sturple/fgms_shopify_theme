@@ -1,0 +1,71 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Order Cancelled
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				{{shop.name}} order {{ name }}
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Hello{% if customer.name %} {{ customer.name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell " width="560" style="<%= bodyStyle %> ">
+								Your order {{ name }} with {{shop.name}} was cancelled {% case cancel_reason %}{% when 'customer' %}as requested.{% when 'inventory' %}because unfortunately we did not have enough stock to fulfill your order.{% when 'fraud' %}because we suspect it was
+								fraudulent.{% when 'other' %}due to unforeseen circumstances.{% endcase %}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{% if financial_status == 'voided' %}Your payment was also voided.{% elsif financial_status == 'refunded' %}Your payment was also refunded.{% endif %}
+							</td>
+						</tr>
+
+						<tr>
+							<td class="message-cell " width="560 " style="<%= bodyStyle %> ">
+								If you would like to proceed with your order at a future date, or if you feel the cancellation was an error, please contact us 
+								{% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell " width="560" style=" <%= bodyStyle %>; padding-bottom: 18px; ">
+								We look forward to serving you soon,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell " width="560" style="<%= bodyStyle %> ;font-style: italic; ">
+								<%= salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

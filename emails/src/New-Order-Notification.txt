@@ -1,0 +1,40 @@
+SUBJECT
+New Order {{ name }}  | {{shop.name}}
+
+
+{{ shop.name }},
+
+{{ billing_address.name }} placed a new order with you today ({{ date | date: "%b %d %I:%M%p" }}). 
+
+Payment method:
+  {{ gateway }}{% if requires_shipping %}
+
+Delivery method: 
+  {% for shipping_method in shipping_methods %}{{ shipping_method.title }}
+  {% endfor %}
+
+Shipping address:
+  {{ shipping_address.name }}
+  {{ shipping_address.street }}
+  {{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}
+  {{ shipping_address.country }}
+  {{ shipping_address.phone }}{% endif %}
+
+{% for line in line_items %}{% if line.properties.master_builder == blank %}{{ line.quantity }}x {{ line.title }}{% for p in line.properties %}{% unless p.last == blank %} - {{ p.first }}: {{ p.last }}{% endunless %}{% endfor %} for {{ line.price | money }} each (sku: {{ line.sku }})
+{% else %}
+{{ line.quantity }}x {{ line.title }}{% for p in line.properties %}
+{% if p.first == "builder_id" or p.first == "builder_info" or p.first == "master_builder" %} 
+{% else %}
+{{ p.first }}: {% if p.last contains '/uploads/' %} {{ p.last | split: '/' | last }}{% else %}
+{{ p.last }}
+{% endif %}{% endif %}{% endfor %} 
+for {{ line.price | money }} each
+(sku: {{ line.sku }})
+{% endif %}
+{% endfor %}
+
+All the best,
+
+<%= salutation %>
+{{shop.name}}
+{{shop.url}}

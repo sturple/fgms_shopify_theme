@@ -1,0 +1,78 @@
+<!-- MESSAGE -->
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+		<!-- TITLE -->
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Your Shopping Cart is Still Active
+			</td>
+		</tr>
+		<!-- SUBTITLE -->
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Would you like to complete your purchase?
+			</td>
+		</tr>
+		<!-- BODY WRAPPER -->
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+						<!-- BODY MESSAGE -->
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Hello{% if billing_address.name %} {{ billing_address.name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Your shopping cart at {{ shop_name }} is still active and waiting for your return!
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								In your cart, you currently have:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								<ul style="list-style-type: none; padding: 0; margin: 0;">
+									{% for line in line_items %}
+									<li style="padding-bottom: 6px;"> <img src="{{ line | img_url: 'small' }}" /> {{ line.quantity }} x {{ line.title }}</li> {% endfor %}
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								But it's not too late! To complete your purchase, you can still click this link:
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								{{ url }}
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Thanks for shopping at {{shop.name}}. If have any questions or comments, you can reach us 
+								{% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%= salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

@@ -1,0 +1,34 @@
+SUBJECT
+Shipping Update for Order {{ name }} | {{shop.name}}
+
+
+Hello {{ billing_address.name }},
+
+Below is the latest shipping information for the following items from your order {{ name }}:
+
+{% for line in fulfillment.line_items %}{% if line.properties.master_builder == blank %}{{ line.quantity }}x {{ line.title }} {% for p in line.properties %}{% unless p.last == blank %} - {{ p.first }}: {{ p.last }}{% endunless %}{% endfor %} for {{ line.price | money }} each
+(sku: {{ line.sku }})
+{% else %}
+{{ line.quantity }}x {{ line.title }}{% for p in line.properties %} {% if p.first == "builder_id" or p.first == "builder_info" or p.first == "master_builder" %} {% else %}
+{{ p.first }}: {% if p.last contains '/uploads/' %} {{ p.last | split: '/' | last }}{% else %}
+{{ p.last }}
+{% endif %}{% endif %}{% endfor %} 
+for {{ line.price | money }} each
+(sku: {{ line.sku }})
+{% endif %}
+{% endfor %}
+
+They are being shipped{% if fulfillment.tracking_company %} via {{ fulfillment.tracking_company }}{% endif %} with tracking number {{ fulfillment.tracking_number }}. You can see the status of this shipment at the following URL:
+
+{{ fulfillment.tracking_url }}
+
+Please allow some time for the status of the shipment to correctly display at the above address.
+
+Thanks for shopping with {{shop.name}}.  If have any questions or comments about this shipping update, you can reach us {% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
+{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+
+All the best,
+
+<%= salutation %>
+{{shop.name}}
+{{shop.url}}

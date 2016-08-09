@@ -1,0 +1,63 @@
+SUBJECT
+Shipping Confirmation for Order {{ name }}  | {{shop.name}}
+
+
+Dear {{ billing_address.name }},
+
+{% if fulfillment.line_items.size == line_items.size %}All{% else %}{% if unfulfilled_line_items.size == 0 %}The last{% else %}Some{% endif %}{% endif %} of the items from order {{ name }} have now been shipped:
+
+{% for line in fulfillment.line_items %}
+{% if line.properties.master_builder == blank %}
+{{ line.quantity }}x {{ line.title }}
+{% for p in line.properties %}{% unless p.last == blank %} - {{ p.first }}: {{ p.last }}{% endunless %}{% endfor %} for {{ line.price | money }} each
+(sku: {{ line.sku }})
+{% else %}
+{{ line.quantity }}x {{ line.title }}
+{% for p in line.properties %}
+{% if p.first == "builder_id" or p.first == "builder_info" or p.first == "master_builder" %} 
+{% else %}
+{{ p.first }}: {% if p.last contains '/uploads/' %} {{ p.last | split: '/' | last }}
+{% else %}
+{{ p.last }}
+{% endif %}
+{% endif %}
+{% endfor %} 
+for {{ line.price | money }} each
+(sku: {{ line.sku }})
+{% endif %}
+{% endfor %}
+
+{% if requires_shipping %}They are being shipped {% if fulfillment.tracking_company %}via {{ fulfillment.tracking_company }} {% endif %}to the following address:
+
+{{ shipping_address.name }}
+{{ shipping_address.address1 }}
+{{ shipping_address.address2 }}
+{{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}
+{{ shipping_address.country }}
+{% if fulfillment.tracking_number %}
+
+{% assign tracking_count = fulfillment.tracking_numbers.count %}
+
+The tracking details for these items are as follows:
+{% for tracking_number in fulfillment.tracking_numbers %}
+  {{ tracking_number }}
+{% endfor %}
+
+For shipping status on these items:
+{% for tracking_url in fulfillment.tracking_urls %}
+  {{ tracking_url }}
+{% endfor %}
+
+{{ fulfillment.tracking_url }}
+
+Please allow some time for the status of the shipment to correctly display at the above address.
+{% endif %}{% endif %}{% if unfulfilled_line_items.size > 0 %}
+You will receive a confirmation email when more items from your order have been shipped.
+{% endif %}
+
+
+All the best,
+
+<%= salutation %>
+{{shop.name}}
+{{shop.url}}

@@ -1,0 +1,24 @@
+SUBJECT
+Your Gift Card | {{shop.name}}
+
+
+Hello{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},
+
+Thank you for your gift card purchase for {{ gift_card.initial_value | money_without_trailing_zeros }} at {{shop.name}}.
+
+We thought you might like to know that the current balance remaining on your {{shop.name}} gift card is {{ gift_card.balance | money_without_trailing_zeros }}.
+
+To view or print your gift card, visit the link below:
+
+<{{ gift_card.url }}>
+
+If you purchased this {{shop.name}} gift card for a friend (we applaud you for your great taste!) all you have to do is forward this email to them.
+
+If have any questions or comments, you can reach us {% if '<%- tollFree %>' |size > 3 %}toll free at <strong><%- tollFree %></strong>{% else %}at <strong><%- phone %></strong>{% endif %} 
+{%if '<%- operatingHours %>' | size > 5 %}<%- operatingHours %>{% endif %}.
+
+All the best,
+
+<%- salutation %>
+{{shop.name}}
+{{shop.url}}

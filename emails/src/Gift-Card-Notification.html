@@ -1,0 +1,84 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
+				Gift Card Update
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
+				Here's the current status of your {{shop.name}} gift card.
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="560" align="left" style="padding-top: 0px; padding-left: 24px; padding-right: 24px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="560" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="560" style="padding-bottom: 12px; <%= bodyStyle %>">
+								Hello{% if gift_card.customer %} {{ gift_card.customer.first_name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								Thank you for your gift card purchase for {{ gift_card.initial_value | money_without_trailing_zeros }} at {{shop.name}}.
+							</td>
+						</tr>
+
+						{% if gift_card.initial_value != gift_card.balance %}
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								We thought you might like to know that the current balance remaining on your {{shop.name}} gift card is {{ gift_card.balance | money_without_trailing_zeros }}.
+							</td>
+						</tr>
+
+						{% endif %}
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								<a href="{{ gift_card.url }}" style="color: #d45f16 !important;">To view or print your gift card, click here</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								If you purchased this {{shop.name}} gift card for a friend (we applaud you for your great taste!) all you have to do is forward this email to them.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>">
+								If have any questions or comments, you can reach us {% if '<%- tollFree %>' |size > 3 %}toll free at <strong><%- tollFree %></strong>{% else %}at <strong><%- phone %></strong>{% endif %} 
+								{%if '<%- operatingHours %>' | size > 5 %}<%- operatingHours %>{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%- salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>

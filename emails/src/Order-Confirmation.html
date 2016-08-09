@@ -1,0 +1,183 @@
+<!-- MESSAGE -->
+
+<table class="table" width="608" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+	<tbody>
+
+		<!-- TITLE -->
+
+		<tr>
+			<td class="title-cell" width="524" align="left" style="<%= titleStyle %>">
+				Order Confirmation
+			</td>
+		</tr>
+
+		<!-- SUBTITLE -->
+
+		<tr>
+			<td class="title-cell" width="524" align="left" style="<%= subtitleStyle %>">
+				Please review your latest order from {{shop.name}}.
+			</td>
+		</tr>
+
+		<!-- BODY WRAPPER -->
+
+		<tr>
+			<td class="body-cell" width="524" align="left" style="padding-top: 0px; padding-left: 42px; padding-right: 42px; padding-bottom: 18px; border-collapse:collapse;">
+				<table class="message-table" width="524" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+					<tbody>
+
+						<!-- BODY MESSAGE -->
+
+						<tr>
+							<td class="message-cell" width="524" style="<%= bodyStyle %>; padding-bottom: 12px;">
+								Hello{% if customer.name %} {{ customer.name }}{% endif %},
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="524" style="<%= bodyStyle %>; padding-bottom: 24px;">
+								Below are the details of your recent order (order: {{ name }}) with {{shop.name}}. Please review carefully. If you find an error, please contact us {% if toll-free.size > 3 %}toll free at <strong>{{toll-free}}</strong>{% else %}at <strong>{{phone}}</strong>{%
+								endif %}{%if operating-hours.size > 5 %} {{operating-hours}}{% endif %}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="524" style="border-collapse:collapse;">
+								<table class="order-table" width="522" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse; border: 1px solid #f4f3f2;">
+									<tbody>
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+												Order date: {{ date | date: "%m/%d/%Y" }}
+											</td>
+										</tr>
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+
+												{% if requires_shipping and shipping_address %}
+
+												<table class="message-table" width="510" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+													<tbody>
+														<tr>
+															<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding-bottom: 6px;">
+																Shipping address:
+															</td>
+														</tr>
+														<tr>
+															<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding-bottom: 0px;">
+																{{ shipping_address.name }}<br /> {{ shipping_address.street }}<br /> {{ shipping_address.city }}<br /> {{ shipping_address.province }} {{ shipping_address.zip }}<br /> {{ shipping_address.country }}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+
+												{% endif %} {% if billing_address %}
+
+												<table class="message-table" width="510" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+													<tbody>
+														<tr>
+															<td class="message-cell" width="524" style="<%= bodyStyle %>; font-size: 13px;padding-top: 6px; padding-bottom: 6px; ">
+																Billing address:
+															</td>
+														</tr>
+														<tr>
+															<td class="message-cell" width="524" style="<%= bodyStyle %>; font-size: 13px;padding: 0px;">
+																{{ billing_address.name }}<br /> {{ billing_address.street }}<br /> {{ billing_address.city }}<br /> {{ billing_address.province }} {{ billing_address.zip }}<br /> {{ billing_address.country }}
+															</td>
+														</tr>
+													</tbody>
+												</table>
+
+												{% endif %}
+
+											</td>
+										</tr>
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+
+												<table class="message-table" width="510" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+													<tbody>
+														<tr>
+															<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+																Items purchased:
+															</td>
+														</tr>
+														<tr>
+															<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+																<ul style="list-style-type: none; padding: 0; margin: 0;">
+
+																	{% for line in line_items %}
+
+																	<li style="padding-bottom: 6px;"> <img src="{{ line | img_url: 'small' }}" /> {{ line.quantity }} x {{ line.title }} for {{ line.price | money }} each </li>
+
+																	{% endfor %}
+
+																</ul>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+
+										{% if discounts %}
+
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+												Discounts: {{ discounts_savings | money_with_currency }}
+											</td>
+										</tr>
+
+										{% endif %}
+
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+												Subtotal: {{ subtotal_price | money_with_currency }}
+											</td>
+										</tr>
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+
+												{% for tax_line in tax_lines %} {{ tax_line.title }}: {{ tax_line.price | money_with_currency }} {% endfor %}
+											</td>
+										</tr>
+
+										{% if requires_shipping %}
+
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px;">
+												Shipping: {{ shipping_price | money_with_currency }}
+											</td>
+										</tr>
+
+										{% endif %}
+
+										<tr>
+											<td class="message-cell" width="510" style="<%= bodyStyle %>; font-size: 13px;padding: 6px; ">
+												<strong>Total: {{ total_price | money_with_currency }}</strong>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %>; padding-top: 24px;">
+								Thanks for shopping with {{shop.name}}.
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;padding-bottom: 18px;">
+								All the best,
+							</td>
+						</tr>
+						<tr>
+							<td class="message-cell" width="560" style="<%= bodyStyle %> ;font-style: italic;">
+								<%= salutation %>
+							</td>
+						</tr>
+
+						<!-- END BODY MESSAGE -->
+
+					</tbody>
+				</table>
+			</td>
+		</tr>
