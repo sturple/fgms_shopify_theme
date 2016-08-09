@@ -16,16 +16,33 @@ jQuery(function($) {
   emailCloak();
 
   
-  $('*[data-random="true"]').each(function(){
+  $('*[data-random], *[data-limit]').each(function(){
     var randomlimit = parseInt($(this).attr('data-limit'));    
     if (randomlimit > 0 ) {
-      randomizeChildren($(this).children(), randomlimit);
-    }
+			if ($(this).attr('data-random') == 'true'){
+      	randomizeChildren($(this).children(), randomlimit);
+				$(this).addClass('randomized');
+			}
+			else {
+				$(this).children().each(function(i){
+					if (i >= randomlimit){
+					
+						$(this).remove();
+					}
+				});
+    	}
+		}
     else {
-      randomizeChildren($(this).children());
+			if ($(this).attr('data-random') == 'true'){
+				randomizeChildren($(this).children());
+				$(this).addClass('randomized');
+			}
+      
     }
-    $(this).addClass('randomized');
+   
   });
+	
+	
   /*** Updates all background images according to screen size; */
   $('*[data-background-' + sizePostfix + ']').each(function() {
     $(this).css({
@@ -53,18 +70,23 @@ jQuery(function($) {
   /*** Updates all  images according to screen size;  */
   //$('img[data-image-'+sizePostfix+']')
 
-  $('img').each(function() {
-	getImageSize($(this));
-    
-   
+  $('img').each(function() {	
+		if (typeof modifyImageSrcCallback === 'function'){
+			getImageSize($(this), modifyImageSrcCallback); 
+		}
+		else {
+			getImageSize($(this), function($img, attr){ return attr}); 
+		}
+		
 
   });
+	/*
   $.each(document.getElementsByTagName("img"), function() {
     if (this.getAttribute('src') === null) {
       this.setAttribute('src', this.getAttribute('data-image'));
     }
 
-  });
+  });*/
 
   $('.panel-group').on('shown.bs.collapse', function(event) {
     $(this).find('.panel-title *').removeClass('active');
@@ -73,6 +95,7 @@ jQuery(function($) {
 
   });
 
+	/*
   var imgs=$('article img');
   if ((imgs.length > 0) && imgs.smoothZoom) {
     imgs.smoothZoom({
@@ -81,7 +104,7 @@ jQuery(function($) {
 	  navigationClose: '<i class="fa fa-times-circle" aria-hidden="true"></i>'
     });
 
-  }
+  }*/
 
   //adding hover code to bootstrap menus
   if (window.innerWidth > 993)  {
@@ -109,28 +132,40 @@ jQuery(function($) {
 	  navigationRight: '<i class=\"fa fa-angle-right\"></i>',
 	  navigationLeft: '<i class=\"fa fa-angle-left\"></i>',
 	  navigationClose: '<i class="fa fa-times-circle" aria-hidden="true"></i>',
+		showCaption: 'true',
 	  zoomoutSpeed : 800
 	});
   }
 
   
-  if (($('.script-grid-gallery').length > 0) && $().isotope ) {	
-	  var $element = $('.script-grid-gallery');
-    $('.script-grid-gallery').animate({opacity: 0},0);
-	  var $grid = $element.find('ul').isotope({itemSelector: 'li', layoutMode: 'fitRows'});
-    
-	  imagesLoaded($element.find('img'), function(){      
-      $grid.isotope('layout');
-      $('.script-grid-gallery').animate({opacity: 1},1000);
-      $('.gallery-filters').on('click','button',function(){
-            var filterValue = $(this).data('filter');
-            $grid.isotope({filter: filterValue}) ;
-            $('.gallery-filters button').removeClass('active');				
-            $(this).addClass('active');
-      });      
-    });
-
-
+ 	if (($('.script-grid-gallery').length > 0) && $().isotope ) {	
+	 	$('.script-grid-gallery').each(function(){
+			var $before = $(this).find('ul');
+			$('<div class="notification-loading" style="text-align: center; padding: 40px 0;"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class=""> Loading...</span></div>').insertBefore($before);
+			$(this).find('ul').animate({opacity: 0},0)
+			
+			
+			var $element = $(this);			
+			var $grid = $element.find('ul').isotope({itemSelector: 'li', layoutMode: 'fitRows'});
+			
+			imagesLoaded($element.find('img'), function(){      
+				$grid.isotope('layout');			
+				$element.find('.gallery-grid-small-big-5 li img').css({height: $grid.outerHeight()+'px'});
+				$grid.on( 'layoutComplete', function( event, laidOutItems ) {				
+					$(this).parent('.gallery-grid-small-big-5').find('li img').css({height: $(this).outerHeight()+'px'});
+				} );
+				$element.find('.notification-loading').remove();
+				$element.find('ul').animate({opacity: 1},1000);
+			});		
+			$('.gallery-filters').on('click','button',function(){
+				
+					var filterValue = $(this).data('filter');
+					$grid.isotope({filter: filterValue}) ;
+					$('.gallery-filters button').removeClass('active');				
+					$(this).addClass('active');
+			}); 				
+		
+		});
   }
   
   //this is the code for stickycomponent
@@ -229,19 +264,34 @@ jQuery(function($) {
 
 });
 
-function getImageSize($img) {
-  var sizeArray = ['xxs','xs','sm','md','lg','xl'];	  
-  var src;
-  for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
-	var attr = $img.attr('data-image-'+sizeArray[index]);
-	if ( attr !== undefined) {
-	  if (attr.length > 5) {
-		$img.attr('src', attr);			
-		break;
-	  }
-	  
+function getImageSize($img, callback) {
+	"use strict";
+	var sizeArray = ['xxs','xs','sm','md','lg','xl'], 
+			src,
+			attr,
+			index;
+	function checkAttr(attr){
+		if ( attr !== undefined) {
+			if (attr.length > 5) {
+				if (typeof callback === 'function'){
+					attr = callback($img, attr);
+				}
+			
+			$img.attr('src', attr);			
+			return;
+			}
+		}		
 	}
+
+  for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
+		attr = $img.attr('data-image-'+sizeArray[index]);
+		checkAttr(attr);
   }
+	if (attr === undefined ){
+		attr = $img.attr('data-image');
+		checkAttr(attr);
+	}
+
 }
   
 function emailCloak() {
@@ -351,7 +401,7 @@ function updateParallax($obj, minheight){
 	
 }
 
-function randomizeChildren($children, limit){
+function randomizeChildren($children,  limit){
     limit = (limit === undefined) ? 100 : limit;
     
     var allElems = $children.get(),

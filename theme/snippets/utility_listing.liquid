@@ -1,22 +1,33 @@
-{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{image}}{%endif%}"   title="{{title}}" data-caption="{{caption}}"{% endcapture %}
-<li class="row {{class}}">
-    <div class="col-sm-4">        
-        <div class="h3 hidden-lg hidden-md hidden-sm">{% if link %}<a href="{{link}}">{% endif %}{{title}}{% if link %}</a>{% endif %}</div>
-        <a {% if link %} href="{{link}}" class="image-wrapper icons"{% else %}{{attributes}} class="script-gallery-action photo image-wrapper" data-smoothzoom="listinggallery" {% endif %}>
-            
-                <img  data-image="{{thumb | defaut: image}}"  >
-                <div class="image-overlay {% if youtubeid %}has-video{% endif %}">
-                    <button  class="btn btn-secondary btn-sm">Learn More</button>
-                </div>
-            
+{% assign thumbUrl = image | file_img_url: '400x' %}
+{% assign imageUrl = image | file_img_url: 'master' %}
+{% if imageUrl contains 'no-image' %}
+  {% assign thumbUrl = image | img_url: '400x' %}
+  {% assign imageUrl = image | img_url: 'master' %}
+{% endif %}
+{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{imageUrl }}{%endif%}" title="{{title}}" data-caption="{{caption}}"{% endcapture %}
 
-        </a>
+<li class="row {{class}}">
+  {% if image != blank %}
+  <div class="col-sm-4 ">
+    <div class="h3 listing-title hidden-lg hidden-md hidden-sm">
+      {% if link %}<a href="{{link}}">{% endif %}
+      {{title}}
+      {% if link %}</a>{% endif %}</div>
+    <a {% if link %} href="{{link}}" class="image-wrapper icons" {% else %}{{attributes}} class="script-gallery-action photo image-wrapper" data-smoothzoom="listinggallery" {% endif %}>
+
+      <img data-image="{{imageUrl }}" {{image_attributes}} >
+      <div class="image-overlay {% if youtubeid %}has-video{% endif %}">
+        <button class="btn btn-secondary btn-sm">Learn More</button>
+      </div>
+    </a>
+  </div>
+  {% endif %}
+  
+  <div class="{% if image == blank %}col-sm-12{% else %}col-sm-8{% endif %} ">
+    <h3 class="{% if image != blank %}hidden-xs{% endif %} listing-title">{% if link %}<a href="{{link}}">{% endif %}{{title}}{% if link %}</a>{% endif %}</h3>
+    <div class="listing-content">{{content}}</div>
+    <div class="action-buttons">
+      {{action}}
     </div>
-    <div class="col-sm-8">
-        <h3 class="hidden-xs">{% if link %}<a href="{{link}}">{% endif %}{{title}}{% if link %}</a>{% endif %}</h3>
-        <div class="listing-content">{{content}}</div>
-        <div class="action-buttons">
-            {{action}}
-        </div>
-    </div>
+  </div>
 </li>
