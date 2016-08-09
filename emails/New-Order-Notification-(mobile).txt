@@ -1,6 +1,0 @@
-SUBJECT
-Order Notification | {{shop.name}}
-
-EMAIL
-{{ shop_name }},
-This is a quick notification to let you know a new order was just placed only by {{ billing_address.name }}.
