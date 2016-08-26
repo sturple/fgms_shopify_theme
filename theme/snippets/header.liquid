@@ -1,12 +1,11 @@
 <div  id="header-top-nav-parent" >{% include 'nav_account_cart' fullBar : true %}</div>
-{% comment %}{% endcomment %}
 <div>
 	<div id="header-top-parent" class="full-wrapper script-navigation-off" >
 		<div id="header-wrapper">
 			<div class="row" style="position: relative; ">
 				<!-- header -->
 				<div class="header-logo col-lg-3 col-md-2">
-					<a href="{{settings.main-website}}" class="logo">
+					<a href="{{shop.url}}" class="logo">
 						<span class="sr-only">{{ shop.name }}</span>
 						<img src="{{'branding-header-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-header-logo-icon-class}} " style="" />		        
 					</a>

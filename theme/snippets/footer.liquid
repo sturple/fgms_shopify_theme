@@ -8,7 +8,10 @@
 		 data-z-index="-95"
 		 data-image-src="https://cdn.shopify.com/s/files/1/1334/6905/files/background-footer.jpg?15914333796042654014"
 		{% endcomment %}
-		 data-background="https://cdn.shopify.com/s/files/1/1334/6905/files/background-footer.jpg?15914333796042654014"
+		 data-background-xl="{{'background-footer.jpg' | file_img_url: 'master'}}"
+		 data-background-lg="{{'background-footer.jpg' | file_img_url: 'master'}}"	 
+		 data-background-md="{{'background-footer.jpg' | file_img_url: 'master'}}"
+		 data-background-sm="{{'background-footer.jpg' | file_img_url: '768x'}}"
 		 >
 		<div class="container">
 			<div class="modular">
@@ -76,9 +79,13 @@
 	
 	<div class="copyright-container full-wrapper" >
 		<div class="modular">
-			<div class="footer-nav" >{% include 'navbar' linklist : settings.navigation-linklist-main, type : 'footer' %}</div>
+			<div class="footer-nav hidden-xs" >{% include 'navbar' linklist : settings.navigation-linklist-main, type : 'footer' %}</div>
 			{{footer_copyright}}
-		   <div class="copyright" >{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}  &copy; {{'general.copyright' |t}}  2016 {% if todayDate != '2016' %}- {{todayDate}}{%endif%}  {{shop.name}} <span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com" >Fifth Gear</a></div>
+		   <div class="copyright" >{%capture todayDate %}{{'now' | date: "%Y" }}{%endcapture%}  &copy; {{'general.copyright' |t}}  2016 {% if todayDate != '2016' %}- {{todayDate}}{%endif%}  {{shop.name}}
+				<div class="siteby">					 
+					<span class="separator"> | </span> {{'general.site-developed-by' | t}}  <a href="javascript:void(0)" data-prefix="info" data-domain="fifthgeardev.com" >Fifth Gear</a>
+				</div>
+			</div>
 		</div>
 	</div>
 

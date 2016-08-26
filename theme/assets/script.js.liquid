@@ -44,6 +44,7 @@ jQuery(function($) {
 	
 	
   /*** Updates all background images according to screen size; */
+	/*
   $('*[data-background-' + sizePostfix + ']').each(function() {
     $(this).css({
       'background-image': 'url(' + $(this).data('background-' + sizePostfix) + ')'
@@ -63,7 +64,14 @@ jQuery(function($) {
     }
 
     
-  });  
+  });  */
+	
+	$('*[data-background], *[data-background-xl],*[data-background-lg],*[data-background-md],*[data-background-sm] ').each(function(){
+		
+		getImageSize($(this), function($img,attr){		
+			return attr;
+		});
+	})
 
 
   
@@ -117,7 +125,7 @@ jQuery(function($) {
     $('.no-touch ul.nav li.dropdown .dropdown-toggle').on('click',function() { 
         window.location = $(this).attr('href');
       });    
-  }
+	}
 	/*removes data in generalmodal*/
 	$('#general-modal').on('hidden.bs.modal', function() {
 	    $(this).removeData('bs.modal');
@@ -270,28 +278,54 @@ function getImageSize($img, callback) {
 			src,
 			attr,
 			index;
-	function checkAttr(attr){
+	function checkAttr(attr, isImage){
+		isImage = (isImage === undefined) ? true: isImage;		
 		if ( attr !== undefined) {
 			if (attr.length > 5) {
 				if (typeof callback === 'function'){
 					attr = callback($img, attr);
 				}
-			
-			$img.attr('src', attr);			
-			return;
+			if (isImage){
+				$img.attr('src', attr);		
 			}
+			else {			
+		 		// adding random if there are multiple images seperated by ,
+				
+				var imageArray = attr.split(',');				
+				var item = (imageArray.length > 0) ? imageArray[Math.floor(Math.random()*imageArray.length)] : attr;
+				
+	
+				$img.css({'background-image': 'url('+item+')'});
+			}
+			return true;
+			}
+			return false;
 		}		
+		
 	}
 
   for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
 		attr = $img.attr('data-image-'+sizeArray[index]);
-		checkAttr(attr);
+		if (checkAttr(attr)){
+		//	return ;
+		}
   }
 	if (attr === undefined ){
 		attr = $img.attr('data-image');
-		checkAttr(attr);
+		if (checkAttr(attr)){
+		//	return ;
+		}
 	}
-
+  for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
+		attr = $img.attr('data-background-'+sizeArray[index]);
+		if (checkAttr(attr, false)){
+		//	return;
+		}
+  }
+	if (attr === undefined ){
+		attr = $img.attr('data-background');
+		checkAttr(attr, false);
+	}
 }
   
 function emailCloak() {
