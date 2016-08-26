@@ -48,8 +48,7 @@
 						<tr>
 							<td class="message-cell " width="560 " style="<%= bodyStyle %> ">
 								If you would like to proceed with your order at a future date, or if you feel the cancellation was an error, please contact us 
-								{% if '<%= tollFree %>' |size > 3 %}toll free at <strong><%= tollFree %></strong>{% else %}at <strong><%= phone %></strong>{% endif %} 
-								{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
+								at <strong><%= phone %></strong>{%if '<%= operatingHours %>' | size > 5 %}<%= operatingHours %>{% endif %}.
 							</td>
 						</tr>
 						<tr>
