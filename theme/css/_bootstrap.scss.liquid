@@ -106,27 +106,27 @@
   border: none;
   height: auto;
   @include font-size(1.8);
+	color: $body-color;
  
   
 }
 .form-horizontal .control-label {  text-align: left;}
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {  background-color: #f8f8f8;  cursor: pointer;}
 label {font-weight: normal;}
-::-webkit-input-placeholder { 
-  color: #aaa;
 
+
+$placeholder-color: #bbb;
+::-webkit-input-placeholder { 
+	color: $placeholder-color;
 }
 ::-moz-placeholder { 
-
-  color: #aaa;
+  color: $placeholder-color;
 }
-:-ms-input-placeholder { 
-
-  color: #aaa;
+:-ms-input-placeholder {
+  color: $placeholder-color;
 }
 :-moz-placeholder { 
-
-  color: #aaa;
+  color: $placeholder-color;
 }
 
 /* components */
@@ -267,11 +267,12 @@ label {font-weight: normal;}
       color: $btn-default-color-hover;
     }
   }
-	@media screen and (max-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
-	@media screen and (max-width: $screen-md-max) {padding: $btn-primary-padding-md; @include font-size($btn-primary-font-size-md);}
-	@media screen and (max-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
-	
+	@media screen and (min-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
+	@media screen and (min-width: $screen-md-max) {padding: $btn-primary-padding-md; }	
+	@media screen and (min-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
 }
+
+
 
 
 
@@ -294,10 +295,10 @@ label {font-weight: normal;}
       color: $btn-primary-color-hover;
        border-color: $btn-primary-background-hover !important;;      
     }
-  }  
-	@media screen and (max-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
-	@media screen and (max-width: $screen-md-max) {padding: $btn-primary-padding-md; @include font-size($btn-primary-font-size-md);}
-	@media screen and (max-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
+  } 
+	@media screen and (min-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}	
+	@media screen and (min-width: $screen-md-max) {padding: $btn-primary-padding-md; }
+	@media screen and (min-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
 	
 }
 
@@ -312,10 +313,9 @@ label {font-weight: normal;}
             color: $btn-secondary-color-hover;
             border: 2px solid #fff;
 		}
-	@media screen and (max-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
-	@media screen and (max-width: $screen-md-max) {padding: $btn-primary-padding-md; @include font-size($btn-primary-font-size-md);}
-	@media screen and (max-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
-	
+	@media screen and (min-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
+	@media screen and (min-width: $screen-md-max) {padding: $btn-primary-padding-md; }	
+	@media screen and (min-width: $screen-lg-max) {padding: $btn-primary-padding-lg;}
 }
 
 .btn-lg, .btn-group-lg > .btn {  padding: $btn-lg-padding; }
@@ -349,8 +349,20 @@ label {font-weight: normal;}
        
         
     }
-   	@media screen and (max-width: $screen-lg-max) {}
+  @media screen and (max-width: $screen-lg-max) {}
 	@media screen and (max-width: $screen-md-max) {padding:12px 24px;}
 	@media screen and (max-width: $screen-sm-max) {padding:12px 18px;}
 	@media screen and (max-width: $screen-xs-max) {white-space: normal;display: block; margin: 4px 0; text-align: center; line-height: 1.4em;} 
 }
+
+
+.btn-magnify {
+	&:after {
+		content: "Hi";
+		font-family: FontAwesome;		
+	}
+
+	
+}
+
+
