@@ -142,7 +142,7 @@
   },
   "navigation": {
     "search": {
-      "search-form-placeholder": "Search",
+      "search-form-placeholder": "Enter search criteria...",
       "search-form-button": "Search"
     },
     "tags": {
@@ -156,6 +156,8 @@
   "products": {
     "sold-out": "Sold Out",
     "sold-out-details": "Call us to place a pre-order. You will only be charged when this item arrives and your order has been fulfulled.",
+    "qualifies-for-free-shipping": "and your order qualifies for FREE shipping within the continental USA and Canada!",
+     "shopping-cart": "Shopping cart",
     "more-on-the-way": "More are on the way",
     "type": "Type",
     "tags": "Tag(s)",
@@ -177,7 +179,8 @@
       "view-all-products-tagged": {
         "title": "View all products tagged"
       }
-    }
+    },
+    "updated-add-another": "Add another"
   },
   "blog": {
     "sidebar-blog-list-title": "Recent articles"

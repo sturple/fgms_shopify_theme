@@ -1433,6 +1433,12 @@
     "name": "Advanced",
     "settings": [
       {
+        "type" : "text",
+        "id": "advanced-free-shipping-trigger",
+        "label" : "Free Shipping Trigger",
+        "placeholder" : "200"
+      },
+      {
         "type": "textarea",
         "id": "sass-variables",
         "label": "SASS variables"

@@ -162,8 +162,26 @@
 		var status_selector = '#product-status-message';
 		var status_message = '<div class="message"><table class="table"><tr><td><i class="fa fa-check"></i></td><td width="100%">'+item + result+'</td><td><i class="fa fa-times"></i></td></tr></table></div>';
 		//$(status_selector).append(status_message).slideDown();;
+		if (typeof toastr8 === 'object'){
+			toastr8.success({
+					message: item,
+					title:"Product Added to Cart",
+					timeOut: 8000,
+					imgURI: imageURL
+			});				
+		}
+	
 	};
-		Shopify.updateMessageError = function(item, result, imageURL) { /*alertify.error( item + result );*/  };
+		Shopify.updateMessageError = function(item, result, imageURL) { 
+			if (typeof toastr8 === 'object'){			
+				toastr8.error({
+						message: item,
+						title:"Error Adding to Cart",
+						timeOut: 8000,
+						imgURI: imageURL
+				});		
+			}
+		};
 	Shopify.updateCartInfo = function(cart, cart_summary_id, cart_count_id) {
 		if ((typeof cart_count_id) === 'string') {
 		  if (cart.item_count == 0) 	{  $('#' + cart_count_id).html('0 Items');     }
@@ -174,9 +192,11 @@
 
 	Shopify.updateStatusMessage = function(cart, status_selector){
 		// if price is greater than %200
+		var toastr8_message = "";
+		var toastr8_title
 		var status_message ='<div class="message"><table class="table">';
 		var learn_more_link = '{{shipping_learn_more_link}}';
-		var shipping_trigger = {{free_shipping_trigger | default: 20000}} ;
+		var shipping_trigger = {{settings.advanced-free-shipping-trigger | default: 200 | times: 100 }} ;
 		var cart_count_text = '';
 		if (cart.item_count == 0) 		{ cart_count_text = '0 {{ settings.cartItemPluralText }}'   }
 		else if (cart.item_count == 1)	{ cart_count_text = '1 {{ settings.cartItemText }}' }
@@ -186,15 +206,32 @@
 		}
 		if (cart.total_price  > shipping_trigger) {
 			var has_free = '{{'products.messages.message-has-free-shipping' | t}} '+learn_more_link;
-			status_message += '<tr><td><i class="fa fa-check"></i></td><td width="100%"><a href="/cart">Shopping cart</a> updated. '+has_free+'</td><td><i class="fa fa-times"></i></td></tr>';
-		}
+			status_message += '<tr><td><i class="fa fa-check"></i></td><td width="100%"><a href="/cart">{{'products.shopping-cart' | t}}</a> updated. '+has_free+'</td><td><i class="fa fa-times"></i></td></tr>';
+			toastr8_title = 'Free Shipping!';
+			toastr8_message = has_free;		
+		}	
 		else {	
 			var shipping_diff = (shipping_trigger - cart.total_price) / 100;
 			status_message += '<tr><td><i class="fa fa-exclamation-circle fa-2x"></i></td>';
 			status_message += '<td width="100%"><a href="/cart">Shopping cart</a> updated. Add another $'+shipping_diff+ ' CAD and your order qualifies for FREE shipping to anywhere in the continental USA and Canada. ' + learn_more_link;
-			status_message += '<td><i class="fa fa-times"></i></td></tr>';		
+			status_message += '<td><i class="fa fa-times"></i></td></tr>';	
+			toastr8_title = 'Qualify for Free Shipping!';	
+			toastr8_message = '{{'products.updated-add-another' |t}} <strong>$'+shipping_diff+ ' {{shop.currency}}</strong> {{'products.qualifies-for-free-shipping' |t}}  ' + learn_more_link
+					
 		}
 		$status_message = '</table></div>';
+		if (typeof toastr8 === 'object'){	
+			var toastr8Object = {
+				title: toastr8_title,
+				message: toastr8_message,
+				extendedTimeOut: 3000,
+				timeOut: 12000,
+				iconClass: 'fa fa-info-circle'
+			}				
+			if (cart.total_price  > shipping_trigger) {toastr8.success(toastr8Object);}
+			else {toastr8.warning(toastr8Object);}
+			
+		}
 		//$(status_selector).append(status_message).slideDown().delay(10000).slideUp();;
 	};
   
