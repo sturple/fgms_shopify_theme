@@ -2,10 +2,9 @@
 {% capture blog_limit %}{%if limit %}{{limit}}{% else%}3{%endif%}{%endcapture%} 
 {% include 'archive-logic' %}
 
-
 {% if compact %} 
 {%else%}
-<h2 class="sidebarTitle">Latest News</h2> {%endif%}
+<h2 class="sidebarTitle">{{'general.news' | t}}</h2> {%endif%}
 <div id="latest-news" class="rssFeed {% if compact %} rssFeed-compact{%endif%}{%if sidebar %} sidebar {%endif%}">
 	<div class="rssBody">
 		<ul data-limit="{{blog_limit}}" class="rss-feed-wrapper">
@@ -26,30 +25,19 @@
 					   target="_self">{{article.title}}</a>
 				</h4> 
 				{% else %} 
-				
-
-				<div class="row">
-					{% if srci %}
-					<div class="blog-index-image-index col-sm-4">
-						<a href="{{article.url}}"><img style="" src="{{srci}}" alt="feature image {{article.title | escape}}" /></a>
-					</div>{%endif%}
-					<div class="{% if srci %}col-sm-8{%else%}col-sm-12{%endif%}">
-						<h4><a title="{{article.title}}"   href="{{article.url}}"  target="_self">{{article.title}}</a>	</h4>
-						<p> <span><b>{{ article.published_at | date: "%B %d, %Y" }} </b> - </span>
-					{% if article.excerpt.size > 0 %} 
-						{{article.excerpt | strip_html | truncatewords: 25 }} 
-					{% else %} 
-						{{ article.content | strip_html | truncatewords: 25 }} 
-					{% endif %}
-						</p>
-					</div>
-				</div>
-
+				{% include 'blog_row' with article %}
 				{% endif %}
-
 			</li>
-			{% assign srci = false %} {% endfor %}
+			{% assign srci = false %} 
+			{% endfor %}
 		</ul>
+		
+		{% if compact %}
+		{% else %}
+		<div style="padding-top:60px">
+			<a href="{{blogs.news.url}}" class="btn btn-primary">View All News</a>
+		</div>
+		{% endif %}
 	</div>
 </div>
 {% endif %}

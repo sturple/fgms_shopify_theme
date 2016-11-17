@@ -1,0 +1,17 @@
+{% assign hid = title | handle %}
+<div class="panel panel-blank">
+  <h4 class="collapse-title">
+    <a class="collapse-trigger" 
+       role="button" 
+       data-toggle="collapse" 
+       data-parent="#{{parent}}" 
+       href="#{{hid}}" 
+       aria-expanded="false" 
+       aria-controls="{{hid}}">
+    {{title}} 
+    </a>
+  </h4>
+  <div class="collapse panel-collapse {{class}}" id="{{hid}}" role="tabpanel">
+  <div>{{content}}</div>
+  </div>
+</div>

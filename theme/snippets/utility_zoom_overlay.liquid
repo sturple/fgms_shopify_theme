@@ -1,13 +1,13 @@
-<div class="{{class}}">
+<div class="{{class}}" style="width: 70%;">
     <div class="zoom-overlay-wrapper">
         {% if link != blank and title != blank %}<h3 class="align-center-xs"><a href="{{link}}">{{title}}</a></h3>{% else %}{% endif %}
        
         {% if image != blank%}
         <div class="image-wrapper">         
             <a href="{{link}}" {{attributes}}>
-                <img itemprop="image" style="width: 100%;" data-image="{{image }}" alt="{{title}}" />
+                <img itemprop="image" class="photo" style="width: 100%; " data-image="{{image }}" alt="{{title}}" />
                 <noscript>
-                    <img itemprop="image" class="img-responsive" src="{{image }}" alt="{{title}}" />
+                    <img itemprop="image" style="width: 100%; ;" src="{{image }}" alt="{{title}}" />
                 </noscript>
                 <div class="image-overlay">
                     <div style="width: 100%;">{{content | strip}}</div>

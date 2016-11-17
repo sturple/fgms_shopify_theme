@@ -1,93 +1,5 @@
 /************** Navigation header ***********/
-#header-top-parent {
-    z-index: 999;
-    background-color: rgba(255,255,255,0.75);
-    @include transition(0.2s);
-    &:hover {
-        @include transition(0.8s);
-        background-color: rgba(255,255,255,1);
-    }
-	
 
-}
-
-	.search-header {
-		button {
-			line-height: 18px;
-			background: rgba(255,255,255,1);
-			border: 1px solid #fff;
-			padding: 8px 12px;
-			@include radius(4px !important) ;
-			margin-left: -4px !important;
-			i {
-				color: $link-color;
-			}
-			
-			&:hover {
-				i {
-					color: $link-color-hover;
-				}
-			}
-		}
-		input {
-			padding: 6px;
-			font-size: 17px;
-			line-height: 22px;
-			border: 1px solid #fff;
-			font-weight: 300;
-
-		}
-		.searchbox-close {			
-			input {
-				@include transition(0.4s);
-				width: 0 !important;
-			/*	@include transform-scale(0,1);*/
-				padding: 6px 0;					
-			}
-	
-		}
-		.searchbox-open  {
-			
-			button {
-				margin-left : 0px !important;				
-				@include radius(0 4px 4px 0 !important) ;
-			}
-			input {
-				@include transition(0.7s);
-				/*@include transform-scale(1,1);*/
-				width: 225px !important;
-				
-			}
-			
-		}		
-	}
-
-
-
-.header-logo {
-    margin: $theme-padding-secondary-half 0;
-  
-    img {
-        max-width: 100%;
-        @include transition(0.75s);
-        
-       @include transform-scale(1,1);        
-       
-    }
-}
-.sticky-scroll-up {
-    &#header-top-parent {
-        background-color: rgba(255,255,255,0.95);
-    }
-    .header-logo {
-  
-        img {
-            @include transition(0.75s);
-            @include transform-scale(0.65,0.65); 
-           max-height: 80px;
-        }
-    }
-}
 
 
 .nav.navbar-nav {
@@ -97,8 +9,7 @@
     >li{
         padding: 15px;
         > a  {
-            padding: 0;
-    
+            padding: 0;    				
             &:hover, &:focus {
                 background-color: transparent;
             } 
@@ -108,7 +19,7 @@
                 padding: 4px 20px;
                 text-transform: capitalize;
             }
-            @include a-border(#666,transparent, $link-color-hover, transparent,'>'); 
+            @include a-border(#fff,transparent, $link-color-hover, transparent,'>'); 
         }
            
          
@@ -117,6 +28,20 @@
 }
 
 #navigation-wrapper {
+	.dropdown-menu {  
+		z-index: 11000;
+		background-color: #1C3E94;
+		>li {
+			>a {
+				text-transform: uppercase;
+				&:focus, &:hover {
+					background-color: transparent;
+				}
+			}
+		}
+ 	
+		
+	}
 	.nav.navbar-nav {
 		margin: 0 0 $theme-margin-base;
 		>li{
@@ -130,7 +55,7 @@
 			@include a-border(#666,transparent, #666, transparent,'>'); 
 			&.active {
 				a {
-					color: $link-color-hover;
+					color: $link-color-hover !important;
 				}
 			}
 			
@@ -165,7 +90,7 @@
 				> a {
 					font-size: 0.85em;
 				}
-				@include a-border(#666,transparent, #666, #666,'>'); 
+				@include a-border(#1C3E94,transparent,  $link-color-hover, transparent,'>'); 
 			}
 			
 		}
@@ -176,7 +101,7 @@
 			>li{
 				padding: 15px;
 				> a  {                  
-						font-size: 1.2em;                  
+						font-size: 1em;                  
 				}        
 			}
 		}
@@ -224,17 +149,29 @@
 }
 
 .footer-nav  {
-    .navbar {
-        @include flexbox();
-    }
-    .nav.navbar-nav {
-        margin: 0 auto;
-			>li {
-				padding-top: 2px;
-				padding-bottom: 2px;
+	margin-top: $theme-margin-base * 2;
+	&.nav-centered {
+		.navbar {
+				@include flexbox();
+		}		
+	}
+	&.nav-right-bottom {
+		.navbar {
+			
+		}
+	}
 
+	.nav.navbar-nav {
+			margin: 0 auto;
+		>li {
+			padding-top: 2px;
+			padding-bottom: 2px;
+			&:first-child {
+				padding-left: 0px;
 			}
-    }
+
+		}
+	}
 	@media screen and (min-width: $screen-sm-max){
 	 .nav.navbar-nav {				
 			>li {		
@@ -243,6 +180,7 @@
 		}
 	}	
 	@media screen and (min-width: $screen-md-max){
+		
 	 .nav.navbar-nav {				
 			>li {		
 				padding: 2px 15px;
@@ -251,12 +189,26 @@
 	}
 	
 	@media  screen and (min-width: $screen-lg-max) {	
-    .nav.navbar-nav {
-        @include flexbox();
-        align-self: center;
-        justify-content: center;;
-       
-    }		
+		margin-top: 0;
+		&.nav-centered {
+			.nav.navbar-nav {
+					@include flexbox();
+					align-self: center;
+					justify-content: center;;
+
+			}	
+		}
+	&.nav-right-bottom {
+		.navbar {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			li:last-child {
+				padding-right: 0;
+			}
+		}
+	}
+		
 		
 	}
 }

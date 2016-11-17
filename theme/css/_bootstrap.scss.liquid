@@ -3,7 +3,7 @@
 
 .nav-tabs {
   margin-bottom: 32px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
   padding-top: 24px;
 	&.accordion {
 		display: none;
@@ -14,30 +14,30 @@
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    border-color: rgba(255,255,255,1);;
-    background-color: rgba(255,255,255,0.4);
+    border-color: #ccc;
+  
     border-image: none;
     border-style: solid;
     border-width: 1px;
     border-bottom: 0px !important;
     @include radius(0);
-    margin-right: 0;
+    
     &:hover {
       border-color: rgba(255,255,255,1);
-      background-color: rgba(255,255,255,1);
+      background-color: rgba(0,0,0,0.1);
     }
   }
   > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     color: #666;
     text-decoration: none;
-    border-color: #fff !important;
+    border-color: #ccc !important;
     }
   > li.disable {display : none;}
   > li:first-child > a {
-    @include radius(8px 0 0 0);
+    @include radius(2px 0 0 0);
   }
   > li:last-child > a {
-    @include radius(0 8px 0 0);
+    @include radius(0 2px 0 0);
   }
 	
 	@media  screen and (min-width: $screen-lg-max) {
@@ -52,14 +52,20 @@
 	.tab-accordion-header {
 		@include font-size(1.5);		
 		padding: 4px 12px;
+		margin-bottom: 0;
 		cursor:pointer;
 		background-color: rgba(255,255,255,0.65);;
-	
+		border: 1px solid rgba(0,0,0,0.2);
+		h4 {
+			margin: 0 0 0 15px !important;
+		}
 	}
 
 	.tab-pane {
-		border-left: 1px solid rgba(255,255,255,0.65);
-		border-right: 1px solid rgba(255,255,255,0.65);
+		
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+		border-left: 1px solid rgba(0,0,0,0.2);
+		border-right: 1px solid rgba(0,0,0,0.2);
 		padding: 12px;
 	}
 
@@ -68,7 +74,7 @@
 			display:none;
 		}
 		.tab-pane {
-			border: 0px;
+			border: 1px;
 			padding: 0;
 		}
 	}	
@@ -103,7 +109,6 @@
   @include radius(4px);
 	background-color: rgba(255,255,255,0.8);
   padding: 10px;
-  border: none;
   height: auto;
   @include font-size(1.8);
 	color: $body-color;
@@ -133,7 +138,7 @@ $placeholder-color: #bbb;
 .progress-bar {  background-color: #00394D;}
 .popover-close { background: url({{'sprite-modal-close.png' | asset_url}}); width: 24px; height: 24px;}
 .popover-close:hover{background-position: bottom center;}
-.dropdown-menu {  z-index: 11000;}
+
 
 /* accordion */
 .panel-group {
@@ -142,6 +147,7 @@ $placeholder-color: #bbb;
     border-radius: 0px;
 		border-color: rgba(255,255,255,1);;
     background-color: rgba(255,255,255,0.65);
+		@include box-shadow(none);
 		&.panel-blank {
 			background-color: transparent;
 			border: none;
@@ -157,18 +163,17 @@ $placeholder-color: #bbb;
   &.panel-group-arrow {
     h4 {
       font-weight: normal;
-			margin-left: 24px;
+			margin-left: 36px;
       
     }
     p {
-     font-size: 0.9em;
+     
     }
     > div > div {
-      margin-bottom: 32px;    
+      margin-bottom: $theme-margin-base ;    
 			background-color: rgba(255,255,255,0.45);
-			padding: 18px;
-			@include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));
-			@include radius(10px);
+			padding: 0 0 12px 36px;
+
 			
     }
     a.collapse-trigger {
@@ -248,7 +253,23 @@ $placeholder-color: #bbb;
 }
 
 
-
+.carousel-control{
+	color: #fff !important;	
+	&.left {
+		background-image: none;
+		left : -114px;	
+		
+	}	
+	&.right {
+		background-image : none;
+		right : -64px;
+		
+	}
+	.glyphicon-chevron-left, .glyphicon-chevron-right {
+		font-size: 60px;
+	}
+	
+}
 
 .btn-default, .summit {
 	border: $btn-default-border;
@@ -278,9 +299,9 @@ $placeholder-color: #bbb;
 
 .btn-primary, input[type="submit"]{
 	font-family: $btn-font-family;
+	  letter-spacing: 0.03em;
     text-transform: uppercase;
-    font-size: 20px;;
-    font-weight: bold;
+    font-size: 20px;;    
 	@include btn-template( $btn-primary-color,$btn-primary-background, $btn-primary-padding,$btn-primary-radius,$btn-primary-box-shadow);
 	
 
@@ -305,13 +326,13 @@ $placeholder-color: #bbb;
 .btn-secondary {
 	font-family: $btn-font-family;
 	@include btn-template($btn-secondary-color,$btn-secondary-background, $btn-secondary-padding,$btn-secondary-radius,$btn-secondary-box-shadow);
-	border: 2px solid #fff;
+	border: 0px solid #fff;
     font-weight: bold;
     text-transform: uppercase;
 	&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
 		@include btn-template-hover($btn-secondary-background-hover)	;
             color: $btn-secondary-color-hover;
-            border: 2px solid #fff;
+            border: 0px solid #fff;
 		}
 	@media screen and (min-width: $screen-sm-max) {padding: $btn-primary-padding-sm;}
 	@media screen and (min-width: $screen-md-max) {padding: $btn-primary-padding-md; }	

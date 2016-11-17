@@ -1,10 +1,10 @@
 {% comment %} this if for full testimonial {% endcomment %}
-{% if full != blank and type != 'widget' %}
-<li class="item type-{{type}} ">
+{% if full != blank and  type != 'widget-home' %}
+<li class="item type-{{type}}">
     <div class="card-wrapper row">
         {% if thumb != blank %}
         <div class="card-thumb col-lg-3 col-sm-4">
-            <img data-image="{{thumb}} alt="{{publisher}}" />
+            <img data-image="{{thumb}}" alt="{{publisher}}" />
         </div>
         {% endif %}
         <div class="card-details  {% if thumb == blank %}col-lg-offset-3 col-md-offset-4 {% endif %} col-lg-9 col-sm-8">
@@ -31,6 +31,43 @@
             {% if snippet5 != blank and selectedSnippet == 'snippet5' %}<div class="content-snippet ">"{{snippet5}}"</div>{% endif %}            
             <div class="snippet-meta"><span>~ {% if publisherLink != blank %}<a href="{{publisherLink}}" target="_blank">{% endif %} {{publisher}}{% if publisherLink != blank %}</a>{% endif %}{% if date != blank %}</span><span class="dash"> - </span><span>{{date}}</span>{% endif %} </div>
         </div>
+    </div>
+</li>    
+{% elsif type == 'widget-home' %}
+{% assign thumbsize = thumb | size %}
+
+<li class="item type-{{type}} " data-thumb-size="{{thumbSize}}" >
+    <div class="card-wrapper {% if thumbsize > 0 %}has-thumb{% endif %}" >
+        {% comment %}This randomizes snippets {% endcomment %}
+        {% capture selection %}{% if snippet1 != blank %}snippet1{% endif %} {% if snippet2 != blank %}snippet2{% endif %} {% if snippet3 != blank %}snippet3{% endif %} {% if snippet4 != blank %}snippet4{% endif %} {% if snippet5 != blank %}snippet5{% endif %}{% endcapture %}    
+        {% assign selectionArray = selection | split: ' ' %}
+        {% capture index %}{{ 'now' | date: '%S' | times: selectionArray.size  | divided_by: 60 }}{% endcapture %}
+        <div class="card-details">  
+          <div class="snippet-meta">
+             <span>
+               {% if publisherLink != blank %}<a href="{{publisherLink}}" target="_blank">{% endif %} 
+               {{publisher}}
+               {% if publisherLink != blank %}</a>{% endif %}               
+            </span>
+            {% if date != blank %}
+            <span class="dash"> - </span><span>{{date}}</span>
+            {% endif %}
+          </div>      
+          {% for snippet in selectionArray offset:index limit: 1 %}{% assign selectedSnippet = snippet %}{% endfor %}
+
+          {% if snippet1 != blank and selectedSnippet == 'snippet1' %}<div class="content-snippet ">{{snippet1}}</div>{% endif %}
+          {% if snippet2 != blank and selectedSnippet == 'snippet2' %}<div class="content-snippet ">{{snippet2}}</div>{% endif %}
+          {% if snippet3 != blank and selectedSnippet == 'snippet3' %}<div class="content-snippet ">{{snippet3}}</div>{% endif %}
+          {% if snippet4 != blank and selectedSnippet == 'snippet4' %}<div class="content-snippet ">{{snippet4}}</div>{% endif %}
+          {% if snippet5 != blank and selectedSnippet == 'snippet5' %}<div class="content-snippet ">{{snippet5}}</div>{% endif %}      
+
+            
+        </div>
+        {% if thumbsize > 0 %}
+        <div class="card-thumb ">
+            <img data-image="{{thumb}}" alt="{{publisher}}" />
+        </div>
+        {% endif %}
     </div>
 </li>    
 {% endif %}

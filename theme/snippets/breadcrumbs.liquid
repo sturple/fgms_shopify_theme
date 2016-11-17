@@ -55,8 +55,10 @@
 		{% when 'article' %}
 			{% assign current_url = blog.url %}
 			{% capture precrumb %}
-			{% assign currentBlogName = article.url | remove: article.handle | remove: 'blogs' | remove: '/' %}
+			{% assign currentBlogName = blog.url |  remove: 'blogs' | remove: '/' %}
 			{% assign currentBlog = blogs[currentBlogName] %}
+			{% comment %}override logic requested by marc{% endcomment %}			
+			{% if currentBlogName == 'media-clippings' %}{% assign currentBlog = blogs['news'] %}{% endif %}
 			<li itemtype="http://data-vocabulary.org/Breadcrumb" class="B_crumb" itemscope="itemscope">
 				<a href="{{ currentBlog.url }}" rel="{{ currentBlog.title }}" itemprop="url" class="B_crumb">
 					<span itemprop="title">{{ currentBlog.title }}</span>

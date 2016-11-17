@@ -204,6 +204,7 @@
 		if (cart.item_count > 0 ){
 			$('.cart-count').addClass('have-items-in-cart').find('i').addClass('flash');
 		}
+	
 		if (cart.total_price  > shipping_trigger) {
 			var has_free = '{{'products.messages.message-has-free-shipping' | t}} '+learn_more_link;
 			status_message += '<tr><td><i class="fa fa-check"></i></td><td width="100%"><a href="/cart">{{'products.shopping-cart' | t}}</a> updated. '+has_free+'</td><td><i class="fa fa-times"></i></td></tr>';
@@ -220,7 +221,8 @@
 					
 		}
 		$status_message = '</table></div>';
-		if (typeof toastr8 === 'object'){	
+	
+		if ((typeof toastr8 === 'object') && false){	
 			var toastr8Object = {
 				title: toastr8_title,
 				message: toastr8_message,

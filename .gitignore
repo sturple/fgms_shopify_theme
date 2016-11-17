@@ -4,6 +4,8 @@ theme/assets/*.jpg
 theme/assets/*.gif
 
 theme/snippets/template*.liquid
+theme/snippets/section*.liqud
+!theme/snippets/section-slideshow-home.liquid
 theme/assets/syles-tmp.scss.liquid
 theme/assets/theme.js.liquid
 

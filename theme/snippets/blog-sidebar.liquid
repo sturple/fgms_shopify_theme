@@ -1,7 +1,7 @@
 {% capture blog_latest_posts %}{% include "blog-latest-posts" compact : true  limit : 5 %}{% endcapture%}
 {% capture blog_tags %}{% include "blog-tags" %}{% endcapture%}
 {% capture blog_archives %}{% include "blog-archives" %}{% endcapture %}
-{% assign featureBlogs = 'posts,media-clippings,news-releases' | split: ',' %}
+
 
 <div class="panel-group" id="sidebar-accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 32px;">
 	{% include 'utility'	type : 'accordion'
@@ -10,12 +10,22 @@
 							title : 'Home'
 							parent : 'sidebar-accordion'												
 							%} 
-	
+
+	{% assign featureBlogs = settings.blog-primary %}
+	{% if settings.blog-media-clippings %}
+		{% capture featureBlogs %}{{featureBlogs}},{{settings.blog-media-clippings}}{% endcapture %}
+	{% endif %}
+	{% if settings.blog-news-releases %}
+		{% capture featureBlogs %}{{featureBlogs}},{{settings.blog-news-releases}}{% endcapture %}
+	{% endif %}	
+	{% assign featureBlogs = featureBlogs | split: ',' %}
 	{% for featureBlog in featureBlogs %}
 		{% assign btitle = blogs[featureBlog].title %}
 		{% assign burl = blogs[featureBlog].url %}
 		{% include 'utility'	type : 'accordion',	style : 'navigation',	link : burl,	title : btitle,	parent : 'sidebar-accordion'	%}	
 	{% endfor %}
+	
+
 							
 	{% include 'utility'  	type : 'accordion'			
 							title : "Latest Posts"
@@ -29,13 +39,17 @@
 							id : 'archives'
 							parent : 'sidebar-accordion'
 							content : blog_archives
-							%}									
+							%}	
+
+	{% assign blogtagsize = blog_tags | strip| size %}
+	{% if blogtagsize  > 0 %}
 	{% include 'utility'  	type : 'accordion'			
 							title : "Tag Cloud"
 							id : 'tags'
 							parent : 'sidebar-accordion'
 							content : blog_tags
-							%}										
+							%}			
+	{% endif %}
 	
 											
 

@@ -1,0 +1,55 @@
+{% comment %}
+Use pipes and one space on either side " | " to separate Title | Description | keywords | image
+if image is added but not keyword add 3 blank spaces ie Title | my description |   | {{'image-example.jpg' | asset_url}}
+{% endcomment %}
+{% capture siteSeo%}
+{% capture collectionHandle %}{% if current_tags %}{{ current_tags | handle}}{% else %}{% if page_description %}{% else %}{{ collection.title | handle}}{% endif %}{% endif %}{% endcapture %}
+
+{% comment %}This is getting and setting all seo data {% endcomment %}
+{% capture seodata %}
+{% case collectionHandle %}
+{% endcase %}
+{% endcapture %}
+
+
+
+
+{% comment %}DO NOT EDIT BELOW THIS LINE {% endcomment %}
+{% if seodata | strip | size == 0 %}
+  {% capture seodata %}
+    {% comment %}Capture Pagination text{% endcomment %}
+    {% capture paginate_text %}{% if gpaginate.pages > 1%}page {{gpaginate.current_page}}{% endif %}{% endcapture %}
+    {% comment %}Gets Title Tag{% endcomment %}
+    {% capture title_tag %}{{ page_title | capitalize}} {{current_tags}} {{paginate_text}}{% endcapture %}    
+    {% comment %}Capture Description{% endcomment %}
+    {% capture collection_description %}    
+      {% if page_description %}
+        {{page_description}}
+      {% elsif current_tags %}      
+        Products available through {{shop.name}} with the tag {{current_tags}} 
+      {% elsif collection.current_vendor or collection.current_type %}
+        Products available through {{shop.name}} with vendor {{collection.title}}
+      {% elsif collection.current_type %}
+        Products available through {{shop.name}} with Brand {{collection.title}}
+      {% else %}
+        {{ page_title }}  
+      {% endif %}
+    {% endcapture %}     
+    {% capture description_tag %}{{collection_description | strip}} {{paginate_text}}{% endcapture %}
+    {% assign keywords_tag = '' %}
+    {% for p in collection.products %}
+      {% capture keywords_tag %}{{keywords_tag}},{{p.title | truncatewords: 4, ''}}{% endcapture %}
+    {% endfor %}
+    {% assign keywords_tag = keywords_tag | remove_first: ',' %}
+    {{title_tag}} || {{description_tag}} || {{keywords_tag}}
+  {% endcapture %}
+{% endif %}
+
+
+{% assign seoArray = seodata | strip | split: ' || ' %}
+{% assign seoArraySize = seoArray | size %}
+{% if seoArray[0] %}{% assign title_tag = seoArray[0]  | replace: '"', '&quot;' %}{% endif %}
+{% if seoArray[1] %}{% assign description_tag = seoArray[1]  | replace: '"', '&quot;' %}{% endif %}
+{% if seoArray[2] %}{% assign keywords_tag = seoArray[2] | replace: '"', '&quot;' %}{% else %}{% assign keywords_tag = page_title %}{% endif %}
+{% if seoArray[3] %}{% capture image_tag  %}https:{{seoArray[3]}}{% endcapture %}{% endif %}
+{% endcapture %}

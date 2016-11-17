@@ -8,8 +8,7 @@ body {
 	position: relative;
 	font-family: Roboto, sans-serif;
 	color: $body-color;
-	line-height: 1.56em;
-	letter-spacing: 0.05em;
+	line-height: 1.56em;	
 	font-size: ($body-font-size * 0.9); 
 	font-weight: 400;
 
@@ -26,16 +25,49 @@ h1, h2, h3, h4, h5, p, ul, ol{
 
 h1, h2, h3, h4, h5,.h1,.h2,.h3 {
 	margin: $headings-margin;
-	font-weight: 700;
+	font-weight: 400;
+	letter-spacing: -0.02em;
+
+}
+.page-frontpage {
+	h2, h3, h4, h5,.h2,.h3 , .h4 {
+		&:after {
+			content : ' ';
+			max-width: 80px;
+			padding-top: 18px;
+			display: block;
+			border-bottom: 3px solid #7BC143;
+		}		
+	}
 }
 
+
 h1, .h1  {
-	$h1-font-size: 3.2em;
+	$h1-font-size: 2.8em;
   font-size: ($h1-font-size * 0.5); 
+	
   line-height: 1em;
 	margin: 0 0 36px;
   text-transform: uppercase;
 	color: $h1-color;
+	&:after {
+		content : ' ';
+		max-width: 80px;
+		padding-top: 18px;
+		display: block;
+		border-bottom: 3px solid #7BC143;
+	}	
+	
+	&.blog-fake-heading {
+		font-size: $h1-font-size / 2;
+		margin: 0;
+		&:after {
+			padding: 0;
+			border: none;
+			content: '';
+			max-width: auto;
+		}
+	}
 	@media  screen and (min-width: $screen-sm-max) {
 		font-size: ($h1-font-size * 0.7); 
 	}
@@ -61,10 +93,10 @@ h1.home-page {
 }
 
 h2,.h2 { 
-	$h2-font-size: 2.4em;
+	$h2-font-size: 2.2em;
 	padding: 24px 0 0;;
-	margin-bottom: 24px;    
-  text-transform: uppercase;
+	margin-bottom: 24px;  
+ 
 	color: $h2-color;
 	font-size: ($h2-font-size * 0.7);
 	
@@ -82,7 +114,7 @@ h3,.h3 {
 	font-size: 1.6em;
 	padding: $h3-padding;
 	color: $h3-color;
-	text-transform: uppercase;
+	
 	
 }
 
@@ -113,9 +145,9 @@ p {
 
 
 blockquote ,h1.blockquote, h2.blockquote, .archive-meta p, .intro-text {
-	$block-quote-font-size: 1.6em;
-	font-size: 1.6em;
-	font-family: Overlock, cursive; 
+	$block-quote-font-size: 1.4em;
+	font-size: $block-quote-font-size * 0.8;
+	
 	line-height: $blockquote-line-height;	
 	border: 0; 
 	padding: 0; 
@@ -145,7 +177,22 @@ ul {list-style: none;padding:0;margin:0;}
 
 .line-separator-bottom {border-bottom: 1px dotted #ccc; margin-bottom: 28px !important; padding-bottom: 28px !important;}
 .no-line-separator{ margin-bottom: 12px}
-.separator {margin: 0 4px;}
+.separator {
+	margin: 0 4px;
+	&:after {
+		content: "";
+		background-image: url({{ 'green-bullet.png' | asset_url }});
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		
+		width: 13px;
+		height: 13px;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		
+	}
+}
 /*
 a, a:visited, a:focus, #recaptcha_privacy a , #recaptcha_privacy a:visited, #recaptcha_privacy a:focus,  .panel-title > a  {	color: $link-color ;	text-decoration: none;}
 a:hover , #recaptcha_privacy a:hover, .panel-title > a:hover{color: $link-color-hover;	text-decoration: none;}
@@ -166,7 +213,9 @@ a:hover , #recaptcha_privacy a:hover, .panel-title > a:hover{color: $link-color-
 			
 	}
 	@media screen and (min-width: $screen-md-max) {
-
+		body {
+			font-size : $body-font-size;
+		}	
 	}
 	@media screen and (min-width: $screen-lg-max) {
 
@@ -240,23 +289,7 @@ ul {
 		line-height: 1em; padding: 0;
 		li {  display: inline;  font-size: 11px; font-size: 1.1rem;  list-style-type: none;  text-transform: none;  padding: 0; margin: 0; }
 	}
-	&.rss-feed-wrapper {
-		list-style: none;
-		padding-left:0 !important;
-		margin-left: 0 !important;
-		li {padding-left: 4px !important;}
-		.rss-feed-row {
-			margin-bottom: 12px;
-			padding-bottom: 14px; 
-			border-bottom: 1px dotted #ccc;
-			
-			.feed-title {font-size: 16px;}
-			.feed-date {font-size: 13px; margin-bottom: 4px;}
-			.feed-category {font-size: 12px; font-style: italic;}
-			.feed-description {font-size: 13px; line-height: 1.4em; font-style: italic;}
-			&:last-child {border-bottom: 0; padding-bottom: 0; }
-		}
-	}	
+
 
 }
 ol {margin-bottom: 24px; padding: 12px 0 0 24px; line-height: 1.6em;
@@ -269,16 +302,33 @@ ol {margin-bottom: 24px; padding: 12px 0 0 24px; line-height: 1.6em;
 		}
 	}
 }
-	
+
+.page-content {	
+	ul:not('.index-container') {
+		margin-left: 20px;
+		li:not('.article-row') {
+			list-style-image: url({{ 'green-bullet.png' | asset_url }}) ;
+			padding: 0  0 8px 8px;
+		}
+	}
+}
 
 
 /************** Containers *********/
 #outer-container { 
-	margin: 0 auto;  	
+	margin: 0 auto;	
 	position: relative;  
 	width: 100%;  
 	z-index: 2;
 	background-color: transparent;
+	.contentmain-outer-wrapper {
+		padding: 0 8px;
+	}
+	@media screen and (min-width: $screen-sm-max) {
+		.contentmain-outer-wrapper {
+			padding: 0;
+		}		
+	}
 }
 .column-wrapper {
 

@@ -1,50 +1,112 @@
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% include 'smart-title' with 'strip_html' %} | {{ shop.name }}</title>
-    <meta name="description" content="{% if page_description %}{{ page_description | escape }}{% else %}{{ shop.description | escape }}{% endif %}" />
-    <link rel="canonical" href="{{ canonical_url }}" />
-    <meta property="og:title" content="{% include 'smart-title' with 'strip_html' %} | {{ shop.name }}" />
-    <meta property="og:description" content="{{ page_description | escape }}" />
-    <meta property="og:url" content="{{ canonical_url }}" />
-    
-    {% if template contains 'product' %}
-    <meta property="og:type" content="product" />
-    <meta property="og:price:amount" content="{{ product.price | money_without_currency }}" />
-    <meta property="og:price:currency" content="{{ shop.currency }}" />
-    <meta property="og:availability" content="{% if product.available %}instock{% else %}out of stock{% endif %}" />
-    
-    {% elsif template contains 'article' %}
-    <meta property="og:type" content="article" />
+{% capture current_url %}{{ canonical_url }}{% endcapture %}
+{% capture title_tag %}{{ page_title }}{% endcapture %}
+{% capture description_tag %}{{ page_description }}{% endcapture %}
+{% capture image_tag %}https:{{'Profile-Image.jpg' | file_img_url: '300x' }}{% endcapture %}
+{% capture facebook_tags  %}<meta property="og:type" content="website" />{% endcapture %}
+{% capture content_tag %}{% endcapture %}
+{% assign keywords_tag = '' %}
+{% capture text_for_collection_tags %}available through {{shop.name}} with the tag{% endcapture %}
+
+{% if template contains 'index' %}              
+  {% capture title_tag %}{{ shop.name }} | {{ page_title }}{% endcapture %}
+{% elsif template contains 'cart' %}               
+  {% capture title_tag %}{{ settings.cartTitleText }} {% endcapture %}
+{% elsif template contains 'search' %}
+  {% capture searchtitle %}
+    {% include 'archive-logic' hide_articles : true %}
+    {% if archive_terms_size > 2 %}
+      {% capture title_tag %}Archives {{archive_month}} {{archive_year}}{% endcapture %}
     {% else %}
-      
-    <meta property="og:type" content="website" />
+      {% capture title_tag %}{{'general.search-results' | t}} for {{search.terms}}{% endcapture %}
     {% endif %}
-    
-    {% if template contains 'product' %}
-      <meta property="og:image" content="http:{{ product.featured_image.src | product_img_url: 'grande' }}" />
-      <meta property="og:image:secure_url" content="https:{{ product.featured_image.src | product_img_url: 'grande' }}" />
-      
-    {% elsif template contains 'article' %} 
-      {% assign img_tag = '<' | append: 'img' %}
-      {% if article.content contains img_tag %}
-        {% assign src = article.content | split: 'src="' %}
-        {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
-        {% if src %}
-          <meta property="og:image" content="http:{{ src }}" />
-          <meta property="og:image:secure_url" content="https:{{ src }}" />
-        {% endif %}
-      {% endif %}
-    {% else %}
-      {% if settings.logo-image %}
-        <meta property="og:image" content="http:{{ 'logo-image-file.png' | asset_url }}" />
-        <meta property="og:image:secure_url" content="https:{{ 'logo-image-file.png' | asset_url }}" />
-      {% endif %}
-    {% endif %}
-    
-    <meta property="og:site_name" content="{{ shop.name }}" />
-    <meta name="author" content="{{ shop.name }}">
-    
-    {% if settings.social-links-rss != blank %}
-    <link rel="alternate" type="application/atom+xml" title="{{ blogs[settings.social-links-rss].title }}" href="{{ blogs[settings.social-links-rss].url | append: '.atom' }}" />
-    {% endif %}
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% endcapture %}
+{% elsif template contains 'collection' %}       
+  {% include 'seo-tags-collections' %}  
+{% elsif template contains 'page' %}
+  {% capture current_url %}{{shop.url}}{{page.url}}{% endcapture %}
+  {% capture content_tag %}{{page.content}}{% endcapture %}
+{% elsif template contains 'product' %}
+
+	{% assign keywords_tag = product.tags | join: ', ' %}  
+  {% capture current_url %}{{shop.url}}{{product.url}}{% endcapture %}
+  {% capture image_tag %}https:{{ product.featured_image | product_img_url: 'large' }}{% endcapture %}
+  {% capture current_url %}{{shop.url}}{{product.url}}{% endcapture %}
+  {% capture facebook_tags %}
+<meta property="og:type" content="product.item" />
+<meta property="product:retailer_item_id" content="{{ product.selected_or_first_available_variant.sku }}" /> 
+<meta property="product:price:amount" content="{{ product.price | money_without_currency }}" />
+<meta property="product:price:currency" content="{{ shop.currency }}" />  
+<meta property="product:availability" content="{% if product.available %}in stock{% else %}out of stock{% endif %}" /> 
+<meta property="product:condition" content="new" /> 
+  {% endcapture %}
+{% elsif template contains 'article' %}
+  {% assign keywords_tag = article.tags | join: ', ' %} 
+  {% capture current_url %}{{shop.url}}{{article.url}}{% endcapture %}
+  {% capture image_tag %}https:{{ article.image.src | img_url: 'medium' }}{% endcapture %}
+  {% capture content_tag %}{{article.content}}{% endcapture %}
+  {% capture facebook_tags %}    
+    <meta property="og:type" content="article" />   
+    <meta property="article:published_time" content="{{article.published_at}}" /> 
+    <meta property="article:section" content="news" />  
+    <meta property="article:tag" content="{{article.tags}}" />  
+  {% endcapture %}
+{% elsif template contains 'blog' %}
+  {% capture current_url %}{{shop.url}}{{blog.url}}{% endcapture %}
+{% else %}
+{% endif %}
+
+
+{% assign dataShopCount = shop.name | size %}
+{% assign dataTitleCount = title_tag | size %}
+{% assign dataTotalTitleCount = dataTitleCount | plus: dataShopCount %}
+{% if dataTotalTitleCount   < 55 %}{% capture title_tag %}{{title_tag}} | {{shop.name}}{% endcapture %}{% endif %}
+                                                
+                                           
+{% if content_tag contains "<img" and image_tag contains 'no-image' %}
+                                                
+{% assign src = content_tag | split: 'src="' %}
+{% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
+{% if src %}{% assign image_tag = src %}{% endif %}
+
+{% endif %}                                                
+{% if image_tag contains 'no-image' %}{% capture image_tag %}https:{{'Profile-Image.jpg' | file_img_url: '300x' }}{% endcapture %}{% endif %}
+{% assign description_tag_size =  description_tag | size %}
+{% if description_tag_size < 2 %}{% assign description_tag = title_tag %}{% endif %}
+
+{% assign keywordsize = keywords_tag | strip | size %}
+{% if keywordsize   == 0 %}
+
+
+{% endif %}
+{% assign title_tag =  title_tag | strip %}
+<title>{{title_tag}}</title>
+<meta name="description" content="{{description_tag}}" />
+<meta name="keywords" content="{{keywords_tag}}" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+{% comment %}Facebook opengraph{% endcomment %}
+{{facebook_tags}}
+<meta property="og:site_name" content="{{ shop.name }}" />
+<meta property="og:title" content="{{ title_tag }}" />
+<meta property="og:description" content="{{description_tag}}" />
+<meta property="og:image" content="{{image_tag}}" />
+<meta property="og:url" content="{{current_url}}" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="{{description_tag}}" />
+<meta name="twitter:title" content="{{ title_tag }}" />
+
+{% comment %}create noindex and canonical if tags{% endcomment %}
+{% if template contains 'collection' and current_tags %}
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="{{ current_url }}" />
+{% else %}
+ <link rel="canonical" href="{{ canonical_url }}" />
+{% endif %}
+  
+
+<link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_img_url: 'master' }}" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />

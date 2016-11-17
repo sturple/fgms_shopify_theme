@@ -1,0 +1,9 @@
+{% assign beforeRegex = content | split: start %}
+{% assign afterRegex = content | split: end %}
+{% comment %}Make this a very simple only one add additional logic later if required{% endcomment %}
+{% if beforeRegex.size > 1  and afterRegex.size >= 1 %}
+{% capture c %}{{beforeRegex | first}}{{replace}}{{afterRegex[1]}}{% endcapture %}
+{% else %}
+{% assign c = content %}
+{% endif %}
+{{c}}

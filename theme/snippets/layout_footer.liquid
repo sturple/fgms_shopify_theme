@@ -1,11 +1,12 @@
 {% comment %}Default Sidebar {% endcomment %}
 {% capture sidebar %}
-	{% include 'shortcode-sidebar_call_to_action' %}
+{% comment %}
 	<div id="testimonial-carousel" class="carousel slide carousel-fade"  data-ride="carousel" data-pause="false">
 		<ul class="carousel-inner" role="listbox">
 			 {% include 'data-testimonials', type : "widget" %}
 		</ul>
 	</div> 
+{% endcomment %}
 {% endcapture %}
 
 {% comment %}Blog sidebar{% endcomment %}
@@ -20,6 +21,7 @@
 {% case template %}
 	{% when 'page' %}
 		{% assign current_url = page.url %}  
+		{% assign sidebar_grid = false %}
 	{% when 'page.full' %}
 		{% assign sidebar_grid = false %}
 	{% when 'blog' %}
@@ -59,5 +61,3 @@
 	</div>    
 </div>
 
-{% if current_url != pages.photos-videos.url %}{% include 'template_page_gallery' %}{% endif %}
-{% include 'template_page_ready_for_adventure' %}

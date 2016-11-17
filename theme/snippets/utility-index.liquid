@@ -1,0 +1,21 @@
+
+<li class="index-row row">
+  {% if image.size > 0 %}
+  <div class="index-logo col-sm-4 col-md-3">
+    {% if link.size > 0 %}<a class="icons" href="{{link}}" {{attributes}}>{% endif %}
+    <img style="width:100%;max-width: 180px;" src="{{image | file_img_url: '180x' }}" alt="{{title }}"/>
+    {% if website.size > 0 %}</a>{% endif %}
+  </div>
+  {% endif %}
+  <div class="index-details col-sm-8 col-md-9">
+    <div class="index-title">{% if link.size > 0 %}<a href="{{link}}" {{attributes}}>{% endif %}{{title}}{% if link.size > 0 %}</a>{% endif %}</div>
+    <div class="index-conent">
+      {{content}}
+    </div>
+    {% if link.size > 0 %}
+    <div class="index-action">
+      <a class="{{class | default: 'btn btn-primary '}}" href="{{link}}" {{attributes}}>{{buttonText | default: 'Details'}}</a>
+    </div>
+    {% endif %}
+  </div>
+</li>

@@ -1,20 +1,15 @@
 <div id="footer-wrapper" >
-
+	{% if footer_snippet %}
+	{% include footer_snippet %}
+	{% else %}
 	<div class="contact-container" style="position: relative;"
-		 {% comment %}
-		 data-parallax="scroll"
-		 data-bleed="50"
-		 data-speed="0"
-		 data-z-index="-95"
-		 data-image-src="https://cdn.shopify.com/s/files/1/1334/6905/files/background-footer.jpg?15914333796042654014"
-		{% endcomment %}
 		 data-background-xl="{{'background-footer.jpg' | file_img_url: 'master'}}"
 		 data-background-lg="{{'background-footer.jpg' | file_img_url: 'master'}}"	 
 		 data-background-md="{{'background-footer.jpg' | file_img_url: 'master'}}"
 		 data-background-sm="{{'background-footer.jpg' | file_img_url: '768x'}}"
 		 >
 		<div class="container">
-			<div class="modular">
+			<div class="modular">				
 				<div class="row">
 					<!-- left side of footer -->
 					<div class="col-md-7 col-lg-7" >
@@ -23,8 +18,7 @@
 								<a href="/" class="logo" >
 									<img src="{{'branding-footer-logo-image-file.png' | asset_url}}" alt="{{shop.name}} Logo" class="{{settings.branding-footer-logo-icon-class}} "  />		        
 								</a>
-							</div>    
-							
+							</div>							
 							{% if footer_html %}<div class="footer-text-wrapper">{{footer_html}}</div>{% endif %}
 							<div class="footer-address-contact">
 								{%if phone_booking %}<div class="footer-phone toll-free"><span>{{'general.booking' | t}}: </span>{{phone_booking}}</div>{%endif%}
@@ -73,10 +67,7 @@
 		<div class="scroll-button top-button" >
 			<a data-scroll  href="#header-top-nav-parent"><span></span></a>      
 		</div>	
-	</div>
-	
-	<div class="footer-fake-container"></div>
-	
+	</div>	
 	<div class="copyright-container full-wrapper" >
 		<div class="modular">
 			<div class="footer-nav hidden-xs" >{% include 'navbar' linklist : settings.navigation-linklist-main, type : 'footer' %}</div>
@@ -88,5 +79,5 @@
 			</div>
 		</div>
 	</div>
-
+	{% endif %}
 </div>

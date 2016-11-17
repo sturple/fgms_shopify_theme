@@ -1,11 +1,13 @@
 {% include 'data-site' %}
-{% capture page_heading %}<h1>{{page_title}}</h1>{% endcapture %}
+{% capture page_heading %}<h1>{{page_title}} </h1>{% endcapture %}
 {% assign content_grid = 'col-lg-9 col-md-8' %}
 
 {% case template %}
-
-	{% when 'page.full' or 'cart' %}		
+	{% when 'page.gallery' %}
+		{% assign content_grid = 'col-lg-8 main' %}
+	{% when 'page.full' or 'cart' or 'page' %}		
 		{% assign content_grid = 'col-md-12' %}
+	
 	{% when 'list-collections' %}
 		{% capture page_heading %}<h1>{{'general.gift-shop' | t }}</h1>{% endcapture %}
   {% when 'product' %}		
@@ -22,9 +24,9 @@
 		{% capture page_heading %}<h1>{{page_heading}}</h1>{% endcapture %}
 	{% when 'article' %}
 		
-		{% if article.url contains 'blogs/posts' %}{% capture page_heading %}<div class="article-heading blog"><div class="h1 has-underline ">Blog</div></div>{% endcapture %}{% endif %}
-		{% if article.url contains 'blogs/media-clippings' %}{% capture page_heading %}<div class="article-heading  media-clippings"><div class="h1 has-underline">Media Clippings</div></div>{% endcapture %}{% endif %}
-		{% if article.url contains 'blogs/news-release' %}{% capture page_heading %}<div class="article-heading news-releases"><div class="h1 has-underline ">News Releases</div></div>{% endcapture %}{% endif %}
+		{% if article.url contains 'blogs/posts'  or article.url contains 'blogs/news' %}{% capture page_heading %}<div class="article-heading blog"><div class="h1  blog-fake-heading ">{{blog.title}}</div></div>{% endcapture %}{% endif %}
+		{% if article.url contains 'blogs/media-clippings' %}{% capture page_heading %}<div class="article-heading  media-clippings"><div class="h1 blog-fake-heading ">{{blog.title}}</div></div>{% endcapture %}{% endif %}
+		{% if article.url contains 'blogs/news-release' %}{% capture page_heading %}<div class="article-heading news-releases"><div class="h1  blog-fake-heading ">{{blog.title}}</div></div>{% endcapture %}{% endif %}
 		
 		{% capture page_heading %}
 			{{page_heading}}
@@ -35,10 +37,10 @@
 <div class="script-overflow-background secondary-background" data-selector="#header-top-parent" data-before="true" data-background="{{backgroundImages}}"	 >
   <div class="modular modular-page "  >
     <div class="container">
-			<div class="hidden-xs breadcrumbs-container opacity-ffffff-95">{% include 'breadcrumbs' %}</div>		
-			<div class="opacity-ffffff-80  page-template-content ">
-				<div class="row"><div class="col-md-12">{{page_heading | strip }}</div></div>
-				<div class="row">                    
-					<div class="{{content_grid}}">
+			<div class="hidden-xs breadcrumbs-container ">{% include 'breadcrumbs' %}</div>		
+			<div class="page-template-content ">
+				<div class="row"><div class="col-md-12">{{page_heading | strip | raw }}</div></div>
+				<div class="row ">                    
+					<div class="{{content_grid}} ">
 						<div class="page-content">
 						

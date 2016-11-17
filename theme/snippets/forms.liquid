@@ -254,13 +254,22 @@
 <div class="footer-form form-horizontal">
 {% form 'contact' %}
 	{% include 'form_errors' %}
+	{% if form.errors  or form.posted_successfully? %}
+	<script type="text/javascript">
+		jQuery(function($){
+			{% capture statusClass %}{% if form.errors %}has-errors{% else %}thank-you-message{% endif %}{% endcapture %}
+			$('.footer-contact-popup-container').addClass('active').addClass('{{statusClass}}');	
+			
+		});
+	</script>
+	{% endif %}
 	 {% if form.posted_successfully? %}
 		<div class="alert " role="alert">
 			{{'forms.message-form-success-part1' | t}} {{shop.name}}. {{'forms.message-form-success-part2' | t}}
 		</div>
 		<script type="text/javascript">
-			jQuery(function($){
-				$('html, body').animate({ scrollTop: $('.alert').offset().top   }, 2000);   
+			jQuery(function($){				
+				$('html, body').animate({ scrollTop: $('.alert').offset().top   }, 2000); 				
 			});
 		</script>
 	{% else %}
@@ -291,23 +300,7 @@
 		</div>
 	</div>
 
-	{% comment %}
-    <div class="form-group" >
-		<div class="col-sm-12">
-			<label style="padding-right: 18px;" class="pull-left ">{{'forms.subscribe-elist-short' | t}}</label>
-			<div class="">
-				<div class="radio   radio-inline">
-					<input class="radioButtons contactRadio" type="radio" name="emailList" id="emailListYesfooter" value="Yes" CHECKED />               
-					<label for="emailListYesfooter" style="position: relative; ;">{{'general.yes'|t}}</label>
-				</div>
-				<div class="radio radio-inline">
-					<input class="radioButtons contactRadio" type="radio" name="emailList" value="No" id="emailListNofooter"  />
-					<label for="emailListNofooter" style="position: relative;">{{'general.no' |t}}</label>
-				</div>
-			</div>
-		</div>
-    </div>
-{% endcomment %}
+
 	<div class="form-group">
 		<div class="col-sm-12">
 			<input class="btn btn-primary" type="submit" id="contactFormSubmit" value="{{'general.send'|t}}" />

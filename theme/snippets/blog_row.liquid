@@ -6,25 +6,33 @@
 
 	<meta itemprop="author" content="{{ settings.postedByText }} {{ article.author }}" />
 	<div class="article-summary article-heading {{ article.url | remove: 'blogs/'  | remove: article.handle | remove: "/" }}" itemprop="description ">
-		<a href="{{ article.url }} " title="{{ article.title | escape }} " itemprop="url "><h2 itemprop="name ">{{ article.title }}</h2></a>
+		<a href="{{ article.url }}" title="{{ article.title | escape }}" itemprop="url" class="hidden-sm hidden-md hidden-lg">
+			<div itemprop="name " class="h3">{{ article.title }}</div>
+		</a>
 		<div class="row">			
 		{% if article.image.src %}
-			<div class="col-sm-4  ">
-				<a href="{{ article.url }} " class="blog-index-image-full">
-					<img style=" " src="{{article | img_url: 'compact'}} " alt="feature image {{article.title | escape}} " /></a>
+			<div class="col-sm-4 col-lg-3  ">
+				<a href="{{ article.url }} " class="blog-index-image-full photo">
+					<img  style=";max-width: 175px;max-height:200px;" src="{{article | img_url: '200x'}} " alt="feature image {{article.title | escape}} " /></a>
 			</div>
 		{%endif%}
 			
-			<div class="{% if article.image.src %}col-sm-8{%else%}col-sm-12{%endif%}">
-				
+			<div class="{% if article.image.src %}col-sm-8 col-lg-9{%else%}col-sm-12{%endif%}">
+				<a href="{{ article.url }}" title="{{ article.title | escape }}"  class="hidden-xs">
+					<h3>{{ article.title }}</h3>
+				</a>				
 				<span class="articleDate " itemprop="datePublished "><b>{{ article.published_at | date: "%B %d, %Y " }}</b></span> - 
 				<span class="article-excerpt">
+					
 				{% if article.excerpt.size > 0 %} 
-					{{ article.excerpt | truncatewords: 30}} 
+					{% assign c = article.excerpt | truncatewords: 30 %} 					
 				{% else %} 
-					{{ article.content | strip_html | truncatewords: 30 }} 
-				{% endif%}
+					{% assign c = article.content | strip_html | truncatewords: 30  %}	
+				{% endif%}				
+					
+					{% include 'regex-replace' start : '[', end :']' replace : '' content : c %}
 				</span>
+				
 				<div>
 					<a class="learn-more-link " href="{{ article.url }} ">Full Story<i style="position:relative;top:2px;left:4px;" class="fa fa-caret-right" aria-hidden="true"></i></a>
 				</div>

@@ -137,7 +137,7 @@
         }
         .section-account {
                        
-            padding: 15px $media-lg-theme-padding-secondary 15px $media-lg-theme-padding-secondary;        
+            padding: 15px 0 15px $media-lg-theme-padding-secondary;        
         }
     }
     @media  screen and (min-width: $screen-xl-max) {
@@ -145,7 +145,7 @@
             padding: 0 $media-xl-theme-padding-secondary 0 $media-xl-theme-padding-primary;
         }
         .section-account {
-            padding: 15px $media-xl-theme-padding-primary 15px $media-xl-theme-padding-secondary;        
+            padding: 15px 0 15px $media-xl-theme-padding-secondary;        
             .social-icons {
                 margin-left: 45px;
                 i {
@@ -158,34 +158,7 @@
 
 
 
-#header-top-parent {
-    position: relative;
-    .row {
-        @include flexbox();
-        flex-flow: column;
-    }
-    .header-logo {
-        align-self: center;
-        img {
-            max-width: 315px;;
-						width: 100%;
-        }
-    }
 
-
-    @media  screen and (min-width: $screen-md-max) {
-        .row  {
-            @include flexbox();
-            flex-flow: row;
-        }
-        .header-logo {
-            align-self: flex-start;
-            img {
-                max-height: 100%;
-            }
-        }        
-    }
-}
 
 .secondary-background {
 	background-size: cover;
@@ -194,7 +167,7 @@
 	}
 }
 #layerslider-home {
-   background-image: url('https://cdn.shopify.com/s/files/1/1334/6905/files/preload-12-metre-challenge-01.jpg?16331132729006305899');
+   background-image: url('');
    background-position: top center;
    background-attachment: scroll;
    background-size: auto 100%;
@@ -202,67 +175,6 @@
    
 }
 
-.breadcrumbs-container {
-    @include radius(10px 10px 0 0);
-    padding: 8px $media-xl-theme-padding-primary ;
-    margin-top: $media-xl-theme-padding-primary;
-    
-}
-.page-template-content {
-	position: relative;
-	margin: 0 -15px 0;
-
-	@include radius(0 0 10px 10px);
-	padding: (50px* 0.5) ($media-xl-theme-padding-primary * 0.5);
-	p {
-
-			line-height: 1.5em;
-	}
-	@media  screen and (min-width: $screen-sm-max) {	
-		margin: 0 0  $media-xl-theme-padding-primary;	
-	}
-	@media  screen and (min-width: $screen-md-max) {		
-		
-		.page-content {
-				margin-right: 36px;
-		}		
-	}
-	@media  screen and (min-width: $screen-lg-max) {		
-		padding: 50px $media-xl-theme-padding-primary;	
-	}
-}
-
-.sidebar {
-    .sidebar-logo {
-        text-align: center;
-        img {
-            max-width: 80px;
-        }
-    }
-    .widget-learn-more {
-        text-align: center;
-        background-color: rgba(255,255,255,0.65);
-        @include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));
-        padding: 12px;
-        margin-bottom: 36px;
-        @include radius(10px);
-        h3, .h3 {
-            margin-top: 0;
-            text-align: center;
-            padding-top: 0;
-           
-        }
-        p {
-            font-size: 0.9em;
-        }
-        .btn {
-            width: 100%;
-						max-width: 200px;
-        }
-    }
-    
- 
-}
 
 .home-page-content {	
 		
@@ -333,35 +245,43 @@
 
 .breadcrumbs-container {
     @include radius(10px 10px 0 0);
-    padding: 8px $media-xl-theme-padding-primary ;
-    margin-top: $media-xl-theme-padding-primary;
+    padding: $theme-margin-base 0 ;
+    
     
 }
 .page-template-content {
-	position: relative;
-	margin: 0 -15px 0;
-
-	@include radius(0 0 10px 10px);
-	padding: (50px* 0.5) ($media-xl-theme-padding-primary * 0.5);
+	position: relative;	
+	padding: ($theme-margin-base * 2) 0;
 	p {
 
 			line-height: 1.5em;
 	}
 	@media  screen and (min-width: $screen-sm-max) {	
-		margin: 0 0  $media-xl-theme-padding-primary;	
+
 	}
 	@media  screen and (min-width: $screen-md-max) {		
-		
-		.page-content {
-				margin-right: 36px;
-		}		
+
+
 	}
 	@media  screen and (min-width: $screen-lg-max) {		
-		padding: 50px $media-xl-theme-padding-primary;	
-	}
+		padding: 44px 0 100px;	
+	}	
 }
 
+.page-frontpage {
+	.page-template-content {
+
+		@media  screen and (min-width: $screen-lg-max) {		
+			padding: ($theme-margin-base *4 ) 0;	
+		}
+	}	
+}
+
+
+
+
 .sidebar {
+		margin-top: 30px;
     .sidebar-logo {
         text-align: center;
         img {
@@ -389,7 +309,9 @@
 						max-width: 200px;
         }
     }
-    
+	@media  screen and (min-width: $screen-md-max) {	
+    margin-top: 0;
+	}
  
 }
 
@@ -398,6 +320,28 @@
 .modular {
     position: relative;
     .h2 { padding-top: 0;}
+		
+	&.section-homepage-benifits {
+		background-color: #1C3E94;
+		color: #fff;
+		h2,.h2, h3, .h3, h4, .h4 {
+			color: #fff;
+		}
+		.fa-ul {
+			margin-bottom: 0 !important;
+		}
+	}
+	&.section-news {
+		background-color: #fff;
+		h2 { padding-top: 0;}
+		 h3, .h3 {
+			padding-top: 0;
+			&:after {
+				max-width: 200px;
+			}
+		}
+	
+	}
     
     &.modular-slideshow-home {
 
@@ -435,38 +379,18 @@
          
     }
     
-    &.modular-book-now{
-        text-align: center;
-        background-color: #2D6BB4;
-        color: #fff;
-        @include box-shadow();    
-       
-    }
-
-	
-    &.modular-page-ready-for-adventure    {
-        text-align: center;
-        background-color: #2D6BB4;
-        color: #fff;     
-				z-index: 2;
-        @include box-shadow();
-        .h1 {
-            margin-bottom: 24px;
-            font-size: 3.1em;;
-        }
-        p {
-            margin-bottom: 8px;
-        }
-    }
-    
     &.modular-testimonials {
-        position: relative;
-        z-index: 10;
-        text-align: center;
-				padding-top: $theme-margin-base * 2;        
-        padding-bottom: $theme-margin-base * 2;
-        background-color: #16478F;
-        @include box-shadow();
+			h2 {
+				color: #fff;
+				padding-top: 0;
+				&:after {
+					border-color: #1C3E94;
+				}
+			}
+			position: relative;
+			z-index: 10;       
+			background-color: #7AC143;
+       
         
     }
     
@@ -523,14 +447,14 @@
         }
     }
 	@media  screen and (min-width: $screen-xs-max) {	
-		 &.modular-testimonials, &.modular-learn-more,&.modular-boats {
-			 padding: ($theme-margin-base * 4) ($theme-margin-base);
-		}
+
 		
 	}
-	@media screen and (min-width: $screen-sm-max) {
-		&.modular-learn-more {
-			padding-bottom: ($theme-margin-base * 7);
+	@media screen and (min-width: $screen-md-max) {
+		&.section-homepage-benifits {
+			.column-wrapper {
+				margin-left: $theme-margin-base * 2;
+			}
 		}
 	}
 	@media  screen and (max-width: $screen-lg-max) {
@@ -626,149 +550,11 @@
 
 
 
-#footer-wrapper {
-    
-    position: relative;
-    color: #fff;
-    @include a-border(#fff,transparent, #fff, #fff ,'',':not(.icons):not(.btn):not(.logo)');
-    .contact-container {
-			background-size: auto 100%;
-			background-position: top center;
-			padding: ($theme-margin-base * 2) 0 ($theme-margin-base * 5);
-			border-bottom: 4px solid #fff;
-			.footer-email {
-					span { display: none;}
-			}
-    }
-    .footer-fake-container {
-        height:  4px;
-        background-color: #00081D;
-        
-    }
-    .copyright-container {
-			background-color: #103869;
-			text-align: center;
-			padding: ($theme-margin-base * 2) $theme-margin-base;
-			border-top: 4px solid #A81D1A;
-			.copyright {
-					font-size: 0.8em;
-			}
-			.action-links {
-					 font-size: 1.2em;
-					 margin-bottom: $theme-margin-base * 2;					
-					 text-transform: uppercase;
-				a {
-					margin-top: $theme-margin-base !important;
-				}
-			}			
-
-    }
-    
-
-	.logo img {
-		max-width: 300px;
-		width: 100%;
-	}
-    .footer-content-wrapper{
-				text-align: center;
-        line-height: 1.6em;
-        font-size: 1.2em;
-        .footer-title {
-            margin-bottom: $theme-margin-base * 2;
-        }
-        .h2, h2{
-            color: #fff;
-            @include font-size(3.8);
-            margin-bottom: -12px;
-            letter-spacing: 0.01em;
-        }
-        .footer-logo {
-            margin-bottom:  $theme-margin-base * 2;
-        }
-        .tagline {
-            text-transform: uppercase;;
-            padding-bottom: 12px;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #fff;
-            display: table;
-            font-size: 1.1em;
-            letter-spacing: 0.11em;
-            
-        }
-        .location {
-            text-transform : uppercase;
-            font-size: 0.95em;
-            letter-spacing: 0.23em;
-            
-        }
-        .footer-info {
-            margin-bottom: $theme-margin-base * 2;
-        }
-        .footer-address-contact, .footer-address {
-            margin-bottom: $theme-margin-base * 2;
-        }
-        .footer-address-contact {
-            font-weight: bold;
-        }
-    
-        .social-icons {
-            @include a(#fff,none,$link-color-hover,none);
-            i  {
-                @include font-size(3);
-                margin-right: 12px;
-            }
-        }
-        .footer-action {
-            margin-top: $theme-margin-base * 2;;
-            a {
-                margin-right: 12px;
-            }
-        }
-    }
-	@media screen and (min-width: $screen-sm-max){
-		.contact-container{
-			background-size: cover;
-			background-position: top left;
-		}
-	}
-	@media  screen and (min-width: $screen-md-max){
-		.footer-content-wrapper {
-			text-align: left;
-			.social-icons {					
-				i  {
-						@include font-size(4.6);
-						margin-right: 18px;
-				}
-			}			
-		}
-	}	
-	@media  screen and (min-width: $screen-xl-max){
-		.contact-container {
-			background-size: 100% auto;
-		}
-	}
-    
-    
-}
-.footer-form-content {
-    padding-top: 120px;    
-    h3, .h3 {
-        @include font-size(4.5);
-        color: #fff;
-        font-family: Overlock;
-        margin-bottom: $media-xl-theme-padding-secondary;
-				font-weight: normal;
-    }
-    .footer-privacy-policy {
-        font-style: italic;
-        font-size: 0.9em;
-    }
-}
 
 
 
 
-ul.boat-types, ul.collections-list {
+ul.collections-list {
     padding-top: 36px;
     li {
         margin-bottom: 36px;
@@ -793,13 +579,13 @@ ul.boat-types, ul.collections-list {
 						max-width: 300px;
 						margin: 0 0 12px;
             display: block;
-            @include box-shadow(1px 1px 12px 0px rgba(0,0,0,0.1));                
-            border: 1px solid rgba(0,0,0,0.2);
+                           
+           
           
             position: relative;
             .image-overlay {
                 @include transition(0.75s);
-                background-color: rgba(0,0,0,0.05);
+                
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -823,7 +609,7 @@ ul.boat-types, ul.collections-list {
             }            
             &:hover {
                 .image-overlay {
-                    background-color: rgba(0,0,0,0.7);
+                    background-color: rgba(0,0,0,0.0);
                     @include transition(0.75s);
                     &:after {                       
                         font-family: FontAwesome;                       
@@ -832,7 +618,7 @@ ul.boat-types, ul.collections-list {
                        
                     }
                 button {
-                    @include opacity(1);
+                    @include opacity(0);
                 }                    
                 }
                 img {                     
@@ -853,7 +639,7 @@ ul.boat-types, ul.collections-list {
           
     }
     .card-img, .card-thumb {
-        margin-bottom: 18px;
+        
     }
     .title , .pretitle {       
         text-transform: uppercase;
@@ -866,27 +652,81 @@ ul.boat-types, ul.collections-list {
         font-size: 20px;
         font-size: 2rem;
     }
+	
+	&.has-thumb {
+		&:after {
+			content: ' ';
+			clear: both;
+			margin: 0;
+			display: table;
+		}
+		.card-thumb {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	@media  screen and (min-width: $screen-lg-max) {	
+			
+		&.has-thumb {
+			.card-details {
+
+				float: left;
+				width: 75%;
+			}
+			.card-thumb {
+				display: block;
+				visibility: visible;
+				float: right;
+				width: 20%;
+				margin-left: 4%;
+				text-align: right;
+			}	
+		}
+	}
+
+}
+
+#module-testimonials {
+		.carousel-control {
+			width: 4%;
+			display: none;
+			visibility: hidden;
+			&.right {
+				right: -48px;;
+			}
+			&.left {
+				left: -45px;;
+			}
+		}	
+	@media  screen and (min-width: $screen-lg-max) {	
+		.carousel-control {
+			display: block;
+			visibility: visible;
+		}
+	}
 }
 
 #testimonials {
+		padding-top: $theme-margin-base *2;
     li {
-        margin-bottom: 24px;
-        padding-bottom: 24px;
+        margin-bottom: $theme-margin-base *3;
+        padding-bottom: $theme-margin-base *3;
         border-bottom: 1px dotted #ccc;
         .card-wrapper {
             .card-thumb {
                 img {
                     width: 100%;
+									  max-width: 200px;
                 }
             }
             .card-details {
-                .content-snippet {
-                    font-family: Overlock, cursive;
-                    font-style: italic;
-                    font-size: 1.3em;
+                .content-snippet {  
+									
+                    
                 }
                 .snippet-meta {
-                    font-weight: 300;
+										margin-top: $theme-margin-base;
+                    font-style: italic;;
                 }
             }
 
@@ -900,23 +740,24 @@ ul.boat-types, ul.collections-list {
 }
 
 #testimonial-carousel{
-	$test-card-snippet-font-size: 3.5;
+	$test-card-snippet-font-size: 2;
 	$test-card-font-size: 2.2;
 	ul {
-		min-height: 250px;
+	/*	min-height: 250px;*/
 	}
-	.card-wrapper {			
+	.card-wrapper {	
+		.snippet-meta {
+			font-weight: bold;
+			margin-bottom: $theme-margin-base;
+		}
 			@include font-size($test-card-font-size* 0.77);
-			color: #fff;
-			text-shadow: 1px 1px 1px rgba(0,0, 0, 0.5);
+			color: #fff;		
 			padding: 0;
-			min-height: 160px;
-			.content-snippet {
-					font-family: Overlock, cursive;
-					font-style: italic;					
+			font-style: italic;
+		
+			.content-snippet {			
 					line-height: 1.2em;
-					margin-bottom: 18px;
-					letter-spacing: -1.5px;
+					margin-bottom: $theme-margin-base;	
 					@include font-size(($test-card-snippet-font-size * 0.77));
 
 			}
@@ -1081,21 +922,70 @@ ul.boat-types, ul.collections-list {
     
 }
 
-.corporate-guests {
-    > div {
-        float: left;
-        width: 25%;
-        border: 2px solid rgba(255,255,255,0.1);
-        text-align: center;
-        .zoom-overlay-wrapper .image-wrapper {
-            margin: 0;
-            overflow: hidden;
-            max-height: 112px;
-        }
-    }
-    &:after {
-        display: table;
-        content: " ";
-        clear: both;
-    }
+.dealer, .index-row {
+	margin-bottom: $theme-margin-base * 2;
+	padding-bottom: $theme-margin-base *2;
+	border-bottom: 1px dotted #ccc;
+	&:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.dealer-logo {
+		margin-bottom: $theme-margin-base;
+		
+	}
+	.dealer-name, .index-title  {
+		font-size: 1.2em;
+		margin-bottom: $theme-margin-base  ;
+		text-transform:uppercase;
+	}
+	.dealer-url {
+		font-style: italic;
+		font-size: 0.9em;
+	}
+	
+	.index-logo {
+		
+	}
+	img {
+		@include box-shadow(4px 3px 29px 0px rgba(0,0,0,0.2));
+	}
+
+	.index-action {
+		padding-top: $theme-margin-base * 2;
+	}
 }
+
+.dealer-wrapper {
+	padding-top: $theme-margin-base *2;
+	img {
+		@include box-shadow(none);
+	}
+}
+.index-wrapper {
+	padding-top: $theme-margin-base *2;
+}
+.homepage-benifits-product {
+	background-color: #7AC143;
+	max-width: 300px;
+	
+	margin: (0) auto ($theme-margin-base *2);
+	.zoom-overlay-wrapper {
+		
+	}
+	.image-wrapper {
+		margin-bottom: 0 !important;
+		text-align: center;
+	}
+	
+	.image-overlay  {
+		font-size: 0.9em  !important;
+		line-height: 1.3em;
+		padding: ($theme-margin-base *2) $theme-margin-base !important;
+	}
+}
+
+
+
+

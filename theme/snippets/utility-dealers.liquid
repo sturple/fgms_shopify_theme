@@ -1,0 +1,19 @@
+
+<li class="dealer row">
+  {% if image.size > 0 %}
+  <div class="dealer-logo col-sm-5 col-md-4">
+    {% if website.size > 0 %}<a class="icons" href="{{website}}" target="_blank">{% endif %}
+    <img style="width:100%;max-width: 300px; box-shadow:none; " src="{{image | file_img_url: 'master' }}" alt="{{name }}"/>
+    {% if website.size > 0 %}</a>{% endif %}
+  </div>
+  {% endif %}
+  <div class="dealer-details col-sm-7 col-md-8">
+    <div class="dealer-name">{% if website.size > 0 %}<a href="{{website}}" target="_blank">{% endif %}{{name}}{% if website.size > 0 %}</a>{% endif %}</div>
+    <div class="dealer-tel">{{phone}}</div>
+    {% if website.size > 0 %}
+    <div class="dealer-url">
+      <a href="{{website}}" target="_blank">{{ website | replace: 'http://' | replace: 'https://'}}</a>
+    </div>
+    {% endif %}
+  </div>
+</li>

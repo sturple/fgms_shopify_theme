@@ -1,0 +1,203 @@
+$footer-bar-background-color: {{settings.color-footer-bar-background | default: '#ddd'}};
+
+#footer-wrapper {
+	@include font-size(1.4);
+  background-color:  $footer-bar-background-color; 
+  position: relative;
+  color: #fff;
+	@include a-border({{settings.color-footer-bar-link-color | default: '#fff'}},transparent, {{settings.color-footer-bar-link-color-hover | default: '#fff'}}, {{settings.color-footer-bar-link-color | default: '#fff'}} ,'',':not(.icons):not(.btn):not(.logo)');
+  .contact-container {
+    background-size: 100% auto;
+    background-position: top center;
+		background-repeat: no-repeat;
+		background-attachment: scroll;
+    padding: ($theme-margin-base * 4) 0 ($theme-margin-base *2 );   
+    .footer-email {
+        span { display: none;}
+    }
+  }
+    
+  .copyright-container {
+		color: $link-color ;
+		.footer-bottom-line {
+			border-top: 4px solid $link-color;
+			padding-top: $theme-margin-base * 2;
+			margin-top:  $theme-margin-base * 2;
+		
+		}  
+    
+    padding:0 0  $theme-margin-base;
+
+
+  }
+	.footer-contact-popup-container{
+		color: #fff;
+	}
+	.logo img {
+		max-width: 260px;
+		width: 100%;
+	}
+  .footer-content-wrapper{
+		position: relative;
+    text-align: left;
+		
+		
+    line-height: 1.6em;    
+    .footer-title {
+        margin-bottom: $theme-margin-base * 2;
+    }
+    .h2, h2{
+        color: #fff;
+        @include font-size(3.8);
+        margin-bottom: -12px;
+        letter-spacing: 0.01em;
+    }
+    .footer-logo {
+        margin-bottom:  $theme-margin-base * 2;
+    }
+    .tagline {
+      text-transform: uppercase;;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #fff;
+      display: table;
+      font-size: 1.1em;
+      letter-spacing: 0.11em;
+    }
+    .location {
+        text-transform : uppercase;
+        font-size: 0.95em;
+        letter-spacing: 0.23em;
+    }
+    .footer-info {
+        
+    }
+    .footer-address-contact, .footer-address {
+        
+    }
+    .footer-address-contact {
+        font-weight: bold;
+    }
+
+    .social-icons {
+        @include a(#fff,none,$link-color-hover,none);
+        i  {
+            @include font-size(3);
+            margin-right: 12px;
+        }
+    }
+    .footer-action {
+        margin-top: $theme-margin-base * 2;;
+        a {
+            margin-right: 12px;
+        }
+    }
+  }
+	@media screen and (min-width: $screen-sm-max){
+		.contact-container{
+
+		}
+	}
+	@media  screen and (min-width: $screen-md-max){
+		.footer-content-wrapper {
+			text-align: left;
+			.social-icons {					
+				i  {
+						@include font-size(4.6);
+						margin-right: 18px;
+				}
+			}			
+		}
+	}	
+	@media  screen and (min-width: $screen-xl-max){
+		.contact-container {
+
+		}
+	}   
+    
+}   
+.footer-logo {
+	margin-bottom: $theme-margin-base * 2;
+}
+.footer-form-content {
+    h3, .h3 {
+        @include font-size(4.5);
+        color: #fff;      
+        margin-bottom: $media-xl-theme-padding-secondary;
+				font-weight: normal;
+    }
+    .footer-privacy-policy {
+        font-style: italic;
+        font-size: 0.9em;
+    }
+}
+
+
+
+.footer-contact-popup-container {
+	position: absolute;
+	right: $theme-margin-base;
+	bottom: -72px;
+	overflow: hidden;
+	min-height: 56px;
+	height: 100%;
+	z-index: 10;
+	@include transition(0.75s);
+	width: 100%;
+
+	.footer-contact-popup-wrapper {
+		$popup-border: 2px solid #fff;
+		.popup-header {
+			border-left: $popup-border;
+			border-top: $popup-border;
+			border-right: $popup-border;
+			background: $link-color;
+			padding: $theme-margin-base ;
+			cursor: pointer;
+			@include radius(8px 8px 0 0);
+			h3 {
+				color: #fff;
+				padding: 0;
+				margin: 0;
+				&:after {
+					content:'';
+					padding-top:0;
+					border: none;
+				}
+
+
+
+			}
+		}
+		.popup-content {		
+			border-left: $popup-border;
+			border-bottom: $popup-border;
+			border-right: $popup-border;
+			background: $link-color;		
+			padding: $theme-margin-base ;
+		}
+	}
+	&.active {		
+		@include transition(1s);
+		min-height: 440px;
+		.popup-header {
+			i {	
+					@include transform(rotate(180deg));
+			}
+		}
+		&.has-errors {
+			min-height: 620px;
+		}	
+		&.thank-you-message {
+			min-height: 254px;
+		}
+	}
+	
+	@media  screen and (min-width: $screen-lg-max){			
+	
+		&.active {
+			min-height: 453px;
+		}
+		
+	}
+}

@@ -4,17 +4,25 @@
  */
 
 var sizePostfix = 'xl';
-if (window.innerWidth < 1920) { sizePostfix = 'lg'; }
-if (window.innerWidth < 1200) { sizePostfix = 'md'; }
-if (window.innerWidth < 993)  { sizePostfix = 'sm'; }
-if (window.innerWidth <= 768)  { sizePostfix = 'xs'; }
-if (window.innerWidth <= 480)  { sizePostfix = 'xxs'; }
+
+
 
 jQuery(function($) {
   /*** Email cloaking ***/
   //var lastWindowTopLocation = $(window).scrollTop();
   emailCloak();
 
+	
+	$(window).on('resize', function(){
+		
+		if (window.innerWidth < 1920) { sizePostfix = 'lg'; }
+		if (window.innerWidth < 1200) { sizePostfix = 'md'; }
+		if (window.innerWidth < 993)  { sizePostfix = 'sm'; }
+		if (window.innerWidth <= 768)  { sizePostfix = 'xs'; }
+		if (window.innerWidth <= 480)  { sizePostfix = 'xxs'; }			
+
+	});	
+	$(window).resize();
   
   $('*[data-random], *[data-limit]').each(function(){
     var randomlimit = parseInt($(this).attr('data-limit'));    
@@ -66,28 +74,32 @@ jQuery(function($) {
     
   });  */
 	
-	$('*[data-background], *[data-background-xl],*[data-background-lg],*[data-background-md],*[data-background-sm] ').each(function(){
-		
+	$('*[data-background], *[data-background-xl],*[data-background-lg],*[data-background-md],*[data-background-sm] ').each(function(){		
 		getImageSize($(this), function($img,attr){		
 			return attr;
 		});
 	})
+	
 
 
   
   /*** Updates all  images according to screen size;  */
   //$('img[data-image-'+sizePostfix+']')
-
+ 
   $('img').each(function() {	
 		if (typeof modifyImageSrcCallback === 'function'){
 			getImageSize($(this), modifyImageSrcCallback); 
 		}
 		else {
-			getImageSize($(this), function($img, attr){ return attr}); 
+			getImageSize($(this), function($img, attr){
+				
+				return attr
+			}); 
 		}
 		
 
   });
+
 	/*
   $.each(document.getElementsByTagName("img"), function() {
     if (this.getAttribute('src') === null) {
@@ -140,7 +152,7 @@ jQuery(function($) {
 	  navigationRight: '<i class=\"fa fa-angle-right\"></i>',
 	  navigationLeft: '<i class=\"fa fa-angle-left\"></i>',
 	  navigationClose: '<i class="fa fa-times-circle" aria-hidden="true"></i>',
-		showCaption: 'true',
+		showCaption: 'true',	
 	  zoomoutSpeed : 800
 	});
   }
@@ -273,8 +285,9 @@ jQuery(function($) {
 });
 
 function getImageSize($img, callback) {
+	
 	"use strict";
-	var sizeArray = ['xxs','xs','sm','md','lg','xl'], 
+	var sizeArray = ['xxs','xs','sm','md','lg','xl'], 			
 			src,
 			attr,
 			index;
@@ -286,15 +299,16 @@ function getImageSize($img, callback) {
 					attr = callback($img, attr);
 				}
 			if (isImage){
-				$img.attr('src', attr);		
+				src = $img.attr('src');
+				// check to see if source is the same as new, if so don't update.
+				if (src !== attr){
+					$img.attr('src', attr);		
+				}				
 			}
 			else {			
-		 		// adding random if there are multiple images seperated by ,
-				
+		 		// adding random if there are multiple images seperated by ,				
 				var imageArray = attr.split(',');				
 				var item = (imageArray.length > 0) ? imageArray[Math.floor(Math.random()*imageArray.length)] : attr;
-				
-	
 				$img.css({'background-image': 'url('+item+')'});
 			}
 			return true;
@@ -303,22 +317,26 @@ function getImageSize($img, callback) {
 		}		
 		
 	}
-
+	
   for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
-		attr = $img.attr('data-image-'+sizeArray[index]);
+		attr = $img.attr('data-image-'+sizeArray[index]);		
 		if (checkAttr(attr)){
-		//	return ;
-		}
+			break;
+	  }
+		
   }
+	
 	if (attr === undefined ){
 		attr = $img.attr('data-image');
 		if (checkAttr(attr)){
 		//	return ;
 		}
 	}
+	// for background images
   for (index = sizeArray.indexOf(sizePostfix); index < sizeArray.length; ++index) {	  
 		attr = $img.attr('data-background-'+sizeArray[index]);
 		if (checkAttr(attr, false)){
+			break;
 		//	return;
 		}
   }

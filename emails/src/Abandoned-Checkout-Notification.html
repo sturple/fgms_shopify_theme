@@ -4,13 +4,13 @@
 		<!-- TITLE -->
 		<tr>
 			<td class="title-cell" width="560" align="left" style="<%= titleStyle %>">
-				Your Shopping Cart is Still Active
+				Your Shopping Cart is Still Active.  
 			</td>
 		</tr>
 		<!-- SUBTITLE -->
 		<tr>
 			<td class="subtitle-cell" width="560" align="left" style="<%= subtitleStyle %>">
-				Would you like to complete your purchase?
+				Would you like to complete your purchase? 
 			</td>
 		</tr>
 		<!-- BODY WRAPPER -->
@@ -22,6 +22,7 @@
 						<tr>
 							<td class="message-cell" width="560" style="<%= bodyStyle %>">
 								Hello{% if billing_address.name %} {{ billing_address.name }}{% endif %},
+								{{custom_message}}
 							</td>
 						</tr>
 						<tr>

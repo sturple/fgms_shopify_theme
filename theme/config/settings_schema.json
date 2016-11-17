@@ -695,6 +695,17 @@
         "label" : "Select Primary Blog"
       },
       {
+        "type" : "blog",
+        "id" : "blog-media-clippings",
+        "label" : "Select Media Clipping Blog"
+      },
+      {
+        "type" : "blog",
+        "id" : "blog-news-releases",
+        "label" : "Select News Release Blog"
+      },      
+      
+      {
         "type" : "select",
         "id" : "blog-index-count",
         "label" : "Blog Index Entries / Page",

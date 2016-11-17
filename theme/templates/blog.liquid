@@ -1,6 +1,6 @@
 {% comment %}Logic to either show all blogs if posts type or just to show content from other blogs{% endcomment %}
 {% include 'archive-logic' %}
-{% if blog.handle == 'posts' %}{% else %}{% assign articles_all = blogs[blog.handle].articles %}{% endif %}
+{% if blog.handle == settings.blog-primary %}{% else %}{% assign articles_all = blogs[blog.handle].articles %}{% endif %}
 
 {% if current_tags %}
 	<div class="intro-text">
@@ -8,7 +8,7 @@
 </div>
 {% endif %}
 
-<ul id="blogArticles">
+<ul id="blogArticles" class="index-container">
 	{% for article in articles_all limit: 100  %}
 		{% comment %}Tag logic{% endcomment %}
 		{% assign tagFlag = false %}		

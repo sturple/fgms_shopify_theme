@@ -1,20 +1,16 @@
-{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{image | file_img_url: 'master'}}{%endif%}" alt="{{title}}" title="{{title}}" data-caption="{{caption}}"{% endcapture %}
-<li class="__st_gallery_thumb_item {{}}  {{filter}} " data-wow-offset="20" style="position: relative; display: block; float: left; top: 0; left: 0; padding: 0; margin: 0;">
-    
-    <a {{attributes}} class="script-gallery-action photo" data-smoothzoom="{{gallery | default: 'gallery'}}">
-        <img data-image="{{image | file_img_url: '400x'}}" data-image-alt1="{{image | file_img_url: '400x'}}" alt="{{title}}" style="width:100%;"  data-loaded="false" />
+{% capture mainimage %}{% if feature.size >  0 %}{{feature | strip | file_img_url: 'master' }}{% else %}{{image | strip | file_img_url: 'master' }}{% endif %}{% endcapture %}
+{% capture attributes %}href="{% if youtubeid %}http://www.youtube.com/watch?v={{youtubeid}}{%else%}{{mainimage}}{%endif%}" {% if feature.size == 0 %} alt="{{title}}" title="{{title}}" data-caption="{{caption}}"{% endif %}{% endcapture %}
+<li class="__st_gallery_thumb_item  {{filter}} " data-wow-offset="20" style="position: relative; display: block; float: left; top: 0; left: 0; padding: 0; margin: 0;">
+  <div class="st_gallery_image_wrapper">      
+    <a {{attributes}} class="script-gallery-action photo" data-smoothzoom="{% if feature.size >0 %}gallery{{image | md5 }}{% else %} {{gallery | default: 'gallery'}}{% endif %}">
+        <img data-image="{{image | strip | file_img_url: '400x'}}"  alt="{{title}}" style="width:100%;"  data-loaded="false" />
         {% if youtubeid %}<i class="fa fa-film gallery-video-notification"></i>{% endif %}
         <div class="__st_gallery_overlay" style="position: absolute;top: 0;">
             <div class="gallery-overlay-content">                                    
                 <div class="gallery-expander"><i class="fa {% if youtubeid %}fa-youtube-play{%else%}fa-search{%endif%}"></i></div>       
-               {% comment %}
-              {% if thumbtext %}
-                    {% if title %}<div class="gallery-title">{{title}}</div>{%endif%}
-                    {% if caption%}<div class="gallery-caption">{{caption}}</div>{%endif%}
-                {% endif %}
-                {% endcomment %}
             </div>
         </div>                                                       
-    </a>
+    </a> 
+  </div>  
 </li>
 <!--%%-%%-->{% comment %}this is required{% endcomment %}
